@@ -1,4 +1,6 @@
-def part1():
+def transform_input(i): return i
+
+def part1(challenge_input):
     number_of_chars = lambda string, char: sum(1 for c in string if c == char)
 
     up_floors = number_of_chars(challenge_input, '(')
@@ -6,7 +8,7 @@ def part1():
 
     print(up_floors - down_floors)
 
-def part2():
+def part2(challenge_input):
     floor = 0
     for i, c in enumerate(challenge_input, start=1):
         if c == '(':
@@ -17,11 +19,3 @@ def part2():
         if floor == -1:
             print(i)
             break
-
-with open('1.input') as f:
-    challenge_input = f.read()
-
-print(challenge_input)
-
-part1()
-part2()
