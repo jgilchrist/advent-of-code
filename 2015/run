@@ -15,7 +15,11 @@ def run_challenge(challenge_number):
     print("Advent of Code Challenge {}".format(challenge_number))
     print("---------------------------")
 
-    challenge = __import__(str(challenge_number))
+    try:
+        challenge = __import__(str(challenge_number))
+    except ImportError as e:
+        print("Not implemented!")
+        return
 
     challenge_input = read_input(challenge_number)
     challenge_input = challenge.transform_input(challenge_input)
@@ -25,7 +29,7 @@ def run_challenge(challenge_number):
     challenge.part2(challenge_input)
 
 if __name__ == '__main__':
-    challenges = [1, 2, 3]
+    challenges = range(1, 26)
 
     import argparse
     parser = argparse.ArgumentParser()
