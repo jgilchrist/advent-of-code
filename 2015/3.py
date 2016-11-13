@@ -1,34 +1,30 @@
-from collections import Counter
-
 def transform_input(i): return i
 
 def part1(i):
     pos = (0, 0)
-    visited = Counter([pos])
+    visited = set([pos])
 
     for char in i:
         pos = move(pos, char)
-        visited.update([pos])
+        visited.add(pos)
 
     print(len(visited))
 
 def part2(i):
-    santa_pos = (0, 0)
-    robo_santa_pos = (0, 0)
-    visited = Counter([santa_pos])
-    santas_turn = True
+    santa = (0, 0)
+    robo_santa = (0, 0)
+    visited = set([santa])
 
-    for char in i:
-        relevant_pos = santa_pos if santas_turn else robo_santa_pos
-        relevant_pos = move(relevant_pos, char)
-        visited.update([relevant_pos])
+    santas_instructions = i[::2]
+    robo_santas_instructions = i[1::2]
 
-        if santas_turn:
-            santa_pos = relevant_pos
-        else:
-            robo_santa_pos = relevant_pos
+    for char in santas_instructions:
+        santa = move(santa, char)
+        visited.add(santa)
 
-        santas_turn = not santas_turn
+    for char in robo_santas_instructions:
+        robo_santa = move(robo_santa, char)
+        visited.add(robo_santa)
 
     print(len(visited))
 
