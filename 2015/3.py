@@ -1,6 +1,6 @@
 from collections import Counter
 
-def transform_input(challenge_input): return challenge_input.strip()
+def transform_input(i): return i
 
 def part1(i):
     pos = (0, 0)

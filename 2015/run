@@ -6,7 +6,7 @@ def read_input(challenge_number):
     filename = "{}.input".format(challenge_number)
 
     with open(filename) as f:
-        challenge_input = f.read()
+        challenge_input = f.read().strip()
 
     return challenge_input
 
