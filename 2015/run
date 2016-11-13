@@ -21,7 +21,10 @@ def run_challenge(challenge_number):
         return
 
     challenge_input = read_input(challenge_number)
-    challenge_input = challenge.transform_input(challenge_input)
+
+    if hasattr(challenge, 'transform_input'):
+        challenge_input = challenge.transform_input(challenge_input)
+
     print("= Part 1 =")
     challenge.part1(challenge_input)
     print("= Part 2 =")
