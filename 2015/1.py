@@ -1,5 +1,3 @@
-def transform_input(i): return i
-
 def part1(challenge_input):
     number_of_chars = lambda string, char: sum(1 for c in string if c == char)
 

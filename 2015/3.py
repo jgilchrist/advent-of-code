@@ -1,5 +1,3 @@
-def transform_input(i): return i
-
 def part1(i):
     pos = (0, 0)
     visited = set([pos])
