@@ -12,8 +12,7 @@ def read_input(challenge_number):
 
 def run_challenge(challenge_number):
     print()
-    print("Advent of Code Challenge {}".format(challenge_number))
-    print("---------------------------")
+    print("== Advent of Code Challenge {}".format(challenge_number))
 
     try:
         challenge = __import__(str(challenge_number))
