@@ -25,7 +25,7 @@ def run_challenge(challenge_number):
     challenge.part2(challenge_input)
 
 if __name__ == '__main__':
-    challenges = [1, 2]
+    challenges = [1, 2, 3]
 
     import argparse
     parser = argparse.ArgumentParser()
