@@ -17,7 +17,7 @@ def run_challenge(challenge_number):
     try:
         challenge = __import__(str(challenge_number))
     except ImportError as e:
-        print("Not implemented!")
+        print(e)
         return
 
     challenge_input = read_input(challenge_number)
