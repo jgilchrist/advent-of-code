@@ -12,6 +12,11 @@ class Direction(Enum):
 
 
 def transform_input(challenge_input):
+    def parse_instruction(instruction):
+        direction = instruction[0]
+        amount = int(instruction[1:])
+        return Instruction(direction, amount)
+
     instructions = challenge_input.replace(' ', '').split(',')
     instructions = list(map(parse_instruction, instructions))
     return instructions
@@ -39,28 +44,24 @@ def part2(instructions):
             visited_locations.append(loc)
 
 
-def parse_instruction(instruction):
-    direction = instruction[0]
-    amount = int(instruction[1:])
-    return Instruction(direction, amount)
-
-def right(d):
-    return {
-        Direction.North: Direction.East,
-        Direction.East: Direction.South,
-        Direction.South: Direction.West,
-        Direction.West: Direction.North,
-    }[d]
-
-def left(d):
-    return {
-        Direction.North: Direction.West,
-        Direction.East: Direction.North,
-        Direction.South: Direction.East,
-        Direction.West: Direction.South,
-    }[d]
 
 def turn(facing, direction):
+    def right(d):
+        return {
+            Direction.North: Direction.East,
+            Direction.East: Direction.South,
+            Direction.South: Direction.West,
+            Direction.West: Direction.North,
+        }[d]
+
+    def left(d):
+        return {
+            Direction.North: Direction.West,
+            Direction.East: Direction.North,
+            Direction.South: Direction.East,
+            Direction.West: Direction.South,
+        }[d]
+
     if direction == 'L':
         return left(facing)
     else:
