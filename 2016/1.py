@@ -83,7 +83,14 @@ def direction_map(d):
 
 def move_in_direction(location, direction, amount):
     direction_adjustment = direction_map(direction)
-    return [location + direction_adjustment * i for i in range(1, amount+1)]
+    return [tuple_add(location, tuple_mul(direction_adjustment, i)) for i in range(1, amount+1)]
+
+def tuple_add(a, b):
+    import operator
+    return tuple(map(operator.add, a, b))
+
+def tuple_mul(tup, n):
+    return tuple(i * n for i in tup)
 
 def distance_from_start(location):
     x = abs(location[0])
