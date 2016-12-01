@@ -11,14 +11,17 @@ def read_input(challenge_number):
     return challenge_input
 
 def run_challenge(challenge_number):
-    print()
-    print("== Advent of Code Challenge {}".format(challenge_number))
-
     try:
         challenge = __import__(str(challenge_number))
     except ImportError as e:
-        print(e)
-        return
+        if "No module named" in str(e):
+            print("No solution for challenge {}".format(challenge_number))
+            return
+        else:
+            print(e)
+            return
+
+    print("== Advent of Code Challenge {}".format(challenge_number))
 
     challenge_input = read_input(challenge_number)
 
@@ -29,6 +32,7 @@ def run_challenge(challenge_number):
     challenge.part1(challenge_input)
     print("= Part 2 =")
     challenge.part2(challenge_input)
+    print()
 
 if __name__ == '__main__':
     challenges = range(1, 26)
