@@ -73,15 +73,17 @@ def move(state, instruction):
     new_location = new_locations[-1]
     return (State(new_location, new_facing), new_locations)
 
+def direction_map(d):
+    return {
+        Direction.North: ( 0, -1),
+        Direction.South: ( 0,  1),
+        Direction.East:  (-1,  0),
+        Direction.West:  ( 1,  0),
+    }[d]
+
 def move_in_direction(location, direction, amount):
-    if direction == Direction.North:
-        return [location - (0, i) for i in range(1, amount+1)]
-    elif direction == Direction.South:
-        return [location + (0, i) for i in range(1, amount+1)]
-    elif direction == Direction.West:
-        return [location - (i, 0) for i in range(1, amount+1)]
-    else:
-        return [location + (i, 0) for i in range(1, amount+1)]
+    direction_adjustment = direction_map(direction)
+    return [location + direction_adjustment * i for i in range(1, amount+1)]
 
 def distance_from_start(location):
     x = abs(location[0])
