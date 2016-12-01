@@ -75,13 +75,13 @@ def move(state, instruction):
 
 def move_in_direction(location, direction, amount):
     if direction == Direction.North:
-        return [(location[0], location[1] - i) for i in range(1, amount+1)]
+        return [location - (0, i) for i in range(1, amount+1)]
     elif direction == Direction.South:
-        return [(location[0], location[1] + i) for i in range(1, amount+1)]
+        return [location + (0, i) for i in range(1, amount+1)]
     elif direction == Direction.West:
-        return [(location[0] - i, location[1]) for i in range(1, amount+1)]
+        return [location - (i, 0) for i in range(1, amount+1)]
     else:
-        return [(location[0] + i, location[1]) for i in range(1, amount+1)]
+        return [location + (i, 0) for i in range(1, amount+1)]
 
 def distance_from_start(location):
     x = abs(location[0])
