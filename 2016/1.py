@@ -1,6 +1,8 @@
 from collections import namedtuple
 from enum import Enum
 
+from utils import tuple_add, tuple_mul
+
 def part1(instructions):
     state = State((0, 0), Direction.North)
 
@@ -47,6 +49,11 @@ class Direction(Enum):
     West = 4,
 
 
+def move(state, instruction):
+    new_facing = turn(state.facing, instruction.direction)
+    new_locations = move_in_direction(state.location, new_facing, instruction.amount)
+    new_location = new_locations[-1]
+    return (State(new_location, new_facing), new_locations)
 
 def turn(facing, direction):
     def right(d):
@@ -70,30 +77,17 @@ def turn(facing, direction):
     else:
         return right(facing)
 
-def move(state, instruction):
-    new_facing = turn(state.facing, instruction.direction)
-    new_locations = move_in_direction(state.location, new_facing, instruction.amount)
-    new_location = new_locations[-1]
-    return (State(new_location, new_facing), new_locations)
-
-def direction_map(d):
-    return {
-        Direction.North: ( 0, -1),
-        Direction.South: ( 0,  1),
-        Direction.East:  (-1,  0),
-        Direction.West:  ( 1,  0),
-    }[d]
-
 def move_in_direction(location, direction, amount):
-    direction_adjustment = direction_map(direction)
+    def direction_offset(d):
+        return {
+            Direction.North: ( 0, -1),
+            Direction.South: ( 0,  1),
+            Direction.East:  (-1,  0),
+            Direction.West:  ( 1,  0),
+        }[d]
+
+    direction_adjustment = direction_offset(direction)
     return [tuple_add(location, tuple_mul(direction_adjustment, i)) for i in range(1, amount+1)]
-
-def tuple_add(a, b):
-    import operator
-    return tuple(map(operator.add, a, b))
-
-def tuple_mul(tup, n):
-    return tuple(i * n for i in tup)
 
 def distance_from_start(location):
     x = abs(location[0])
