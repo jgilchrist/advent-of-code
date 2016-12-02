@@ -1,7 +1,7 @@
 from collections import namedtuple
-from enum import Enum
+from enum import IntEnum
 
-from utils import tuple_add, tuple_mul
+from utils import tuple_add, tuple_mul, direction_offset
 
 def part1(instructions):
     state = State((0, 0), Direction.North)
@@ -42,11 +42,11 @@ def transform_input(challenge_input):
 Instruction = namedtuple('Instruction', ['direction', 'amount'])
 State = namedtuple('State', ['location', 'facing'])
 
-class Direction(Enum):
-    North = 1,
-    East = 2,
-    South = 3,
-    West = 4,
+class Direction(IntEnum):
+    North = 1
+    East = 2
+    South = 3
+    West = 4
 
 
 def move(state, instruction):
@@ -78,14 +78,6 @@ def turn(facing, direction):
         return right(facing)
 
 def move_in_direction(location, direction, amount):
-    def direction_offset(d):
-        return {
-            Direction.North: ( 0, -1),
-            Direction.South: ( 0,  1),
-            Direction.East:  (-1,  0),
-            Direction.West:  ( 1,  0),
-        }[d]
-
     direction_adjustment = direction_offset(direction)
     return [tuple_add(location, tuple_mul(direction_adjustment, i)) for i in range(1, amount+1)]
 
