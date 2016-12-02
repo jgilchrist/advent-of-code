@@ -1,26 +1,6 @@
 from collections import namedtuple
 from enum import Enum
 
-Instruction = namedtuple('Instruction', ['direction', 'amount'])
-State = namedtuple('State', ['location', 'facing'])
-
-class Direction(Enum):
-    North = 1,
-    East = 2,
-    South = 3,
-    West = 4,
-
-
-def transform_input(challenge_input):
-    def parse_instruction(instruction):
-        direction = instruction[0]
-        amount = int(instruction[1:])
-        return Instruction(direction, amount)
-
-    instructions = challenge_input.replace(' ', '').split(',')
-    instructions = list(map(parse_instruction, instructions))
-    return instructions
-
 def part1(instructions):
     state = State((0, 0), Direction.North)
 
@@ -28,6 +8,7 @@ def part1(instructions):
         (state, _) = move(state, instruction)
 
     print(distance_from_start(state.location))
+
 
 def part2(instructions):
     state = State((0, 0), Direction.North)
@@ -42,6 +23,28 @@ def part2(instructions):
                 return
 
             visited_locations.append(loc)
+
+
+
+def transform_input(challenge_input):
+    def parse_instruction(instruction):
+        direction = instruction[0]
+        amount = int(instruction[1:])
+        return Instruction(direction, amount)
+
+    instructions = challenge_input.replace(' ', '').split(',')
+    instructions = list(map(parse_instruction, instructions))
+    return instructions
+
+
+Instruction = namedtuple('Instruction', ['direction', 'amount'])
+State = namedtuple('State', ['location', 'facing'])
+
+class Direction(Enum):
+    North = 1,
+    East = 2,
+    South = 3,
+    West = 4,
 
 
 
