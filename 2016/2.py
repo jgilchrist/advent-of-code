@@ -4,20 +4,41 @@ from utils import direction_offset, lmap, tuple_add
 def part1(instructions):
     location = (1, 1)
 
+    board = [
+        [1, 2, 3],
+        [4, 5, 6],
+        [7, 8, 9],
+    ]
+
+    print(get_code(location, board, instructions))
+
+
+def part2(instructions):
+    location = (0, 2)
+
+    board = [
+        [None, None,    1, None, None],
+        [None,    2,    3,    4, None],
+        [   5,    6,    7,    8,    9],
+        [None,  'A',  'B',  'C', None],
+        [None, None,  'D', None, None],
+    ]
+
+    print(get_code(location, board, instructions))
+
+
+def get_code(location, board, instructions):
     code = []
 
     for instruction_list in instructions:
         for direction in instruction_list:
-            location = move(location, direction)
+            location = move(location, direction, board)
 
-        number = location_to_number(location)
+        (x, y) = location
+        number = board[y][x]
         code.append(number)
 
-    print("".join(map(str, code)))
-
-def part2(instructions):
-    state = (1, 1)
-    pass
+    return "".join(map(str, code))
 
 
 def transform_input(challenge_input):
@@ -39,19 +60,25 @@ class Direction(IntEnum):
     Down = 3
     Left = 4
 
-def move(location, direction):
+def move(location, direction, board):
     offset = direction_offset(direction)
     new_location = tuple_add(location, offset)
 
-    if not is_valid_location(new_location):
+    if not is_valid_location(new_location, board):
         return location
 
     return new_location
 
-def is_valid_location(location):
+def is_valid_location(location, board):
     (x, y) = location
-    return x >= 0 and x <= 2 and y >= 0 and y <= 2
+    size = len(board)
 
-def location_to_number(location):
-    (x, y) = location
-    return [[1, 2, 3], [4, 5, 6], [7, 8, 9]][y][x]
+    is_in_board = (
+        x >= 0 and y >= 0 and
+        x < size and y < size
+    )
+
+    if not is_in_board:
+        return False
+
+    return board[y][x] is not None
