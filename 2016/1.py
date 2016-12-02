@@ -1,7 +1,7 @@
 from collections import namedtuple
 from enum import IntEnum
 
-from utils import tuple_add, tuple_mul, direction_offset
+from utils import tuple_add, tuple_mul, direction_offset, lmap
 
 def part1(instructions):
     state = State((0, 0), Direction.North)
@@ -35,7 +35,7 @@ def transform_input(challenge_input):
         return Instruction(direction, amount)
 
     instructions = challenge_input.replace(' ', '').split(',')
-    instructions = list(map(parse_instruction, instructions))
+    instructions = lmap(parse_instruction, instructions)
     return instructions
 
 

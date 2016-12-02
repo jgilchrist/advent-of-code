@@ -1,3 +1,6 @@
+def lmap(functor, fn):
+    return list(map(functor, fn))
+
 def tuple_add(a, b):
     import operator
     return tuple(map(operator.add, a, b))
