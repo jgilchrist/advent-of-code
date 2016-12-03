@@ -11,7 +11,6 @@ def part1(instructions):
 
     print(distance_from_start(state.location))
 
-
 def part2(instructions):
     state = State((0, 0), Direction.North)
     visited_locations = []
@@ -25,7 +24,6 @@ def part2(instructions):
                 return
 
             visited_locations.append(loc)
-
 
 
 def transform_input(challenge_input):
