@@ -1,8 +1,13 @@
-def lmap(functor, fn):
-    return list(map(functor, fn))
+import itertools
+import operator
+
+def lmap(fn, functor):
+    return list(map(fn, functor))
+
+def lfilter(fn, functor):
+    return list(filter(fn, functor))
 
 def tuple_add(a, b):
-    import operator
     return tuple(map(operator.add, a, b))
 
 def tuple_mul(tup, n):
@@ -24,3 +29,13 @@ def direction_offset(d):
         # Right
         2: ( 1,  0),
     }[d]
+
+def transpose(list_of_lists):
+    return lmap(list, zip(*list_of_lists))
+
+def merge_lists(list_of_lists):
+    return list(itertools.chain.from_iterable(list_of_lists))
+
+def chunk_list(l, chunk_size):
+    for i in range(0, len(l), chunk_size):
+        yield l[i:i+chunk_size]
