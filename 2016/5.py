@@ -1,4 +1,7 @@
+import itertools
 import hashlib
+
+from utils import zip_with_constant, concat
 
 def part1(door_id):
     code = ""
@@ -49,15 +52,11 @@ def all_hashed_strings(door_id):
     return all_hashed_strings
 
 def hash_inputs(door_id):
-    import itertools
-
     natural_numbers_as_strings = map(str, itertools.count())
 
-    # This is a trick to zip door_id with all elements in itertools.count()
-    # This produces an infinite iterable of door_id0, door_id1, door_id2 ...
-    door_id_zipped_with_natural_numbers = itertools.zip_longest('', natural_numbers_as_strings, fillvalue=door_id)
+    door_id_zipped_with_natural_numbers = zip_with_constant(door_id, natural_numbers_as_strings)
 
-    concatenated_hash_strings = map(lambda x: "".join(x), door_id_zipped_with_natural_numbers)
+    concatenated_hash_strings = map(concat, door_id_zipped_with_natural_numbers)
 
     return concatenated_hash_strings
 

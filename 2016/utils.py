@@ -39,3 +39,10 @@ def merge_lists(list_of_lists):
 def chunk_list(l, chunk_size):
     for i in range(0, len(l), chunk_size):
         yield l[i:i+chunk_size]
+
+def zip_with_constant(const, iterable):
+    """This is a trick to allow zipping an iterable against a single value"""
+    return itertools.zip_longest([], iterable, fillvalue=const)
+
+def concat(iterable):
+    return "".join(iterable)
