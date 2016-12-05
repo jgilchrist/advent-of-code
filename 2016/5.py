@@ -36,7 +36,7 @@ def part2(door_id):
             code[position_index] = code_char
 
             print(hash_string)
-            print("".join(i if i is not None else "*" for i in code))
+            print(concat(i if i is not None else "*" for i in code))
 
             if all(i is not None for i in code):
                 return
