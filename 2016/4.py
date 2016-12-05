@@ -1,6 +1,6 @@
 import re
 from collections import namedtuple, Counter
-from utils import lmap, lfilter
+from utils import lmap, lfilter, concat
 
 def part1(rooms):
     result = sum(room.sector_id for room in rooms if is_valid_room(room))
@@ -24,7 +24,7 @@ def is_valid_room(room):
     sorted_by_count_then_alphabetic = sorted(most_common_letters_with_counts, key = lambda x: (-x[1], x[0]))
 
     # "abnxy"
-    five_most_common_letters = "".join(letter for (letter, count) in sorted_by_count_then_alphabetic[:5])
+    five_most_common_letters = concat(letter for (letter, count) in sorted_by_count_then_alphabetic[:5])
 
     return five_most_common_letters == room.checksum
 
@@ -34,7 +34,7 @@ def unencrypt_name(room):
         for c in room.letters
     ]
 
-    shifted_name = "".join(shifted_name)
+    shifted_name = concat(shifted_name)
     return shifted_name
 
 def shift(char, amount):

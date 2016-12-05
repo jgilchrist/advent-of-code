@@ -1,5 +1,5 @@
 from enum import IntEnum
-from utils import direction_offset, lmap, tuple_add
+from utils import direction_offset, lmap, tuple_add, concat
 
 def part1(instructions):
     location = (1, 1)
@@ -38,7 +38,7 @@ def get_code(location, board, instructions):
         number = board[y][x]
         code.append(number)
 
-    return "".join(map(str, code))
+    return concat(map(str, code))
 
 
 def transform_input(challenge_input):
