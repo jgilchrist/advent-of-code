@@ -6,7 +6,7 @@ from utils import zip_with_constant, concat
 def part1(door_id):
     code = ""
 
-    for hash_string in all_hashed_strings(door_id):
+    for hash_string in all_hashes(door_id):
         if hash_string.startswith('00000'):
             code_char = hash_string[5]
             code += code_char
@@ -20,7 +20,7 @@ def part1(door_id):
 def part2(door_id):
     code = [None] * 8
 
-    for hash_string in all_hashed_strings(door_id):
+    for hash_string in all_hashes(door_id):
         if hash_string.startswith('00000'):
             position = hash_string[5]
             code_char = hash_string[6]
@@ -42,23 +42,18 @@ def part2(door_id):
                 return
 
 
-def all_hashed_strings(door_id):
-    # An infinite generator of all strings of the form doorid0, doorid1, etc.
-    all_hash_inputs = hash_inputs(door_id)
-
-    # An infinite generator of all hashed inputs
-    all_hashed_strings = map(hash_utf, all_hash_inputs)
-
-    return all_hashed_strings
-
-def hash_inputs(door_id):
+def all_hashes(door_id):
     natural_numbers_as_strings = map(str, itertools.count())
 
     door_id_zipped_with_natural_numbers = zip_with_constant(door_id, natural_numbers_as_strings)
 
-    concatenated_hash_strings = map(concat, door_id_zipped_with_natural_numbers)
+    # An infinite generator of all strings of the form doorid0, doorid1, etc.
+    input_strings = map(concat, door_id_zipped_with_natural_numbers)
 
-    return concatenated_hash_strings
+    # An infinite generator of all hashed inputs
+    all_hashed_strings = map(hash_utf, input_strings)
+
+    return all_hashed_strings
 
 def hash_utf(string):
     m = hashlib.md5()
