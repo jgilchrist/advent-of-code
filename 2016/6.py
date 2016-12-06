@@ -1,17 +1,20 @@
 from collections import Counter
 from utils import transpose, lmap, concat
+from functools import partial
 
 def part1(columns):
-    most_frequent_letters = lmap(lambda c: get_nth_most_frequent(c, 0), columns)
+    get_most_frequent = partial(get_nth_most_frequent, nth=0)
+    most_frequent_letters = lmap(get_most_frequent, columns)
     print(concat(most_frequent_letters))
 
 def part2(columns):
-    least_frequent_letters = lmap(lambda c: get_nth_most_frequent(c, -1), columns)
+    get_least_frequent = partial(get_nth_most_frequent, nth=-1)
+    least_frequent_letters = lmap(get_least_frequent, columns)
     print(concat(least_frequent_letters))
 
-def get_nth_most_frequent(iterable, n):
+def get_nth_most_frequent(iterable, nth):
     # Last [0] gets the value from the (value, occurences) pair
-    return Counter(iterable).most_common()[n][0]
+    return Counter(iterable).most_common()[nth][0]
 
 def transform_input(challenge_input):
     lines = challenge_input.splitlines()
