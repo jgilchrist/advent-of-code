@@ -30,12 +30,24 @@ def rectangle_instruction(state, x, y):
 
 def rotate_row_instruction(state, row, amount):
     affected_lights = { l for l in state if l[1] == row }
-    new_lights = { ((x + amount) % width, y) for (x, y) in affected_lights }
+
+    new_lights = {
+        ((x + amount) % width, y)
+        for (x, y)
+        in affected_lights
+    }
+
     return (state - affected_lights) | new_lights
 
 def rotate_col_instruction(state, col, amount):
     affected_lights = { l for l in state if l[0] == col }
-    new_lights = { (x, (y + amount) % height) for (x, y) in affected_lights }
+
+    new_lights = {
+        (x, (y + amount) % height)
+        for (x, y)
+        in affected_lights
+    }
+
     return (state - affected_lights) | new_lights
 
 def get_function(instruction):
