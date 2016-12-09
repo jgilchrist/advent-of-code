@@ -23,12 +23,12 @@ def part2(instructions):
         print()
 
 
-def rectangle_instruction(state, x, y):
+def rectangle_instruction(x, y, state):
     (xs, ys) = (range(x), range(y))
     added_points = set(itertools.product(xs, ys))
     return state | added_points
 
-def rotate_row_instruction(state, row, amount):
+def rotate_row_instruction(row, amount, state):
     affected_lights = { l for l in state if l[1] == row }
 
     new_lights = {
@@ -39,7 +39,7 @@ def rotate_row_instruction(state, row, amount):
 
     return (state - affected_lights) | new_lights
 
-def rotate_col_instruction(state, col, amount):
+def rotate_col_instruction(col, amount, state):
     affected_lights = { l for l in state if l[0] == col }
 
     new_lights = {
@@ -51,28 +51,17 @@ def rotate_col_instruction(state, col, amount):
     return (state - affected_lights) | new_lights
 
 def get_function(instruction):
-    def make_rectangle_fn(match):
-        (x, y) = map(int, match)
-        return partial(rectangle_instruction, x=x, y=y)
-
-    def make_rotate_row_fn(match):
-        (row, amount) = map(int, match)
-        return partial(rotate_row_instruction, row=row, amount=amount)
-
-    def make_rotate_col_fn(match):
-        (col, amount) = map(int, match)
-        return partial(rotate_col_instruction, col=col, amount=amount)
-
     fns = [
-        ('rect (\d+)x(\d+)', make_rectangle_fn),
-        ('rotate row y=(\d+) by (\d+)', make_rotate_row_fn),
-        ('rotate column x=(\d+) by (\d+)', make_rotate_col_fn),
+        ('rect (\d+)x(\d+)', rectangle_instruction),
+        ('rotate row y=(\d+) by (\d+)', rotate_row_instruction),
+        ('rotate column x=(\d+) by (\d+)', rotate_col_instruction),
     ]
 
     for (regex, fn) in fns:
         if re.match(regex, instruction):
             groups = re.search(regex, instruction).groups()
-            return fn(groups)
+            groups = map(int, groups)
+            return partial(fn, *groups)
 
 def transform_input(challenge_input):
     instruction_strings = challenge_input.splitlines()
