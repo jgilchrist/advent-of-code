@@ -15,6 +15,10 @@ def tuple_add(a, b):
 def tuple_mul(tup, n):
     return tuple(i * n for i in tup)
 
+def pair_is_inverse(p1, p2):
+    (p2x, p2y) = p2
+    return p1 == (p2y, p2x)
+
 def product(values):
     return reduce(operator.mul, values, 1)
 
@@ -52,7 +56,7 @@ def zip_with_constant(const, iterable):
 def concat(iterable):
     return "".join(iterable)
 
-def astar_search(initial_state, heuristic_fn, generator_fn, goal_state):
+def astar_search(initial_state, heuristic_fn, generator_fn, is_goal_fn):
 
     def Path(previous, s):
         "A list of states which lead to state s"
@@ -60,12 +64,12 @@ def astar_search(initial_state, heuristic_fn, generator_fn, goal_state):
 
     next_states = [(heuristic_fn(initial_state), initial_state)]
     previous    = { initial_state: None }
-    path_cost   = { start: 0 }
+    path_cost   = { initial_state: 0 }
 
     while next_states:
         (f, state) = heappop(next_states)
 
-        if state == goal_state:
+        if is_goal_fn(state):
             return Path(previous, state)
 
         for next_state in generator_fn(state):
