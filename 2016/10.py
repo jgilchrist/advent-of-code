@@ -1,6 +1,8 @@
 import re
-from utils import lmap
+from utils import lmap, merge_lists
 from enum import Enum
+from functools import reduce
+import operator
 
 def part1(instructions):
     (value_instructions, comparison_instructions) = instructions
@@ -17,7 +19,7 @@ def part1(instructions):
     # Populate bots without initial values
     for comparison_instruction in comparison_instructions:
         (bot_number, out1, low, out2, high) = comparison_instruction
-        
+
         add_object(bots, outputs, out1, low)
         add_object(bots, outputs, out2, high)
 
@@ -38,6 +40,47 @@ def part1(instructions):
         for bot in all_bots:
             bot.send_values()
 
+def part2(instructions):
+    (value_instructions, comparison_instructions) = instructions
+
+    bots = dict()
+    outputs = dict()
+
+    # Populate bots with initial values
+    for initial_value_instruction in value_instructions:
+        (bot_number, value) = initial_value_instruction
+        bot = add_object(bots, outputs, 'bot', bot_number)
+        bot.give_value(value)
+
+    # Populate bots without initial values
+    for comparison_instruction in comparison_instructions:
+        (bot_number, out1, low, out2, high) = comparison_instruction
+
+        add_object(bots, outputs, out1, low)
+        add_object(bots, outputs, out2, high)
+
+    # Link up bots
+    for comparison_instruction in comparison_instructions:
+        (bot_number, out1, low, out2, high) = comparison_instruction
+
+        low_object = get_object(bots, outputs, out1, low)
+        bots[bot_number].set_low(low_object)
+
+        high_object = get_object(bots, outputs, out2, high)
+        bots[bot_number].set_high(high_object)
+
+    # Send all values
+    all_bots = bots.values()
+
+    while not all(bot.sent for bot in all_bots):
+        for bot in all_bots:
+            bot.send_values()
+
+    relevant_outputs = [outputs[0], outputs[1], outputs[2]]
+    numbers = lmap(lambda o: o.inputs, relevant_outputs)
+    numbers = merge_lists(numbers)
+    product_of_numbers = reduce(operator.mul, numbers, 1)
+    print(product_of_numbers)
 
 class Comparison(Enum):
     Low = 1,
@@ -110,11 +153,7 @@ def transform_input(challenge_input):
 
     instructions = challenge_input.splitlines()
 
-    value_instructions = [parse_value_instruction(i) for i in instructions if i.startswith('value')] 
-    comparison_instructions = [parse_comparison_instruction(i) for i in instructions if not i.startswith('value')] 
+    value_instructions = [parse_value_instruction(i) for i in instructions if i.startswith('value')]
+    comparison_instructions = [parse_comparison_instruction(i) for i in instructions if not i.startswith('value')]
 
     return (value_instructions, comparison_instructions)
-
-def part2(instructions):
-    pass
-
