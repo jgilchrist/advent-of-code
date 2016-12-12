@@ -14,6 +14,10 @@ def part1(instructions):
         for bot in all_bots:
             bot.send_values()
 
+    for bot in all_bots:
+        if set(bot.inputs) == set([61, 17]):
+            print(bot.id_number)
+
 def part2(instructions):
     (bots, outputs) = populate_bots_and_outputs(instructions)
 
@@ -101,9 +105,6 @@ class Bot:
     def send_values(self):
         if not self.send_high or not self.send_low: return
         if not self.can_send_value(): return
-
-        if set(self.inputs) == set([61, 17]):
-            print(self.id_number)
 
         self.send_high.give_value(max(self.inputs))
         self.send_low.give_value(min(self.inputs))
