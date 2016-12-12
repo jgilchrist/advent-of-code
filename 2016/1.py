@@ -9,7 +9,7 @@ def part1(instructions):
     for instruction in instructions:
         (state, _) = move(state, instruction)
 
-    print(distance_from_start(state.location))
+    return distance_from_start(state.location)
 
 def part2(instructions):
     state = State((0, 0), Direction.North)
@@ -20,8 +20,7 @@ def part2(instructions):
 
         for loc in visited_locations_while_moving:
             if loc in visited_locations:
-                print(distance_from_start(loc))
-                return
+                return distance_from_start(loc)
 
             visited_locations.append(loc)
 

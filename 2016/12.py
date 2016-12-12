@@ -12,7 +12,7 @@ def part1(instructions):
         instruction = instructions[current_pc]
         state = instruction(state)
 
-    print(read('a', state))
+    return read('a', state)
 
 
 def part2(instructions):
@@ -23,7 +23,7 @@ def part2(instructions):
         instruction = instructions[current_pc]
         state = instruction(state)
 
-    print(read('a', state))
+    return read('a', state)
 
 
 def cpy(source, register, state):

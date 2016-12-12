@@ -5,11 +5,11 @@ from utils import lfilter
 def part1(lines):
     matching_lines = lfilter(contains_abba, lines)
     matching_lines = lfilter(doesnt_contain_abba_in_square_brackets, matching_lines)
-    print(len(matching_lines))
+    return len(matching_lines)
 
 def part2(lines):
     supported_lines = lfilter(is_ssl_supported, lines)
-    print(len(supported_lines))
+    return len(supported_lines)
 
 def contains_abba(line):
     return re.search(r'(.)(?!\1)(.)\2\1', line)

@@ -15,7 +15,7 @@ def part1(door_id):
             print(code)
 
             if len(code) == 8:
-                return
+                return code
 
 def part2(door_id):
     code = [None] * 8
@@ -39,7 +39,7 @@ def part2(door_id):
             print(concat(i if i is not None else "*" for i in code))
 
             if all(i is not None for i in code):
-                return
+                return concat(code)
 
 
 def all_hashes(door_id):
