@@ -3,10 +3,9 @@ from functools import partial
 from utils import lmap
 
 PC = 'pc'
-State = namedtuple('State', [PC, 'a', 'b', 'c', 'd'])
 
 def part1(instructions):
-    state = State(pc=0, a=0, b=0, c=0, d=0)
+    state = { 'pc': 0, 'a': 0, 'b': 0, 'c': 0, 'd': 0 }
 
     while read(PC, state) < len(instructions):
         current_pc = read(PC, state)
@@ -17,7 +16,7 @@ def part1(instructions):
 
 
 def part2(instructions):
-    state = State(pc=0, a=0, b=0, c=1, d=0)
+    state = { 'pc': 0, 'a': 0, 'b': 0, 'c': 1, 'd': 0 }
 
     while read(PC, state) < len(instructions):
         current_pc = read(PC, state)
@@ -56,11 +55,13 @@ def read(source, state):
         value = int(source)
         return value
     except ValueError:
-        value = state._asdict()[source]
+        value = state[source]
         return value
 
 def set_register(state, register, value):
-    return state._replace(**{register: value})
+    new_state = dict(state)
+    new_state[register] = value
+    return new_state
 
 def increment_pc(state):
     current_pc = read(PC, state)
