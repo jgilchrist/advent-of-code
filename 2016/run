@@ -2,13 +2,7 @@
 
 import importlib
 
-def read_input(challenge_number):
-    filename = "{}.input".format(challenge_number)
-
-    with open(filename) as f:
-        challenge_input = f.read().strip()
-
-    return challenge_input
+from utils import read_input
 
 def run_challenge(challenge_number):
     try:
@@ -25,13 +19,10 @@ def run_challenge(challenge_number):
 
     challenge_input = read_input(challenge_number)
 
-    if hasattr(challenge, 'transform_input'):
-        challenge_input = challenge.transform_input(challenge_input)
-
     print("= Part 1 =")
-    challenge.part1(challenge_input)
+    print(challenge.part1(challenge_input))
     print("= Part 2 =")
-    challenge.part2(challenge_input)
+    print(challenge.part2(challenge_input))
     print()
 
 if __name__ == '__main__':

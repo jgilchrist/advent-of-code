@@ -16,7 +16,7 @@ def part1(instructions):
 
     for bot in all_bots:
         if set(bot.inputs) == set([61, 17]):
-            print(bot.id_number)
+            return bot.id_number
 
 def part2(instructions):
     (bots, outputs) = populate_bots_and_outputs(instructions)
@@ -32,7 +32,7 @@ def part2(instructions):
     numbers = lmap(lambda o: o.inputs, relevant_outputs)
     numbers = merge_lists(numbers)
     product_of_numbers = reduce(operator.mul, numbers, 1)
-    print(product_of_numbers)
+    return product_of_numbers
 
 
 def populate_bots_and_outputs(instructions):

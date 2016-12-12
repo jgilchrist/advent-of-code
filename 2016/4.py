@@ -4,14 +4,14 @@ from utils import lmap, lfilter, concat
 
 def part1(rooms):
     result = sum(room.sector_id for room in rooms if is_valid_room(room))
-    print(result)
+    return result
 
 def part2(rooms):
     def is_north_pole_room(room):
         return "northpole" in unencrypt_name(room)
 
     north_pole_room = lfilter(is_north_pole_room, rooms)[0]
-    print(north_pole_room.sector_id)
+    return north_pole_room.sector_id
 
 
 def is_valid_room(room):

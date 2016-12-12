@@ -10,7 +10,7 @@ def part1(instructions):
         [7, 8, 9],
     ]
 
-    print(get_code(location, board, instructions))
+    return get_code(location, board, instructions)
 
 
 def part2(instructions):
@@ -24,7 +24,7 @@ def part2(instructions):
         [None, None,  'D', None, None],
     ]
 
-    print(get_code(location, board, instructions))
+    return get_code(location, board, instructions)
 
 
 def get_code(location, board, instructions):

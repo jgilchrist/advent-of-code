@@ -11,16 +11,21 @@ height = 6
 def part1(instructions):
     functions = map(get_function, instructions)
     state = reduce(lambda state, fn: fn(state), functions, set())
-    print(len(state))
+    return len(state)
 
 def part2(instructions):
     functions = map(get_function, instructions)
     state = reduce(lambda state, fn: fn(state), functions, set())
 
+    out = ""
+
     for y in range(height):
         for x in range(width):
-            print("#" if (x, y) in state else " ", end="")
-        print()
+            out += "#" if (x, y) in state else " "
+
+        out += "\n"
+
+    return out
 
 
 def rectangle_instruction(x, y, state):
