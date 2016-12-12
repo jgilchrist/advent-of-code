@@ -5,33 +5,7 @@ from functools import reduce
 import operator
 
 def part1(instructions):
-    (value_instructions, comparison_instructions) = instructions
-
-    bots = dict()
-    outputs = dict()
-
-    # Populate bots with initial values
-    for initial_value_instruction in value_instructions:
-        (bot_number, value) = initial_value_instruction
-        bot = add_object(bots, outputs, 'bot', bot_number)
-        bot.give_value(value)
-
-    # Populate bots without initial values
-    for comparison_instruction in comparison_instructions:
-        (bot_number, out1, low, out2, high) = comparison_instruction
-
-        add_object(bots, outputs, out1, low)
-        add_object(bots, outputs, out2, high)
-
-    # Link up bots
-    for comparison_instruction in comparison_instructions:
-        (bot_number, out1, low, out2, high) = comparison_instruction
-
-        low_object = get_object(bots, outputs, out1, low)
-        bots[bot_number].set_low(low_object)
-
-        high_object = get_object(bots, outputs, out2, high)
-        bots[bot_number].set_high(high_object)
+    (bots, outputs) = populate_bots_and_outputs(instructions)
 
     # Send all values
     all_bots = bots.values()
@@ -41,33 +15,7 @@ def part1(instructions):
             bot.send_values()
 
 def part2(instructions):
-    (value_instructions, comparison_instructions) = instructions
-
-    bots = dict()
-    outputs = dict()
-
-    # Populate bots with initial values
-    for initial_value_instruction in value_instructions:
-        (bot_number, value) = initial_value_instruction
-        bot = add_object(bots, outputs, 'bot', bot_number)
-        bot.give_value(value)
-
-    # Populate bots without initial values
-    for comparison_instruction in comparison_instructions:
-        (bot_number, out1, low, out2, high) = comparison_instruction
-
-        add_object(bots, outputs, out1, low)
-        add_object(bots, outputs, out2, high)
-
-    # Link up bots
-    for comparison_instruction in comparison_instructions:
-        (bot_number, out1, low, out2, high) = comparison_instruction
-
-        low_object = get_object(bots, outputs, out1, low)
-        bots[bot_number].set_low(low_object)
-
-        high_object = get_object(bots, outputs, out2, high)
-        bots[bot_number].set_high(high_object)
+    (bots, outputs) = populate_bots_and_outputs(instructions)
 
     # Send all values
     all_bots = bots.values()
@@ -82,9 +30,37 @@ def part2(instructions):
     product_of_numbers = reduce(operator.mul, numbers, 1)
     print(product_of_numbers)
 
-class Comparison(Enum):
-    Low = 1,
-    High = 2,
+
+def populate_bots_and_outputs(instructions):
+    (value_instructions, comparison_instructions) = instructions
+
+    bots = dict()
+    outputs = dict()
+
+    # Populate bots with initial values
+    for initial_value_instruction in value_instructions:
+        (bot_number, value) = initial_value_instruction
+        bot = add_object(bots, outputs, 'bot', bot_number)
+        bot.give_value(value)
+
+    # Populate bots without initial values
+    for comparison_instruction in comparison_instructions:
+        (bot_number, out1, low, out2, high) = comparison_instruction
+
+        add_object(bots, outputs, out1, low)
+        add_object(bots, outputs, out2, high)
+
+    # Link up bots
+    for comparison_instruction in comparison_instructions:
+        (bot_number, out1, low, out2, high) = comparison_instruction
+
+        low_object = get_object(bots, outputs, out1, low)
+        bots[bot_number].set_low(low_object)
+
+        high_object = get_object(bots, outputs, out2, high)
+        bots[bot_number].set_high(high_object)
+
+    return bots, outputs
 
 def add_object(bots, outputs, object_type, id_number):
     if object_type == 'bot':
