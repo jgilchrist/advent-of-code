@@ -1,5 +1,6 @@
 import itertools
 import operator
+from functools import reduce
 
 def lmap(fn, functor):
     return list(map(fn, functor))
@@ -12,6 +13,9 @@ def tuple_add(a, b):
 
 def tuple_mul(tup, n):
     return tuple(i * n for i in tup)
+
+def product(values):
+    return reduce(operator.mul, values, 1)
 
 def direction_offset(d):
     """This method is a reusable map from directional enums to offsets.
@@ -33,7 +37,7 @@ def direction_offset(d):
 def transpose(list_of_lists):
     return lmap(list, zip(*list_of_lists))
 
-def merge_lists(list_of_lists):
+def flatten(list_of_lists):
     return list(itertools.chain.from_iterable(list_of_lists))
 
 def chunk_list(l, chunk_size):
