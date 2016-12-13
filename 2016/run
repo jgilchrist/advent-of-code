@@ -2,14 +2,14 @@
 
 import importlib
 
-from utils import read_input
+from utils import import_challenge, read_input
 
 def run_challenge(challenge_number):
     try:
-        challenge = __import__(str(challenge_number))
+        challenge = import_challenge(challenge_number)
     except ImportError as e:
         if "No module named" in str(e):
-            print("No solution for challenge {}".format(challenge_number))
+            print("No solution for challenge {0:02d}".format(challenge_number))
             return
         else:
             print(e)

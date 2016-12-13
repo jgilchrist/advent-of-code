@@ -51,11 +51,13 @@ def zip_with_constant(const, iterable):
 def concat(iterable):
     return "".join(iterable)
 
+def import_challenge(challenge_number):
+    return __import__(str(challenge_number).zfill(2))
 
 def read_input(challenge_number):
-    challenge = __import__(str(challenge_number))
+    challenge = import_challenge(challenge_number)
 
-    filename = "{}.input".format(challenge_number)
+    filename = "{0:02d}.input".format(challenge_number)
 
     with open(filename) as f:
         challenge_input = f.read().strip()
