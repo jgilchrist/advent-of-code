@@ -1,4 +1,4 @@
-from utils import lmap, lfilter, transpose, merge_lists, chunk_list
+from utils import lmap, lfilter, transpose, flatten, chunk_list
 
 def part1(triangles):
     valid_triangles = lfilter(is_valid_triangle, triangles)
@@ -6,7 +6,7 @@ def part1(triangles):
 
 def part2(untransposed_triangles):
     triangles = transpose(untransposed_triangles)
-    triangles = merge_lists(triangles)
+    triangles = flatten(triangles)
     triangles = chunk_list(triangles, 3)
     valid_triangles = lfilter(is_valid_triangle, triangles)
     return len(valid_triangles)

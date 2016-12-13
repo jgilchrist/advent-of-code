@@ -1,8 +1,6 @@
 import re
-from utils import lmap, merge_lists
+from utils import lmap, flatten, product
 from enum import Enum
-from functools import reduce
-import operator
 
 def part1(instructions):
     (bots, outputs) = populate_bots_and_outputs(instructions)
@@ -28,11 +26,8 @@ def part2(instructions):
         for bot in all_bots:
             bot.send_values()
 
-    relevant_outputs = [outputs[0], outputs[1], outputs[2]]
-    numbers = lmap(lambda o: o.inputs, relevant_outputs)
-    numbers = merge_lists(numbers)
-    product_of_numbers = reduce(operator.mul, numbers, 1)
-    return product_of_numbers
+    relevant_outputs = flatten([outputs[0].inputs, outputs[1].inputs, outputs[2].inputs])
+    return product(relevant_outputs)
 
 
 def populate_bots_and_outputs(instructions):
