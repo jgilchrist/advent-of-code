@@ -1,6 +1,7 @@
 import itertools
 import operator
 from functools import reduce
+from heapq import heappush, heappop
 
 def lmap(fn, functor):
     return list(map(fn, functor))
@@ -35,7 +36,7 @@ def direction_offset(d):
     }[d]
 
 def transpose(list_of_lists):
-    return lmap(list, zip(*list_of_lists))
+    return map(list, zip(*list_of_lists))
 
 def flatten(list_of_lists):
     return list(itertools.chain.from_iterable(list_of_lists))
@@ -50,6 +51,31 @@ def zip_with_constant(const, iterable):
 
 def concat(iterable):
     return "".join(iterable)
+
+def astar_search(initial_state, heuristic_fn, generator_fn, goal_state):
+
+    def Path(previous, s):
+        "A list of states which lead to state s"
+        return ([] if (s is None) else Path(previous, previous[s]) + [s])
+
+    next_states = [(heuristic_fn(initial_state), initial_state)]
+    previous    = { initial_state: None }
+    path_cost   = { start: 0 }
+
+    while next_states:
+        (f, state) = heappop(next_states)
+
+        if state == goal_state:
+            return Path(previous, state)
+
+        for next_state in generator_fn(state):
+            new_cost = path_cost[state] + 1
+
+            if next_state not in path_cost or new_cost < path_cost[next_state]:
+                heappush(next_states, (new_cost + heuristic_fn(next_state), next_state))
+                path_cost[next_state] = new_cost
+                previous[next_state] = state
+
 
 def import_challenge(challenge_number):
     return __import__(str(challenge_number).zfill(2))
