@@ -49,8 +49,8 @@ class TestDay9(unittest.TestCase): pass
 @Part2(10, 22847)
 class TestDay10(unittest.TestCase): pass
 
-@Part1(11, None, skip=True)
-@Part2(11, None, skip=True)
+@Part1(11, 33)
+@Part2(11, 57)
 class TestDay11(unittest.TestCase): pass
 
 @Part1(12, 318117, skip=True)
