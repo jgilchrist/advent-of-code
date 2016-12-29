@@ -1,10 +1,5 @@
 from itertools import *
-
-import re
-from pprint import pprint
-from queue import Queue
-from collections import namedtuple, defaultdict
-from utils import lmap, lfilter, flatten, tuple_add, pair_is_inverse, astar_search
+from utils import flatten, tuple_add, pair_is_inverse, astar_search
 
 class State:
     def __init__(self, elevator, objects):
