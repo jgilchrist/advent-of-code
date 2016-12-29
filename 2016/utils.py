@@ -56,7 +56,7 @@ def zip_with_constant(const, iterable):
 def concat(iterable):
     return "".join(iterable)
 
-def astar_search(initial_state, heuristic_fn, generator_fn, is_goal_fn):
+def astar_search(initial_state, heuristic_fn, generator_fn):
 
     def Path(previous, s):
         "A list of states which lead to state s"
@@ -69,7 +69,7 @@ def astar_search(initial_state, heuristic_fn, generator_fn, is_goal_fn):
     while next_states:
         (f, state) = heappop(next_states)
 
-        if is_goal_fn(state):
+        if heuristic_fn(state) == 0:
             return Path(previous, state)
 
         for next_state in generator_fn(state):
