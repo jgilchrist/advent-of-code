@@ -39,26 +39,17 @@ def heuristic(state):
     return distances
 
 def part1(_):
-    def is_goal_state(state):
-        return state.elevator == 3 and state.objects == ((3, 3), (3, 3), (3, 3), (3, 3), (3, 3))
-
     initial_state = State(elevator=0, objects=((0, 0), (1, 2), (1, 2), (1, 2), (1, 2)))
-
-    path_to_goal = astar_search(initial_state, heuristic, get_possible_next_states, is_goal_state)
-
+    path_to_goal = astar_search(initial_state, heuristic, get_next_states)
     return len(path_to_goal) - 1
 
 def part2(a):
-    def is_goal_state(state):
-        return state.elevator == 3 and state.objects == ((3, 3), (3, 3), (3, 3), (3, 3), (3, 3), (3, 3), (3, 3))
-
     initial_state = State(elevator=0, objects=((0, 0), (0, 0), (0, 0), (1, 2), (1, 2), (1, 2), (1, 2)))
-
-    path_to_goal = astar_search(initial_state, heuristic, get_possible_next_states, is_goal_state)
-
+    path_to_goal = astar_search(initial_state, heuristic, get_next_states)
     return len(path_to_goal) - 1
 
-def get_possible_next_states(state):
+
+def get_next_states(state):
     current_floor = state.elevator
     objects = state.objects
 
@@ -100,28 +91,34 @@ def get_states_in_direction(state, generators, microchips, delta):
         combinations(possible_moves, 2),
     )
 
-    all_possible_moves = merge_moves_to_same_object(possible_move_combinations)
+    # If moves are to be applied to the same object (i.e. deltas are
+    # (1, 0) and (0, 1)), merge these into a single move - (1, 1)
+    #
+    # Any moves to equivalent objects (e.g. two moves to two paired microchips
+    # and generators) are also equivalent, so the result is a set to ensure
+    # we don't consider more moves than are necessary.
+    all_possible_moves = set(merge_moves_to_same_object(possible_move_combinations))
 
-    # Since microchips and generators of different elements are interchangeable,
-    # there is no point listing more than one of the same 'equivalent' move, so
-    # we can turn this list into a set.
-    all_possible_moves = set(all_possible_moves)
+    # Apply deltas, moving from a list of the form (objects_before, delta) to a list
+    # of the form (objects_before, objects_after).
+    all_possible_moves = [
+        [(before, tuple_add(before, delta)) for (before, delta) in move_components]
+        for move_components in all_possible_moves
+    ]
 
-    # Go from a list of (before, delta) to a list of (before, after)
-    all_possible_moves = [[apply_delta(move) for move in i] for i in all_possible_moves]
-
-    all_possible_states = [apply_move(state, move, delta) for move in all_possible_moves]
+    # For every possible move in the 'delta' direction, apply this move to the current
+    # state, yielding a new state with objects on new floors.
+    all_possible_states = [
+        make_move(state, move, delta)
+        for move in all_possible_moves
+    ]
 
     # Filter out states in which we fry any microchips
-    all_possible_states = lfilter(is_valid_state, all_possible_states)
+    all_possible_states = filter(is_valid_state, all_possible_states)
 
-    return [State(e, tuple(sorted(obj))) for (e, obj) in all_possible_states]
+    return (State(*s) for s in all_possible_states)
 
-def apply_delta(move):
-    (before, delta) = move
-    return (before, tuple_add(before, delta))
-
-def apply_move(old_state, move, delta):
+def make_move(old_state, move, delta):
     old_elevator = old_state.elevator
     old_objects = old_state.objects
 
@@ -141,9 +138,12 @@ def is_valid_state(state):
     (elevator, objects) = state
 
     for (generator, microchip) in objects:
+        # If a generator and microchip are paired, they're safe
         if generator == microchip:
             continue
 
+        # If any other generator is on the same floor as an unpaired
+        # microchip, the microchip is fried.
         for (other_generator, _) in objects:
             if other_generator == microchip:
                 return False
