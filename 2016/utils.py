@@ -1,4 +1,5 @@
 import itertools
+import hashlib
 import operator
 from functools import reduce
 from heapq import heappush, heappop
@@ -80,6 +81,10 @@ def astar_search(initial_state, heuristic_fn, generator_fn):
                 path_cost[next_state] = new_cost
                 previous[next_state] = state
 
+def hash_utf(string):
+    m = hashlib.md5()
+    m.update(string.encode('utf-8'))
+    return m.hexdigest()
 
 def import_challenge(challenge_number):
     return __import__(str(challenge_number).zfill(2))

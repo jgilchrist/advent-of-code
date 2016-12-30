@@ -2,7 +2,7 @@ import itertools
 import hashlib
 import re
 from collections import namedtuple
-from utils import zip_with_constant, concat
+from utils import zip_with_constant, concat, hash_utf
 from pprint import pprint
 
 triplet_regex = re.compile(r'(.)\1\1')
@@ -68,8 +68,3 @@ def all_hashes(salt):
     all_hashed_strings = map(hash_utf, input_strings)
 
     return all_hashed_strings
-
-def hash_utf(string):
-    m = hashlib.md5()
-    m.update(string.encode('utf-8'))
-    return m.hexdigest()
