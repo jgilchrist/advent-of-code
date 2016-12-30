@@ -1,7 +1,7 @@
 import itertools
 import hashlib
 
-from utils import zip_with_constant, concat
+from utils import zip_with_constant, concat, hash_utf
 
 def part1(door_id):
     code = ""
@@ -54,8 +54,3 @@ def all_hashes(door_id):
     all_hashed_strings = map(hash_utf, input_strings)
 
     return all_hashed_strings
-
-def hash_utf(string):
-    m = hashlib.md5()
-    m.update(string.encode('utf-8'))
-    return m.hexdigest()
