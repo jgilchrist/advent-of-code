@@ -69,5 +69,9 @@ class TestDay14(unittest.TestCase): pass
 @Part2(15, 2353212)
 class TestDay15(unittest.TestCase): pass
 
+@Part1(16, "10010010110011010")
+@Part2(16, "01010100101011100")
+class TestDay16(unittest.TestCase): pass
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
