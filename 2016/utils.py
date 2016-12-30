@@ -81,6 +81,9 @@ def astar_search(initial_state, heuristic_fn, generator_fn):
                 path_cost[next_state] = new_cost
                 previous[next_state] = state
 
+def apply_fn(state, fn):
+    return fn(state)
+
 def hash_utf(string):
     m = hashlib.md5()
     m.update(string.encode('utf-8'))
