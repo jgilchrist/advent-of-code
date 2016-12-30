@@ -65,5 +65,9 @@ class TestDay13(unittest.TestCase): pass
 @Part2(14, 20606, skip=True)
 class TestDay14(unittest.TestCase): pass
 
+@Part1(15, 148737)
+@Part2(15, 2353212)
+class TestDay15(unittest.TestCase): pass
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
