@@ -1,6 +1,5 @@
 import unittest
-
-from test_utils import Part1, Part2
+from utils import Part1, Part2
 
 @Part1(1, 241)
 @Part2(1, 116)
