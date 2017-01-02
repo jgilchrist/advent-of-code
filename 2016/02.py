@@ -50,7 +50,7 @@ def transform_input(challenge_input):
         }[i]
 
     lines = challenge_input.splitlines()
-    return [lmap(parse_instruction, line) for line in lines]
+    return [map(parse_instruction, line) for line in lines]
 
 
 class Direction(IntEnum):

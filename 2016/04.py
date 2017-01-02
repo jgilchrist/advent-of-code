@@ -8,7 +8,7 @@ def part2(rooms):
     def is_north_pole_room(room):
         return "northpole" in unencrypt_name(room)
 
-    north_pole_room = lfilter(is_north_pole_room, rooms)[0]
+    north_pole_room = list(filter(is_north_pole_room, rooms))[0]
     return north_pole_room.sector_id
 
 
@@ -53,4 +53,4 @@ def transform_input(challenge_input):
         return Room(letters, int(sector_id), checksum)
 
     lines = challenge_input.splitlines()
-    return lmap(parse_room, lines)
+    return map(parse_room, lines)
