@@ -29,7 +29,7 @@ def transform_input(challenge_input):
         return Instruction(direction, amount)
 
     instructions = challenge_input.replace(' ', '').split(',')
-    instructions = lmap(parse_instruction, instructions)
+    instructions = map(parse_instruction, instructions)
     return instructions
 
 

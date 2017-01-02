@@ -8,12 +8,6 @@ from functools import reduce, partial
 from heapq import heappush, heappop
 from itertools import *
 
-def lmap(fn, functor):
-    return list(map(fn, functor))
-
-def lfilter(fn, functor):
-    return list(filter(fn, functor))
-
 def tuple_add(a, b):
     return tuple(map(operator.add, a, b))
 
