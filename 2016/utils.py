@@ -3,7 +3,7 @@ import operator
 import re
 
 from collections import Counter, deque, namedtuple
-from enum import Enum, IntEnum
+from enum import Enum
 from functools import reduce, partial
 from heapq import heappush, heappop
 from itertools import *
@@ -17,23 +17,6 @@ def tuple_mul(tup, n):
 def pair_is_inverse(p1, p2):
     (p2x, p2y) = p2
     return p1 == (p2y, p2x)
-
-def direction_offset(d):
-    """This method is a reusable map from directional enums to offsets.
-    The only caveat is that it requires enums to be IntEnum for int
-    comparisons, and that the fields of the enum must be defined in
-    compass order."""
-
-    return {
-        # Up
-        1: ( 0, -1),
-        # Down
-        3: ( 0,  1),
-        # Left
-        4: (-1,  0),
-        # Right
-        2: ( 1,  0),
-    }[d]
 
 def transpose(list_of_lists):
     return map(list, zip(*list_of_lists))
