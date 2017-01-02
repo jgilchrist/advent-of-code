@@ -1,6 +1,4 @@
-import re
-from utils import lmap, flatten, product
-from enum import Enum
+from utils import *
 
 def part1(instructions):
     (bots, outputs) = populate_bots_and_outputs(instructions)
@@ -27,7 +25,7 @@ def part2(instructions):
             bot.send_values()
 
     relevant_outputs = flatten([outputs[0].inputs, outputs[1].inputs, outputs[2].inputs])
-    return product(relevant_outputs)
+    return reduce(operator.mul, relevant_outputs, 1)
 
 
 def populate_bots_and_outputs(instructions):

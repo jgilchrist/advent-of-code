@@ -1,6 +1,4 @@
-import re
-from collections import namedtuple, Counter
-from utils import lmap, lfilter, concat
+from utils import *
 
 def part1(rooms):
     result = sum(room.sector_id for room in rooms if is_valid_room(room))

@@ -1,4 +1,4 @@
-from itertools import *
+from utils import *
 
 def part1(ranges):
     return next(all_unblocked_numbers(ranges))

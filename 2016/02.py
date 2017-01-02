@@ -1,5 +1,4 @@
-from enum import IntEnum
-from utils import direction_offset, lmap, tuple_add, concat
+from utils import *
 
 def part1(instructions):
     location = (1, 1)

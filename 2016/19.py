@@ -1,4 +1,4 @@
-from collections import deque
+from utils import *
 
 def part1(number_of_elves):
     elves = list(range(number_of_elves))

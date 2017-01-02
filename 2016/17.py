@@ -1,6 +1,4 @@
-from collections import namedtuple
-from functools import partial
-from utils import astar_search, hash_utf, tuple_add
+from utils import *
 
 State = namedtuple('State', ['position', 'path'])
 

@@ -1,8 +1,4 @@
-import re
-import itertools
-from enum import Enum
-from collections import namedtuple
-from functools import partial, reduce
+from utils import *
 
 width = 50
 height = 6
@@ -30,7 +26,7 @@ def part2(instructions):
 
 def rectangle_instruction(x, y, state):
     (xs, ys) = (range(x), range(y))
-    added_points = set(itertools.product(xs, ys))
+    added_points = set(product(xs, ys))
     return state | added_points
 
 def rotate_row_instruction(row, amount, state):

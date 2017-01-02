@@ -1,5 +1,4 @@
-from itertools import *
-from utils import flatten, tuple_add, pair_is_inverse, astar_search
+from utils import *
 
 class State:
     def __init__(self, elevator, objects):

@@ -1,4 +1,4 @@
-import re
+from utils import *
 
 # This regex takes a string and splits it up into four parts
 #   * The text before the next compression marker: (.*?)
@@ -36,17 +36,15 @@ def part2(challenge_input):
     return get_length_recurse(challenge_input)
 
 def get_length_recurse(string):
-    import itertools
-
     length = 0
     chars = iter(string)
 
-    get_next_number = lambda s: ''.join(itertools.takewhile(lambda c: c not in 'x)', chars))
+    get_next_number = lambda s: ''.join(takewhile(lambda c: c not in 'x)', chars))
 
     for char in chars:
         if char == '(':
             look_forward, repeat = map(int, [get_next_number(chars) for c in (0, 1)])
-            rest = ''.join(itertools.islice(chars, look_forward))
+            rest = ''.join(islice(chars, look_forward))
             length += get_length_recurse(rest) * repeat
         else:
             length += 1

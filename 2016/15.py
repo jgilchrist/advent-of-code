@@ -1,7 +1,4 @@
-import re
-from itertools import *
-from collections import namedtuple
-from utils import lmap, tuple_add
+from utils import *
 
 def part1(challenge_info):
     npositions, initial_state = challenge_info

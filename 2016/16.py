@@ -1,5 +1,4 @@
-from itertools import *
-from utils import concat
+from utils import *
 
 def part1(seed):
     return get_data_to_fill_length(seed, 272)

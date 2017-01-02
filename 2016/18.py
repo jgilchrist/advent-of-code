@@ -1,5 +1,4 @@
-from itertools import *
-from utils import concat
+from utils import *
 
 def part1(first_row):
     return count_safe_tiles_in_n_rows(first_row, 40)

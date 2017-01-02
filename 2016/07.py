@@ -1,6 +1,4 @@
-import re
-import itertools
-from utils import lfilter
+from utils import *
 
 def part1(lines):
     matching_lines = lfilter(contains_abba, lines)
@@ -28,7 +26,7 @@ def is_ssl_supported(line):
 
     (out_of_brackets_patterns, in_brackets_patterns) = (find_all_abas(out_of_brackets_segments), find_all_abas(in_brackets_segments))
 
-    pattern_pairs = itertools.product(out_of_brackets_patterns, in_brackets_patterns)
+    pattern_pairs = product(out_of_brackets_patterns, in_brackets_patterns)
 
     matching_patterns = filter(lambda t: is_inverse(t[0], t[1]), pattern_pairs)
 

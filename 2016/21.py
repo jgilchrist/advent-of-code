@@ -1,8 +1,4 @@
-import re
-from itertools import *
-from functools import partial, reduce
-from collections import deque
-from utils import apply_fn, concat
+from utils import *
 
 def part1(instructions):
     return encode(instructions, 'abcdefgh')
