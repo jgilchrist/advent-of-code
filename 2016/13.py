@@ -1,7 +1,4 @@
-import itertools
-from functools import partial
-from utils import tuple_add, astar_search
-from collections import deque
+from utils import *
 
 def heuristic(state):
     # The goal is at (31, 39)

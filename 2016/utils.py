@@ -1,8 +1,12 @@
-import itertools
 import hashlib
 import operator
-from functools import reduce
+import re
+
+from collections import Counter, deque, namedtuple
+from enum import Enum, IntEnum
+from functools import reduce, partial
 from heapq import heappush, heappop
+from itertools import *
 
 def lmap(fn, functor):
     return list(map(fn, functor))
@@ -19,9 +23,6 @@ def tuple_mul(tup, n):
 def pair_is_inverse(p1, p2):
     (p2x, p2y) = p2
     return p1 == (p2y, p2x)
-
-def product(values):
-    return reduce(operator.mul, values, 1)
 
 def direction_offset(d):
     """This method is a reusable map from directional enums to offsets.
@@ -44,7 +45,7 @@ def transpose(list_of_lists):
     return map(list, zip(*list_of_lists))
 
 def flatten(list_of_lists):
-    return list(itertools.chain.from_iterable(list_of_lists))
+    return list(chain.from_iterable(list_of_lists))
 
 def chunk_list(l, chunk_size):
     for i in range(0, len(l), chunk_size):
@@ -52,7 +53,7 @@ def chunk_list(l, chunk_size):
 
 def zip_with_constant(const, iterable):
     """This is a trick to allow zipping an iterable against a single value"""
-    return itertools.zip_longest([], iterable, fillvalue=const)
+    return zip_longest([], iterable, fillvalue=const)
 
 def concat(iterable):
     return "".join(iterable)

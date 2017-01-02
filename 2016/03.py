@@ -1,4 +1,4 @@
-from utils import lmap, lfilter, transpose, flatten, chunk_list
+from utils import *
 
 def part1(triangles):
     valid_triangles = lfilter(is_valid_triangle, triangles)

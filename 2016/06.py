@@ -1,6 +1,4 @@
-from collections import Counter
-from utils import transpose, lmap, concat
-from functools import partial
+from utils import *
 
 def part1(columns):
     get_most_frequent = partial(get_nth_most_frequent, nth=0)

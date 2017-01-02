@@ -1,7 +1,4 @@
-from collections import namedtuple
-from enum import IntEnum
-
-from utils import tuple_add, tuple_mul, direction_offset, lmap
+from utils import *
 
 def part1(instructions):
     state = State((0, 0), Direction.North)

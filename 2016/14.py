@@ -1,9 +1,4 @@
-import itertools
-import hashlib
-import re
-from collections import namedtuple
-from utils import zip_with_constant, concat, hash_utf
-from pprint import pprint
+from utils import *
 
 triplet_regex = re.compile(r'(.)\1\1')
 Entry = namedtuple('Entry', ['value', 'quintuplet', 'index_added'])
@@ -56,7 +51,7 @@ def all_stretched_hashes(salt):
     return map(get_stretched_hash, all_hashes(salt))
 
 def all_hashes(salt):
-    natural_numbers_as_strings = map(str, itertools.count())
+    natural_numbers_as_strings = map(str, count())
 
     salt_with_natural_numbers = zip_with_constant(salt, natural_numbers_as_strings)
 

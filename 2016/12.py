@@ -1,6 +1,4 @@
-from collections import namedtuple
-from functools import partial
-from utils import lmap
+from utils import *
 
 PC = 'pc'
 

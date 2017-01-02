@@ -1,7 +1,4 @@
-import itertools
-import hashlib
-
-from utils import zip_with_constant, concat, hash_utf
+from utils import *
 
 def part1(door_id):
     code = ""
@@ -43,7 +40,7 @@ def part2(door_id):
 
 
 def all_hashes(door_id):
-    natural_numbers_as_strings = map(str, itertools.count())
+    natural_numbers_as_strings = map(str, count())
 
     door_id_zipped_with_natural_numbers = zip_with_constant(door_id, natural_numbers_as_strings)
 
