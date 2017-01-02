@@ -53,7 +53,7 @@ def all_stretched_hashes(salt):
 def all_hashes(salt):
     natural_numbers_as_strings = map(str, count())
 
-    salt_with_natural_numbers = zip_with_constant(salt, natural_numbers_as_strings)
+    salt_with_natural_numbers = zip(repeat(salt), natural_numbers_as_strings)
 
     # An infinite generator of all strings of the form salt0, salt1, etc.
     input_strings = map(concat, salt_with_natural_numbers)

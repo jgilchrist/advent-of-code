@@ -42,7 +42,7 @@ def part2(door_id):
 def all_hashes(door_id):
     natural_numbers_as_strings = map(str, count())
 
-    door_id_zipped_with_natural_numbers = zip_with_constant(door_id, natural_numbers_as_strings)
+    door_id_zipped_with_natural_numbers = zip(repeat(door_id), natural_numbers_as_strings)
 
     # An infinite generator of all strings of the form doorid0, doorid1, etc.
     input_strings = map(concat, door_id_zipped_with_natural_numbers)
