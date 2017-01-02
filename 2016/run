@@ -17,12 +17,10 @@ def run_challenge(challenge_number):
 
     print("== Advent of Code Challenge {}".format(challenge_number))
 
-    challenge_input = read_input(challenge_number)
-
     print("= Part 1 =")
-    print(challenge.part1(challenge_input))
+    print(challenge.part1(read_input(challenge_number)))
     print("= Part 2 =")
-    print(challenge.part2(challenge_input))
+    print(challenge.part2(read_input(challenge_number)))
     print()
 
 if __name__ == '__main__':
