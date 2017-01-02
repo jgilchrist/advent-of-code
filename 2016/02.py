@@ -53,14 +53,20 @@ def transform_input(challenge_input):
     return [map(parse_instruction, line) for line in lines]
 
 
-class Direction(IntEnum):
+class Direction(Enum):
     Up = 1
     Right = 2
     Down = 3
     Left = 4
 
 def move(location, direction, board):
-    offset = direction_offset(direction)
+    offset = {
+        Direction.Up:    ( 0, -1),
+        Direction.Down:  ( 0,  1),
+        Direction.Left:  (-1,  0),
+        Direction.Right: ( 1,  0),
+    }[direction]
+
     new_location = tuple_add(location, offset)
 
     if not is_valid_location(new_location, board):
