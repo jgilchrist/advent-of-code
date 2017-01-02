@@ -7,7 +7,6 @@ from pprint import pprint
 
 triplet_regex = re.compile(r'(.)\1\1')
 Entry = namedtuple('Entry', ['value', 'quintuplet', 'index_added'])
-Key = namedtuple('Key', ['value', 'index_found'])
 
 def part1(salt):
     return search_for_hashes(all_hashes(salt))
