@@ -84,5 +84,5 @@ def transform_input(challenge_input):
 
     instructions = challenge_input.splitlines()
     instructions = [i.split() for i in instructions]
-    instructions = map(parse_instruction, instructions)
+    instructions = list(map(parse_instruction, instructions))
     return instructions
