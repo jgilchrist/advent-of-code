@@ -3,7 +3,7 @@ from utils import *
 PC = 'pc'
 
 def part1(instructions):
-    # We will call the program a success if the first 100 characters of output
+    # We will call the program a success if the first 10 characters of output
     # are 01010101...
     expected_stdout = '0101010101'
 
