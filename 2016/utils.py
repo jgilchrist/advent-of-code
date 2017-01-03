@@ -31,6 +31,10 @@ def chunk_list(l, chunk_size):
 def concat(iterable):
     return "".join(iterable)
 
+def neighbors4(position):
+    (x, y) = position
+    return [(x-1, y), (x+1, y), (x, y-1), (x, y+1)]
+
 def astar_search(initial_state, heuristic_fn, generator_fn):
 
     def Path(previous, s):
