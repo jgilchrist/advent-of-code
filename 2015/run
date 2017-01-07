@@ -2,20 +2,14 @@
 
 import importlib
 
-def read_input(challenge_number):
-    filename = "{}.input".format(challenge_number)
-
-    with open(filename) as f:
-        challenge_input = f.read().strip()
-
-    return challenge_input
+from utils import import_challenge, read_input
 
 def run_challenge(challenge_number):
     try:
-        challenge = __import__(str(challenge_number))
+        challenge = import_challenge(challenge_number)
     except ImportError as e:
         if "No module named" in str(e):
-            print("No solution for challenge {}".format(challenge_number))
+            print("No solution for challenge {0:02d}".format(challenge_number))
             return
         else:
             print(e)
@@ -23,15 +17,10 @@ def run_challenge(challenge_number):
 
     print("== Advent of Code Challenge {}".format(challenge_number))
 
-    challenge_input = read_input(challenge_number)
-
-    if hasattr(challenge, 'transform_input'):
-        challenge_input = challenge.transform_input(challenge_input)
-
     print("= Part 1 =")
-    challenge.part1(challenge_input)
+    print(challenge.part1(read_input(challenge_number)))
     print("= Part 2 =")
-    challenge.part2(challenge_input)
+    print(challenge.part2(read_input(challenge_number)))
     print()
 
 if __name__ == '__main__':
