@@ -92,5 +92,21 @@ class TestDay20(unittest.TestCase): pass
 @Part2(21, "dhaegfbc")
 class TestDay21(unittest.TestCase): pass
 
+@Part1(22, 901)
+@Part2(22, 238)
+class TestDay22(unittest.TestCase): pass
+
+@Part1(23, 12703)
+@Part2(23, 479009263, skip=True)
+class TestDay23(unittest.TestCase): pass
+
+@Part1(24, 442)
+@Part2(24, 660)
+class TestDay24(unittest.TestCase): pass
+
+@Part1(25, 198)
+@Part2(25, None)
+class TestDay25(unittest.TestCase): pass
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
