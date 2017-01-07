@@ -1,10 +1,8 @@
 def part1(challenge_input):
-    number_of_chars = lambda string, char: sum(1 for c in string if c == char)
+    up_floors = challenge_input.count('(')
+    down_floors = challenge_input.count(')')
 
-    up_floors = number_of_chars(challenge_input, '(')
-    down_floors = number_of_chars(challenge_input, ')')
-
-    print(up_floors - down_floors)
+    return up_floors - down_floors
 
 def part2(challenge_input):
     floor = 0
@@ -15,5 +13,5 @@ def part2(challenge_input):
             floor -= 1
 
         if floor == -1:
-            print(i)
+            return i
             break

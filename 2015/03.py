@@ -6,7 +6,7 @@ def part1(i):
         pos = move(pos, char)
         visited.add(pos)
 
-    print(len(visited))
+    return len(visited)
 
 def part2(i):
     santa = (0, 0)
@@ -24,7 +24,7 @@ def part2(i):
         robo_santa = move(robo_santa, char)
         visited.add(robo_santa)
 
-    print(len(visited))
+    return len(visited)
 
 
 def move(pos, direction):
