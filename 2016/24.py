@@ -45,10 +45,6 @@ def next_states(maze, numbers, state):
 def adjacent_spaces(maze, position):
     return [s for s in neighbors4(position) if is_space(maze, s)]
 
-def neighbors4(position):
-    (x, y) = position
-    return [(x-1, y), (x+1, y), (x, y-1), (x, y+1)]
-
 def is_space(maze, point):
     (x, y) = point
     return maze[y][x]

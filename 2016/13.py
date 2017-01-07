@@ -28,10 +28,6 @@ def part2(seed):
 def adjacent_spaces(position, seed):
     return [s for s in neighbors4(position) if is_space(s, seed)]
 
-def neighbors4(position):
-    (x, y) = position
-    return [(x-1, y), (x+1, y), (x, y-1), (x, y+1)]
-
 def is_space(position, seed):
     x, y = position
     computed_sum = x*x + 3*x + 2*x*y + y + y*y + seed
