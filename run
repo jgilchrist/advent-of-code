@@ -9,7 +9,6 @@ def run_challenge(year, challenge_number):
         challenge = import_challenge(year, challenge_number)
     except ImportError as e:
         if "No module named" in str(e):
-            print(e)
             print(f'No solution for challenge {challenge_number:02d}')
             return
         else:
