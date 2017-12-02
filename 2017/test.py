@@ -5,8 +5,8 @@ from utils import Part1, Part2
 @Part2(1, 1072)
 class TestDay01(unittest.TestCase): pass
 
-@Part1(2, None, skip=True)
-@Part2(2, None, skip=True)
+@Part1(2, 43074)
+@Part2(2, 280)
 class TestDay02(unittest.TestCase): pass
 
 @Part1(3, None, skip=True)
