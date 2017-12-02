@@ -9,6 +9,9 @@ from functools import reduce, partial
 from heapq import heappush, heappop
 from itertools import *
 
+def lmap(fn, seq):
+    return list(map(fn, seq))
+
 def tuple_add(a, b):
     return tuple(map(operator.add, a, b))
 
