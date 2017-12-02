@@ -4,23 +4,24 @@ import importlib
 
 from utils import import_challenge, read_input
 
-def run_challenge(challenge_number):
+def run_challenge(year, challenge_number):
     try:
-        challenge = import_challenge(challenge_number)
+        challenge = import_challenge(year, challenge_number)
     except ImportError as e:
         if "No module named" in str(e):
-            print("No solution for challenge {0:02d}".format(challenge_number))
+            print(e)
+            print(f'No solution for challenge {challenge_number:02d}')
             return
         else:
             print(e)
             return
 
-    print("== Advent of Code Challenge {}".format(challenge_number))
+    print(f'== Advent of Code {year} Challenge {challenge_number}')
 
-    print("= Part 1 =")
-    print(challenge.part1(read_input(challenge_number)))
-    print("= Part 2 =")
-    print(challenge.part2(read_input(challenge_number)))
+    print('= Part 1 =')
+    print(challenge.part1(read_input(year, challenge_number)))
+    print('= Part 2 =')
+    print(challenge.part2(read_input(year, challenge_number)))
     print()
 
 if __name__ == '__main__':
@@ -28,6 +29,7 @@ if __name__ == '__main__':
 
     import argparse
     parser = argparse.ArgumentParser()
+    parser.add_argument("year", type=str)
     parser.add_argument("challenges", type=int, nargs='*', default=challenges)
     args = parser.parse_args()
 
@@ -36,4 +38,4 @@ if __name__ == '__main__':
             print("Error: Challenge {} does not exist".format(c))
             continue
 
-        run_challenge(c)
+        run_challenge(args.year, c)
