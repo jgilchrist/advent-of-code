@@ -1,4 +1,5 @@
 import hashlib
+import importlib
 import operator
 import re
 
@@ -78,13 +79,13 @@ def hash_utf(string):
     m.update(string.encode('utf-8'))
     return m.hexdigest()
 
-def import_challenge(challenge_number):
-    return __import__(str(challenge_number).zfill(2))
+def import_challenge(year, challenge_number):
+    return importlib.import_module(f'{year}.{challenge_number:02d}')
 
-def read_input(challenge_number):
-    challenge = import_challenge(challenge_number)
+def read_input(year, challenge_number):
+    challenge = import_challenge(year, challenge_number)
 
-    filename = "inputs/{0:02d}.input".format(challenge_number)
+    filename = f'{year}/inputs/{challenge_number:02d}.input'
 
     with open(filename) as f:
         challenge_input = f.read().strip()
@@ -94,13 +95,13 @@ def read_input(challenge_number):
 
     return challenge_input
 
-def Part1(challenge_number, answer, skip=False):
+def Part1(year, challenge_number, answer, skip=False):
     import unittest
 
     def test_part1(self):
         """Part 1"""
-        challenge = import_challenge(challenge_number)
-        challenge_input = read_input(challenge_number)
+        challenge = import_challenge(year, challenge_number)
+        challenge_input = read_input(year, challenge_number)
         result = challenge.part1(challenge_input)
         self.assertEqual(result, answer)
 
@@ -111,13 +112,13 @@ def Part1(challenge_number, answer, skip=False):
 
     return wrap
 
-def Part2(challenge_number, answer, skip=False):
+def Part2(year, challenge_number, answer, skip=False):
     import unittest
 
     def test_part2(self):
         """Part 2"""
-        challenge = import_challenge(challenge_number)
-        challenge_input = read_input(challenge_number)
+        challenge = import_challenge(year, challenge_number)
+        challenge_input = read_input(year, challenge_number)
         result = challenge.part2(challenge_input)
         self.assertEqual(result, answer)
 
