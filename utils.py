@@ -28,6 +28,9 @@ def transpose(list_of_lists):
 def flatten(list_of_lists):
     return list(chain.from_iterable(list_of_lists))
 
+def take(n, iterable):
+    return list(islice(iterable, n))
+
 def chunk_list(l, chunk_size):
     for i in range(0, len(l), chunk_size):
         yield l[i:i+chunk_size]
