@@ -13,8 +13,8 @@ class TestDay02(unittest.TestCase): pass
 @Part2(3, None, skip=True)
 class TestDay03(unittest.TestCase): pass
 
-@Part1(4, None, skip=True)
-@Part2(4, None, skip=True)
+@Part1(4, 337)
+@Part2(4, 231)
 class TestDay04(unittest.TestCase): pass
 
 @Part1(5, None, skip=True)
