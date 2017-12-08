@@ -18,10 +18,6 @@ def tuple_add(a, b):
 def tuple_mul(tup, n):
     return tuple(i * n for i in tup)
 
-def pair_is_inverse(p1, p2):
-    (p2x, p2y) = p2
-    return p1 == (p2y, p2x)
-
 def transpose(list_of_lists):
     return map(list, zip(*list_of_lists))
 
