@@ -1,27 +1,51 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
 import importlib
 
-from utils import import_challenge, read_input
+class Color:
+    Red = '\033[91m'
+    Yellow = '\033[93m'
+    Green = '\033[92m'
+    Blue = '\033[94m'
+    Reset = '\033[0m'
+
+def red(t): return f'{Color.Red}{t}{Color.Reset}'
+def yellow(t): return f'{Color.Yellow}{t}{Color.Reset}'
+def green(t): return f'{Color.Green}{t}{Color.Reset}'
+def blue(t): return f'{Color.Blue}{t}{Color.Reset}'
+
+def import_challenge(year, challenge_number):
+    return importlib.import_module(f'{year}.{challenge_number:02d}')
+
+def read_input(year, challenge_number):
+    challenge = import_challenge(year, challenge_number)
+
+    filename = f'{year}/inputs/{challenge_number:02d}.input'
+
+    with open(filename) as f:
+        challenge_input = f.read().strip()
+
+    if hasattr(challenge, 'transform_input'):
+        challenge_input = challenge.transform_input(challenge_input)
+
+    return challenge_input
 
 def run_challenge(year, challenge_number):
     try:
         challenge = import_challenge(year, challenge_number)
     except ImportError as e:
         if "No module named" in str(e):
-            print(f'No solution for challenge {challenge_number:02d}')
+            print(f'{red("Error")}: No solution for challenge {challenge_number:02d}')
             return
         else:
             print(e)
             return
 
-    print(f'== Advent of Code {year} Challenge {challenge_number}')
-
-    print('= Part 1 =')
+    print(f'{red("=")}{green("=")} Challenge {yellow(challenge_number)}')
+    print(f'{red("1")}: ', end="")
     print(challenge.part1(read_input(year, challenge_number)))
-    print('= Part 2 =')
+    print(f'{green("2")}: ', end="")
     print(challenge.part2(read_input(year, challenge_number)))
-    print()
 
 if __name__ == '__main__':
     challenges = range(1, 26)
@@ -32,9 +56,11 @@ if __name__ == '__main__':
     parser.add_argument("challenges", type=int, nargs='*', default=challenges)
     args = parser.parse_args()
 
+    print(f'Running challenges from year {yellow(args.year)}')
+
     for c in args.challenges:
         if c not in challenges:
-            print("Error: Challenge {} does not exist".format(c))
+            print(f'{red("Error")}: Challenge {c} does not exist')
             continue
 
         run_challenge(args.year, c)
