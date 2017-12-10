@@ -3,7 +3,7 @@ import importlib
 import operator
 import re
 
-from collections import Counter, deque, namedtuple
+from collections import Counter, defaultdict, deque, namedtuple
 from enum import Enum
 from functools import reduce, partial
 from heapq import heappush, heappop
