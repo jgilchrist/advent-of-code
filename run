@@ -18,19 +18,20 @@ def import_challenge(year, challenge_number):
     return importlib.import_module(f'{year}.{challenge_number:02d}')
 
 def read_input(year, challenge_number):
-    challenge = import_challenge(year, challenge_number)
-
     filename = f'{year}/inputs/{challenge_number:02d}.input'
 
     with open(filename) as f:
         challenge_input = f.read().strip()
 
-    if hasattr(challenge, 'transform_input'):
-        challenge_input = challenge.transform_input(challenge_input)
-
     return challenge_input
 
 def run_challenge(year, challenge_number):
+    try:
+        challenge_input = read_input(year, challenge_number)
+    except FileNotFoundError:
+        # No input for this challenge yet - skip it
+        return
+
     try:
         challenge = import_challenge(year, challenge_number)
     except ImportError as e:
@@ -41,11 +42,14 @@ def run_challenge(year, challenge_number):
             print(e)
             return
 
+    if hasattr(challenge, 'transform_input'):
+        challenge_input = challenge.transform_input(challenge_input)
+
     print(f'{red("=")}{green("=")} Challenge {yellow(challenge_number)}')
     print(f'{red("1")}: ', end="")
-    print(challenge.part1(read_input(year, challenge_number)))
+    print(challenge.part1(challenge_input))
     print(f'{green("2")}: ', end="")
-    print(challenge.part2(read_input(year, challenge_number)))
+    print(challenge.part2(challenge_input))
 
 if __name__ == '__main__':
     challenges = range(1, 26)
