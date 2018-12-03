@@ -16,14 +16,19 @@ def get_tiles_for_claim(claim):
         for x in range(claim.width):
             yield (claim.from_top + y, claim.from_left + x)
 
-def part1(i):
+def get_memberships_for_each_claim(claims):
     claim_memberships = defaultdict(set)
 
-    for claim in i:
+    for claim in claims:
         tiles_for_claim = get_tiles_for_claim(claim)
 
         for tile in tiles_for_claim:
             claim_memberships[tile].add(claim.id)
+
+    return claim_memberships
+
+def part1(i):
+    claim_memberships = get_memberships_for_each_claim(i)
 
     tiles_with_more_than_one_membership = [
         tile
@@ -34,13 +39,7 @@ def part1(i):
     return len(tiles_with_more_than_one_membership)
 
 def part2(i):
-    claim_memberships = defaultdict(set)
-
-    for claim in i:
-        tiles_for_claim = get_tiles_for_claim(claim)
-
-        for tile in tiles_for_claim:
-            claim_memberships[tile].add(claim.id)
+    claim_memberships = get_memberships_for_each_claim(i)
 
     for claim in i:
         tiles_for_claim = get_tiles_for_claim(claim)
