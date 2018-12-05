@@ -82,6 +82,15 @@ def hash_utf(string):
     return m.hexdigest()
 
 digits_regex = re.compile(r'-?\d+')
+positive_digits_regex = re.compile(r'\d+')
 
 def get_all_numbers(string):
     return map(int, digits_regex.findall(string))
+
+def get_all_positive_numbers(string):
+    return map(int, positive_digits_regex.findall(string))
+
+def argmax(dictionary, key=None):
+    if key is None:
+        key = operator.itemgetter(1)
+    return max(dictionary.items(), key=key)
