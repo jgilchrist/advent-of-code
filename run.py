@@ -22,6 +22,10 @@ def run_challenge(year, challenge_number):
 
     print(f'{red("=")}{green("=")} Challenge {yellow(challenge_number)}')
 
+    if challenge is None:
+        print("No solution")
+        return
+
     print(f'{red("1")}: ', end="")
     c1_start = current_milli_time()
     c1_result = challenge.part1(challenge_input)

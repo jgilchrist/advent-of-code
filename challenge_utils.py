@@ -16,17 +16,17 @@ def get_challenge(year, challenge_number):
         challenge_input = read_input(year, challenge_number)
     except FileNotFoundError:
         # No input for this challenge yet - skip it
-        return
+        return (None, None)
 
     try:
         challenge = import_challenge(year, challenge_number)
     except ImportError as e:
         if "No module named" in str(e):
             print(f'{red("Error")}: No solution for challenge {challenge_number:02d}')
-            return
+            return (None, None)
         else:
             print(e)
-            return
+            return (None, None)
 
     if hasattr(challenge, 'transform_input'):
         challenge_input = challenge.transform_input(challenge_input)
