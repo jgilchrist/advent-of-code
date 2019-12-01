@@ -47,7 +47,7 @@ if __name__ == '__main__':
 
     import argparse
     parser = argparse.ArgumentParser()
-    parser.add_argument("year", nargs='?', type=str, default='2018')
+    parser.add_argument("year", nargs='?', type=str, default='2019')
     parser.add_argument("challenges", type=int, nargs='*', default=challenges)
     args = parser.parse_args()
 
