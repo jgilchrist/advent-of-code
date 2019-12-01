@@ -4,12 +4,14 @@ from challenge_utils import *
 import time
 
 class Color:
+    Grey = '\033[90m'
     Red = '\033[91m'
     Yellow = '\033[93m'
     Green = '\033[92m'
     Blue = '\033[94m'
     Reset = '\033[0m'
 
+def grey(t): return f'{Color.Grey}{t}{Color.Reset}'
 def red(t): return f'{Color.Red}{t}{Color.Reset}'
 def yellow(t): return f'{Color.Yellow}{t}{Color.Reset}'
 def green(t): return f'{Color.Green}{t}{Color.Reset}'
@@ -20,10 +22,11 @@ current_milli_time = lambda: int(round(time.time() * 1000))
 def run_challenge(year, challenge_number):
     challenge, challenge_input = get_challenge(year, challenge_number)
 
-    print(f'{red("=")}{green("=")} Challenge {yellow(challenge_number)}')
+    challenge_text = f'Challenge {yellow(challenge_number)}' if challenge is not None else grey(f"Challenge {challenge_number}")
+
+    print(f'{red("=")}{green("=")} {challenge_text}')
 
     if challenge is None:
-        print("No solution")
         return
 
     print(f'{red("1")}: ', end="")
