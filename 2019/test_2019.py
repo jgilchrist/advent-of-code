@@ -8,3 +8,9 @@ def test_day01():
         3262356,
         4890664
     )
+
+def test_day02():
+    challenge_test(2,
+        3058646,
+        8976
+    )
