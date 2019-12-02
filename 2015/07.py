@@ -20,13 +20,14 @@ def set_state(state, var, value):
     state[var] = int(value)
 
 def part1(i):
+    instrs = list(i)
     state = {}
 
-    while len(i) is not 0:
-        for instruction in i:
+    while len(instrs) is not 0:
+        for instruction in instrs:
             try:
                 apply_instruction(instruction, state)
-                i.remove(instruction)
+                instrs.remove(instruction)
             except KeyError as e:
                 pass
 
