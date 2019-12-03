@@ -29,6 +29,9 @@ def run_challenge(year, challenge_number):
     if challenge is None:
         return
 
+    if hasattr(challenge, 'test'):
+        challenge.test()
+
     print(f'{red("1")}: ', end="")
     c1_start = current_milli_time()
     c1_result = challenge.part1(challenge_input)
