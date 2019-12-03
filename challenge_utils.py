@@ -4,7 +4,7 @@ def import_challenge(year, challenge_number):
     return importlib.import_module(f'{year}.{challenge_number:02d}')
 
 def read_input(year, challenge_number):
-    filename = f'{year}/inputs/{challenge_number:02d}.input'
+    filename = f'{year}/{challenge_number:02d}.in'
 
     with open(filename) as f:
         challenge_input = f.read().strip()
