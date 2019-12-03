@@ -18,6 +18,11 @@ def tuple_add(a, b):
 def tuple_mul(tup, n):
     return tuple(i * n for i in tup)
 
+def manhattan_distance(tup1, tup2):
+    (x1, y1) = tup1
+    (x2, y2) = tup2
+    return abs(x1 - x2) + abs(y1 - y2)
+
 def transpose(list_of_lists):
     return map(list, zip(*list_of_lists))
 
@@ -94,3 +99,8 @@ def argmax(dictionary, key=None):
     if key is None:
         key = operator.itemgetter(1)
     return max(dictionary.items(), key=key)
+
+def argmin(dictionary, key=None):
+    if key is None:
+        key = operator.itemgetter(1)
+    return min(dictionary.items(), key=key)
