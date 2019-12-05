@@ -11,7 +11,7 @@
 
 Each challenge has the following files:
 
-* `inputs/<challenge number>.input`
+* `<challenge number>.input`
 
 ```
 # Input for Parts 1 and 2 of each challenge
