@@ -19,14 +19,11 @@ def part1(relations):
 
     order = []
 
-    while True:
+    while len(relations) is not 0:
         # Ties are broken alphabetically (lexicographically minimal)
         next_job = min(find_root(relations))
         order.append(next_job)
         relations.pop(next_job)
-
-        if len(relations) == 0:
-            break
 
     return "".join(order)
 
@@ -62,7 +59,7 @@ def part2(relations):
         workers[worker] = (next_job, time + time_to_finish(next_job))
         return next_job
 
-    while True:
+    while len(relations) is not 0:
         jobs_finished_this_step = []
 
         # First, try to assign jobs.
@@ -85,11 +82,9 @@ def part2(relations):
             relations.pop(job)
             workers[worker] = None
 
-        if len(relations) == 0:
-            # Account for the single extra tick when neither worker is doing anything
-            return time + 1
-
         time += 1
+
+    return time
 
 def transform_input(i):
     lines = i.splitlines()
