@@ -97,53 +97,42 @@ def run_intcode_until_output(state):
 
     return output
 
-def part1(program):
+def run_cycling_intcode(program, permutation):
+    last_output = 0
+
+    p1, p2, p3, p4, p5 = permutation
+
+    states = [
+        IntcodeState(program, inputs=[p1,0]),
+        IntcodeState(program, inputs=[p2]),
+        IntcodeState(program, inputs=[p3]),
+        IntcodeState(program, inputs=[p4]),
+        IntcodeState(program, inputs=[p5]),
+    ]
+
+    for (s1, s2) in window(cycle(states)):
+        output = run_intcode_until_output(s1)
+        if output is not None:
+            last_output = output
+            s2.add_input(output)
+
+        if all(s.halted for s in states):
+            return last_output
+
+def get_maximising_permutation(program, values):
     outputs = {}
 
-    for permutation in permutations((0, 1, 2, 3, 4)):
-        last_output = 0
-
-        for i in permutation:
-            state = IntcodeState(program, inputs=[i, last_output])
-            output = run_intcode_until_output(state)
-            last_output = output
-
-        outputs[permutation] = last_output
+    for permutation in permutations(values):
+        outputs[permutation] = run_cycling_intcode(program, permutation)
 
     best_permutation, best_value = argmax(outputs)
     return best_value
 
+def part1(program):
+    return get_maximising_permutation(program, (0, 1, 2, 3, 4))
+
 def part2(program):
-    outputs = {}
-
-    def run_cycling_intcode(permutation):
-        last_output = 0
-
-        p1, p2, p3, p4, p5 = permutation
-
-        states = [
-            IntcodeState(program, inputs=[p1,0]),
-            IntcodeState(program, inputs=[p2]),
-            IntcodeState(program, inputs=[p3]),
-            IntcodeState(program, inputs=[p4]),
-            IntcodeState(program, inputs=[p5]),
-        ]
-
-        for (s1, s2) in window(cycle(states)):
-            output = run_intcode_until_output(s1)
-            if output is not None:
-                last_output = output
-                s2.add_input(output)
-
-            if all(s.halted for s in states):
-                return last_output
-
-    for permutation in permutations((5, 6, 7, 8, 9)):
-        output = run_cycling_intcode(permutation)
-        outputs[permutation] = output
-
-    max_permutation, max_value = argmax(outputs)
-    return max_value
+    return get_maximising_permutation(program, (5, 6, 7, 8, 9))
 
 def transform_input(i):
     return list(map(int, i.split(',')))
