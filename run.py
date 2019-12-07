@@ -84,6 +84,7 @@ def run_challenge(year, challenge_number, run_slow_challenges):
 
     if hasattr(challenge, 'test'):
         challenge.test()
+        print(green("Tests passed!"))
 
     print(f'{red("1")}: ', end="")
 
