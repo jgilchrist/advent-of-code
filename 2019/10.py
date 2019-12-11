@@ -4,35 +4,21 @@ from math import atan2, pi
 
 def angle_to(c1, c2):
     c2 = tuple_sub(c2, c1)
-    return (atan2(*c2) - (pi / 2) + (2 * pi)) % (2 * pi)
-
-def angle_to_rotated(c1, c2):
-    c2 = tuple_sub(c2, c1)
     return (atan2(*c2) - (pi) + (2 * pi)) % (2 * pi)
-
-def occludes(start, coord, occluding_coord):
-    return (
-        angle_to(start, coord) == angle_to(start, occluding_coord) and
-        manhattan_distance(start, occluding_coord) < manhattan_distance(start, coord)
-    )
-
-def get_visible_asteroids_from(base_station, coords):
-    seen_asteroids = set()
-
-    for coord in sorted(coords):
-        if not any(x != coord and occludes(base_station, coord, x) for x in sorted(coords)):
-            seen_asteroids.add(coord)
-
-    return seen_asteroids
 
 def part1(coords):
     base_stations = {}
 
     for possible_base_station in sorted(coords):
         other_asteroids = coords - set([possible_base_station])
-        seen_asteroids = get_visible_asteroids_from(possible_base_station, other_asteroids)
-        print(possible_base_station, len(seen_asteroids))
-        base_stations[possible_base_station] = len(seen_asteroids)
+
+        asteroids_at_angle = defaultdict(list)
+        for asteroid in other_asteroids:
+            angle = angle_to(possible_base_station, asteroid)
+            asteroids_at_angle[angle].append(asteroid)
+
+        seen_asteroids = len(asteroids_at_angle)
+        base_stations[possible_base_station] = seen_asteroids
 
     best_base_station, best_seen_asteroids = argmax(base_stations)
     return best_seen_asteroids
@@ -63,7 +49,7 @@ def part2(coords):
 
     asteroids_at_angle = defaultdict(list)
     for asteroid in other_asteroids:
-        angle = angle_to_rotated(base_station, asteroid)
+        angle = angle_to(base_station, asteroid)
         asteroids_at_angle[angle].append(asteroid)
 
     # Ensure 0 radians is interpreted as 2*pi radians for ordering
