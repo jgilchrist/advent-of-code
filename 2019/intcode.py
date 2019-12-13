@@ -39,6 +39,9 @@ class IntcodeVm:
 
         self.program[address] = value
 
+    def set_input(self, value):
+        self.inputs = value
+
     def add_input(self, value):
         self.inputs.append(value)
 
