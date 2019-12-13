@@ -107,3 +107,9 @@ def argmin(dictionary, key=None):
     if key is None:
         key = operator.itemgetter(1)
     return min(dictionary.items(), key=key)
+
+def check(solution):
+    def check_decorator(fn):
+        fn.solution = solution
+        return fn
+    return check_decorator
