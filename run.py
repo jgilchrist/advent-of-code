@@ -52,6 +52,29 @@ def get_challenge(year, challenge_number):
 
     return (challenge, challenge_input)
 
+def print_solution(solution, expected_solution, duration):
+    print(solution, end="")
+
+    print(grey(' ('), end="")
+
+    if expected_solution is not None:
+        if solution == expected_solution:
+            print(f'{green("+")}, ', end="")
+        else:
+            print(f'{red("-")}, ', end="")
+    else:
+        print(f'{grey("?")}, ', end="")
+
+    duration_color_fn = green
+    if duration > 1000:
+        duration_color_fn = yellow
+    if duration > 10000:
+        duration_color_fn = red
+
+    print(duration_color_fn(f'{duration}ms'), end="")
+    print(grey(')'))
+
+
 def run_challenge(year, challenge_number):
     challenge, challenge_input = get_challenge(year, challenge_number)
 
@@ -70,42 +93,22 @@ def run_challenge(year, challenge_number):
     c1_result = challenge.part1(challenge_input)
     c1_end = current_milli_time()
     c1_duration = c1_end - c1_start
-    print(c1_result, end="")
-
-    print(grey(' ('), end="")
-
-    if hasattr(challenge.part1, 'solution'):
-        expected_solution = challenge.part1.solution
-        if c1_result == expected_solution:
-            print(f'{green("correct")}, ', end="")
-        else:
-            print(f'{red("incorrect")}, ', end="")
-    else:
-        print(f'{grey("unchecked")}, ', end="")
-
-    print(blue(f'{c1_duration}ms'), end="")
-    print(grey(')'))
+    print_solution(
+        c1_result,
+        challenge.part1.solution if hasattr(challenge.part1, 'solution') else None,
+        c1_duration
+    )
 
     print(f'{green("2")}: ', end="")
     c2_start = current_milli_time()
     c2_result = challenge.part2(challenge_input)
     c2_end = current_milli_time()
     c2_duration = c2_end - c2_start
-    print(c2_result, end="")
-
-    print(grey(' ('), end="")
-
-    if hasattr(challenge.part2, 'solution'):
-        expected_solution = challenge.part2.solution
-        if c2_result == expected_solution:
-            print(f'{green("correct")}, ', end="")
-        else:
-            print(f'{red("incorrect")}, ', end="")
-    else:
-        print(f'{grey("unchecked")}, ', end="")
-
-    print(blue(f'{c2_duration}ms'), end="")
-    print(grey(')'))
+    print_solution(
+        c2_result,
+        challenge.part2.solution if hasattr(challenge.part2, 'solution') else None,
+        c2_duration
+    )
 
 if __name__ == '__main__':
     challenges = range(1, 26)
