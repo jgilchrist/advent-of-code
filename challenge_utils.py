@@ -1,5 +1,11 @@
 import importlib
 
+def check(solution):
+    def check_decorator(fn):
+        fn.solution = solution
+        return fn
+    return check_decorator
+
 def import_challenge(year, challenge_number):
     return importlib.import_module(f'{year}.{challenge_number:02d}')
 
