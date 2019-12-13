@@ -2,6 +2,7 @@ import hashlib
 import importlib
 import operator
 import re
+import math
 
 from collections import Counter, defaultdict, deque, namedtuple
 from enum import Enum
@@ -107,6 +108,9 @@ def argmin(dictionary, key=None):
     if key is None:
         key = operator.itemgetter(1)
     return min(dictionary.items(), key=key)
+
+def lcm(a, b):
+    return abs(a * b) // math.gcd(a, b)
 
 def check(solution):
     def check_decorator(fn):
