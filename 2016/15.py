@@ -1,9 +1,11 @@
 from utils import *
 
+@check(148737)
 def part1(challenge_info):
     npositions, initial_state = challenge_info
     return run_machine(npositions, initial_state)
 
+@check(2353212)
 def part2(challenge_info):
     npositions, initial_state = challenge_info
 

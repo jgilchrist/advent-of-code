@@ -1,8 +1,10 @@
 from utils import *
 
+@check("10010010110011010")
 def part1(seed):
     return get_data_to_fill_length(seed, 272)
 
+@check("01010100101011100")
 def part2(seed):
     return get_data_to_fill_length(seed, 35651584)
 

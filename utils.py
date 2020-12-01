@@ -117,3 +117,7 @@ def check(solution):
         fn.solution = solution
         return fn
     return check_decorator
+
+def slow(fn):
+    fn.is_slow = True
+    return fn

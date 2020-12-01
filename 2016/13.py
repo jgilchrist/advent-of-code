@@ -5,10 +5,12 @@ def heuristic(state):
     (x, y) = state
     return abs(31 - x) + abs(39 - y)
 
+@check(90)
 def part1(seed):
     path = astar_search((1, 1), heuristic, partial(adjacent_spaces, seed=seed))
     return len(path) - 1
 
+@check(135)
 def part2(seed):
     initial_state = (1, 1)
     next_states = deque([initial_state])

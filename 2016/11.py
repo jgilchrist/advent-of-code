@@ -36,11 +36,13 @@ def pair_is_inverse(p1, p2):
     (p2x, p2y) = p2
     return p1 == (p2y, p2x)
 
+@check(33)
 def part1(_):
     initial_state = State(elevator=0, objects=((0, 0), (1, 2), (1, 2), (1, 2), (1, 2)))
     path_to_goal = astar_search(initial_state, heuristic, get_next_states)
     return len(path_to_goal) - 1
 
+@check(57)
 def part2(a):
     initial_state = State(elevator=0, objects=((0, 0), (0, 0), (0, 0), (1, 2), (1, 2), (1, 2), (1, 2)))
     path_to_goal = astar_search(initial_state, heuristic, get_next_states)

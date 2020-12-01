@@ -1,5 +1,6 @@
 from utils import *
 
+@check(241)
 def part1(instructions):
     state = State((0, 0), Direction.North)
 
@@ -8,6 +9,7 @@ def part1(instructions):
 
     return distance_from_start(state.location)
 
+@check(116)
 def part2(instructions):
     state = State((0, 0), Direction.North)
     visited_locations = []

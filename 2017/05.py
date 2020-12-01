@@ -1,8 +1,10 @@
 from utils import *
 
+@check(373160)
 def part1(i):
     return run(i, lambda instruction: 1)
 
+@check(26395586)
 def part2(i):
     return run(i, lambda instruction: -1 if instruction >= 3 else 1)
 

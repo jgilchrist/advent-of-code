@@ -1,10 +1,12 @@
 from utils import *
 
+@check(110)
 def part1(lines):
     matching_lines = filter(contains_abba, lines)
     matching_lines = filter(doesnt_contain_abba_in_square_brackets, matching_lines)
     return len(list(matching_lines))
 
+@check(242)
 def part2(lines):
     supported_lines = filter(is_ssl_supported, lines)
     return len(list(supported_lines))

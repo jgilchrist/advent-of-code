@@ -1,8 +1,10 @@
 from utils import *
 
+@check("gfdhebac")
 def part1(instructions):
     return encode(instructions, 'abcdefgh')
 
+@check("dhaegfbc")
 def part2(instructions):
     for permutation in permutations('abcdefgh'):
         if encode(instructions, permutation) == 'fbgdceah':
