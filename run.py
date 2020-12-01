@@ -47,9 +47,6 @@ def get_challenge(year, challenge_number):
             print(e)
             return (None, None)
 
-    if hasattr(challenge, 'transform_input'):
-        challenge_input = challenge.transform_input(challenge_input)
-
     return (challenge, challenge_input)
 
 def print_solution(solution, expected_solution, duration):
@@ -93,8 +90,9 @@ def run_challenge(year, challenge_number, run_slow_challenges):
     if hasattr(challenge.part1, 'is_slow') and not run_slow_challenges:
         print(yellow('skipped (slow)'))
     else:
+        c1_input = challenge.transform_input(challenge_input) if hasattr(challenge, 'transform_input') else challenge_input
         c1_start = current_milli_time()
-        c1_result = challenge.part1(challenge_input)
+        c1_result = challenge.part1(c1_input)
         c1_end = current_milli_time()
         c1_duration = c1_end - c1_start
         print_solution(
@@ -108,8 +106,9 @@ def run_challenge(year, challenge_number, run_slow_challenges):
     if hasattr(challenge.part2, 'is_slow') and not run_slow_challenges:
         print(yellow('skipped (slow)'))
     else:
+        c2_input = challenge.transform_input(challenge_input) if hasattr(challenge, 'transform_input') else challenge_input
         c2_start = current_milli_time()
-        c2_result = challenge.part2(challenge_input)
+        c2_result = challenge.part2(c2_input)
         c2_end = current_milli_time()
         c2_duration = c2_end - c2_start
         print_solution(
