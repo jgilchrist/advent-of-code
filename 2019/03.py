@@ -41,6 +41,7 @@ def get_all_points_and_distances_for_line(instructions):
 
     return points, distances_to_points
 
+@check(3247)
 def part1(i):
     points_and_distances = [get_all_points_and_distances_for_line(line) for line in i]
     all_points = [points for (points, distances) in points_and_distances]
@@ -49,6 +50,7 @@ def part1(i):
     (key, value) = argmin(distance_from_centre)
     return value
 
+@check(48054)
 def part2(i):
     points_and_distances = [get_all_points_and_distances_for_line(line) for line in i]
     all_points = [points for (points, distances) in points_and_distances]

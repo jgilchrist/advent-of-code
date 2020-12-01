@@ -22,11 +22,13 @@ def matches_part2_password_criteria(password):
     has_one_twox_repetition = 2 in Counter(password).values()
     return has_one_twox_repetition
 
+@check(921)
 def part1(i):
     a, b = i
     potential_passwords = range(a, b+1)
     return len(list(filter(matches_password_criteria, potential_passwords)))
 
+@check(603)
 def part2(i):
     a, b = i
     potential_passwords = range(a, b+1)

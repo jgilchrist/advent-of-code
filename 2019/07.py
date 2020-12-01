@@ -33,9 +33,11 @@ def get_maximising_permutation(program, values):
     best_permutation, best_value = argmax(outputs)
     return best_value
 
+@check(77500)
 def part1(program):
     return get_maximising_permutation(program, (0, 1, 2, 3, 4))
 
+@check(22476942)
 def part2(program):
     return get_maximising_permutation(program, (5, 6, 7, 8, 9))
 

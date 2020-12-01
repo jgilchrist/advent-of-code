@@ -3,6 +3,7 @@ from utils import *
 from collections import defaultdict
 
 
+@check(99911)
 def part1(minutes_asleep):
     minutes_asleep_for_guard = lambda guard: sum(minutes_asleep[guard].values())
 
@@ -12,6 +13,7 @@ def part1(minutes_asleep):
 
     return most_sleepy_guard * most_sleepy_minute
 
+@check(65854)
 def part2(minutes_asleep):
     sleepiest_minute_per_guard = {
         guard: argmax(minutes_asleep[guard])

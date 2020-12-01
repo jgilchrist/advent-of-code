@@ -17,9 +17,11 @@ def react_polymer(polymer):
 
     return concat(s)
 
+@check(10564)
 def part1(i):
     return len(react_polymer(i))
 
+@check(6336)
 def part2(i):
     chars = sorted(set(i))
     middle = len(chars) // 2

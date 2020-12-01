@@ -75,10 +75,18 @@ def run_printer(program, add_initial_square):
 
     return filled_squares, modified_squares
 
+@check(2594)
 def part1(program):
     filled_squares, modified_squares = run_printer(program, False)
     return len(modified_squares)
 
+@check("""
+.##..#..#.####.###....##.####.#..#.#..#
+#..#.#.#..#....#..#....#.#....#..#.#.#.
+#..#.##...###..#..#....#.###..####.##..
+####.#.#..#....###.....#.#....#..#.#.#.
+#..#.#.#..#....#.#..#..#.#....#..#.#.#.
+#..#.#..#.####.#..#..##..#....#..#.#..#""")
 def part2(program):
     filled_squares, modified_squares = run_printer(program, True)
 
@@ -94,8 +102,7 @@ def part2(program):
             line += "#" if (x,y) in filled_squares else "."
         lines.append(line)
 
-    print()
-    return "\n".join(lines)
+    return "\n" + "\n".join(lines)
 
 def transform_input(i):
     return list(map(int, i.split(',')))

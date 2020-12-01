@@ -3,19 +3,19 @@ from utils import *
 width = 50
 height = 6
 
-@check(121)
+@check(115)
 def part1(instructions):
     functions = map(get_function, instructions)
     state = reduce(lambda state, fn: fn(state), functions, set())
     return len(state)
 
 @check("""
-###  #  # ###  #  #  ##  ####  ##  ####  ### #    
-#  # #  # #  # #  # #  # #    #  # #      #  #    
-#  # #  # #  # #  # #    ###  #  # ###    #  #    
-###  #  # ###  #  # #    #    #  # #      #  #    
-# #  #  # # #  #  # #  # #    #  # #      #  #    
-#  #  ##  #  #  ##   ##  ####  ##  ####  ### #### 
+#### #### #### #   ##  # #### ###  ####  ###   ## 
+#    #    #    #   ## #  #    #  # #      #     # 
+###  ###  ###   # # ##   ###  #  # ###    #     # 
+#    #    #      #  # #  #    ###  #      #     # 
+#    #    #      #  # #  #    # #  #      #  #  # 
+#### #    ####   #  #  # #    #  # #     ###  ##  
 """)
 def part2(instructions):
     functions = map(get_function, instructions)

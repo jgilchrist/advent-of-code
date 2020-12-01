@@ -6,6 +6,7 @@ def angle_to(c1, c2):
     c2 = tuple_sub(c2, c1)
     return (atan2(*c2) - (pi) + (2 * pi)) % (2 * pi)
 
+@check(278)
 def part1(coords):
     base_stations = {}
 
@@ -41,6 +42,7 @@ def get_explosions(base_station, asteroids_at_angle):
         asteroids_at_angle[angle].remove(next_to_explode)
         yield next_to_explode
 
+@check(1417)
 def part2(coords):
     current_angle = pi
     base_station = (23, 19)

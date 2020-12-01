@@ -2,7 +2,7 @@ from utils import *
 
 PC = 'pc'
 
-@check(198)
+@check(158)
 @slow
 def part1(instructions):
     # We will call the program a success if the first 10 characters of output

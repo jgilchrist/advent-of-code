@@ -19,11 +19,12 @@ def get(state, var):
 def set_state(state, var, value):
     state[var] = int(value)
 
+@check(3176)
 def part1(i):
     instrs = list(i)
     state = {}
 
-    while len(instrs) is not 0:
+    while len(instrs) != 0:
         for instruction in instrs:
             try:
                 apply_instruction(instruction, state)
@@ -33,6 +34,7 @@ def part1(i):
 
     return state['a']
 
+@check(14710)
 def part2(i):
     instrs = list(i)
     a_state = part1(instrs)

@@ -4,10 +4,18 @@ image_width = 25
 image_height = 6
 pixels_per_image = image_height * image_width
 
+@check(1474)
 def part1(layers):
     layer_with_least_zeros, _ = argmin({ layer: layer.count('0') for layer in layers })
     return layer_with_least_zeros.count('1') * layer_with_least_zeros.count('2')
 
+@check("""
+  **  **  ***   **  ***  
+   * *  * *  * *  * *  * 
+   * *    *  * *    ***  
+   * *    ***  *    *  * 
+*  * *  * * *  *  * *  * 
+ **   **  *  *  **  ***  """)
 def part2(layers):
     # Grab pixels from every layer for each pixel
     pixels = ["".join(layer[pixel_index] for layer in layers)

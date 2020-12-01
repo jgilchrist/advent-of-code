@@ -3,12 +3,14 @@ from utils import *
 import itertools
 from collections import defaultdict
 
+@check(400410)
 @slow
 def part1(instruction_strings):
     functions = map(get_function_part1, instruction_strings)
     state = reduce(lambda state, fn: fn(state), functions, set())
     return len(state)
 
+@check(15343601)
 @slow
 def part2(instruction_strings):
     functions = map(get_function_part2, instruction_strings)

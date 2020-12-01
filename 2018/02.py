@@ -3,6 +3,7 @@ from utils import *
 import itertools
 from collections import Counter
 
+@check(5478)
 def part1(i):
     words_with_letter_counts = [(word, Counter(word).values()) for word in i]
 
@@ -13,6 +14,7 @@ def part1(i):
 
     return len(words_with_two_repeated_letters) * len(words_with_three_repeated_letters)
 
+@check("qyzphxoiseldjrntfygvdmanu")
 def part2(i):
     words_vs = itertools.product(i, i)
 

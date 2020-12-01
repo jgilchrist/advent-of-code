@@ -1,11 +1,11 @@
 from utils import *
 
-@check(173787)
+@check(185371)
 def part1(rooms):
     result = sum(room.sector_id for room in rooms if is_valid_room(room))
     return result
 
-@check(548)
+@check(984)
 def part2(rooms):
     def is_north_pole_room(room):
         return "northpole" in unencrypt_name(room)

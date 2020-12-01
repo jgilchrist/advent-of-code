@@ -3,12 +3,12 @@ from utils import *
 triplet_regex = re.compile(r'(.)\1\1')
 Entry = namedtuple('Entry', ['value', 'quintuplet', 'index_added'])
 
-@check(23769)
+@check(23890)
 @slow
 def part1(salt):
     return search_for_hashes(all_hashes(salt))
 
-@check(20606)
+@check(22696)
 @slow
 def part2(salt):
     return search_for_hashes(all_stretched_hashes(salt))

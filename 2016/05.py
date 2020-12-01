@@ -1,6 +1,6 @@
 from utils import *
 
-@check("4543c154")
+@check("c6697b55")
 @slow
 def part1(door_id):
     code = ""
@@ -16,7 +16,7 @@ def part1(door_id):
             if len(code) == 8:
                 return code
 
-@check("1050cbbd")
+@check("8c35d1ab")
 @slow
 def part2(door_id):
     code = [None] * 8

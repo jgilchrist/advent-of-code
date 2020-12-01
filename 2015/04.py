@@ -1,10 +1,12 @@
 from utils import *
 
+@check(346386)
 def part1(challenge_input):
     for i, hash_string in enumerate(all_hashes(challenge_input)):
         if hash_string.startswith('00000'):
             return i
 
+@check(9958218)
 @slow
 def part2(challenge_input):
     for i, hash_string in enumerate(all_hashes(challenge_input)):

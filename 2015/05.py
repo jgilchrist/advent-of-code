@@ -2,6 +2,7 @@ from utils import *
 
 import re
 
+@check(255)
 def part1(i):
     def is_nice(line):
         count_occurences = lambda letter: 1 if letter in line else 0
@@ -22,6 +23,7 @@ def part1(i):
 
     return sum(1 for line in i if is_nice(line))
 
+@check(55)
 def part2(i):
     def is_nice(line):
         has_matching_pair = re.search(r'(..).*\1', line)

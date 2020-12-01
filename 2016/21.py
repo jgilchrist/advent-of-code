@@ -1,10 +1,10 @@
 from utils import *
 
-@check("gfdhebac")
+@check("gbhafcde")
 def part1(instructions):
     return encode(instructions, 'abcdefgh')
 
-@check("dhaegfbc")
+@check("bcfaegdh")
 @slow
 def part2(instructions):
     for permutation in permutations('abcdefgh'):

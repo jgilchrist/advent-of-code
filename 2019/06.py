@@ -26,6 +26,7 @@ def get_distance_to(relations, node, toNode):
 def get_distance_to_root(relations, node):
     return len(find_all_parents(relations, node))
 
+@check(204521)
 def part1(i):
     relations = defaultdict(set)
     for a, b in i:
@@ -35,6 +36,7 @@ def part1(i):
 
     return sum(get_distance_to_root(relations, node) for node in all_nodes)
 
+@check(307)
 def part2(i):
     relations = defaultdict(set)
     for a, b in i:
