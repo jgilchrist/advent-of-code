@@ -1,8 +1,10 @@
 from utils import *
 
+@check(17348574)
 def part1(ranges):
     return next(all_unblocked_numbers(ranges))
 
+@check(104)
 def part2(ranges):
     return len(list(all_unblocked_numbers(ranges)))
 

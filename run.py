@@ -75,7 +75,7 @@ def print_solution(solution, expected_solution, duration):
     print(grey(')'))
 
 
-def run_challenge(year, challenge_number):
+def run_challenge(year, challenge_number, run_slow_challenges):
     challenge, challenge_input = get_challenge(year, challenge_number)
 
     challenge_text = f'Challenge {yellow(challenge_number)}' if challenge is not None else grey(f"Challenge {challenge_number}")
@@ -89,26 +89,34 @@ def run_challenge(year, challenge_number):
         challenge.test()
 
     print(f'{red("1")}: ', end="")
-    c1_start = current_milli_time()
-    c1_result = challenge.part1(challenge_input)
-    c1_end = current_milli_time()
-    c1_duration = c1_end - c1_start
-    print_solution(
-        c1_result,
-        challenge.part1.solution if hasattr(challenge.part1, 'solution') else None,
-        c1_duration
-    )
+
+    if hasattr(challenge.part1, 'is_slow') and not run_slow_challenges:
+        print(yellow('skipped (slow)'))
+    else:
+        c1_start = current_milli_time()
+        c1_result = challenge.part1(challenge_input)
+        c1_end = current_milli_time()
+        c1_duration = c1_end - c1_start
+        print_solution(
+            c1_result,
+            challenge.part1.solution if hasattr(challenge.part1, 'solution') else None,
+            c1_duration
+        )
 
     print(f'{green("2")}: ', end="")
-    c2_start = current_milli_time()
-    c2_result = challenge.part2(challenge_input)
-    c2_end = current_milli_time()
-    c2_duration = c2_end - c2_start
-    print_solution(
-        c2_result,
-        challenge.part2.solution if hasattr(challenge.part2, 'solution') else None,
-        c2_duration
-    )
+
+    if hasattr(challenge.part2, 'is_slow') and not run_slow_challenges:
+        print(yellow('skipped (slow)'))
+    else:
+        c2_start = current_milli_time()
+        c2_result = challenge.part2(challenge_input)
+        c2_end = current_milli_time()
+        c2_duration = c2_end - c2_start
+        print_solution(
+            c2_result,
+            challenge.part2.solution if hasattr(challenge.part2, 'solution') else None,
+            c2_duration
+        )
 
 if __name__ == '__main__':
     challenges = range(1, 26)
@@ -117,6 +125,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("year", nargs='?', type=str, default='2020')
     parser.add_argument("challenges", type=int, nargs='*', default=challenges)
+    parser.add_argument("--run-slow-challenges", required=False, action='store_true')
     args = parser.parse_args()
 
     print(f'Running challenges from year {yellow(args.year)}')
@@ -126,4 +135,4 @@ if __name__ == '__main__':
             print(f'{red("Error")}: Challenge {c} does not exist')
             continue
 
-        run_challenge(args.year, c)
+        run_challenge(args.year, c, args.run_slow_challenges)

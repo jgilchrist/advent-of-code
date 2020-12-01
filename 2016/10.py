@@ -1,5 +1,6 @@
 from utils import *
 
+@check(86)
 def part1(instructions):
     (bots, outputs) = populate_bots_and_outputs(instructions)
 
@@ -14,6 +15,7 @@ def part1(instructions):
         if set(bot.inputs) == set([61, 17]):
             return bot.id_number
 
+@check(22847)
 def part2(instructions):
     (bots, outputs) = populate_bots_and_outputs(instructions)
 

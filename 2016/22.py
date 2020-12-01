@@ -4,6 +4,7 @@ Node = namedtuple('Node', ['position', 'size', 'used', 'avail'])
 
 size_re = re.compile(r'(\d+)T')
 
+@check(901)
 def part1(nodes):
     viable_pairs = []
     node_combinations = permutations(nodes, 2)
@@ -19,6 +20,7 @@ def part1(nodes):
 
 State = namedtuple('State', ['data_position', 'empty_position'])
 
+@check(238)
 def part2(nodes):
 
     def heuristic(state):

@@ -1,5 +1,6 @@
 from utils import *
 
+@check(1816276)
 def part1(number_of_elves):
     elves = list(range(number_of_elves))
     elves = deque(elves)
@@ -11,6 +12,7 @@ def part1(number_of_elves):
 
     return elves.popleft()
 
+@check(1410967)
 def part2(number_of_elves):
     middle = (number_of_elves // 2)
     left  = deque(elf for elf in range(0, middle))

@@ -7,6 +7,7 @@ from utils import *
 #   * The text after the next compression marker: (.*)
 regex = re.compile('(.*?)\((\d+)x(\d+)\)(.*)')
 
+@check(120765)
 def part1(challenge_input):
     length = 0
     remaining_content = challenge_input
@@ -32,6 +33,7 @@ def process_next_match(matches):
 
 #######################################
 
+@check(11658395076)
 def part2(challenge_input):
     return get_length_recurse(challenge_input)
 

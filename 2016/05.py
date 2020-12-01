@@ -1,5 +1,7 @@
 from utils import *
 
+@check("4543c154")
+@slow
 def part1(door_id):
     code = ""
 
@@ -14,6 +16,8 @@ def part1(door_id):
             if len(code) == 8:
                 return code
 
+@check("1050cbbd")
+@slow
 def part2(door_id):
     code = [None] * 8
 

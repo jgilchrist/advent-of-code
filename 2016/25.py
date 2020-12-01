@@ -2,6 +2,7 @@ from utils import *
 
 PC = 'pc'
 
+@check(198)
 def part1(instructions):
     # We will call the program a success if the first 10 characters of output
     # are 01010101...
@@ -27,6 +28,7 @@ def part1(instructions):
                 else:
                     break
 
+@check(None)
 def part2(instructions):
     print("Merry Christmas!")
     return

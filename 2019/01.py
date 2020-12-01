@@ -1,8 +1,10 @@
 from utils import *
 
+@check(3262356)
 def part1(i):
     return sum(fuel_required_for_cargo(mass) for mass in i)
 
+@check(4890664)
 def part2(i):
     return sum(fuel_required_for_cargo_and_fuel(mass) for mass in i)
 

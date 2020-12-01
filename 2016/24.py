@@ -2,7 +2,7 @@ from utils import *
 
 State = namedtuple('State', ['position', 'numbers_seen'])
 
-
+@check(442)
 def part1(challenge_info):
     def heuristic(numbers_to_visit, state):
         return numbers_to_visit - len(state.numbers_seen)
@@ -16,6 +16,7 @@ def part1(challenge_info):
     return len(path) - 1
 
 
+@check(660)
 def part2(challenge_info):
     def heuristic(start_position, numbers_to_visit, state):
         (startx, starty) = start_position

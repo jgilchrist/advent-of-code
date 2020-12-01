@@ -11,9 +11,11 @@ def run_patched_program(program, noun, verb):
     vm.run_until_halted()
     return vm.program[0]
 
+@check(3058646)
 def part1(program):
     return run_patched_program(program, noun=12, verb=2)
 
+@check(8976)
 def part2(program):
     for noun in range(100):
         for verb in range(100):
