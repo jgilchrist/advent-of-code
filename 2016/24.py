@@ -17,6 +17,7 @@ def part1(challenge_info):
 
 
 @check(660)
+@slow
 def part2(challenge_info):
     def heuristic(start_position, numbers_to_visit, state):
         (startx, starty) = start_position

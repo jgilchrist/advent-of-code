@@ -9,7 +9,8 @@ def part1(instructions):
     state = reduce(lambda state, fn: fn(state), functions, set())
     return len(state)
 
-@check("""###  #  # ###  #  #  ##  ####  ##  ####  ### #    
+@check("""
+###  #  # ###  #  #  ##  ####  ##  ####  ### #    
 #  # #  # #  # #  # #  # #    #  # #      #  #    
 #  # #  # #  # #  # #    ###  #  # ###    #  #    
 ###  #  # ###  #  # #    #    #  # #      #  #    
@@ -20,7 +21,7 @@ def part2(instructions):
     functions = map(get_function, instructions)
     state = reduce(lambda state, fn: fn(state), functions, set())
 
-    out = ""
+    out = "\n"
 
     for y in range(height):
         for x in range(width):
