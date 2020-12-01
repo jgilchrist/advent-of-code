@@ -3,13 +3,13 @@ from utils import *
 PC = 'pc'
 
 @check(198)
+@slow
 def part1(instructions):
     # We will call the program a success if the first 10 characters of output
     # are 01010101...
     expected_stdout = '0101010101'
 
     for a_candidate in count(1):
-        print(a_candidate)
         state = { 'pc': 0, 'a': a_candidate, 'b': 0, 'c': 0, 'd': 0 }
         stdout = ''
 
@@ -22,7 +22,6 @@ def part1(instructions):
                 stdout += str(new_char)
 
             if len(stdout) == 10:
-                print(stdout)
                 if stdout == expected_stdout:
                     return a_candidate
                 else:

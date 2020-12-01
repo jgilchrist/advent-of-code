@@ -5,6 +5,7 @@ def part1(first_row):
     return count_safe_tiles_in_n_rows(first_row, 40)
 
 @check(20005203)
+@slow
 def part2(first_row):
     return count_safe_tiles_in_n_rows(first_row, 400000)
 
