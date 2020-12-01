@@ -1,6 +1,6 @@
 from utils import *
 
-@check("35749")
+@check("78293")
 def part1(instructions):
     location = (1, 1)
 
@@ -12,7 +12,7 @@ def part1(instructions):
 
     return get_code(location, board, instructions)
 
-@check("9365C")
+@check("AC8C8")
 def part2(instructions):
     location = (0, 2)
 

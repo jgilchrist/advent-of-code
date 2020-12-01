@@ -27,6 +27,7 @@ def get_memberships_for_each_claim(claims):
 
     return claim_memberships
 
+@check(109785)
 def part1(i):
     claim_memberships = get_memberships_for_each_claim(i)
 
@@ -38,6 +39,7 @@ def part1(i):
 
     return len(tiles_with_more_than_one_membership)
 
+@check(504)
 def part2(i):
     claim_memberships = get_memberships_for_each_claim(i)
 

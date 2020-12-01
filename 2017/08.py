@@ -21,6 +21,7 @@ conditions = {
     '<':  lambda a, b: a < b,
 }
 
+@check(5966)
 def part1(i):
     state = defaultdict(int)
 
@@ -34,6 +35,7 @@ def part1(i):
     return max(state.values())
 
 
+@check(6347)
 def part2(i):
     state = defaultdict(int)
     max_value = 0

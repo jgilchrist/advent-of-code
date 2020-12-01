@@ -1,8 +1,10 @@
 from utils import *
 
+@check(3156)
 def part1(i):
     return run_on_repeated_state(i, lambda seen, state: len(seen))
 
+@check(1610)
 def part2(i):
     return run_on_repeated_state(i, lambda seen, state: len(seen) - seen.index(state))
 

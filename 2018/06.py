@@ -14,6 +14,7 @@ def is_point_in_region(points, point):
     sum_of_distances = sum(manhattan_distance(point, i) for i in points)
     return sum_of_distances < 10000
 
+@check(3238)
 def part1(points):
     max_x = max(x for x,y in points)
     max_y = max(y for x,y in points)
@@ -32,6 +33,7 @@ def part1(points):
     max_key, max_value = argmax(assignments)
     return max_value
 
+@check(45046)
 def part2(points):
     max_x = max(x for x,y in points)
     max_y = max(y for x,y in points)

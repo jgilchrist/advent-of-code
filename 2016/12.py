@@ -2,7 +2,7 @@ from utils import *
 
 PC = 'pc'
 
-@check(318117)
+@check(318083)
 @slow
 def part1(instructions):
     state = { 'pc': 0, 'a': 0, 'b': 0, 'c': 0, 'd': 0 }
@@ -15,7 +15,7 @@ def part1(instructions):
     return read('a', state)
 
 
-@check(9227771)
+@check(9227737)
 @slow
 def part2(instructions):
     state = { 'pc': 0, 'a': 0, 'b': 0, 'c': 1, 'd': 0 }

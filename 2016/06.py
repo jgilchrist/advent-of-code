@@ -1,12 +1,12 @@
 from utils import *
 
-@check("afwlyyyq")
+@check("ikerpcty")
 def part1(columns):
     get_most_frequent = partial(get_nth_most_frequent, nth=0)
     most_frequent_letters = map(get_most_frequent, columns)
     return concat(most_frequent_letters)
 
-@check("bhkzekao")
+@check("uwpfaqrq")
 def part2(columns):
     get_least_frequent = partial(get_nth_most_frequent, nth=-1)
     least_frequent_letters = map(get_least_frequent, columns)

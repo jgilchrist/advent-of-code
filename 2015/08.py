@@ -5,6 +5,7 @@ import re
 def regex_replace_in_all(iterable, regex, replacement):
     return [re.sub(regex, replacement, line) for line in iterable]
 
+@check(1342)
 def part1(i):
     strings = list(i)
     chars_in_file = sum(len(s) for s in strings)
@@ -18,6 +19,7 @@ def part1(i):
 
     return chars_in_file - chars_in_memory
 
+@check(2074)
 def part2(i):
     strings = list(i)
     chars_in_memory = sum(len(s) for s in strings)

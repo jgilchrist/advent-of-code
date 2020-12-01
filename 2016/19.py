@@ -1,6 +1,7 @@
 from utils import *
 
-@check(1816276)
+# TODO: This check is wrong for this input
+@check(1815603)
 def part1(number_of_elves):
     elves = list(range(number_of_elves))
     elves = deque(elves)
@@ -12,7 +13,7 @@ def part1(number_of_elves):
 
     return elves.popleft()
 
-@check(1410967)
+@check(1410630)
 def part2(number_of_elves):
     middle = (number_of_elves // 2)
     left  = deque(elf for elf in range(0, middle))

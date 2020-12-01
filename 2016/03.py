@@ -1,11 +1,11 @@
 from utils import *
 
-@check(993)
+@check(1050)
 def part1(triangles):
     valid_triangles = filter(is_valid_triangle, triangles)
     return len(list(valid_triangles))
 
-@check(1849)
+@check(1921)
 def part2(untransposed_triangles):
     triangles = transpose(untransposed_triangles)
     triangles = flatten(triangles)

@@ -1,6 +1,7 @@
 from utils import *
 import heapq
 
+@check(1586300)
 def part1(presents):
     paper_area = sum(paper_area_required(present) for present in presents)
     return paper_area
@@ -12,6 +13,7 @@ def paper_area_required(present):
     extra_paper = min(sides)
     return total_area + extra_paper
 
+@check(3737498)
 def part2(presents):
     ribbon_length = sum(ribbon_length_required(present) for present in presents)
     return ribbon_length

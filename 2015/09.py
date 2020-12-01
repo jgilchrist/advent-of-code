@@ -12,9 +12,11 @@ def calculate_all_journey_distances(distances):
     distances = [d for d in distances if d]
     return distances
 
+@check(207)
 def part1(i):
     return min(calculate_all_journey_distances(i))
 
+@check(804)
 def part2(i):
     return max(calculate_all_journey_distances(i))
 

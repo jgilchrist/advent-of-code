@@ -15,12 +15,12 @@ def heuristic(state):
     x, y = position
     return abs(3 - x) + abs(3 - y)
 
-@check("RDDRULDDRR")
+@check("DDURRLRRDD")
 def part1(passcode):
     path = astar_search(State((0, 0), ''), heuristic, partial(get_next_states, seed=passcode))
     return path[-1].path
 
-@check(766)
+@check(436)
 def part2(passcode):
     longest_path = 0
     next_states = [State((0, 0), '')]

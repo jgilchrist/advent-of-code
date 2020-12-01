@@ -1,3 +1,6 @@
+from utils import *
+
+@check(2565)
 def part1(i):
     pos = (0, 0)
     visited = set([pos])
@@ -8,6 +11,7 @@ def part1(i):
 
     return len(visited)
 
+@check(2639)
 def part2(i):
     santa = (0, 0)
     robo_santa = (0, 0)

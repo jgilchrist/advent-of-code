@@ -2,11 +2,13 @@ from utils import *
 
 from .intcode import IntcodeVm
 
+@check(13818007)
 def part1(program):
     vm = IntcodeVm(program, inputs=[1])
     vm.run_until_halted()
     return vm.outputs[-1]
 
+@check(3176266)
 def part2(program):
     vm = IntcodeVm(program, inputs=[5])
     vm.run_until_halted()

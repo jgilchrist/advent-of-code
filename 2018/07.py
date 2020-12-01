@@ -14,12 +14,13 @@ def find_root(relations):
 
     return roots
 
+@check("BITRAQVSGUWKXYHMZPOCDLJNFE")
 def part1(relations):
     relations = relations.copy()
 
     order = []
 
-    while len(relations) is not 0:
+    while len(relations) != 0:
         # Ties are broken alphabetically (lexicographically minimal)
         next_job = min(find_root(relations))
         order.append(next_job)
@@ -27,7 +28,7 @@ def part1(relations):
 
     return "".join(order)
 
-
+@check(869)
 def part2(relations):
     relations = relations.copy()
 
