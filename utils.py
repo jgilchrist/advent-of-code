@@ -58,11 +58,24 @@ def neighbors4(position):
     (x, y) = position
     return [(x-1, y), (x+1, y), (x, y-1), (x, y+1)]
 
-def astar_search(initial_state, heuristic_fn, generator_fn):
+def Path(previous, s):
+    "A list of states which lead to state s"
+    return ([] if (s is None) else Path(previous, previous[s]) + [s])
 
-    def Path(previous, s):
-        "A list of states which lead to state s"
-        return ([] if (s is None) else Path(previous, previous[s]) + [s])
+def dfs(initial_state, generator_fn, is_goal_fn):
+    next_states = generator_fn(initial_state)
+    previous = { initial_state: None }
+
+    while next_states:
+        state = next_states.pop()
+
+        if is_goal_fn(state):
+            return Path(previous, state)
+
+        next_states_for_state = generator_fn(state)
+        next_states.extend(next_states_for_state)
+
+def astar_search(initial_state, heuristic_fn, generator_fn):
 
     next_states = [(heuristic_fn(initial_state), initial_state)]
     previous    = { initial_state: None }
