@@ -112,6 +112,13 @@ def argmin(dictionary, key=None):
 def lcm(a, b):
     return abs(a * b) // math.gcd(a, b)
 
+def is_int(s):
+    try:
+        int(s)
+        return True
+    except ValueError:
+        return False
+
 def check(solution):
     def check_decorator(fn):
         fn.solution = solution
