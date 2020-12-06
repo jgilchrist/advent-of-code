@@ -3,6 +3,7 @@ import importlib
 import operator
 import re
 import math
+import itertools
 
 from collections import Counter, defaultdict, deque, namedtuple
 from enum import Enum
