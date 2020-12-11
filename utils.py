@@ -59,6 +59,23 @@ def neighbors4(position):
     (x, y) = position
     return [(x-1, y), (x+1, y), (x, y-1), (x, y+1)]
 
+def bfs(start_state, generator_fn, is_goal_fn):
+    queue = [start_state]
+    visited = set(start_state)
+
+    while queue:
+        current_state = queue.pop(0)
+        visited.add(current_state)
+
+        if is_goal_fn(current_state):
+            yield current_state
+
+        next_states = generator_fn(current_state)
+
+        for next_state in next_states:
+            if next_state not in visited:
+                queue.append(next_state)
+
 def astar_search(initial_state, heuristic_fn, generator_fn):
 
     def Path(previous, s):
