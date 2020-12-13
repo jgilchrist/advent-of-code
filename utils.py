@@ -11,6 +11,12 @@ from functools import reduce, partial
 from heapq import heappush, heappop
 from itertools import *
 
+try:
+    # Useful for debugging
+    from icecream import ic
+except ImportError:
+    pass
+
 def lmap(fn, seq):
     return list(map(fn, seq))
 
