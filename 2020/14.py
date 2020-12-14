@@ -42,23 +42,16 @@ def part1(i):
 
 @check(4200656704538)
 def part2(i):
-    def substitute_address(addr, substitute_bits):
-        idx = 0
-        new_addr = []
+    def substitute_xs_in_address(addr, substitute_bits):
+        for i in substitute_bits:
+            addr = addr.replace('X', i, 1)
 
-        for i in addr:
-            if i == 'X':
-                new_addr.append(substitute_bits[idx])
-                idx += 1
-            else:
-                new_addr.append(i)
-
-        return "".join(new_addr)
+        return addr
 
     def expand_addr(addr):
         xs = addr.count('X')
         possible_bit_combinations = list(itertools.product(('0', '1'), repeat=xs))
-        return [substitute_address(addr, bit_pattern) for bit_pattern in possible_bit_combinations]
+        return [substitute_xs_in_address(addr, bit_pattern) for bit_pattern in possible_bit_combinations]
 
     def run_instruction(instruction, current_mask, memory):
         if instruction[0] == Action.MASK:
