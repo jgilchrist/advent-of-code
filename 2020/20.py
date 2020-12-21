@@ -1,8 +1,6 @@
 from utils import *
 
-import random
-
-visualise = True
+visualise = False
 
 def flip(contents):
     contents = list(reversed(contents))
