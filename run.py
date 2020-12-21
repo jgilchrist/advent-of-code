@@ -128,7 +128,13 @@ if __name__ == '__main__':
     parser.add_argument("--run-slow-challenges", required=False, action='store_true')
     args = parser.parse_args()
 
-    print(f'Running challenges from year {yellow(args.year)}')
+    if len(args.challenges) == 25:
+        print(f'Running all challenges from year {yellow(args.year)}')
+    elif len(args.challenges) == 1:
+        # Don't print anything when only running a single day
+        pass
+    else:
+        print(f'Running challenges {", ".join([yellow(c) for c in args.challenges])} from year {yellow(args.year)}')
 
     for c in args.challenges:
         if c not in challenges:
