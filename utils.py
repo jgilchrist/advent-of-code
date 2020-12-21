@@ -37,6 +37,9 @@ def manhattan_distance(tup1, tup2):
 def transpose(list_of_lists):
     return map(list, zip(*list_of_lists))
 
+def rotate(list_of_lists):
+    return list(zip(*reversed(list_of_lists)))
+
 def flatten(list_of_lists):
     return list(chain.from_iterable(list_of_lists))
 
