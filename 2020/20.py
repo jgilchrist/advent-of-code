@@ -35,38 +35,34 @@ def right_edge(tile):
 def get_map(tiles):
     # Start by placing the first tile, and try and match others to it
     placed_tiles = { (0, 0): tiles[0] }
-    placed_values = set()
-    placed_values.add(tiles[0][0])
+    unplaced_tiles = [(n, generate_tile_orientations(t)) for n, t in tiles[1:]]
 
-    unplaced_tiles = tiles[1:]
-    unplaced_tile_options = [(n, generate_tile_orientations(t)) for n, t in unplaced_tiles]
+    def placed_numbers(placed):
+        placed = [n for n, _ in placed.values()]
+        return placed
 
     new_placed_tiles = {}
 
-    while unplaced_tile_options:
+    while unplaced_tiles:
 
         for placed_tile_coord, tile in placed_tiles.items():
             (x, y) = placed_tile_coord
             _, contents = tile
 
-            for unplaced_tile in unplaced_tile_options:
+            for unplaced_tile in unplaced_tiles:
                 n, orientations = unplaced_tile
 
                 for orientation in orientations:
                     if top_edge(contents) == bottom_edge(orientation):
                         new_placed_tiles[(x, y-1)] = (n, orientation)
-                        placed_values.add(n)
                     elif bottom_edge(contents) == top_edge(orientation):
                         new_placed_tiles[(x, y+1)] = (n, orientation)
-                        placed_values.add(n)
                     elif left_edge(contents) == right_edge(orientation):
                         new_placed_tiles[(x-1, y)] = (n, orientation)
-                        placed_values.add(n)
                     elif right_edge(contents) == left_edge(orientation):
                         new_placed_tiles[(x+1, y)] = (n, orientation)
-                        placed_values.add(n)
 
-            unplaced_tile_options = [(n, orientations) for (n, orientations) in unplaced_tile_options if n not in placed_values]
+            unplaced_tiles = [(n, orientations) for (n, orientations) in unplaced_tiles if n not in placed_numbers(placed_tiles)]
 
         placed_tiles.update(new_placed_tiles)
         new_placed_tiles = {}
