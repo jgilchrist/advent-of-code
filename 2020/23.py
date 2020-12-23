@@ -79,9 +79,7 @@ def part1(nums):
 
 @check(565615814504)
 def part2(nums):
-    numbers_after_max_num = itertools.count(max(nums) + 1)
-    extra_nums = range(len(nums) + 1, 1000000 + 1)
-    nums.extend(extra_nums)
+    nums.extend(range(len(nums) + 1, 1000000 + 1))
     max_nums = max(nums)
 
     head, nodes = build_circular_linked_list(nums)
