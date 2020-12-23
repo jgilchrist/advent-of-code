@@ -39,11 +39,9 @@ def get_map(tiles):
         placed = [n for n, _ in placed.values()]
         return placed
 
-    new_placed_tiles = {}
-
     while unplaced_tiles:
 
-        for placed_tile_coord, tile in placed_tiles.items():
+        for placed_tile_coord, tile in list(placed_tiles.items()):
             (x, y) = placed_tile_coord
             _, contents = tile
 
@@ -52,18 +50,15 @@ def get_map(tiles):
 
                 for orientation in orientations:
                     if top_edge(contents) == bottom_edge(orientation):
-                        new_placed_tiles[(x, y-1)] = (n, orientation)
+                        placed_tiles[(x, y-1)] = (n, orientation)
                     elif bottom_edge(contents) == top_edge(orientation):
-                        new_placed_tiles[(x, y+1)] = (n, orientation)
+                        placed_tiles[(x, y+1)] = (n, orientation)
                     elif left_edge(contents) == right_edge(orientation):
-                        new_placed_tiles[(x-1, y)] = (n, orientation)
+                        placed_tiles[(x-1, y)] = (n, orientation)
                     elif right_edge(contents) == left_edge(orientation):
-                        new_placed_tiles[(x+1, y)] = (n, orientation)
+                        placed_tiles[(x+1, y)] = (n, orientation)
 
             unplaced_tiles = [(n, orientations) for (n, orientations) in unplaced_tiles if n not in placed_numbers(placed_tiles)]
-
-        placed_tiles.update(new_placed_tiles)
-        new_placed_tiles = {}
 
         if visualise:
             draw_map(placed_tiles)
