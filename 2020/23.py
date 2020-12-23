@@ -48,9 +48,9 @@ def run_turn(head, nodes, mod):
     head.next = held_cups_end.next
     held_cups_end.next = None
 
-    desired_destination = (head.value - 1) % (mod + 1)
-    while desired_destination in held_values or desired_destination == 0:
-        desired_destination = (desired_destination - 1) % (mod + 1)
+    desired_destination = head.value
+    while desired_destination in held_values or desired_destination == 0 or desired_destination == head.value:
+        desired_destination = mod if desired_destination == 1 else desired_destination - 1
 
     destination = nodes[desired_destination]
 
