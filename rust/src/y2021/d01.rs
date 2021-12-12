@@ -2,19 +2,18 @@ use crate::AocSolution;
 
 pub struct Day01;
 
-fn number_of_positive_diffs(ns: &Vec<i32>) -> usize {
+fn number_of_positive_diffs(ns: &[i32]) -> usize {
     ns.windows(2)
         .map(|w| w[1] - w[0])
         .filter(|diff| *diff > 0)
-        .collect::<Vec<i32>>()
-        .len()
+        .count()
 }
 
 impl AocSolution for Day01 {
     type Input = Vec<i32>;
     type Output = usize;
 
-    const DAY: u32 = 01;
+    const DAY: u32 = 1;
 
     fn process_input(input: &str) -> Self::Input {
         input.lines().map(|l| l.parse::<i32>().unwrap()).collect()
