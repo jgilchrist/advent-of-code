@@ -1,0 +1,5 @@
+# For all files which are auto-detected by Git to be text, commit using LF line endings
+* text=auto
+
+# Treat all input files as binary - prevents the content from appearing in diffs
+*.in binary diff
