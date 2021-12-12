@@ -5,7 +5,7 @@ pub struct Y2021;
 impl AocYear for Y2021 {
     const YEAR: u32 = 2021;
 
-    type D01 = Day01;
+    type D01 = d01::Day01;
     type D02 = Unsolved;
     type D03 = Unsolved;
     type D04 = Unsolved;
@@ -31,7 +31,5 @@ impl AocYear for Y2021 {
     type D24 = Unsolved;
     type D25 = Unsolved;
 }
-
-pub use d01::Day01;
 
 use crate::{AocYear, Unsolved};
