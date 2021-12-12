@@ -1,4 +1,5 @@
 use anyhow::Result;
+use console::style;
 use std::{fmt::Display, path::PathBuf};
 
 mod y2021;
@@ -73,6 +74,26 @@ impl AocSolution for Unsolved {
     }
 }
 
+enum SolutionCheckStatus {
+    Unknown,
+    Incorrect,
+    Correct,
+}
+
+impl Display for SolutionCheckStatus {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(
+            f,
+            "{}",
+            match *self {
+                SolutionCheckStatus::Correct => style("+").green(),
+                SolutionCheckStatus::Incorrect => style("x").red(),
+                SolutionCheckStatus::Unknown => style("?").black().bold(),
+            }
+        )
+    }
+}
+
 fn run_year<TYear: AocYear>() -> Result<()> {
     run_solution::<TYear, TYear::D01>()?;
     run_solution::<TYear, TYear::D02>()?;
@@ -107,6 +128,13 @@ fn run_solution<TYear: AocYear, TSln: AocSolution>() -> Result<()> {
         return Ok(());
     }
 
+    println!(
+        "{}{} Day {:0>2}",
+        style("=").red().bold(),
+        style("=").green().bold(),
+        style(TSln::DAY).yellow().bold()
+    );
+
     let path: PathBuf = [
         "src",
         &format!("y{}", TYear::YEAR),
@@ -118,32 +146,65 @@ fn run_solution<TYear: AocYear, TSln: AocSolution>() -> Result<()> {
     let input = std::fs::read_to_string(path)?;
     let processed_input = TSln::process_input(&input);
 
-    let part1_solution = TSln::part1(&processed_input);
-    println!("{}", part1_solution);
+    print!("{}: ", style("1").red().bold(),);
 
-    if let Some(expected_p1_solution) = TSln::PART1_SOLUTION {
-        if part1_solution == expected_p1_solution {
-            println!("Matches")
-        } else {
-            println!("Does Not Match")
+    let part1_solution = TSln::part1(&processed_input);
+    print!("{}", part1_solution);
+
+    let p1_checked = match TSln::PART1_SOLUTION {
+        Some(expected) => {
+            if expected == part1_solution {
+                SolutionCheckStatus::Correct
+            } else {
+                SolutionCheckStatus::Incorrect
+            }
         }
-    }
+        None => SolutionCheckStatus::Unknown,
+    };
+
+    println!(
+        " {}{}, {}{}",
+        style("(").black().bold(),
+        p1_checked,
+        "?ms",
+        style(")").black().bold(),
+    );
+
+    print!("{}: ", style("2").green().bold(),);
 
     let part2_solution = TSln::part2(&processed_input);
-    println!("{}", part2_solution);
+    print!("{}", part2_solution);
 
-    if let Some(expected_p2_solution) = TSln::PART2_SOLUTION {
-        if part2_solution == expected_p2_solution {
-            println!("Matches")
-        } else {
-            println!("Does Not Match")
+    let p2_checked = match TSln::PART2_SOLUTION {
+        Some(expected) => {
+            if expected == part2_solution {
+                SolutionCheckStatus::Correct
+            } else {
+                SolutionCheckStatus::Incorrect
+            }
         }
-    }
+        None => SolutionCheckStatus::Unknown,
+    };
+
+    println!(
+        " {}{}, {}{}",
+        style("(").black().bold(),
+        p2_checked,
+        "?ms",
+        style(")").black().bold(),
+    );
 
     Ok(())
 }
 
 fn main() -> Result<()> {
+    // Ensure the cursor is always visible on exit, even if it was hidden by dialoguer
+    let _ = ctrlc::set_handler(move || {
+        let term = console::Term::stderr();
+        let _ = term.show_cursor();
+        std::process::exit(1);
+    });
+
     run_year::<y2021::Y2021>()?;
     Ok(())
 }
