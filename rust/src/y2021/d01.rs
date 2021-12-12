@@ -21,11 +21,14 @@ impl AocSolution for Day01 {
         input.lines().map(|l| l.parse::<i32>().unwrap()).collect()
     }
 
+    const PART1_SOLUTION: Option<Self::Output> = Some(1184);
     fn part1(&self, i: &Self::Input) -> Self::Output {
         number_of_positive_diffs(i)
     }
 
+    const PART2_SOLUTION: Option<Self::Output> = Some(1158);
     fn part2(&self, i: &Self::Input) -> Self::Output {
         number_of_positive_diffs(&i.windows(3).map(|w| w.iter().sum()).collect::<Vec<i32>>())
     }
+
 }
