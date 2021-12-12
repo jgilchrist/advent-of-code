@@ -1,6 +1,8 @@
 use anyhow::Result;
 use std::{fmt::Display, path::PathBuf};
 
+mod y2021;
+
 pub trait AocSolution {
     type Input;
     type Output: Display;
@@ -35,5 +37,6 @@ fn run_solution<TSln: AocSolution>(solution: TSln) -> Result<()> {
 }
 
 fn main() -> Result<()> {
+    run_solution(y2021::Day01)?;
     Ok(())
 }
