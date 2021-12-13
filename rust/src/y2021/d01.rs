@@ -9,11 +9,9 @@ fn number_of_positive_diffs(ns: &[i32]) -> usize {
         .count()
 }
 
-impl AocSolution for Day01 {
+impl AocSolution<1> for Day01 {
     type Input = Vec<i32>;
     type Output = usize;
-
-    const DAY: u32 = 1;
 
     fn get_input() -> Self::Input {
         include_str!("d01.in")
