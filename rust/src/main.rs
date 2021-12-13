@@ -1,6 +1,6 @@
 use anyhow::Result;
 use console::style;
-use std::{fmt::Display, path::PathBuf};
+use std::{fmt::Display, path::PathBuf, time::{Instant, Duration}};
 
 mod y2021;
 
@@ -94,6 +94,16 @@ impl Display for SolutionCheckStatus {
     }
 }
 
+fn format_duration(d: Duration) -> String {
+    match d.as_millis() {
+        ms if ms <= 1000 => format!("{:?}", style(d).green()),
+        ms if ms > 1000 && ms <= 10000 => format!("{:?}", style(d).yellow()),
+        ms if ms > 10000 => format!("{:?}", style(d).red()),
+        _ => unreachable!()
+    }
+
+}
+
 fn run_year<TYear: AocYear>() -> Result<()> {
     run_solution::<TYear, TYear::D01>()?;
     run_solution::<TYear, TYear::D02>()?;
@@ -144,10 +154,19 @@ fn run_solution<TYear: AocYear, TSln: AocSolution>() -> Result<()> {
     .collect();
 
     let input = std::fs::read_to_string(path)?;
+
+    let start_time = Instant::now();
     let processed_input = TSln::process_input(&input);
+    let process_input_duration = start_time.elapsed();
+
+    if process_input_duration.as_secs() >= 1 {
+        println!("{}: {:?}", style("Input").black().bold(), style(process_input_duration).yellow())
+
+    }
 
     print!("{}: ", style("1").red().bold(),);
 
+    let p1_started_timestamp = Instant::now();
     let part1_solution = TSln::part1(&processed_input);
     print!("{}", part1_solution);
 
@@ -166,12 +185,13 @@ fn run_solution<TYear: AocYear, TSln: AocSolution>() -> Result<()> {
         " {}{}, {}{}",
         style("(").black().bold(),
         p1_checked,
-        "?ms",
+        format_duration(p1_started_timestamp.elapsed()),
         style(")").black().bold(),
     );
 
     print!("{}: ", style("2").green().bold(),);
 
+    let p2_started_timestamp = Instant::now();
     let part2_solution = TSln::part2(&processed_input);
     print!("{}", part2_solution);
 
@@ -190,7 +210,7 @@ fn run_solution<TYear: AocYear, TSln: AocSolution>() -> Result<()> {
         " {}{}, {}{}",
         style("(").black().bold(),
         p2_checked,
-        "?ms",
+        format_duration(p2_started_timestamp.elapsed()),
         style(")").black().bold(),
     );
 
