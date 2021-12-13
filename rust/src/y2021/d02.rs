@@ -28,8 +28,11 @@ impl AocSolution for Day02 {
 
     const DAY: u32 = 2;
 
-    fn process_input(input: &str) -> Self::Input {
-        input.lines().map(parse_instruction).collect()
+    fn get_input() -> Self::Input {
+        include_str!("d02.in")
+            .lines()
+            .map(parse_instruction)
+            .collect()
     }
 
     const PART1_SOLUTION: Option<Self::Output> = Some(1924923);
