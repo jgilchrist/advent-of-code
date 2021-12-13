@@ -9,6 +9,6 @@ mod y2021;
 
 fn main() -> Result<()> {
     runner::init();
-    runner::run_year::<y2021::Y2021>()?;
+    runner::run_year::<y2021::Y2021, 2021>()?;
     Ok(())
 }

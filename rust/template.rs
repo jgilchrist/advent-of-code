@@ -2,11 +2,9 @@ use crate::AocSolution;
 
 pub struct DayN;
 
-impl AocSolution for DayN {
+impl AocSolution<N> for DayN {
     type Input = String;
     type Output = &'static str;
-
-    const DAY: u32 = 0;
 
     fn get_input() -> Self::Input {
         include_str!("src/y2021/d01.in")

@@ -58,11 +58,9 @@ where
         .collect()
 }
 
-impl AocSolution for Day03 {
+impl AocSolution<3> for Day03 {
     type Input = Vec<Vec<char>>;
     type Output = u32;
-
-    const DAY: u32 = 3;
 
     fn get_input() -> Self::Input {
         include_str!("d03.in")

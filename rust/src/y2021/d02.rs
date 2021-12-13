@@ -22,11 +22,9 @@ fn parse_instruction(l: &str) -> Instruction {
     }
 }
 
-impl AocSolution for Day02 {
+impl AocSolution<2> for Day02 {
     type Input = Vec<Instruction>;
     type Output = u32;
-
-    const DAY: u32 = 2;
 
     fn get_input() -> Self::Input {
         include_str!("d02.in")

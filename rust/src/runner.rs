@@ -14,7 +14,7 @@ pub fn init() {
     });
 }
 
-pub fn run_solution<TYear: AocYear, TSln: AocSolution>() -> Result<()> {
+pub fn run_solution<TSln: AocSolution<NDAY>, const NDAY: u32, const NYEAR: u32>() -> Result<()> {
     if !TSln::SOLVED {
         return Ok(());
     }
@@ -23,7 +23,7 @@ pub fn run_solution<TYear: AocYear, TSln: AocSolution>() -> Result<()> {
         "{}{} Day {:0>2}",
         style("=").red().bold(),
         style("=").green().bold(),
-        style(TSln::DAY).yellow().bold()
+        style(NDAY).yellow().bold()
     );
 
     let start_time = Instant::now();
@@ -91,32 +91,32 @@ pub fn run_solution<TYear: AocYear, TSln: AocSolution>() -> Result<()> {
     Ok(())
 }
 
-pub fn run_year<TYear: AocYear>() -> Result<()> {
-    run_solution::<TYear, TYear::D01>()?;
-    run_solution::<TYear, TYear::D02>()?;
-    run_solution::<TYear, TYear::D03>()?;
-    run_solution::<TYear, TYear::D04>()?;
-    run_solution::<TYear, TYear::D05>()?;
-    run_solution::<TYear, TYear::D06>()?;
-    run_solution::<TYear, TYear::D07>()?;
-    run_solution::<TYear, TYear::D08>()?;
-    run_solution::<TYear, TYear::D09>()?;
-    run_solution::<TYear, TYear::D10>()?;
-    run_solution::<TYear, TYear::D11>()?;
-    run_solution::<TYear, TYear::D12>()?;
-    run_solution::<TYear, TYear::D13>()?;
-    run_solution::<TYear, TYear::D14>()?;
-    run_solution::<TYear, TYear::D15>()?;
-    run_solution::<TYear, TYear::D16>()?;
-    run_solution::<TYear, TYear::D17>()?;
-    run_solution::<TYear, TYear::D18>()?;
-    run_solution::<TYear, TYear::D19>()?;
-    run_solution::<TYear, TYear::D20>()?;
-    run_solution::<TYear, TYear::D21>()?;
-    run_solution::<TYear, TYear::D22>()?;
-    run_solution::<TYear, TYear::D23>()?;
-    run_solution::<TYear, TYear::D24>()?;
-    run_solution::<TYear, TYear::D25>()?;
+pub fn run_year<TYear: AocYear<NYEAR>, const NYEAR: u32>() -> Result<()> {
+    run_solution::<TYear::D01, 1, NYEAR>()?;
+    run_solution::<TYear::D02, 2, NYEAR>()?;
+    run_solution::<TYear::D03, 3, NYEAR>()?;
+    run_solution::<TYear::D04, 4, NYEAR>()?;
+    run_solution::<TYear::D05, 5, NYEAR>()?;
+    run_solution::<TYear::D06, 6, NYEAR>()?;
+    run_solution::<TYear::D07, 7, NYEAR>()?;
+    run_solution::<TYear::D08, 8, NYEAR>()?;
+    run_solution::<TYear::D09, 9, NYEAR>()?;
+    run_solution::<TYear::D10, 10, NYEAR>()?;
+    run_solution::<TYear::D11, 11, NYEAR>()?;
+    run_solution::<TYear::D12, 12, NYEAR>()?;
+    run_solution::<TYear::D13, 13, NYEAR>()?;
+    run_solution::<TYear::D14, 14, NYEAR>()?;
+    run_solution::<TYear::D15, 15, NYEAR>()?;
+    run_solution::<TYear::D16, 16, NYEAR>()?;
+    run_solution::<TYear::D17, 17, NYEAR>()?;
+    run_solution::<TYear::D18, 18, NYEAR>()?;
+    run_solution::<TYear::D19, 19, NYEAR>()?;
+    run_solution::<TYear::D20, 20, NYEAR>()?;
+    run_solution::<TYear::D21, 21, NYEAR>()?;
+    run_solution::<TYear::D22, 22, NYEAR>()?;
+    run_solution::<TYear::D23, 23, NYEAR>()?;
+    run_solution::<TYear::D24, 24, NYEAR>()?;
+    run_solution::<TYear::D25, 25, NYEAR>()?;
     Ok(())
 }
 
