@@ -5,7 +5,7 @@ pub trait AocSolution {
     const DAY: u32;
     const SOLVED: bool = true;
 
-    fn process_input(input: &str) -> Self::Input;
+    fn get_input() -> Self::Input;
 
     const PART1_SOLUTION: Option<Self::Output>;
     fn part1(i: &Self::Input) -> Self::Output;
@@ -22,7 +22,7 @@ impl AocSolution for Unsolved {
     const DAY: u32 = 0;
     const SOLVED: bool = false;
 
-    fn process_input(_: &str) -> Self::Input {
+    fn get_input() -> Self::Input {
         unimplemented!()
     }
 

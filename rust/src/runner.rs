@@ -1,8 +1,5 @@
 use anyhow::Result;
-use std::{
-    path::PathBuf,
-    time::{Duration, Instant},
-};
+use std::time::{Duration, Instant};
 
 use console::style;
 
@@ -29,18 +26,8 @@ pub fn run_solution<TYear: AocYear, TSln: AocSolution>() -> Result<()> {
         style(TSln::DAY).yellow().bold()
     );
 
-    let path: PathBuf = [
-        "src",
-        &format!("y{}", TYear::YEAR),
-        &format!("d{:0>2}.in", TSln::DAY),
-    ]
-    .iter()
-    .collect();
-
-    let input = std::fs::read_to_string(path)?;
-
     let start_time = Instant::now();
-    let processed_input = TSln::process_input(&input);
+    let processed_input = TSln::get_input();
     let process_input_duration = start_time.elapsed();
 
     if process_input_duration.as_secs() >= 1 {
