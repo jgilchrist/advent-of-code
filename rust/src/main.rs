@@ -2,6 +2,7 @@ use anyhow::Result;
 
 mod aoc;
 mod runner;
+mod utils;
 
 pub use aoc::{AocSolution, AocYear, Unsolved};
 
