@@ -9,7 +9,6 @@ impl AocSolution<N> for DayN {
     fn get_input() -> Self::Input {
         include_str!("")
             .lines()
-            .map(|l| l.chars().collect())
             .collect()
     }
 
