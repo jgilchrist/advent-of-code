@@ -1,6 +1,7 @@
 mod d01;
 mod d02;
 mod d03;
+mod d04;
 
 pub struct Y2021;
 
@@ -8,7 +9,7 @@ impl AocYear<2021> for Y2021 {
     type D01 = d01::Day01;
     type D02 = d02::Day02;
     type D03 = d03::Day03;
-    type D04 = Unsolved<4>;
+    type D04 = d04::Day04;
     type D05 = Unsolved<5>;
     type D06 = Unsolved<6>;
     type D07 = Unsolved<7>;
