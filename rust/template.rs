@@ -15,11 +15,11 @@ impl AocSolution<N> for DayN {
 
     const PART1_SOLUTION: Option<Self::Output> = None;
     fn part1(i: &Self::Input) -> Self::Output {
-        ""
+        todo!()
     }
 
     const PART2_SOLUTION: Option<Self::Output> = None;
     fn part2(i: &Self::Input) -> Self::Output {
-        ""
+        todo!()
     }
 }
