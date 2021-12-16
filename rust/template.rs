@@ -7,7 +7,7 @@ impl AocSolution<N> for DayN {
     type Output = &'static str;
 
     fn get_input() -> Self::Input {
-        include_str!("src/y2021/d01.in")
+        include_str!("")
             .lines()
             .map(|l| l.chars().collect())
             .collect()
