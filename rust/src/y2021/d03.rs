@@ -1,6 +1,7 @@
-use std::collections::HashMap;
-
-use crate::AocSolution;
+use crate::{
+    utils::{count_items, transpose},
+    AocSolution,
+};
 
 pub struct Day03;
 
@@ -10,10 +11,7 @@ fn to_decimal(chars: &[char]) -> u32 {
 }
 
 fn most_common_in(items: &[char]) -> char {
-    let mut counts = HashMap::new();
-    for item in items {
-        *counts.entry(item).or_insert(0) += 1;
-    }
+    let counts = count_items(items);
 
     let (most_common, most_common_count) = counts.iter().max_by_key(|&(_, count)| count).unwrap();
     if counts
@@ -29,10 +27,7 @@ fn most_common_in(items: &[char]) -> char {
 }
 
 fn least_common_in(items: &[char]) -> char {
-    let mut counts = HashMap::new();
-    for item in items {
-        *counts.entry(item).or_insert(0) += 1;
-    }
+    let counts = count_items(items);
 
     let (least_common, least_common_count) = counts.iter().min_by_key(|&(_, count)| count).unwrap();
     if counts
@@ -45,17 +40,6 @@ fn least_common_in(items: &[char]) -> char {
     }
 
     **least_common
-}
-
-fn transpose<T>(ts: &[Vec<T>]) -> Vec<Vec<T>>
-where
-    T: Copy,
-{
-    let len = ts.first().unwrap().len();
-
-    (0..len)
-        .map(|idx| ts.iter().map(|num| num[idx]).collect())
-        .collect()
 }
 
 impl AocSolution<3> for Day03 {
