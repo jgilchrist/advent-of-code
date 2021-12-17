@@ -4,6 +4,10 @@ pub trait AocSolution<const N: u32> {
 
     const SOLVED: bool = true;
 
+    fn tests() -> Vec<(&'static str, Option<Self::Output>, Option<Self::Output>)> {
+        vec![]
+    }
+
     fn get_input() -> &'static str;
     fn process_input(input: &str) -> Self::Input;
 
