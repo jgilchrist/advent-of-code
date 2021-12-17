@@ -4,7 +4,8 @@ pub trait AocSolution<const N: u32> {
 
     const SOLVED: bool = true;
 
-    fn get_input() -> Self::Input;
+    fn get_input() -> &'static str;
+    fn process_input(input: &str) -> Self::Input;
 
     const PART1_SOLUTION: Option<Self::Output>;
     fn part1(i: &Self::Input) -> Self::Output;
@@ -20,7 +21,11 @@ impl<const N: u32> AocSolution<N> for Unsolved<N> {
 
     const SOLVED: bool = false;
 
-    fn get_input() -> Self::Input {
+    fn get_input() -> &'static str {
+        unimplemented!()
+    }
+
+    fn process_input(_: &str) -> Self::Input {
         unimplemented!()
     }
 

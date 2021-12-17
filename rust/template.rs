@@ -6,8 +6,12 @@ impl AocSolution<N> for DayN {
     type Input = String;
     type Output = &'static str;
 
-    fn get_input() -> Self::Input {
+    fn get_input() -> &'static str {
         include_str!("")
+    }
+
+    fn process_input(input: &str) -> Self::Input {
+        input
             .lines()
             .collect()
     }

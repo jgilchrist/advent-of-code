@@ -66,8 +66,12 @@ impl AocSolution<4> for Day04 {
     type Input = (Vec<u32>, Vec<Board>);
     type Output = u32;
 
-    fn get_input() -> Self::Input {
-        let mut file = include_str!("d04.in").lines();
+    fn get_input() -> &'static str {
+        include_str!("d04.in")
+    }
+
+    fn process_input(input: &str) -> Self::Input {
+        let mut file = input.lines();
 
         let bingo_numbers = file
             .next()

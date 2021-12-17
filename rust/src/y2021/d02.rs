@@ -26,8 +26,12 @@ impl AocSolution<2> for Day02 {
     type Input = Vec<Instruction>;
     type Output = u32;
 
-    fn get_input() -> Self::Input {
+    fn get_input() -> &'static str {
         include_str!("d02.in")
+    }
+
+    fn process_input(input: &str) -> Self::Input {
+        input
             .lines()
             .map(parse_instruction)
             .collect()

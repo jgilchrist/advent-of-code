@@ -13,8 +13,12 @@ impl AocSolution<1> for Day01 {
     type Input = Vec<i32>;
     type Output = usize;
 
-    fn get_input() -> Self::Input {
+    fn get_input() -> &'static str {
         include_str!("d01.in")
+    }
+
+    fn process_input(input: &str) -> Self::Input {
+        input
             .lines()
             .map(|l| l.parse::<i32>().unwrap())
             .collect()

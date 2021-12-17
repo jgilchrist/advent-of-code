@@ -27,7 +27,8 @@ pub fn run_solution<TSln: AocSolution<NDAY>, const NDAY: u32, const NYEAR: u32>(
     );
 
     let start_time = Instant::now();
-    let processed_input = TSln::get_input();
+    let input = TSln::get_input();
+    let processed_input = TSln::process_input(input);
     let process_input_duration = start_time.elapsed();
 
     if process_input_duration.as_secs() >= 1 {
