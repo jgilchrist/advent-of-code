@@ -1,4 +1,4 @@
-use anyhow::Result;
+use anyhow::{bail, Result};
 use std::time::{Duration, Instant};
 
 use console::style;
@@ -67,6 +67,8 @@ pub fn run_solution<TSln: AocSolution<NDAY>, const NDAY: u32, const NYEAR: u32>(
                         style(", found").black().bold(),
                         style(actual_part1_output).red()
                     );
+
+                    bail!("Failed test")
                 }
             }
         }
@@ -123,6 +125,8 @@ pub fn run_solution<TSln: AocSolution<NDAY>, const NDAY: u32, const NYEAR: u32>(
                         style(", found").black().bold(),
                         style(actual_part2_output).red()
                     );
+
+                    bail!("Failed test")
                 }
             }
         }
