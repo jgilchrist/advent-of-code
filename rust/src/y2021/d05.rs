@@ -1,4 +1,4 @@
-use std::ops::Add;
+use std::{cmp::Ordering, ops::Add};
 
 use crate::{utils::count_items, AocSolution};
 
@@ -18,6 +18,17 @@ impl Add for Vec2 {
             x: self.x + rhs.x,
             y: self.y + rhs.y,
         }
+    }
+}
+
+fn direction_of_travel<T>(from: T, to: T) -> i32
+where
+    T: Ord,
+{
+    match from.cmp(&to) {
+        Ordering::Less => 1,
+        Ordering::Equal => 0,
+        Ordering::Greater => -1,
     }
 }
 
@@ -41,18 +52,8 @@ impl Line {
     }
 
     fn points(&self) -> Vec<Vec2> {
-        let x_dir = match self.start.x.cmp(&self.end.x) {
-            std::cmp::Ordering::Less => 1,
-            std::cmp::Ordering::Equal => 0,
-            std::cmp::Ordering::Greater => -1,
-        };
-
-        let y_dir = match self.start.y.cmp(&self.end.y) {
-            std::cmp::Ordering::Less => 1,
-            std::cmp::Ordering::Equal => 0,
-            std::cmp::Ordering::Greater => -1,
-        };
-
+        let x_dir = direction_of_travel(self.start.x, self.end.x);
+        let y_dir = direction_of_travel(self.start.y, self.end.y);
         let adjustment = Vec2 { x: x_dir, y: y_dir };
 
         let mut points = vec![self.start.clone()];
@@ -67,23 +68,22 @@ impl Line {
     }
 }
 
+fn parse_point(s: &str) -> Vec2 {
+    let xy: Vec<_> = s.split(',').collect();
+
+    let (x, y) = (xy[0].parse::<i32>().unwrap(), xy[1].parse::<i32>().unwrap());
+
+    Vec2 { x, y }
+}
+
 fn parse_line(s: &str) -> Line {
     let points: Vec<_> = s.split(" -> ").collect();
     let (p1, p2) = (points[0], points[1]);
 
-    let p1_xy: Vec<_> = p1.split(',').collect();
-    let p2_xy: Vec<_> = p2.split(',').collect();
+    let p1 = parse_point(p1);
+    let p2 = parse_point(p2);
 
-    let (p1_x, p1_y) = (
-        p1_xy[0].parse::<i32>().unwrap(),
-        p1_xy[1].parse::<i32>().unwrap(),
-    );
-    let (p2_x, p2_y) = (
-        p2_xy[0].parse::<i32>().unwrap(),
-        p2_xy[1].parse::<i32>().unwrap(),
-    );
-
-    Line::new(Vec2 { x: p1_x, y: p1_y }, Vec2 { x: p2_x, y: p2_y })
+    Line::new(p1, p2)
 }
 
 impl AocSolution<5> for Day05 {
