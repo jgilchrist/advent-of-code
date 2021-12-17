@@ -46,8 +46,12 @@ impl AocSolution<3> for Day03 {
     type Input = Vec<Vec<char>>;
     type Output = u32;
 
-    fn get_input() -> Self::Input {
+    fn get_input() -> &'static str {
         include_str!("d03.in")
+    }
+
+    fn process_input(input: &str) -> Self::Input {
+        input
             .lines()
             .map(|l| l.chars().collect())
             .collect()
