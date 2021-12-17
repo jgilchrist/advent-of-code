@@ -31,10 +31,7 @@ impl AocSolution<2> for Day02 {
     }
 
     fn process_input(input: &str) -> Self::Input {
-        input
-            .lines()
-            .map(parse_instruction)
-            .collect()
+        input.lines().map(parse_instruction).collect()
     }
 
     const PART1_SOLUTION: Option<Self::Output> = Some(1924923);

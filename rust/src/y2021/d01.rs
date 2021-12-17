@@ -18,10 +18,7 @@ impl AocSolution<1> for Day01 {
     }
 
     fn process_input(input: &str) -> Self::Input {
-        input
-            .lines()
-            .map(|l| l.parse::<i32>().unwrap())
-            .collect()
+        input.lines().map(|l| l.parse::<i32>().unwrap()).collect()
     }
 
     const PART1_SOLUTION: Option<Self::Output> = Some(1184);
