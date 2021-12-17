@@ -1,25 +1,8 @@
-use std::{cmp::Ordering, ops::Add};
+use std::{cmp::Ordering};
 
-use crate::{utils::count_items, AocSolution};
+use crate::{utils::{iters::count_items, vecs::Vec2}, AocSolution};
 
 pub struct Day05;
-
-#[derive(PartialEq, Eq, Clone, Hash, Debug)]
-pub struct Vec2 {
-    pub x: i32,
-    pub y: i32,
-}
-
-impl Add for Vec2 {
-    type Output = Vec2;
-
-    fn add(self, rhs: Self) -> Self::Output {
-        Vec2 {
-            x: self.x + rhs.x,
-            y: self.y + rhs.y,
-        }
-    }
-}
 
 fn direction_of_travel<T>(from: T, to: T) -> i32
 where
