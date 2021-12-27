@@ -16,6 +16,13 @@ pub fn init() {
 
 pub fn run_solution<TSln: AocSolution<NDAY>, const NDAY: u32, const NYEAR: u32>() -> Result<()> {
     if !TSln::SOLVED {
+        println!(
+            "{}{} Day {:0>2}",
+            style("=").black().bold(),
+            style("=").black().bold(),
+            style(NDAY).yellow().bold()
+        );
+
         return Ok(());
     }
 
@@ -186,6 +193,39 @@ pub fn run_year<TYear: AocYear<NYEAR>, const NYEAR: u32>() -> Result<()> {
     run_solution::<TYear::D23, 23, NYEAR>()?;
     run_solution::<TYear::D24, 24, NYEAR>()?;
     run_solution::<TYear::D25, 25, NYEAR>()?;
+    Ok(())
+}
+
+pub fn run_year_solution<TYear: AocYear<NYEAR>, const NYEAR: u32>(day: u32) -> Result<()> {
+    match day {
+        1 => run_solution::<TYear::D01, 1, NYEAR>()?,
+        2 => run_solution::<TYear::D02, 2, NYEAR>()?,
+        3 => run_solution::<TYear::D03, 3, NYEAR>()?,
+        4 => run_solution::<TYear::D04, 4, NYEAR>()?,
+        5 => run_solution::<TYear::D05, 5, NYEAR>()?,
+        6 => run_solution::<TYear::D06, 6, NYEAR>()?,
+        7 => run_solution::<TYear::D07, 7, NYEAR>()?,
+        8 => run_solution::<TYear::D08, 8, NYEAR>()?,
+        9 => run_solution::<TYear::D09, 9, NYEAR>()?,
+        10 => run_solution::<TYear::D10, 10, NYEAR>()?,
+        11 => run_solution::<TYear::D11, 11, NYEAR>()?,
+        12 => run_solution::<TYear::D12, 12, NYEAR>()?,
+        13 => run_solution::<TYear::D13, 13, NYEAR>()?,
+        14 => run_solution::<TYear::D14, 14, NYEAR>()?,
+        15 => run_solution::<TYear::D15, 15, NYEAR>()?,
+        16 => run_solution::<TYear::D16, 16, NYEAR>()?,
+        17 => run_solution::<TYear::D17, 17, NYEAR>()?,
+        18 => run_solution::<TYear::D18, 18, NYEAR>()?,
+        19 => run_solution::<TYear::D19, 19, NYEAR>()?,
+        20 => run_solution::<TYear::D20, 20, NYEAR>()?,
+        21 => run_solution::<TYear::D21, 21, NYEAR>()?,
+        22 => run_solution::<TYear::D22, 22, NYEAR>()?,
+        23 => run_solution::<TYear::D23, 23, NYEAR>()?,
+        24 => run_solution::<TYear::D24, 24, NYEAR>()?,
+        25 => run_solution::<TYear::D25, 25, NYEAR>()?,
+        _ => bail!("invalid day"),
+    }
+
     Ok(())
 }
 
