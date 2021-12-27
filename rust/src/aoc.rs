@@ -1,4 +1,4 @@
-type TestDefinition<Output> = (&'static str, Option<Output>, Option<Output>);
+pub type TestDefinition<Output> = (&'static str, Option<Output>, Option<Output>);
 
 pub trait AocSolution<const N: u32> {
     type Input;

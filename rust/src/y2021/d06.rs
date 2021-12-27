@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-use crate::AocSolution;
+use crate::{utils::inputs::comma_separated_integers, AocSolution};
 
 pub struct Day06;
 
@@ -58,15 +58,11 @@ impl AocSolution<6> for Day06 {
     }
 
     fn process_input(input: &str) -> Self::Input {
-        let fish: Vec<u8> = input
-            .trim()
-            .split(',')
-            .map(|c| c.parse::<u8>().unwrap())
-            .collect();
+        let fish = comma_separated_integers(input);
 
         let mut fish_counts: PopulationMap = PopulationMap::new();
         for f in fish {
-            fish_counts.increment(f);
+            fish_counts.increment(f as u8);
         }
 
         fish_counts
