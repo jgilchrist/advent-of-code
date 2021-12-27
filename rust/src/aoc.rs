@@ -1,10 +1,12 @@
+type TestDefinition<Output> = (&'static str, Option<Output>, Option<Output>);
+
 pub trait AocSolution<const N: u32> {
     type Input;
     type Output: std::fmt::Display + Eq;
 
     const SOLVED: bool = true;
 
-    fn tests() -> Vec<(&'static str, Option<Self::Output>, Option<Self::Output>)> {
+    fn tests() -> Vec<TestDefinition<Self::Output>> {
         vec![]
     }
 
