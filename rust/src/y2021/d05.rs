@@ -1,6 +1,9 @@
-use std::{cmp::Ordering};
+use std::cmp::Ordering;
 
-use crate::{utils::{iters::count_items, vecs::Vec2}, AocSolution};
+use crate::{
+    utils::{iters::count_items, vecs::Vec2},
+    AocSolution,
+};
 
 pub struct Day05;
 
