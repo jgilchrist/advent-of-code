@@ -75,10 +75,7 @@ impl AocSolution<3> for Day03 {
         while oxygen_candidates.len() != 1 {
             let oxygen_candidate_cols = transpose(&oxygen_candidates);
             let most_common = most_common_in(&oxygen_candidate_cols[current_oxygen_bit_idx]);
-            oxygen_candidates = oxygen_candidates
-                .into_iter()
-                .filter(|c| c[current_oxygen_bit_idx] == most_common)
-                .collect();
+            oxygen_candidates.retain(|c| c[current_oxygen_bit_idx] == most_common);
             current_oxygen_bit_idx += 1;
         }
 
@@ -88,10 +85,7 @@ impl AocSolution<3> for Day03 {
         while co2_candidates.len() != 1 {
             let co2_candidate_cols = transpose(&co2_candidates);
             let least_common = least_common_in(&co2_candidate_cols[current_co2_bit_idx]);
-            co2_candidates = co2_candidates
-                .into_iter()
-                .filter(|c| c[current_co2_bit_idx] == least_common)
-                .collect();
+            co2_candidates.retain(|c| c[current_co2_bit_idx] == least_common);
             current_co2_bit_idx += 1;
         }
 
