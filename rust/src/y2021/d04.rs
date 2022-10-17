@@ -62,7 +62,7 @@ impl Board {
     }
 }
 
-impl AocSolution<4> for Day04 {
+impl AocSolution for Day04 {
     type Input = (Vec<u32>, Vec<Board>);
     type Output = u32;
 

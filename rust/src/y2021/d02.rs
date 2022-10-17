@@ -22,7 +22,7 @@ fn parse_instruction(l: &str) -> Instruction {
     }
 }
 
-impl AocSolution<2> for Day02 {
+impl AocSolution for Day02 {
     type Input = Vec<Instruction>;
     type Output = u32;
 

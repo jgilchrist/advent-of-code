@@ -14,7 +14,7 @@ pub fn init() {
     });
 }
 
-pub fn run_solution<TSln: AocSolution<NDAY>, const NDAY: u32, const NYEAR: u32>() -> Result<()> {
+pub fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() -> Result<()> {
     if !TSln::SOLVED {
         println!(
             "{}{} Day {:0>2}",
@@ -167,7 +167,7 @@ pub fn run_solution<TSln: AocSolution<NDAY>, const NDAY: u32, const NYEAR: u32>(
     Ok(())
 }
 
-pub fn run_year<TYear: AocYear<NYEAR>, const NYEAR: u32>() -> Result<()> {
+pub fn run_year<TYear: AocYear, const NYEAR: u32>() -> Result<()> {
     run_solution::<TYear::D01, 1, NYEAR>()?;
     run_solution::<TYear::D02, 2, NYEAR>()?;
     run_solution::<TYear::D03, 3, NYEAR>()?;
@@ -196,7 +196,7 @@ pub fn run_year<TYear: AocYear<NYEAR>, const NYEAR: u32>() -> Result<()> {
     Ok(())
 }
 
-pub fn run_year_solution<TYear: AocYear<NYEAR>, const NYEAR: u32>(day: u32) -> Result<()> {
+pub fn run_year_solution<TYear: AocYear, const NYEAR: u32>(day: u32) -> Result<()> {
     match day {
         1 => run_solution::<TYear::D01, 1, NYEAR>()?,
         2 => run_solution::<TYear::D02, 2, NYEAR>()?,
