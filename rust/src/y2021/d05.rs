@@ -42,12 +42,12 @@ impl Line {
         let y_dir = direction_of_travel(self.start.y, self.end.y);
         let adjustment = Vec2 { x: x_dir, y: y_dir };
 
-        let mut points = vec![self.start.clone()];
-        let mut point = self.start.clone();
+        let mut points = vec![self.start];
+        let mut point = self.start;
 
         while point != self.end {
-            point = point + adjustment.clone();
-            points.push(point.clone());
+            point += adjustment;
+            points.push(point);
         }
 
         points
