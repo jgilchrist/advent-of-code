@@ -1,10 +1,11 @@
 mod d01;
+mod d02;
 
 pub struct Y2015;
 
 impl AocYear for Y2015 {
     type D01 = d01::Day01;
-    type D02 = Unsolved;
+    type D02 = d02::Day02;
     type D03 = Unsolved;
     type D04 = Unsolved;
     type D05 = Unsolved;
