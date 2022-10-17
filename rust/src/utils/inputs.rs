@@ -1,4 +1,4 @@
-use regex::Regex;
+use fancy_regex::Regex;
 
 pub fn comma_separated_integers(s: &str) -> Vec<u32> {
     s.trim()
@@ -12,6 +12,6 @@ pub fn positive_numbers(s: &str) -> Vec<u32> {
 
     positive_numbers_regex
         .find_iter(s)
-        .map(|i| i.as_str().parse::<u32>().unwrap())
+        .map(|i| i.unwrap().as_str().parse::<u32>().unwrap())
         .collect::<Vec<_>>()
 }
