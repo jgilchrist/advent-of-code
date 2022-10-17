@@ -72,7 +72,7 @@ fn parse_line(s: &str) -> Line {
     Line::new(p1, p2)
 }
 
-impl AocSolution<5> for Day05 {
+impl AocSolution for Day05 {
     type Input = Vec<Line>;
     type Output = usize;
 

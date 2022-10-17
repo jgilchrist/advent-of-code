@@ -49,7 +49,7 @@ impl PopulationMap {
     }
 }
 
-impl AocSolution<6> for Day06 {
+impl AocSolution for Day06 {
     type Input = PopulationMap;
     type Output = usize;
 

@@ -9,7 +9,7 @@ fn number_of_positive_diffs(ns: &[i32]) -> usize {
         .count()
 }
 
-impl AocSolution<1> for Day01 {
+impl AocSolution for Day01 {
     type Input = Vec<i32>;
     type Output = usize;
 

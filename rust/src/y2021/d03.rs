@@ -42,7 +42,7 @@ fn least_common_in(items: &[char]) -> char {
     **least_common
 }
 
-impl AocSolution<3> for Day03 {
+impl AocSolution for Day03 {
     type Input = Vec<Vec<char>>;
     type Output = u32;
 

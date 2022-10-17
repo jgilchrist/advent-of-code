@@ -16,7 +16,7 @@ where
     *positions_to_costs.iter().min_by_key(|&x| *x.1).unwrap().1
 }
 
-impl AocSolution<7> for Day07 {
+impl AocSolution for Day07 {
     type Input = Vec<u64>;
     type Output = u64;
 
