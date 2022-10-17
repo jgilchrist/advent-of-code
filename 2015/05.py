@@ -27,7 +27,7 @@ def part1(i):
 def part2(i):
     def is_nice(line):
         has_matching_pair = re.search(r'(..).*\1', line)
-        has_xyx = re.search(r'(.)[^\1]\1', line)
+        has_xyx = re.search(r'(.).\1', line)
 
         return has_matching_pair and has_xyx
 
