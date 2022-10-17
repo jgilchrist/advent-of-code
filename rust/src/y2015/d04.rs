@@ -12,9 +12,7 @@ fn all_hashes(input: &str) -> impl Iterator<Item = String> + '_ {
     let inputs_with_numbers = infinite_challenge_input.zip(natural_numbers_as_strings);
     let inputs = inputs_with_numbers.map(|(a, b)| a.to_string() + &b);
 
-    let hashes = inputs.map(|i| format!("{:x}", md5::compute(i)));
-
-    hashes
+    inputs.map(|i| format!("{:x}", md5::compute(i)))
 }
 
 impl AocSolution for Day04 {
@@ -51,4 +49,3 @@ impl AocSolution for Day04 {
         unreachable!()
     }
 }
-
