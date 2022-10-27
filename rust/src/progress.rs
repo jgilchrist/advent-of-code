@@ -97,15 +97,15 @@ pub fn print_day_progress<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>(
     print!(
         "{}{}  ",
         match TSln::PART1_SOLUTION {
-            Solution::Solution(_) => style("*").yellow().bold(),
+            Solution::Solution(_) | Solution::MerryChristmas => style("*").yellow().bold(),
             Solution::Wip => style("*").blue().bold(),
-            Solution::UnsolvedWithKnownAnswerFromPython => style("*").green().bold(),
+            Solution::UnsolvedWithKnownAnswerFromPython(_) => style("*").green().bold(),
             Solution::Unsolved => style(" "),
         },
         match TSln::PART2_SOLUTION {
-            Solution::Solution(_) => style("*").yellow().bold(),
+            Solution::Solution(_) | Solution::MerryChristmas => style("*").yellow().bold(),
             Solution::Wip => style("*").blue().bold(),
-            Solution::UnsolvedWithKnownAnswerFromPython => style("*").green().bold(),
+            Solution::UnsolvedWithKnownAnswerFromPython(_) => style("*").green().bold(),
             Solution::Unsolved => style(" "),
         }
     );

@@ -44,7 +44,6 @@ fn least_common_in(items: &[char]) -> char {
 
 impl AocSolution for Day03 {
     type Input = Vec<Vec<char>>;
-    type Output = u32;
 
     fn get_input() -> &'static str {
         include_str!("d03.in")
@@ -54,8 +53,9 @@ impl AocSolution for Day03 {
         input.lines().map(|l| l.chars().collect()).collect()
     }
 
-    const PART1_SOLUTION: Solution<Self::Output> = Solution::Solution(2261546);
-    fn part1(i: &Self::Input) -> Self::Output {
+    type Part1Output = u32;
+    const PART1_SOLUTION: Solution<Self::Part1Output> = Solution::Solution(2261546);
+    fn part1(i: &Self::Input) -> Self::Part1Output {
         let cols: Vec<Vec<char>> = transpose(i);
 
         let gamma_rate_chars: Vec<char> = cols.iter().map(|c| most_common_in(c)).collect();
@@ -67,8 +67,9 @@ impl AocSolution for Day03 {
         gamma_rate * epsilon_rate
     }
 
-    const PART2_SOLUTION: Solution<Self::Output> = Solution::Solution(6775520);
-    fn part2(i: &Self::Input) -> Self::Output {
+    type Part2Output = u32;
+    const PART2_SOLUTION: Solution<Self::Part2Output> = Solution::Solution(6775520);
+    fn part2(i: &Self::Input) -> Self::Part2Output {
         let mut oxygen_candidates = i.clone();
 
         let mut current_oxygen_bit_idx = 0;

@@ -4,7 +4,6 @@ pub struct Day01;
 
 impl AocSolution for Day01 {
     type Input = String;
-    type Output = usize;
 
     fn get_input() -> &'static str {
         include_str!("d01.in")
@@ -14,13 +13,15 @@ impl AocSolution for Day01 {
         input.to_string()
     }
 
-    const PART1_SOLUTION: Solution<Self::Output> = Solution::Solution(74);
-    fn part1(input: &Self::Input) -> Self::Output {
+    type Part1Output = usize;
+    const PART1_SOLUTION: Solution<Self::Part1Output> = Solution::Solution(74);
+    fn part1(input: &Self::Input) -> Self::Part1Output {
         input.matches('(').count() - input.matches(')').count()
     }
 
-    const PART2_SOLUTION: Solution<Self::Output> = Solution::Solution(1795);
-    fn part2(input: &Self::Input) -> Self::Output {
+    type Part2Output = usize;
+    const PART2_SOLUTION: Solution<Self::Part2Output> = Solution::Solution(1795);
+    fn part2(input: &Self::Input) -> Self::Part2Output {
         let mut floor = 0;
 
         for (i, c) in input.chars().enumerate() {

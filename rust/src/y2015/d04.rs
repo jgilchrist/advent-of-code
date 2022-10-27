@@ -17,7 +17,6 @@ fn all_hashes(input: &str) -> impl Iterator<Item = String> + '_ {
 
 impl AocSolution for Day04 {
     type Input = String;
-    type Output = usize;
 
     fn get_input() -> &'static str {
         include_str!("d04.in")
@@ -27,8 +26,9 @@ impl AocSolution for Day04 {
         input.trim().to_string()
     }
 
-    const PART1_SOLUTION: Solution<Self::Output> = Solution::Solution(346386);
-    fn part1(input: &Self::Input) -> Self::Output {
+    type Part1Output = usize;
+    const PART1_SOLUTION: Solution<Self::Part1Output> = Solution::Solution(346386);
+    fn part1(input: &Self::Input) -> Self::Part1Output {
         for (i, hash) in all_hashes(input).enumerate() {
             if hash.starts_with("00000") {
                 return i;
@@ -38,8 +38,9 @@ impl AocSolution for Day04 {
         unreachable!()
     }
 
-    const PART2_SOLUTION: Solution<Self::Output> = Solution::Solution(9958218);
-    fn part2(input: &Self::Input) -> Self::Output {
+    type Part2Output = usize;
+    const PART2_SOLUTION: Solution<Self::Part2Output> = Solution::Solution(9958218);
+    fn part2(input: &Self::Input) -> Self::Part2Output {
         for (i, hash) in all_hashes(input).enumerate() {
             if hash.starts_with("000000") {
                 return i;

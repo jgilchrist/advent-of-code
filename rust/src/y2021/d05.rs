@@ -74,7 +74,6 @@ fn parse_line(s: &str) -> Line {
 
 impl AocSolution for Day05 {
     type Input = Vec<Line>;
-    type Output = usize;
 
     fn get_input() -> &'static str {
         include_str!("d05.in")
@@ -84,8 +83,9 @@ impl AocSolution for Day05 {
         input.lines().map(parse_line).collect()
     }
 
-    const PART1_SOLUTION: Solution<Self::Output> = Solution::Wip;
-    fn part1(i: &Self::Input) -> Self::Output {
+    type Part1Output = usize;
+    const PART1_SOLUTION: Solution<Self::Part1Output> = Solution::Wip;
+    fn part1(i: &Self::Input) -> Self::Part1Output {
         let relevant_lines = i
             .iter()
             .filter(|line| line.is_horizontal() || line.is_vertical());
@@ -99,8 +99,9 @@ impl AocSolution for Day05 {
         counted_points.into_iter().filter(|&(_, v)| v >= 2).count()
     }
 
-    const PART2_SOLUTION: Solution<Self::Output> = Solution::Wip;
-    fn part2(i: &Self::Input) -> Self::Output {
+    type Part2Output = usize;
+    const PART2_SOLUTION: Solution<Self::Part2Output> = Solution::Wip;
+    fn part2(i: &Self::Input) -> Self::Part2Output {
         let points = i.iter().flat_map(|line| line.points()).collect::<Vec<_>>();
 
         let counted_points = count_items(&points);
