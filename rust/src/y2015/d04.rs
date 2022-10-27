@@ -1,4 +1,4 @@
-use crate::AocSolution;
+use crate::{AocSolution, aoc::Solution};
 use itertools::iterate;
 
 pub struct Day04;
@@ -27,7 +27,7 @@ impl AocSolution for Day04 {
         input.trim().to_string()
     }
 
-    const PART1_SOLUTION: Option<Self::Output> = Some(346386);
+    const PART1_SOLUTION: Solution<Self::Output> = Solution::Solution(346386);
     fn part1(input: &Self::Input) -> Self::Output {
         for (i, hash) in all_hashes(input).enumerate() {
             if hash.starts_with("00000") {
@@ -38,7 +38,7 @@ impl AocSolution for Day04 {
         unreachable!()
     }
 
-    const PART2_SOLUTION: Option<Self::Output> = Some(9958218);
+    const PART2_SOLUTION: Solution<Self::Output> = Solution::Solution(9958218);
     fn part2(input: &Self::Input) -> Self::Output {
         for (i, hash) in all_hashes(input).enumerate() {
             if hash.starts_with("000000") {

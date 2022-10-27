@@ -1,4 +1,4 @@
-use crate::AocSolution;
+use crate::{AocSolution, aoc::Solution};
 
 use fancy_regex::Regex;
 
@@ -16,7 +16,7 @@ impl AocSolution for Day05 {
         input.lines().map(|l| l.to_string()).collect()
     }
 
-    const PART1_SOLUTION: Option<Self::Output> = Some(255);
+    const PART1_SOLUTION: Solution<Self::Output> = Solution::Solution(255);
     fn part1(input: &Self::Input) -> Self::Output {
         fn is_nice(line: &str) -> bool {
             let number_of_vowels = line.matches('a').count()
@@ -38,7 +38,7 @@ impl AocSolution for Day05 {
         input.iter().filter(|l| is_nice(l)).count()
     }
 
-    const PART2_SOLUTION: Option<Self::Output> = Some(55);
+    const PART2_SOLUTION: Solution<Self::Output> = Solution::Solution(55);
     fn part2(input: &Self::Input) -> Self::Output {
         fn is_nice(line: &str) -> bool {
             let has_matching_pair = Regex::new(r"(..).*\1")

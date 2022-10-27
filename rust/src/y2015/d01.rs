@@ -1,4 +1,4 @@
-use crate::AocSolution;
+use crate::{AocSolution, aoc::Solution};
 
 pub struct Day01;
 
@@ -14,12 +14,12 @@ impl AocSolution for Day01 {
         input.to_string()
     }
 
-    const PART1_SOLUTION: Option<Self::Output> = Some(74);
+    const PART1_SOLUTION: Solution<Self::Output> = Solution::Solution(74);
     fn part1(input: &Self::Input) -> Self::Output {
         input.matches('(').count() - input.matches(')').count()
     }
 
-    const PART2_SOLUTION: Option<Self::Output> = Some(1795);
+    const PART2_SOLUTION: Solution<Self::Output> = Solution::Solution(1795);
     fn part2(input: &Self::Input) -> Self::Output {
         let mut floor = 0;
 

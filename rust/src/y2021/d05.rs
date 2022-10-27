@@ -2,7 +2,7 @@ use std::cmp::Ordering;
 
 use crate::{
     utils::{iters::count_items, vecs::Vec2},
-    AocSolution,
+    AocSolution, aoc::Solution,
 };
 
 pub struct Day05;
@@ -84,7 +84,7 @@ impl AocSolution for Day05 {
         input.lines().map(parse_line).collect()
     }
 
-    const PART1_SOLUTION: Option<Self::Output> = None;
+    const PART1_SOLUTION: Solution<Self::Output> = Solution::Wip;
     fn part1(i: &Self::Input) -> Self::Output {
         let relevant_lines = i
             .iter()
@@ -99,7 +99,7 @@ impl AocSolution for Day05 {
         counted_points.into_iter().filter(|&(_, v)| v >= 2).count()
     }
 
-    const PART2_SOLUTION: Option<Self::Output> = None;
+    const PART2_SOLUTION: Solution<Self::Output> = Solution::Wip;
     fn part2(i: &Self::Input) -> Self::Output {
         let points = i.iter().flat_map(|line| line.points()).collect::<Vec<_>>();
 

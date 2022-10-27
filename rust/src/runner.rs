@@ -15,17 +15,6 @@ pub fn init() {
 }
 
 pub fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() -> Result<()> {
-    if !TSln::SOLVED {
-        println!(
-            "{}{} Day {:0>2}",
-            style("=").black().bold(),
-            style("=").black().bold(),
-            style(NDAY).yellow().bold()
-        );
-
-        return Ok(());
-    }
-
     println!(
         "{}{} Day {:0>2}",
         style("=").red().bold(),
@@ -48,121 +37,137 @@ pub fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() -> R
 
     let test_data = TSln::tests();
 
-    if !test_data.is_empty() {
-        for (i, test) in test_data.iter().enumerate() {
-            let (input, expected_part1_output, _) = test;
-            let processed_input = TSln::process_input(input);
+    match TSln::PART1_SOLUTION {
+        crate::aoc::Solution::Solution(_) | crate::aoc::Solution::Wip => {
+            if !test_data.is_empty() {
+                for (i, test) in test_data.iter().enumerate() {
+                    let (input, expected_part1_output, _) = test;
+                    let processed_input = TSln::process_input(input);
 
-            if let Some(expected_part1_output) = expected_part1_output {
-                let actual_part1_output = TSln::part1(&processed_input);
-                let passed_part1_test = actual_part1_output == *expected_part1_output;
+                    if let Some(expected_part1_output) = expected_part1_output {
+                        let actual_part1_output = TSln::part1(&processed_input);
+                        let passed_part1_test = actual_part1_output == *expected_part1_output;
 
-                if passed_part1_test {
-                    println!(
-                        "{} {}{} {}",
-                        style("Test").black().bold(),
-                        style(i + 1).black().bold(),
-                        style(":").black().bold(),
-                        style("+").green()
-                    );
-                } else {
-                    println!(
-                        "{} {} {}{} {}",
-                        style(format!("Test {}:", i + 1)).red(),
-                        style("expected").black().bold(),
-                        style(expected_part1_output).green(),
-                        style(", found").black().bold(),
-                        style(actual_part1_output).red()
-                    );
+                        if passed_part1_test {
+                            println!(
+                                "{} {}{} {}",
+                                style("Test").black().bold(),
+                                style(i + 1).black().bold(),
+                                style(":").black().bold(),
+                                style("+").green()
+                            );
+                        } else {
+                            println!(
+                                "{} {} {}{} {}",
+                                style(format!("Test {}:", i + 1)).red(),
+                                style("expected").black().bold(),
+                                style(expected_part1_output).green(),
+                                style(", found").black().bold(),
+                                style(actual_part1_output).red()
+                            );
 
-                    bail!("Failed test")
+                            bail!("Failed test")
+                        }
+                    }
                 }
             }
-        }
+
+            print!("{}: ", style("1").red().bold());
+
+            let p1_started_timestamp = Instant::now();
+            let part1_solution = TSln::part1(&processed_input);
+            print!("{}", part1_solution);
+
+            let p1_checked = match TSln::PART1_SOLUTION {
+                crate::aoc::Solution::Solution(expected) => {
+                    if expected == part1_solution {
+                        SolutionCheckStatus::Correct
+                    } else {
+                        SolutionCheckStatus::Incorrect
+                    }
+                },
+                crate::aoc::Solution::Wip => SolutionCheckStatus::Unknown,
+                crate::aoc::Solution::Unsolved | crate::aoc::Solution::UnsolvedWithKnownAnswerFromPython => unreachable!(),
+            };
+
+            println!(
+                " {}{}, {}{}",
+                style("(").black().bold(),
+                p1_checked,
+                format_duration(p1_started_timestamp.elapsed()),
+                style(")").black().bold(),
+            );
+        },
+        crate::aoc::Solution::Unsolved | crate::aoc::Solution::UnsolvedWithKnownAnswerFromPython => {
+            print!("{}: {}", style("1").black().bold(),style("Unsolved").black().bold());
+        },
     }
 
-    print!("{}: ", style("1").red().bold(),);
+    match TSln::PART2_SOLUTION {
+        crate::aoc::Solution::Solution(_) | crate::aoc::Solution::Wip => {
+            if !test_data.is_empty() {
+                for (i, test) in test_data.iter().enumerate() {
+                    let (input, expected_part2_output, _) = test;
+                    let processed_input = TSln::process_input(input);
 
-    let p1_started_timestamp = Instant::now();
-    let part1_solution = TSln::part1(&processed_input);
-    print!("{}", part1_solution);
+                    if let Some(expected_part2_output) = expected_part2_output {
+                        let actual_part2_output = TSln::part2(&processed_input);
+                        let passed_part2_test = actual_part2_output == *expected_part2_output;
 
-    let p1_checked = match TSln::PART1_SOLUTION {
-        Some(expected) => {
-            if expected == part1_solution {
-                SolutionCheckStatus::Correct
-            } else {
-                SolutionCheckStatus::Incorrect
-            }
-        }
-        None => SolutionCheckStatus::Unknown,
-    };
+                        if passed_part2_test {
+                            println!(
+                                "{} {}{} {}",
+                                style("Test").black().bold(),
+                                style(i + 1).black().bold(),
+                                style(":").black().bold(),
+                                style("+").green()
+                            );
+                        } else {
+                            println!(
+                                "{} {} {}{} {}",
+                                style(format!("Test {}:", i + 1)).red(),
+                                style("expected").black().bold(),
+                                style(expected_part2_output).green(),
+                                style(", found").black().bold(),
+                                style(actual_part2_output).red()
+                            );
 
-    println!(
-        " {}{}, {}{}",
-        style("(").black().bold(),
-        p1_checked,
-        format_duration(p1_started_timestamp.elapsed()),
-        style(")").black().bold(),
-    );
-
-    if !test_data.is_empty() {
-        for (i, test) in test_data.iter().enumerate() {
-            let (input, _, expected_part2_output) = test;
-            let processed_input = TSln::process_input(input);
-
-            if let Some(expected_part2_output) = expected_part2_output {
-                let actual_part2_output = TSln::part2(&processed_input);
-                let passed_part2_test = actual_part2_output == *expected_part2_output;
-
-                if passed_part2_test {
-                    println!(
-                        "{} {}{} {}",
-                        style("Test").black().bold(),
-                        style(i + 1).black().bold(),
-                        style(":").black().bold(),
-                        style("+").green()
-                    );
-                } else {
-                    println!(
-                        "{} {} {}{} {}",
-                        style(format!("Test {}:", i + 1)).red(),
-                        style("expected").black().bold(),
-                        style(expected_part2_output).green(),
-                        style(", found").black().bold(),
-                        style(actual_part2_output).red()
-                    );
-
-                    bail!("Failed test")
+                            bail!("Failed test")
+                        }
+                    }
                 }
             }
-        }
+
+            print!("{}: ", style("2").red().bold());
+
+            let p2_started_timestamp = Instant::now();
+            let part2_solution = TSln::part2(&processed_input);
+            print!("{}", part2_solution);
+
+            let p2_checked = match TSln::PART2_SOLUTION {
+                crate::aoc::Solution::Solution(expected) => {
+                    if expected == part2_solution {
+                        SolutionCheckStatus::Correct
+                    } else {
+                        SolutionCheckStatus::Incorrect
+                    }
+                },
+                crate::aoc::Solution::Wip => SolutionCheckStatus::Unknown,
+                crate::aoc::Solution::Unsolved | crate::aoc::Solution::UnsolvedWithKnownAnswerFromPython => unreachable!(),
+            };
+
+            println!(
+                " {}{}, {}{}",
+                style("(").black().bold(),
+                p2_checked,
+                format_duration(p2_started_timestamp.elapsed()),
+                style(")").black().bold(),
+            );
+        },
+        crate::aoc::Solution::Unsolved | crate::aoc::Solution::UnsolvedWithKnownAnswerFromPython => {
+            print!("{}: {}", style("2").black().bold(),style("Unsolved").black().bold());
+        },
     }
-
-    print!("{}: ", style("2").green().bold(),);
-
-    let p2_started_timestamp = Instant::now();
-    let part2_solution = TSln::part2(&processed_input);
-    print!("{}", part2_solution);
-
-    let p2_checked = match TSln::PART2_SOLUTION {
-        Some(expected) => {
-            if expected == part2_solution {
-                SolutionCheckStatus::Correct
-            } else {
-                SolutionCheckStatus::Incorrect
-            }
-        }
-        None => SolutionCheckStatus::Unknown,
-    };
-
-    println!(
-        " {}{}, {}{}",
-        style("(").black().bold(),
-        p2_checked,
-        format_duration(p2_started_timestamp.elapsed()),
-        style(")").black().bold(),
-    );
 
     Ok(())
 }

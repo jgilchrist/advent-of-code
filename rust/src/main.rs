@@ -4,6 +4,7 @@ use anyhow::{bail, Result};
 
 mod aoc;
 mod runner;
+mod progress;
 mod utils;
 
 pub use aoc::{AocSolution, AocYear, Unsolved};
@@ -19,10 +20,11 @@ mod y2021;
 fn main() -> Result<()> {
     runner::init();
 
+
     let args: Vec<String> = env::args().collect();
 
     match args.len() {
-        1 => runner::run_year::<y2021::Y2021, 2021>()?,
+        1 => progress::print_progress(),
         2 | 3 => {
             let year_str = args.get(1).unwrap();
             let year = year_str.parse::<u32>().unwrap();

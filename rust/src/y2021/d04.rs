@@ -1,6 +1,6 @@
 use std::collections::HashSet;
 
-use crate::{utils::inputs::comma_separated_integers, AocSolution};
+use crate::{utils::inputs::comma_separated_integers, AocSolution, aoc::Solution};
 
 pub struct Day04;
 
@@ -95,7 +95,7 @@ impl AocSolution for Day04 {
         (bingo_numbers, boards)
     }
 
-    const PART1_SOLUTION: Option<Self::Output> = Some(4662);
+    const PART1_SOLUTION: Solution<Self::Output> = Solution::Solution(4662);
     fn part1(i: &Self::Input) -> Self::Output {
         let numbers = i.0.clone();
         let mut boards = i.1.clone();
@@ -112,7 +112,7 @@ impl AocSolution for Day04 {
         unreachable!();
     }
 
-    const PART2_SOLUTION: Option<Self::Output> = Some(12080);
+    const PART2_SOLUTION: Solution<Self::Output> = Solution::Solution(12080);
     fn part2(i: &Self::Input) -> Self::Output {
         let numbers = i.0.clone();
         let mut boards = i.1.clone();

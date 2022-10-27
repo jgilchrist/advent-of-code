@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-use crate::{utils::inputs::comma_separated_integers, AocSolution};
+use crate::{utils::inputs::comma_separated_integers, AocSolution, aoc::Solution};
 
 pub struct Day07;
 
@@ -31,14 +31,14 @@ impl AocSolution for Day07 {
             .collect()
     }
 
-    const PART1_SOLUTION: Option<Self::Output> = Some(328262);
+    const PART1_SOLUTION: Solution<Self::Output> = Solution::Solution(328262);
     fn part1(i: &Self::Input) -> Self::Output {
         get_minimum_cost_by(i, |pos, crab_pos| {
             (pos as i64 - crab_pos as i64).unsigned_abs()
         })
     }
 
-    const PART2_SOLUTION: Option<Self::Output> = Some(90040997);
+    const PART2_SOLUTION: Solution<Self::Output> = Solution::Solution(90040997);
     fn part2(i: &Self::Input) -> Self::Output {
         get_minimum_cost_by(i, |pos, crab_pos| {
             let diff = (pos as i64 - crab_pos as i64).unsigned_abs();

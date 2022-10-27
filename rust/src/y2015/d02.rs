@@ -1,4 +1,4 @@
-use crate::{utils::inputs, AocSolution};
+use crate::{utils::inputs, AocSolution, aoc::Solution};
 
 pub struct Day02;
 
@@ -73,12 +73,12 @@ impl AocSolution for Day02 {
         input.lines().map(parse_line).collect::<Vec<_>>()
     }
 
-    const PART1_SOLUTION: Option<Self::Output> = Some(1586300);
+    const PART1_SOLUTION: Solution<Self::Output> = Solution::Solution(1586300);
     fn part1(input: &Self::Input) -> Self::Output {
         input.iter().map(paper_area_required).sum()
     }
 
-    const PART2_SOLUTION: Option<Self::Output> = Some(3737498);
+    const PART2_SOLUTION: Solution<Self::Output> = Solution::Solution(3737498);
     fn part2(input: &Self::Input) -> Self::Output {
         input.iter().map(ribbon_length_required).sum()
     }

@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-use crate::{utils::inputs::comma_separated_integers, AocSolution};
+use crate::{utils::inputs::comma_separated_integers, AocSolution, aoc::Solution};
 
 pub struct Day06;
 
@@ -68,12 +68,12 @@ impl AocSolution for Day06 {
         fish_counts
     }
 
-    const PART1_SOLUTION: Option<Self::Output> = Some(389726);
+    const PART1_SOLUTION: Solution<Self::Output> = Solution::Solution(389726);
     fn part1(i: &Self::Input) -> Self::Output {
         number_of_fish_after_n_days(i, 80)
     }
 
-    const PART2_SOLUTION: Option<Self::Output> = Some(1743335992042);
+    const PART2_SOLUTION: Solution<Self::Output> = Solution::Solution(1743335992042);
     fn part2(i: &Self::Input) -> Self::Output {
         number_of_fish_after_n_days(i, 256)
     }
