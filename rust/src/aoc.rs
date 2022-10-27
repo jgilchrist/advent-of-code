@@ -3,6 +3,7 @@ pub type TestDefinition<Output> = (&'static str, Option<Output>, Option<Output>)
 pub enum Solution<T> {
     Solution(T),
     Wip,
+    WipWithKnownAnswerFromPython(T),
     Unsolved,
     UnsolvedWithKnownAnswerFromPython(T),
     MerryChristmas,
@@ -11,7 +12,7 @@ pub enum Solution<T> {
 impl<T> Solution<T> {
     pub fn has_solution(&self) -> bool {
         match self {
-            Solution::Solution(_) | Solution::Wip | Solution::MerryChristmas => true,
+            Solution::Solution(_) | Solution::Wip | Solution::WipWithKnownAnswerFromPython(_) | Solution::MerryChristmas => true,
             Solution::Unsolved | Solution::UnsolvedWithKnownAnswerFromPython(_) => false,
         }
     }
