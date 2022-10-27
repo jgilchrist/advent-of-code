@@ -10,12 +10,11 @@ fn number_of_positive_diffs(ns: &[i32]) -> usize {
 }
 
 impl AocSolution for Day01 {
-    type Input = Vec<i32>;
-
     fn get_input() -> &'static str {
         include_str!("d01.in")
     }
 
+    type Input = Vec<i32>;
     fn process_input(input: &str) -> Self::Input {
         input.lines().map(|l| l.parse::<i32>().unwrap()).collect()
     }

@@ -44,12 +44,11 @@ fn least_common_in(items: &[char]) -> char {
 }
 
 impl AocSolution for Day03 {
-    type Input = Vec<Vec<char>>;
-
     fn get_input() -> &'static str {
         include_str!("d03.in")
     }
 
+    type Input = Vec<Vec<char>>;
     fn process_input(input: &str) -> Self::Input {
         input.lines().map(|l| l.chars().collect()).collect()
     }

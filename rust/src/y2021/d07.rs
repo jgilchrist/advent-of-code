@@ -17,12 +17,11 @@ where
 }
 
 impl AocSolution for Day07 {
-    type Input = Vec<u64>;
-
     fn get_input() -> &'static str {
         include_str!("d07.in")
     }
 
+    type Input = Vec<u64>;
     fn process_input(input: &str) -> Self::Input {
         comma_separated_integers(input)
             .iter()
