@@ -1,0 +1,9 @@
+help:
+	@just --list
+
+run YEAR DAY:
+	cargo run --release -- {{YEAR}} {{DAY}}
+
+profile YEAR DAY:
+	@mkdir -p ./target/flamegraphs
+	cargo flamegraph --flamechart --deterministic --root --open --output ./target/flamegraphs/{{YEAR}}-{{DAY}}-$(date +%s).svg -- {{YEAR}} {{DAY}}
