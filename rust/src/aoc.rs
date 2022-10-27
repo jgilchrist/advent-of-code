@@ -12,7 +12,10 @@ pub enum Solution<T> {
 impl<T> Solution<T> {
     pub fn has_solution(&self) -> bool {
         match self {
-            Solution::Solution(_) | Solution::Wip | Solution::WipWithKnownAnswerFromPython(_) | Solution::MerryChristmas => true,
+            Solution::Solution(_)
+            | Solution::Wip
+            | Solution::WipWithKnownAnswerFromPython(_)
+            | Solution::MerryChristmas => true,
             Solution::Unsolved | Solution::UnsolvedWithKnownAnswerFromPython(_) => false,
         }
     }
