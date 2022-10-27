@@ -15,14 +15,14 @@ impl AocSolution for Day02 {
     type Part1Output = usize;
     const PART1_SOLUTION: Solution<Self::Part1Output> =
         Solution::UnsolvedWithKnownAnswerFromPython(5478);
-    fn part1(input: &Self::Input) -> Self::Part1Output {
+    fn part1(_input: &Self::Input) -> Self::Part1Output {
         todo!()
     }
 
     type Part2Output = &'static str;
     const PART2_SOLUTION: Solution<Self::Part2Output> =
         Solution::UnsolvedWithKnownAnswerFromPython("qyzphxoiseldjrntfygvdmanu");
-    fn part2(input: &Self::Input) -> Self::Part2Output {
+    fn part2(_input: &Self::Input) -> Self::Part2Output {
         todo!()
     }
 }

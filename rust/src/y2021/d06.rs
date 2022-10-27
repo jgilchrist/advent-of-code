@@ -68,13 +68,13 @@ impl AocSolution for Day06 {
 
     type Part1Output = usize;
     const PART1_SOLUTION: Solution<Self::Part1Output> = Solution::Solution(389726);
-    fn part1(i: &Self::Input) -> Self::Part1Output {
-        number_of_fish_after_n_days(i, 80)
+    fn part1(input: &Self::Input) -> Self::Part1Output {
+        number_of_fish_after_n_days(input, 80)
     }
 
     type Part2Output = usize;
     const PART2_SOLUTION: Solution<Self::Part2Output> = Solution::Solution(1743335992042);
-    fn part2(i: &Self::Input) -> Self::Part2Output {
-        number_of_fish_after_n_days(i, 256)
+    fn part2(input: &Self::Input) -> Self::Part2Output {
+        number_of_fish_after_n_days(input, 256)
     }
 }

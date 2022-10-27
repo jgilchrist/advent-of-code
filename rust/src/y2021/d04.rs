@@ -95,9 +95,9 @@ impl AocSolution for Day04 {
 
     type Part1Output = u32;
     const PART1_SOLUTION: Solution<Self::Part1Output> = Solution::Solution(4662);
-    fn part1(i: &Self::Input) -> Self::Part1Output {
-        let numbers = i.0.clone();
-        let mut boards = i.1.clone();
+    fn part1(input: &Self::Input) -> Self::Part1Output {
+        let numbers = input.0.clone();
+        let mut boards = input.1.clone();
 
         for n in numbers {
             for board in boards.iter_mut() {
@@ -113,9 +113,9 @@ impl AocSolution for Day04 {
 
     type Part2Output = u32;
     const PART2_SOLUTION: Solution<Self::Part2Output> = Solution::Solution(12080);
-    fn part2(i: &Self::Input) -> Self::Part2Output {
-        let numbers = i.0.clone();
-        let mut boards = i.1.clone();
+    fn part2(input: &Self::Input) -> Self::Part2Output {
+        let numbers = input.0.clone();
+        let mut boards = input.1.clone();
         let mut winning_boards: Vec<Board> = vec![];
 
         for n in numbers {

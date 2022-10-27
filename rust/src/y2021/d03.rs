@@ -55,8 +55,8 @@ impl AocSolution for Day03 {
 
     type Part1Output = u32;
     const PART1_SOLUTION: Solution<Self::Part1Output> = Solution::Solution(2261546);
-    fn part1(i: &Self::Input) -> Self::Part1Output {
-        let cols: Vec<Vec<char>> = transpose(i);
+    fn part1(input: &Self::Input) -> Self::Part1Output {
+        let cols: Vec<Vec<char>> = transpose(input);
 
         let gamma_rate_chars: Vec<char> = cols.iter().map(|c| most_common_in(c)).collect();
         let epsilon_rate_chars: Vec<char> = cols.iter().map(|c| least_common_in(c)).collect();
@@ -69,8 +69,8 @@ impl AocSolution for Day03 {
 
     type Part2Output = u32;
     const PART2_SOLUTION: Solution<Self::Part2Output> = Solution::Solution(6775520);
-    fn part2(i: &Self::Input) -> Self::Part2Output {
-        let mut oxygen_candidates = i.clone();
+    fn part2(input: &Self::Input) -> Self::Part2Output {
+        let mut oxygen_candidates = input.clone();
 
         let mut current_oxygen_bit_idx = 0;
         while oxygen_candidates.len() != 1 {
@@ -80,7 +80,7 @@ impl AocSolution for Day03 {
             current_oxygen_bit_idx += 1;
         }
 
-        let mut co2_candidates = i.clone();
+        let mut co2_candidates = input.clone();
 
         let mut current_co2_bit_idx = 0;
         while co2_candidates.len() != 1 {

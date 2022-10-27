@@ -34,11 +34,11 @@ impl AocSolution for Day02 {
 
     type Part1Output = u32;
     const PART1_SOLUTION: Solution<Self::Part1Output> = Solution::Solution(1924923);
-    fn part1(i: &Self::Input) -> Self::Part1Output {
+    fn part1(input: &Self::Input) -> Self::Part1Output {
         let mut depth = 0;
         let mut position = 0;
 
-        i.iter().for_each(|instruction| {
+        input.iter().for_each(|instruction| {
             use Instruction::*;
             match instruction {
                 Up(n) => depth -= n,
@@ -52,12 +52,12 @@ impl AocSolution for Day02 {
 
     type Part2Output = u32;
     const PART2_SOLUTION: Solution<Self::Part2Output> = Solution::Solution(1982495697);
-    fn part2(i: &Self::Input) -> Self::Part2Output {
+    fn part2(input: &Self::Input) -> Self::Part2Output {
         let mut aim = 0;
         let mut depth = 0;
         let mut position = 0;
 
-        i.iter().for_each(|instruction| {
+        input.iter().for_each(|instruction| {
             use Instruction::*;
             match instruction {
                 Up(n) => aim -= n,
