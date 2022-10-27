@@ -90,7 +90,7 @@ pub fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() -> R
                 crate::aoc::Solution::Unsolved | crate::aoc::Solution::UnsolvedWithKnownAnswerFromPython => unreachable!(),
             };
 
-            println!(
+            print!(
                 " {}{}, {}{}",
                 style("(").black().bold(),
                 p1_checked,
@@ -102,6 +102,8 @@ pub fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() -> R
             print!("{}: {}", style("1").black().bold(),style("Unsolved").black().bold());
         },
     }
+
+    println!();
 
     match TSln::PART2_SOLUTION {
         crate::aoc::Solution::Solution(_) | crate::aoc::Solution::Wip => {
@@ -156,7 +158,7 @@ pub fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() -> R
                 crate::aoc::Solution::Unsolved | crate::aoc::Solution::UnsolvedWithKnownAnswerFromPython => unreachable!(),
             };
 
-            println!(
+            print!(
                 " {}{}, {}{}",
                 style("(").black().bold(),
                 p2_checked,
@@ -168,6 +170,8 @@ pub fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() -> R
             print!("{}: {}", style("2").black().bold(),style("Unsolved").black().bold());
         },
     }
+
+    println!();
 
     Ok(())
 }
