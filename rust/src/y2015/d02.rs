@@ -1,4 +1,4 @@
-use crate::{utils::inputs, AocSolution, aoc::Solution};
+use crate::{aoc::Solution, utils::inputs, AocSolution};
 
 pub struct Day02;
 

@@ -85,9 +85,11 @@ pub fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() -> R
                     } else {
                         SolutionCheckStatus::Incorrect
                     }
-                },
+                }
                 crate::aoc::Solution::Wip => SolutionCheckStatus::Unknown,
-                crate::aoc::Solution::Unsolved | crate::aoc::Solution::UnsolvedWithKnownAnswerFromPython(_) | crate::aoc::Solution::MerryChristmas => unreachable!(),
+                crate::aoc::Solution::Unsolved
+                | crate::aoc::Solution::UnsolvedWithKnownAnswerFromPython(_)
+                | crate::aoc::Solution::MerryChristmas => unreachable!(),
             };
 
             print!(
@@ -97,13 +99,18 @@ pub fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() -> R
                 format_duration(p1_started_timestamp.elapsed()),
                 style(")").black().bold(),
             );
-        },
+        }
         crate::aoc::Solution::MerryChristmas => {
             unreachable!()
-        },
-        crate::aoc::Solution::Unsolved | crate::aoc::Solution::UnsolvedWithKnownAnswerFromPython(_) => {
-            print!("{}: {}", style("1").black().bold(),style("Unsolved").black().bold());
-        },
+        }
+        crate::aoc::Solution::Unsolved
+        | crate::aoc::Solution::UnsolvedWithKnownAnswerFromPython(_) => {
+            print!(
+                "{}: {}",
+                style("1").black().bold(),
+                style("Unsolved").black().bold()
+            );
+        }
     }
 
     println!();
@@ -123,9 +130,11 @@ pub fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() -> R
                     } else {
                         SolutionCheckStatus::Incorrect
                     }
-                },
+                }
                 crate::aoc::Solution::Wip => SolutionCheckStatus::Unknown,
-                crate::aoc::Solution::Unsolved | crate::aoc::Solution::UnsolvedWithKnownAnswerFromPython(_) | crate::aoc::Solution::MerryChristmas => unreachable!(),
+                crate::aoc::Solution::Unsolved
+                | crate::aoc::Solution::UnsolvedWithKnownAnswerFromPython(_)
+                | crate::aoc::Solution::MerryChristmas => unreachable!(),
             };
 
             print!(
@@ -135,13 +144,22 @@ pub fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() -> R
                 format_duration(p2_started_timestamp.elapsed()),
                 style(")").black().bold(),
             );
-        },
+        }
         crate::aoc::Solution::MerryChristmas => {
-            print!("{}: {}", style("2").black().bold(),style("Merry Christmas!").green().bold());
-        },
-        crate::aoc::Solution::Unsolved | crate::aoc::Solution::UnsolvedWithKnownAnswerFromPython(_) => {
-            print!("{}: {}", style("2").black().bold(),style("Unsolved").black().bold());
-        },
+            print!(
+                "{}: {}",
+                style("2").black().bold(),
+                style("Merry Christmas!").green().bold()
+            );
+        }
+        crate::aoc::Solution::Unsolved
+        | crate::aoc::Solution::UnsolvedWithKnownAnswerFromPython(_) => {
+            print!(
+                "{}: {}",
+                style("2").black().bold(),
+                style("Unsolved").black().bold()
+            );
+        }
     }
 
     println!();

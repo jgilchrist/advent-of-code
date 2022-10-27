@@ -1,4 +1,4 @@
-use crate::{AocSolution, aoc::Solution};
+use crate::{aoc::Solution, AocSolution};
 
 pub struct Day21;
 
@@ -10,19 +10,20 @@ impl AocSolution for Day21 {
     }
 
     fn process_input(input: &str) -> Self::Input {
-        input
-            .lines()
-            .collect()
+        input.lines().collect()
     }
 
     type Part1Output = usize;
-    const PART1_SOLUTION: Solution<Self::Part1Output> = Solution::UnsolvedWithKnownAnswerFromPython(1679);
+    const PART1_SOLUTION: Solution<Self::Part1Output> =
+        Solution::UnsolvedWithKnownAnswerFromPython(1679);
     fn part1(input: &Self::Input) -> Self::Part1Output {
         todo!()
     }
 
     type Part2Output = &'static str;
-    const PART2_SOLUTION: Solution<Self::Part2Output> = Solution::UnsolvedWithKnownAnswerFromPython("lmxt,rggkbpj,mxf,gpxmf,nmtzlj,dlkxsxg,fvqg,dxzq");
+    const PART2_SOLUTION: Solution<Self::Part2Output> = Solution::UnsolvedWithKnownAnswerFromPython(
+        "lmxt,rggkbpj,mxf,gpxmf,nmtzlj,dlkxsxg,fvqg,dxzq",
+    );
     fn part2(input: &Self::Input) -> Self::Part2Output {
         todo!()
     }

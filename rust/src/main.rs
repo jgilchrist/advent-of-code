@@ -3,8 +3,8 @@ use std::env;
 use anyhow::{bail, Result};
 
 mod aoc;
-mod runner;
 mod progress;
+mod runner;
 mod utils;
 
 pub use aoc::{AocSolution, AocYear, Unsolved};
@@ -19,7 +19,6 @@ mod y2021;
 
 fn main() -> Result<()> {
     runner::init();
-
 
     let args: Vec<String> = env::args().collect();
 

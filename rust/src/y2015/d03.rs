@@ -1,7 +1,7 @@
 use once_cell::sync::Lazy;
 use std::collections::{HashMap, HashSet};
 
-use crate::{utils::vecs::Vec2, AocSolution, aoc::Solution};
+use crate::{aoc::Solution, utils::vecs::Vec2, AocSolution};
 
 pub struct Day03;
 

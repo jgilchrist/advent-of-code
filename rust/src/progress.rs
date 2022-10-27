@@ -1,16 +1,6 @@
 use console::style;
 
-use crate::{
-    y2015,
-    y2016,
-    y2017,
-    y2018,
-    y2019,
-    y2020,
-    y2021,
-    AocYear,
-    AocSolution, aoc::Solution
-};
+use crate::{aoc::Solution, y2015, y2016, y2017, y2018, y2019, y2020, y2021, AocSolution, AocYear};
 
 pub fn print_progress() {
     print_year_progress::<y2015::Y2015, 2015>();
@@ -23,7 +13,11 @@ pub fn print_progress() {
 }
 
 pub fn print_year_progress<TYear: AocYear, const NYEAR: u32>() {
-    print!("{} {} ", style(NYEAR).blue().bold(), style("│").black().bold());
+    print!(
+        "{} {} ",
+        style(NYEAR).blue().bold(),
+        style("│").black().bold()
+    );
     print_day_header::<TYear::D01, 1, NYEAR>();
     print_day_header::<TYear::D02, 2, NYEAR>();
     print_day_header::<TYear::D03, 3, NYEAR>();
@@ -88,7 +82,7 @@ pub fn print_day_header<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() 
         "{:0>2}  ",
         match (TSln::PART1_SOLUTION, TSln::PART2_SOLUTION) {
             (Solution::Solution(_), Solution::Solution(_)) => style(NDAY).yellow().bold(),
-            _ => style(NDAY).black().bold()
+            _ => style(NDAY).black().bold(),
         }
     );
 }

@@ -1,6 +1,7 @@
 use crate::{
+    aoc::Solution,
     utils::iters::{count_items, transpose},
-    AocSolution, aoc::Solution,
+    AocSolution,
 };
 
 pub struct Day03;

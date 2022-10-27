@@ -54,4 +54,4 @@ impl AocYear for Y2020 {
     type D25 = d25::Day25;
 }
 
-use crate::{AocYear};
+use crate::AocYear;
