@@ -33,7 +33,7 @@ impl AocSolution for Day02 {
     }
 
     type Part1Output = u32;
-    const PART1_SOLUTION: Solution<Self::Part1Output> = Solution::Solution(1924923);
+    const PART1_SOLUTION: Solution<Self::Part1Output> = Solution::Solved(1924923);
     fn part1(input: &Self::Input) -> Self::Part1Output {
         let mut depth = 0;
         let mut position = 0;
@@ -51,7 +51,7 @@ impl AocSolution for Day02 {
     }
 
     type Part2Output = u32;
-    const PART2_SOLUTION: Solution<Self::Part2Output> = Solution::Solution(1982495697);
+    const PART2_SOLUTION: Solution<Self::Part2Output> = Solution::Solved(1982495697);
     fn part2(input: &Self::Input) -> Self::Part2Output {
         let mut aim = 0;
         let mut depth = 0;

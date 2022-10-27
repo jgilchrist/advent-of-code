@@ -38,7 +38,7 @@ pub fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() -> R
     let test_data = TSln::tests();
 
     match TSln::PART1_SOLUTION {
-        crate::aoc::Solution::Solution(_)
+        crate::aoc::Solution::Solved(_)
         | crate::aoc::Solution::Wip
         | crate::aoc::Solution::WipWithKnownAnswerFromPython(_) => {
             if !test_data.is_empty() {
@@ -81,7 +81,7 @@ pub fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() -> R
             print!("{}", part1_solution);
 
             let p1_checked = match TSln::PART1_SOLUTION {
-                crate::aoc::Solution::Solution(expected) => {
+                crate::aoc::Solution::Solved(expected) => {
                     if expected == part1_solution {
                         SolutionCheckStatus::Correct
                     } else {
@@ -125,7 +125,7 @@ pub fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() -> R
     println!();
 
     match TSln::PART2_SOLUTION {
-        crate::aoc::Solution::Solution(_)
+        crate::aoc::Solution::Solved(_)
         | crate::aoc::Solution::Wip
         | crate::aoc::Solution::WipWithKnownAnswerFromPython(_) => {
             print!("{}: ", style("2").red().bold());
@@ -135,7 +135,7 @@ pub fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() -> R
             print!("{}", part2_solution);
 
             let p2_checked = match TSln::PART2_SOLUTION {
-                crate::aoc::Solution::Solution(expected) => {
+                crate::aoc::Solution::Solved(expected) => {
                     if expected == part2_solution {
                         SolutionCheckStatus::Correct
                     } else {

@@ -97,7 +97,7 @@ impl AocSolution for Day06 {
     }
 
     type Part1Output = usize;
-    const PART1_SOLUTION: Solution<Self::Part1Output> = Solution::Solution(400410);
+    const PART1_SOLUTION: Solution<Self::Part1Output> = Solution::Solved(400410);
     fn part1(input: &Self::Input) -> Self::Part1Output {
         let mut points = Vec::new();
 
@@ -126,7 +126,7 @@ impl AocSolution for Day06 {
     }
 
     type Part2Output = isize;
-    const PART2_SOLUTION: Solution<Self::Part2Output> = Solution::Solution(15343601);
+    const PART2_SOLUTION: Solution<Self::Part2Output> = Solution::Solved(15343601);
     fn part2(input: &Self::Input) -> Self::Part2Output {
         let mut total_brightness = 0;
 

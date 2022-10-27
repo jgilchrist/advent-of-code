@@ -30,7 +30,7 @@ impl AocSolution for Day07 {
     }
 
     type Part1Output = u64;
-    const PART1_SOLUTION: Solution<Self::Part1Output> = Solution::Solution(328262);
+    const PART1_SOLUTION: Solution<Self::Part1Output> = Solution::Solved(328262);
     fn part1(input: &Self::Input) -> Self::Part1Output {
         get_minimum_cost_by(input, |pos, crab_pos| {
             (pos as i64 - crab_pos as i64).unsigned_abs()
@@ -38,7 +38,7 @@ impl AocSolution for Day07 {
     }
 
     type Part2Output = u64;
-    const PART2_SOLUTION: Solution<Self::Part2Output> = Solution::Solution(90040997);
+    const PART2_SOLUTION: Solution<Self::Part2Output> = Solution::Solved(90040997);
     fn part2(input: &Self::Input) -> Self::Part2Output {
         get_minimum_cost_by(input, |pos, crab_pos| {
             let diff = (pos as i64 - crab_pos as i64).unsigned_abs();
