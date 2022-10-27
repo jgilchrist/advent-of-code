@@ -13,13 +13,13 @@ impl AocSolution for Day01 {
     }
 
     type Part1Output = usize;
-    const PART1_SOLUTION: Solution<Self::Part1Output> = Solution::Solution(74);
+    const PART1_SOLUTION: Solution<Self::Part1Output> = Solution::Solved(74);
     fn part1(input: &Self::Input) -> Self::Part1Output {
         input.matches('(').count() - input.matches(')').count()
     }
 
     type Part2Output = usize;
-    const PART2_SOLUTION: Solution<Self::Part2Output> = Solution::Solution(1795);
+    const PART2_SOLUTION: Solution<Self::Part2Output> = Solution::Solved(1795);
     fn part2(input: &Self::Input) -> Self::Part2Output {
         let mut floor = 0;
 

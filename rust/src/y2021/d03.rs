@@ -54,7 +54,7 @@ impl AocSolution for Day03 {
     }
 
     type Part1Output = u32;
-    const PART1_SOLUTION: Solution<Self::Part1Output> = Solution::Solution(2261546);
+    const PART1_SOLUTION: Solution<Self::Part1Output> = Solution::Solved(2261546);
     fn part1(input: &Self::Input) -> Self::Part1Output {
         let cols: Vec<Vec<char>> = transpose(input);
 
@@ -68,7 +68,7 @@ impl AocSolution for Day03 {
     }
 
     type Part2Output = u32;
-    const PART2_SOLUTION: Solution<Self::Part2Output> = Solution::Solution(6775520);
+    const PART2_SOLUTION: Solution<Self::Part2Output> = Solution::Solved(6775520);
     fn part2(input: &Self::Input) -> Self::Part2Output {
         let mut oxygen_candidates = input.clone();
 

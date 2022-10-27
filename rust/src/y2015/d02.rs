@@ -72,13 +72,13 @@ impl AocSolution for Day02 {
     }
 
     type Part1Output = u32;
-    const PART1_SOLUTION: Solution<Self::Part1Output> = Solution::Solution(1586300);
+    const PART1_SOLUTION: Solution<Self::Part1Output> = Solution::Solved(1586300);
     fn part1(input: &Self::Input) -> Self::Part1Output {
         input.iter().map(paper_area_required).sum()
     }
 
     type Part2Output = u32;
-    const PART2_SOLUTION: Solution<Self::Part2Output> = Solution::Solution(3737498);
+    const PART2_SOLUTION: Solution<Self::Part2Output> = Solution::Solved(3737498);
     fn part2(input: &Self::Input) -> Self::Part2Output {
         input.iter().map(ribbon_length_required).sum()
     }

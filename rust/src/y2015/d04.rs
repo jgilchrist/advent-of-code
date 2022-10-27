@@ -26,7 +26,7 @@ impl AocSolution for Day04 {
     }
 
     type Part1Output = usize;
-    const PART1_SOLUTION: Solution<Self::Part1Output> = Solution::Solution(346386);
+    const PART1_SOLUTION: Solution<Self::Part1Output> = Solution::Solved(346386);
     fn part1(input: &Self::Input) -> Self::Part1Output {
         for (i, hash) in all_hashes(input).enumerate() {
             if hash.starts_with("00000") {
@@ -38,7 +38,7 @@ impl AocSolution for Day04 {
     }
 
     type Part2Output = usize;
-    const PART2_SOLUTION: Solution<Self::Part2Output> = Solution::Solution(9958218);
+    const PART2_SOLUTION: Solution<Self::Part2Output> = Solution::Solved(9958218);
     fn part2(input: &Self::Input) -> Self::Part2Output {
         for (i, hash) in all_hashes(input).enumerate() {
             if hash.starts_with("000000") {
