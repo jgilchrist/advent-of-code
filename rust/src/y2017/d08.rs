@@ -3,12 +3,11 @@ use crate::{aoc::Solution, AocSolution};
 pub struct Day08;
 
 impl AocSolution for Day08 {
-    type Input = String;
-
     fn get_input() -> &'static str {
         include_str!("d08.in")
     }
 
+    type Input = String;
     fn process_input(input: &str) -> Self::Input {
         input.lines().collect()
     }

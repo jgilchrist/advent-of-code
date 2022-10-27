@@ -5,12 +5,11 @@ use fancy_regex::Regex;
 pub struct Day05;
 
 impl AocSolution for Day05 {
-    type Input = Vec<String>;
-
     fn get_input() -> &'static str {
         include_str!("d05.in")
     }
 
+    type Input = Vec<String>;
     fn process_input(input: &str) -> Self::Input {
         input.lines().map(|l| l.to_string()).collect()
     }

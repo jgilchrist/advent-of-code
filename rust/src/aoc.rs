@@ -18,13 +18,13 @@ impl<T> Solution<T> {
 }
 
 pub trait AocSolution {
-    type Input;
-
     fn tests() -> Vec<TestDefinition<Self::Part1Output>> {
         vec![]
     }
 
     fn get_input() -> &'static str;
+
+    type Input;
     fn process_input(input: &str) -> Self::Input;
 
     type Part1Output: std::fmt::Display + Eq;
