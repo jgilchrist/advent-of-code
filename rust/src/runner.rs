@@ -87,7 +87,7 @@ pub fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() -> R
                     }
                 },
                 crate::aoc::Solution::Wip => SolutionCheckStatus::Unknown,
-                crate::aoc::Solution::Unsolved | crate::aoc::Solution::UnsolvedWithKnownAnswerFromPython => unreachable!(),
+                crate::aoc::Solution::Unsolved | crate::aoc::Solution::UnsolvedWithKnownAnswerFromPython(_) | crate::aoc::Solution::MerryChristmas => unreachable!(),
             };
 
             print!(
@@ -98,7 +98,10 @@ pub fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() -> R
                 style(")").black().bold(),
             );
         },
-        crate::aoc::Solution::Unsolved | crate::aoc::Solution::UnsolvedWithKnownAnswerFromPython => {
+        crate::aoc::Solution::MerryChristmas => {
+            unreachable!()
+        },
+        crate::aoc::Solution::Unsolved | crate::aoc::Solution::UnsolvedWithKnownAnswerFromPython(_) => {
             print!("{}: {}", style("1").black().bold(),style("Unsolved").black().bold());
         },
     }
@@ -107,39 +110,6 @@ pub fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() -> R
 
     match TSln::PART2_SOLUTION {
         crate::aoc::Solution::Solution(_) | crate::aoc::Solution::Wip => {
-            if !test_data.is_empty() {
-                for (i, test) in test_data.iter().enumerate() {
-                    let (input, expected_part2_output, _) = test;
-                    let processed_input = TSln::process_input(input);
-
-                    if let Some(expected_part2_output) = expected_part2_output {
-                        let actual_part2_output = TSln::part2(&processed_input);
-                        let passed_part2_test = actual_part2_output == *expected_part2_output;
-
-                        if passed_part2_test {
-                            println!(
-                                "{} {}{} {}",
-                                style("Test").black().bold(),
-                                style(i + 1).black().bold(),
-                                style(":").black().bold(),
-                                style("+").green()
-                            );
-                        } else {
-                            println!(
-                                "{} {} {}{} {}",
-                                style(format!("Test {}:", i + 1)).red(),
-                                style("expected").black().bold(),
-                                style(expected_part2_output).green(),
-                                style(", found").black().bold(),
-                                style(actual_part2_output).red()
-                            );
-
-                            bail!("Failed test")
-                        }
-                    }
-                }
-            }
-
             print!("{}: ", style("2").red().bold());
 
             let p2_started_timestamp = Instant::now();
@@ -155,7 +125,7 @@ pub fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() -> R
                     }
                 },
                 crate::aoc::Solution::Wip => SolutionCheckStatus::Unknown,
-                crate::aoc::Solution::Unsolved | crate::aoc::Solution::UnsolvedWithKnownAnswerFromPython => unreachable!(),
+                crate::aoc::Solution::Unsolved | crate::aoc::Solution::UnsolvedWithKnownAnswerFromPython(_) | crate::aoc::Solution::MerryChristmas => unreachable!(),
             };
 
             print!(
@@ -166,7 +136,10 @@ pub fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() -> R
                 style(")").black().bold(),
             );
         },
-        crate::aoc::Solution::Unsolved | crate::aoc::Solution::UnsolvedWithKnownAnswerFromPython => {
+        crate::aoc::Solution::MerryChristmas => {
+            print!("{}: {}", style("2").black().bold(),style("Merry Christmas!").green().bold());
+        },
+        crate::aoc::Solution::Unsolved | crate::aoc::Solution::UnsolvedWithKnownAnswerFromPython(_) => {
             print!("{}: {}", style("2").black().bold(),style("Unsolved").black().bold());
         },
     }

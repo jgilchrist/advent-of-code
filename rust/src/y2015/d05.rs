@@ -6,7 +6,6 @@ pub struct Day05;
 
 impl AocSolution for Day05 {
     type Input = Vec<String>;
-    type Output = usize;
 
     fn get_input() -> &'static str {
         include_str!("d05.in")
@@ -16,8 +15,9 @@ impl AocSolution for Day05 {
         input.lines().map(|l| l.to_string()).collect()
     }
 
-    const PART1_SOLUTION: Solution<Self::Output> = Solution::Solution(255);
-    fn part1(input: &Self::Input) -> Self::Output {
+    type Part1Output = usize;
+    const PART1_SOLUTION: Solution<Self::Part1Output> = Solution::Solution(255);
+    fn part1(input: &Self::Input) -> Self::Part1Output {
         fn is_nice(line: &str) -> bool {
             let number_of_vowels = line.matches('a').count()
                 + line.matches('e').count()
@@ -38,8 +38,9 @@ impl AocSolution for Day05 {
         input.iter().filter(|l| is_nice(l)).count()
     }
 
-    const PART2_SOLUTION: Solution<Self::Output> = Solution::Solution(55);
-    fn part2(input: &Self::Input) -> Self::Output {
+    type Part2Output = usize;
+    const PART2_SOLUTION: Solution<Self::Part2Output> = Solution::Solution(55);
+    fn part2(input: &Self::Input) -> Self::Part2Output {
         fn is_nice(line: &str) -> bool {
             let has_matching_pair = Regex::new(r"(..).*\1")
                 .unwrap()

@@ -16,7 +16,6 @@ static DIRECTION_MAP: Lazy<HashMap<char, Vec2>> = Lazy::new(|| {
 
 impl AocSolution for Day03 {
     type Input = String;
-    type Output = usize;
 
     fn get_input() -> &'static str {
         include_str!("d03.in")
@@ -26,8 +25,9 @@ impl AocSolution for Day03 {
         input.trim().to_string()
     }
 
-    const PART1_SOLUTION: Solution<Self::Output> = Solution::Solution(2565);
-    fn part1(input: &Self::Input) -> Self::Output {
+    type Part1Output = usize;
+    const PART1_SOLUTION: Solution<Self::Part1Output> = Solution::Solution(2565);
+    fn part1(input: &Self::Input) -> Self::Part1Output {
         let mut pos = Vec2 { x: 0, y: 0 };
         let mut visited = HashSet::from([pos]);
 
@@ -40,8 +40,9 @@ impl AocSolution for Day03 {
         visited.len()
     }
 
-    const PART2_SOLUTION: Solution<Self::Output> = Solution::Solution(2639);
-    fn part2(input: &Self::Input) -> Self::Output {
+    type Part2Output = usize;
+    const PART2_SOLUTION: Solution<Self::Part2Output> = Solution::Solution(2639);
+    fn part2(input: &Self::Input) -> Self::Part2Output {
         let mut santa = Vec2 { x: 0, y: 0 };
         let mut robo_santa = Vec2 { x: 0, y: 0 };
 

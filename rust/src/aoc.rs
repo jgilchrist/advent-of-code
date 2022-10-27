@@ -4,42 +4,41 @@ pub enum Solution<T> {
     Solution(T),
     Wip,
     Unsolved,
-    UnsolvedWithKnownAnswerFromPython,
+    UnsolvedWithKnownAnswerFromPython(T),
+    MerryChristmas,
 }
 
 impl<T> Solution<T> {
     pub fn has_solution(&self) -> bool {
         match self {
-            Solution::Solution(_) => true,
-            Solution::Wip => true,
-            Solution::Unsolved => false,
-            Solution::UnsolvedWithKnownAnswerFromPython => false,
+            Solution::Solution(_) | Solution::Wip | Solution::MerryChristmas => true,
+            Solution::Unsolved | Solution::UnsolvedWithKnownAnswerFromPython(_) => false,
         }
     }
 }
 
 pub trait AocSolution {
     type Input;
-    type Output: std::fmt::Display + Eq;
 
-    fn tests() -> Vec<TestDefinition<Self::Output>> {
+    fn tests() -> Vec<TestDefinition<Self::Part1Output>> {
         vec![]
     }
 
     fn get_input() -> &'static str;
     fn process_input(input: &str) -> Self::Input;
 
-    const PART1_SOLUTION: Solution<Self::Output>;
-    fn part1(i: &Self::Input) -> Self::Output;
+    type Part1Output: std::fmt::Display + Eq;
+    const PART1_SOLUTION: Solution<Self::Part1Output>;
+    fn part1(i: &Self::Input) -> Self::Part1Output;
 
-    const PART2_SOLUTION: Solution<Self::Output>;
-    fn part2(i: &Self::Input) -> Self::Output;
+    type Part2Output: std::fmt::Display + Eq;
+    const PART2_SOLUTION: Solution<Self::Part2Output>;
+    fn part2(i: &Self::Input) -> Self::Part2Output;
 }
 
 pub struct Unsolved;
 impl AocSolution for Unsolved {
     type Input = ();
-    type Output = &'static str;
 
     fn get_input() -> &'static str {
         unimplemented!()
@@ -49,13 +48,15 @@ impl AocSolution for Unsolved {
         unimplemented!()
     }
 
-    const PART1_SOLUTION: Solution<Self::Output> = Solution::Unsolved;
-    fn part1(_: &Self::Input) -> Self::Output {
+    type Part1Output = usize;
+    const PART1_SOLUTION: Solution<Self::Part1Output> = Solution::Unsolved;
+    fn part1(_: &Self::Input) -> Self::Part1Output {
         unimplemented!()
     }
 
-    const PART2_SOLUTION: Solution<Self::Output> = Solution::Unsolved;
-    fn part2(_: &Self::Input) -> Self::Output {
+    type Part2Output = usize;
+    const PART2_SOLUTION: Solution<Self::Part2Output> = Solution::Unsolved;
+    fn part2(_: &Self::Input) -> Self::Part2Output {
         unimplemented!()
     }
 }

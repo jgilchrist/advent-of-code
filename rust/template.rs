@@ -16,12 +16,12 @@ impl AocSolution for DayDAY {
             .collect()
     }
 
-    const PART1_SOLUTION: Solution<Self::Output> = Solution::Unsolved;
+    const PART1_SOLUTION: Solution<Self::Output> = Solution::UnsolvedWithKnownAnswerFromPython();
     fn part1(input: &Self::Input) -> Self::Output {
         todo!()
     }
 
-    const PART2_SOLUTION: Solution<Self::Output> = Solution::Unsolved;
+    const PART2_SOLUTION: Solution<Self::Output> = Solution::UnsolvedWithKnownAnswerFromPython;
     fn part2(input: &Self::Input) -> Self::Output {
         todo!()
     }

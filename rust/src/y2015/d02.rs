@@ -47,7 +47,6 @@ fn ribbon_length_required(
 
 impl AocSolution for Day02 {
     type Input = Vec<Present>;
-    type Output = u32;
 
     fn get_input() -> &'static str {
         include_str!("d02.in")
@@ -73,13 +72,15 @@ impl AocSolution for Day02 {
         input.lines().map(parse_line).collect::<Vec<_>>()
     }
 
-    const PART1_SOLUTION: Solution<Self::Output> = Solution::Solution(1586300);
-    fn part1(input: &Self::Input) -> Self::Output {
+    type Part1Output = u32;
+    const PART1_SOLUTION: Solution<Self::Part1Output> = Solution::Solution(1586300);
+    fn part1(input: &Self::Input) -> Self::Part1Output {
         input.iter().map(paper_area_required).sum()
     }
 
-    const PART2_SOLUTION: Solution<Self::Output> = Solution::Solution(3737498);
-    fn part2(input: &Self::Input) -> Self::Output {
+    type Part2Output = u32;
+    const PART2_SOLUTION: Solution<Self::Part2Output> = Solution::Solution(3737498);
+    fn part2(input: &Self::Input) -> Self::Part2Output {
         input.iter().map(ribbon_length_required).sum()
     }
 }

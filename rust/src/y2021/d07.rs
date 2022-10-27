@@ -18,7 +18,6 @@ where
 
 impl AocSolution for Day07 {
     type Input = Vec<u64>;
-    type Output = u64;
 
     fn get_input() -> &'static str {
         include_str!("d07.in")
@@ -31,15 +30,17 @@ impl AocSolution for Day07 {
             .collect()
     }
 
-    const PART1_SOLUTION: Solution<Self::Output> = Solution::Solution(328262);
-    fn part1(i: &Self::Input) -> Self::Output {
+    type Part1Output = u64;
+    const PART1_SOLUTION: Solution<Self::Part1Output> = Solution::Solution(328262);
+    fn part1(i: &Self::Input) -> Self::Part1Output {
         get_minimum_cost_by(i, |pos, crab_pos| {
             (pos as i64 - crab_pos as i64).unsigned_abs()
         })
     }
 
-    const PART2_SOLUTION: Solution<Self::Output> = Solution::Solution(90040997);
-    fn part2(i: &Self::Input) -> Self::Output {
+    type Part2Output = u64;
+    const PART2_SOLUTION: Solution<Self::Part2Output> = Solution::Solution(90040997);
+    fn part2(i: &Self::Input) -> Self::Part2Output {
         get_minimum_cost_by(i, |pos, crab_pos| {
             let diff = (pos as i64 - crab_pos as i64).unsigned_abs();
             (diff * (diff + 1)) / 2

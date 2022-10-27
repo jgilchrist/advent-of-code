@@ -51,7 +51,6 @@ impl PopulationMap {
 
 impl AocSolution for Day06 {
     type Input = PopulationMap;
-    type Output = usize;
 
     fn get_input() -> &'static str {
         include_str!("d06.in")
@@ -68,13 +67,15 @@ impl AocSolution for Day06 {
         fish_counts
     }
 
-    const PART1_SOLUTION: Solution<Self::Output> = Solution::Solution(389726);
-    fn part1(i: &Self::Input) -> Self::Output {
+    type Part1Output = usize;
+    const PART1_SOLUTION: Solution<Self::Part1Output> = Solution::Solution(389726);
+    fn part1(i: &Self::Input) -> Self::Part1Output {
         number_of_fish_after_n_days(i, 80)
     }
 
-    const PART2_SOLUTION: Solution<Self::Output> = Solution::Solution(1743335992042);
-    fn part2(i: &Self::Input) -> Self::Output {
+    type Part2Output = usize;
+    const PART2_SOLUTION: Solution<Self::Part2Output> = Solution::Solution(1743335992042);
+    fn part2(i: &Self::Input) -> Self::Part2Output {
         number_of_fish_after_n_days(i, 256)
     }
 }

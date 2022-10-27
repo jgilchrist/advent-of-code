@@ -64,7 +64,6 @@ impl Board {
 
 impl AocSolution for Day04 {
     type Input = (Vec<u32>, Vec<Board>);
-    type Output = u32;
 
     fn get_input() -> &'static str {
         include_str!("d04.in")
@@ -95,8 +94,9 @@ impl AocSolution for Day04 {
         (bingo_numbers, boards)
     }
 
-    const PART1_SOLUTION: Solution<Self::Output> = Solution::Solution(4662);
-    fn part1(i: &Self::Input) -> Self::Output {
+    type Part1Output = u32;
+    const PART1_SOLUTION: Solution<Self::Part1Output> = Solution::Solution(4662);
+    fn part1(i: &Self::Input) -> Self::Part1Output {
         let numbers = i.0.clone();
         let mut boards = i.1.clone();
 
@@ -112,8 +112,9 @@ impl AocSolution for Day04 {
         unreachable!();
     }
 
-    const PART2_SOLUTION: Solution<Self::Output> = Solution::Solution(12080);
-    fn part2(i: &Self::Input) -> Self::Output {
+    type Part2Output = u32;
+    const PART2_SOLUTION: Solution<Self::Part2Output> = Solution::Solution(12080);
+    fn part2(i: &Self::Input) -> Self::Part2Output {
         let numbers = i.0.clone();
         let mut boards = i.1.clone();
         let mut winning_boards: Vec<Board> = vec![];
