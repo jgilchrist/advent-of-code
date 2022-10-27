@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-use crate::{utils::inputs::comma_separated_integers, AocSolution, aoc::Solution};
+use crate::{aoc::Solution, utils::inputs::comma_separated_integers, AocSolution};
 
 pub struct Day06;
 

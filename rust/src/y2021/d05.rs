@@ -1,8 +1,9 @@
 use std::cmp::Ordering;
 
 use crate::{
+    aoc::Solution,
     utils::{iters::count_items, vecs::Vec2},
-    AocSolution, aoc::Solution,
+    AocSolution,
 };
 
 pub struct Day05;

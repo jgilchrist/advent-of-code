@@ -1,4 +1,4 @@
-use crate::{AocSolution, aoc::Solution};
+use crate::{aoc::Solution, AocSolution};
 
 pub struct Day11;
 
@@ -10,9 +10,7 @@ impl AocSolution for Day11 {
     }
 
     fn process_input(input: &str) -> Self::Input {
-        input
-            .lines()
-            .collect()
+        input.lines().collect()
     }
 
     type Part1Output = usize;
