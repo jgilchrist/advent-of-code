@@ -15,7 +15,7 @@ impl AocSolution for Day08 {
     type Part1Output = usize;
     const PART1_SOLUTION: Solution<Self::Part1Output> =
         Solution::UnsolvedWithKnownAnswerFromPython(115);
-    fn part1(input: &Self::Input) -> Self::Part1Output {
+    fn part1(_input: &Self::Input) -> Self::Part1Output {
         todo!()
     }
 
@@ -30,7 +30,7 @@ impl AocSolution for Day08 {
 #### #    ####   #  #  # #    #  # #     ###  ##  
 "#,
     );
-    fn part2(input: &Self::Input) -> Self::Part2Output {
+    fn part2(_input: &Self::Input) -> Self::Part2Output {
         todo!()
     }
 }
