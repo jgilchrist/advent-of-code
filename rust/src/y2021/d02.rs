@@ -1,4 +1,4 @@
-use crate::AocSolution;
+use crate::{AocSolution, aoc::Solution};
 
 pub struct Day02;
 
@@ -34,7 +34,7 @@ impl AocSolution for Day02 {
         input.lines().map(parse_instruction).collect()
     }
 
-    const PART1_SOLUTION: Option<Self::Output> = Some(1924923);
+    const PART1_SOLUTION: Solution<Self::Output> = Solution::Solution(1924923);
     fn part1(i: &Self::Input) -> Self::Output {
         let mut depth = 0;
         let mut position = 0;
@@ -51,7 +51,7 @@ impl AocSolution for Day02 {
         depth * position
     }
 
-    const PART2_SOLUTION: Option<Self::Output> = Some(1982495697);
+    const PART2_SOLUTION: Solution<Self::Output> = Solution::Solution(1982495697);
     fn part2(i: &Self::Input) -> Self::Output {
         let mut aim = 0;
         let mut depth = 0;

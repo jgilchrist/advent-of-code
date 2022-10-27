@@ -1,7 +1,7 @@
 use once_cell::sync::Lazy;
 use std::collections::{HashMap, HashSet};
 
-use crate::{utils::vecs::Vec2, AocSolution};
+use crate::{utils::vecs::Vec2, AocSolution, aoc::Solution};
 
 pub struct Day03;
 
@@ -26,7 +26,7 @@ impl AocSolution for Day03 {
         input.trim().to_string()
     }
 
-    const PART1_SOLUTION: Option<Self::Output> = Some(2565);
+    const PART1_SOLUTION: Solution<Self::Output> = Solution::Solution(2565);
     fn part1(input: &Self::Input) -> Self::Output {
         let mut pos = Vec2 { x: 0, y: 0 };
         let mut visited = HashSet::from([pos]);
@@ -40,7 +40,7 @@ impl AocSolution for Day03 {
         visited.len()
     }
 
-    const PART2_SOLUTION: Option<Self::Output> = Some(2639);
+    const PART2_SOLUTION: Solution<Self::Output> = Solution::Solution(2639);
     fn part2(input: &Self::Input) -> Self::Output {
         let mut santa = Vec2 { x: 0, y: 0 };
         let mut robo_santa = Vec2 { x: 0, y: 0 };

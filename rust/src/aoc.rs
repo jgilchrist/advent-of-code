@@ -1,10 +1,26 @@
 pub type TestDefinition<Output> = (&'static str, Option<Output>, Option<Output>);
 
+pub enum Solution<T> {
+    Solution(T),
+    Wip,
+    Unsolved,
+    UnsolvedWithKnownAnswerFromPython,
+}
+
+impl<T> Solution<T> {
+    pub fn has_solution(&self) -> bool {
+        match self {
+            Solution::Solution(_) => true,
+            Solution::Wip => true,
+            Solution::Unsolved => false,
+            Solution::UnsolvedWithKnownAnswerFromPython => false,
+        }
+    }
+}
+
 pub trait AocSolution {
     type Input;
     type Output: std::fmt::Display + Eq;
-
-    const SOLVED: bool = true;
 
     fn tests() -> Vec<TestDefinition<Self::Output>> {
         vec![]
@@ -13,10 +29,10 @@ pub trait AocSolution {
     fn get_input() -> &'static str;
     fn process_input(input: &str) -> Self::Input;
 
-    const PART1_SOLUTION: Option<Self::Output>;
+    const PART1_SOLUTION: Solution<Self::Output>;
     fn part1(i: &Self::Input) -> Self::Output;
 
-    const PART2_SOLUTION: Option<Self::Output>;
+    const PART2_SOLUTION: Solution<Self::Output>;
     fn part2(i: &Self::Input) -> Self::Output;
 }
 
@@ -24,8 +40,6 @@ pub struct Unsolved;
 impl AocSolution for Unsolved {
     type Input = ();
     type Output = &'static str;
-
-    const SOLVED: bool = false;
 
     fn get_input() -> &'static str {
         unimplemented!()
@@ -35,12 +49,12 @@ impl AocSolution for Unsolved {
         unimplemented!()
     }
 
-    const PART1_SOLUTION: Option<Self::Output> = None;
+    const PART1_SOLUTION: Solution<Self::Output> = Solution::Unsolved;
     fn part1(_: &Self::Input) -> Self::Output {
         unimplemented!()
     }
 
-    const PART2_SOLUTION: Option<Self::Output> = None;
+    const PART2_SOLUTION: Solution<Self::Output> = Solution::Unsolved;
     fn part2(_: &Self::Input) -> Self::Output {
         unimplemented!()
     }

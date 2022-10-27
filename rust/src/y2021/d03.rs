@@ -1,6 +1,6 @@
 use crate::{
     utils::iters::{count_items, transpose},
-    AocSolution,
+    AocSolution, aoc::Solution,
 };
 
 pub struct Day03;
@@ -54,7 +54,7 @@ impl AocSolution for Day03 {
         input.lines().map(|l| l.chars().collect()).collect()
     }
 
-    const PART1_SOLUTION: Option<Self::Output> = Some(2261546);
+    const PART1_SOLUTION: Solution<Self::Output> = Solution::Solution(2261546);
     fn part1(i: &Self::Input) -> Self::Output {
         let cols: Vec<Vec<char>> = transpose(i);
 
@@ -67,7 +67,7 @@ impl AocSolution for Day03 {
         gamma_rate * epsilon_rate
     }
 
-    const PART2_SOLUTION: Option<Self::Output> = Some(6775520);
+    const PART2_SOLUTION: Solution<Self::Output> = Solution::Solution(6775520);
     fn part2(i: &Self::Input) -> Self::Output {
         let mut oxygen_candidates = i.clone();
 
