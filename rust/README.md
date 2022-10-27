@@ -10,19 +10,13 @@
 ## Running
 
 ```sh
-$ cargo run 2016 01
+$ just run 2016 01
 ```
 
 ## Profiling
 
-To profile a solution, first install `flamegraph` (via `cargo install`).
-
-Then, to get a flamegraph of any day:
+Profiling requires `flamegraph` (available via `cargo install flamegraph`).
 
 ```sh
-# Cargo flamegraph uses dtrace on MacOS, which requires root.
-# Passing --root rather than using sudo ensures only the compiled binary is run as root.
-$ cargo flamegraph --root -- 2016 01
+$ just profile 2016 01
 ```
-
-To get a flamechart (i.e. sorted by time) pass `--flamechart`.
