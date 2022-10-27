@@ -1,13 +1,13 @@
 use crate::AocSolution;
 
-pub struct DayN;
+pub struct DayDAY;
 
-impl AocSolution<N> for DayN {
+impl AocSolution for DayDAY {
     type Input = String;
     type Output = &'static str;
 
     fn get_input() -> &'static str {
-        include_str!("")
+        include_str!("dDAY.in")
     }
 
     fn process_input(input: &str) -> Self::Input {
