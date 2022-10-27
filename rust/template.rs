@@ -1,4 +1,4 @@
-use crate::AocSolution;
+use crate::{AocSolution, aoc::Solution};
 
 pub struct DayDAY;
 
@@ -16,12 +16,12 @@ impl AocSolution for DayDAY {
             .collect()
     }
 
-    const PART1_SOLUTION: Option<Self::Output> = None;
+    const PART1_SOLUTION: Solution<Self::Output> = Solution::Unsolved;
     fn part1(input: &Self::Input) -> Self::Output {
         todo!()
     }
 
-    const PART2_SOLUTION: Option<Self::Output> = None;
+    const PART2_SOLUTION: Solution<Self::Output> = Solution::Unsolved;
     fn part2(input: &Self::Input) -> Self::Output {
         todo!()
     }
