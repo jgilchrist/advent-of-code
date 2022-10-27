@@ -38,7 +38,9 @@ pub fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() -> R
     let test_data = TSln::tests();
 
     match TSln::PART1_SOLUTION {
-        crate::aoc::Solution::Solution(_) | crate::aoc::Solution::Wip | crate::aoc::Solution::WipWithKnownAnswerFromPython(_) => {
+        crate::aoc::Solution::Solution(_)
+        | crate::aoc::Solution::Wip
+        | crate::aoc::Solution::WipWithKnownAnswerFromPython(_) => {
             if !test_data.is_empty() {
                 for (i, test) in test_data.iter().enumerate() {
                     let (input, expected_part1_output, _) = test;
@@ -85,14 +87,14 @@ pub fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() -> R
                     } else {
                         SolutionCheckStatus::Incorrect
                     }
-                },
+                }
                 crate::aoc::Solution::WipWithKnownAnswerFromPython(expected) => {
                     if expected == part1_solution {
                         SolutionCheckStatus::Correct
                     } else {
                         SolutionCheckStatus::Incorrect
                     }
-                },
+                }
                 crate::aoc::Solution::Wip => SolutionCheckStatus::Unknown,
                 crate::aoc::Solution::Unsolved
                 | crate::aoc::Solution::UnsolvedWithKnownAnswerFromPython(_)
@@ -123,7 +125,9 @@ pub fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() -> R
     println!();
 
     match TSln::PART2_SOLUTION {
-        crate::aoc::Solution::Solution(_) | crate::aoc::Solution::Wip | crate::aoc::Solution::WipWithKnownAnswerFromPython(_) => {
+        crate::aoc::Solution::Solution(_)
+        | crate::aoc::Solution::Wip
+        | crate::aoc::Solution::WipWithKnownAnswerFromPython(_) => {
             print!("{}: ", style("2").red().bold());
 
             let p2_started_timestamp = Instant::now();
@@ -144,7 +148,7 @@ pub fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() -> R
                     } else {
                         SolutionCheckStatus::Incorrect
                     }
-                },
+                }
                 crate::aoc::Solution::Wip => SolutionCheckStatus::Unknown,
                 crate::aoc::Solution::Unsolved
                 | crate::aoc::Solution::UnsolvedWithKnownAnswerFromPython(_)
