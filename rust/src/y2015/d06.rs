@@ -1,6 +1,10 @@
 use crate::{
     aoc::Solution,
-    utils::{geometry::Square, vecs::Vec2, inputs::{transform_lines_by_regex, Captures}},
+    utils::{
+        geometry::Square,
+        inputs::{transform_lines_by_regex, Captures},
+        vecs::Vec2,
+    },
     AocSolution,
 };
 
@@ -13,6 +17,19 @@ pub enum Command {
     Toggle,
 }
 
+pub trait CapturesExtensions {
+    fn get_square(&self) -> Square;
+}
+
+impl CapturesExtensions for Captures<'_> {
+    fn get_square(&self) -> Square {
+        Square::new(
+            Vec2::new(self.get_i32(1), self.get_i32(2)),
+            Vec2::new(self.get_i32(3), self.get_i32(4)),
+        )
+    }
+}
+
 impl AocSolution for Day06 {
     fn get_input() -> &'static str {
         include_str!("d06.in")
@@ -23,25 +40,16 @@ impl AocSolution for Day06 {
         let regexes: Vec<(&str, Box<dyn Fn(Captures) -> (Square, Command)>)> = vec![
             (
                 r#"turn on (\d+),(\d+) through (\d+),(\d+)"#,
-                Box::new(move |c| (Square::new(
-                    Vec2::new(c.get_i32(1), c.get_i32(2)),
-                    Vec2::new(c.get_i32(3), c.get_i32(4))
-                ), Command::TurnOn))
+                Box::new(move |c| (c.get_square(), Command::TurnOn)),
             ),
             (
                 r#"turn off (\d+),(\d+) through (\d+),(\d+)"#,
-                Box::new(move |c| (Square::new(
-                    Vec2::new(c.get_i32(1), c.get_i32(2)),
-                    Vec2::new(c.get_i32(3), c.get_i32(4))
-                ), Command::TurnOff))
+                Box::new(move |c| (c.get_square(), Command::TurnOff)),
             ),
             (
                 r#"toggle (\d+),(\d+) through (\d+),(\d+)"#,
-                Box::new(move |c| (Square::new(
-                    Vec2::new(c.get_i32(1), c.get_i32(2)),
-                    Vec2::new(c.get_i32(3), c.get_i32(4))
-                ), Command::Toggle))
-            )
+                Box::new(move |c| (c.get_square(), Command::Toggle)),
+            ),
         ];
 
         transform_lines_by_regex(input, regexes)
