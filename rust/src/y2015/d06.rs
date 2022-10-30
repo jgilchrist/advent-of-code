@@ -1,16 +1,7 @@
 use crate::{
     aoc::Solution,
-    utils::{geometry::Square, vecs::Vec2},
+    utils::{geometry::Square, vecs::Vec2, inputs::{transform_lines_by_regex, Captures}},
     AocSolution,
-};
-
-use nom::{
-    branch::alt,
-    bytes::complete::tag,
-    character::complete::{newline, space0},
-    combinator::eof,
-    multi::many1,
-    sequence::{preceded, separated_pair, terminated, tuple},
 };
 
 pub struct Day06;
@@ -22,70 +13,6 @@ pub enum Command {
     Toggle,
 }
 
-fn vec2(input: &str) -> nom::IResult<&str, Vec2> {
-    let (input, (x, y)) = separated_pair(
-        nom::character::complete::i32,
-        tag(","),
-        nom::character::complete::i32,
-    )(input)?;
-    Ok((input, Vec2::new(x, y)))
-}
-
-fn turn_on_command(input: &str) -> nom::IResult<&str, (Square, Command)> {
-    let (input, (_, top_left, _, bottom_right)) = tuple((
-        preceded(space0, tag("turn on")),
-        preceded(space0, vec2),
-        preceded(space0, tag("through")),
-        preceded(space0, vec2),
-    ))(input)?;
-
-    let square = Square::new(top_left, bottom_right);
-    let command = (square, Command::TurnOn);
-
-    Ok((input, command))
-}
-
-fn turn_off_command(input: &str) -> nom::IResult<&str, (Square, Command)> {
-    let (input, (_, top_left, _, bottom_right)) = tuple((
-        preceded(space0, tag("turn off")),
-        preceded(space0, vec2),
-        preceded(space0, tag("through")),
-        preceded(space0, vec2),
-    ))(input)?;
-
-    let square = Square::new(top_left, bottom_right);
-    let command = (square, Command::TurnOff);
-
-    Ok((input, command))
-}
-
-fn toggle_command(input: &str) -> nom::IResult<&str, (Square, Command)> {
-    let (input, (_, top_left, _, bottom_right)) = tuple((
-        preceded(space0, tag("toggle")),
-        preceded(space0, vec2),
-        preceded(space0, tag("through")),
-        preceded(space0, vec2),
-    ))(input)?;
-
-    let square = Square::new(top_left, bottom_right);
-    let command = (square, Command::Toggle);
-
-    Ok((input, command))
-}
-
-fn command(input: &str) -> nom::IResult<&str, (Square, Command)> {
-    alt((turn_on_command, turn_off_command, toggle_command))(input)
-}
-
-fn commands(input: &str) -> nom::IResult<&str, Vec<(Square, Command)>> {
-    terminated(many1(terminated(command, newline)), eof)(input)
-}
-
-fn parse(input: &str) -> Vec<(Square, Command)> {
-    let (_, command_list) = commands(input).unwrap();
-    command_list
-}
-
 impl AocSolution for Day06 {
     fn get_input() -> &'static str {
         include_str!("d06.in")
@@ -93,7 +20,31 @@ impl AocSolution for Day06 {
 
     type Input = Vec<(Square, Command)>;
     fn process_input(input: &str) -> Self::Input {
-        parse(input)
+        let regexes: Vec<(&str, Box<dyn Fn(Captures) -> (Square, Command)>)> = vec![
+            (
+                r#"turn on (\d+),(\d+) through (\d+),(\d+)"#,
+                Box::new(move |c| (Square::new(
+                    Vec2::new(c.get_i32(1), c.get_i32(2)),
+                    Vec2::new(c.get_i32(3), c.get_i32(4))
+                ), Command::TurnOn))
+            ),
+            (
+                r#"turn off (\d+),(\d+) through (\d+),(\d+)"#,
+                Box::new(move |c| (Square::new(
+                    Vec2::new(c.get_i32(1), c.get_i32(2)),
+                    Vec2::new(c.get_i32(3), c.get_i32(4))
+                ), Command::TurnOff))
+            ),
+            (
+                r#"toggle (\d+),(\d+) through (\d+),(\d+)"#,
+                Box::new(move |c| (Square::new(
+                    Vec2::new(c.get_i32(1), c.get_i32(2)),
+                    Vec2::new(c.get_i32(3), c.get_i32(4))
+                ), Command::Toggle))
+            )
+        ];
+
+        transform_lines_by_regex(input, regexes)
     }
 
     type Part1Output = usize;
