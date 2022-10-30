@@ -48,9 +48,7 @@ impl AocSolution for Unsolved {
         ""
     }
 
-    fn process_input(_: &str) -> Self::Input {
-        ()
-    }
+    fn process_input(_: &str) -> Self::Input {}
 
     type Part1Output = usize;
     const PART1_SOLUTION: Solution<Self::Part1Output> = Solution::Unsolved;

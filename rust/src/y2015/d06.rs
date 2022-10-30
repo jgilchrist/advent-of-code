@@ -2,7 +2,7 @@ use crate::{
     aoc::Solution,
     utils::{
         geometry::Square,
-        inputs::{transform_lines_by_regex, Captures},
+        inputs::{transform_lines_by_regex, Captures, TransformFn},
         vecs::Vec2,
     },
     AocSolution,
@@ -37,7 +37,7 @@ impl AocSolution for Day06 {
 
     type Input = Vec<(Square, Command)>;
     fn process_input(input: &str) -> Self::Input {
-        let regexes: Vec<(&str, Box<dyn Fn(Captures) -> (Square, Command)>)> = vec![
+        let regexes: Vec<(&str, TransformFn<(Square, Command)>)> = vec![
             (
                 r#"turn on (\d+),(\d+) through (\d+),(\d+)"#,
                 Box::new(move |c| (c.get_square(), Command::TurnOn)),
