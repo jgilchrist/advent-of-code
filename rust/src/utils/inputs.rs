@@ -32,7 +32,8 @@ pub type TransformFn<T> = Box<dyn Fn(Captures) -> T>;
 pub fn transform_lines_by_regex<T>(input: &str, regexes: TransformRegexes<T>) -> Vec<T> {
     let compiled_regexes = regexes
         .into_iter()
-        .map(|(re, x)| (Regex::new(re).unwrap(), x))
+        .map(|(re, x)| ("^".to_owned() + re + "$", x))
+        .map(|(re, x)| (Regex::new(&re).unwrap(), x))
         .collect::<Vec<_>>();
 
     let transformed_lines = input
