@@ -45,11 +45,11 @@ impl AocSolution for Unsolved {
     type Input = ();
 
     fn get_input() -> &'static str {
-        unimplemented!()
+        ""
     }
 
     fn process_input(_: &str) -> Self::Input {
-        unimplemented!()
+        ()
     }
 
     type Part1Output = usize;
