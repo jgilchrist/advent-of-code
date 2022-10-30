@@ -26,9 +26,10 @@ impl Captures<'_> {
     }
 }
 
+pub type TransformRegexes<T> = Vec<(&'static str, TransformFn<T>)>;
 pub type TransformFn<T> = Box<dyn Fn(Captures) -> T>;
 
-pub fn transform_lines_by_regex<T>(input: &str, regexes: Vec<(&str, TransformFn<T>)>) -> Vec<T> {
+pub fn transform_lines_by_regex<T>(input: &str, regexes: TransformRegexes<T>) -> Vec<T> {
     let compiled_regexes = regexes
         .into_iter()
         .map(|(re, x)| (Regex::new(re).unwrap(), x))
