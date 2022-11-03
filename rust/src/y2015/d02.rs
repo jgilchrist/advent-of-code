@@ -33,10 +33,8 @@ fn ribbon_length_required(
     let mut dimensions = [length, width, height];
     dimensions.sort();
 
-    let (smallest, middle) = if let [smallest, middle, _] = dimensions[..] {
-        (smallest, middle)
-    } else {
-        unreachable!()
+    let [smallest, middle, _] = dimensions[..] else {
+        unreachable!();
     };
 
     let smallest_perimeter = (smallest + middle) * 2;
@@ -55,9 +53,7 @@ impl AocSolution for Day02 {
         fn parse_line(line: &str) -> Present {
             let numbers = inputs::positive_numbers(line);
 
-            let (x1, x2, x3) = if let [x1, x2, x3] = numbers[..] {
-                (x1, x2, x3)
-            } else {
+            let [x1, x2, x3] = numbers[..] else {
                 unreachable!()
             };
 
