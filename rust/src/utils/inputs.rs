@@ -45,8 +45,8 @@ pub fn transform_lines_by_regex<T>(input: &str, regexes: TransformRegexes<T>) ->
 
 fn transform_line_by_regex<T>(regexes: &[(Regex, TransformFn<T>)], line: &str) -> T {
     for (regex, transform_fn) in regexes.iter() {
-        if let Ok(captures) = regex.captures(line) {
-            return transform_fn(Captures(captures.unwrap()));
+        if let Some(captures) = regex.captures(line).expect("Invalid regex") {
+            return transform_fn(Captures(captures));
         }
     }
 
