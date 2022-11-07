@@ -1,4 +1,5 @@
 use fancy_regex::Regex;
+use itertools::Itertools;
 
 #[derive(Debug)]
 pub struct Captures<'a>(pub fancy_regex::Captures<'a>);
@@ -35,12 +36,12 @@ pub fn transform_lines_by_regex<T>(input: &str, regexes: TransformRegexes<T>) ->
         .into_iter()
         .map(|(re, x)| ("^".to_owned() + re + "$", x))
         .map(|(re, x)| (Regex::new(&re).unwrap(), x))
-        .collect::<Vec<_>>();
+        .collect_vec();
 
     let transformed_lines = input
         .lines()
         .map(|l| transform_line_by_regex(&compiled_regexes, l))
-        .collect::<Vec<_>>();
+        .collect_vec();
 
     transformed_lines
 }
@@ -72,5 +73,5 @@ pub fn positive_numbers(s: &str) -> Vec<u32> {
     positive_numbers_regex
         .find_iter(s)
         .map(|i| i.unwrap().as_str().parse::<u32>().unwrap())
-        .collect::<Vec<_>>()
+        .collect_vec()
 }

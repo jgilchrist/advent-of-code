@@ -1,3 +1,4 @@
+use itertools::Itertools;
 use once_cell::sync::Lazy;
 use std::collections::{HashMap, HashSet};
 
@@ -47,8 +48,8 @@ impl AocSolution for Day03 {
 
         let mut visited = HashSet::from([santa, robo_santa]);
 
-        let santas_instructions = input.chars().step_by(2).collect::<Vec<_>>();
-        let robo_santas_instructions = input.chars().skip(1).step_by(2).collect::<Vec<_>>();
+        let santas_instructions = input.chars().step_by(2).collect_vec();
+        let robo_santas_instructions = input.chars().skip(1).step_by(2).collect_vec();
 
         for char in santas_instructions.iter() {
             let direction = DIRECTION_MAP[char];

@@ -1,3 +1,5 @@
+use itertools::Itertools;
+
 use crate::{aoc::Solution, utils::inputs, AocSolution};
 
 pub struct Day02;
@@ -64,7 +66,7 @@ impl AocSolution for Day02 {
             }
         }
 
-        input.lines().map(parse_line).collect::<Vec<_>>()
+        input.lines().map(parse_line).collect_vec()
     }
 
     type Part1Output = u32;

@@ -1,5 +1,7 @@
 use std::cmp::Ordering;
 
+use itertools::Itertools;
+
 use crate::{
     aoc::Solution,
     utils::{iters::count_items, vecs::Vec2},
@@ -92,7 +94,7 @@ impl AocSolution for Day05 {
 
         let points = relevant_lines
             .flat_map(|line| line.points())
-            .collect::<Vec<_>>();
+            .collect_vec();
 
         let counted_points = count_items(&points);
 
@@ -105,7 +107,7 @@ impl AocSolution for Day05 {
         let points = input
             .iter()
             .flat_map(|line| line.points())
-            .collect::<Vec<_>>();
+            .collect_vec();
 
         let counted_points = count_items(&points);
 
