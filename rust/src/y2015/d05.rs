@@ -1,4 +1,4 @@
-use crate::{aoc::Solution, AocSolution, utils::inputs::lines};
+use crate::{aoc::Solution, utils::inputs::lines, AocSolution};
 
 use fancy_regex::Regex;
 

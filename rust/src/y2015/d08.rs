@@ -1,15 +1,18 @@
 use fancy_regex::Regex;
 
-use crate::{aoc::Solution, AocSolution, utils::inputs::lines};
+use crate::{aoc::Solution, utils::inputs::lines, AocSolution};
 
 pub struct Day08;
 
 fn regex_replace(s: &str, regex: &str, replace_with: &str) -> String {
-    Regex::new(regex).unwrap().replace_all(&s, replace_with).to_string()
+    Regex::new(regex)
+        .unwrap()
+        .replace_all(&s, replace_with)
+        .to_string()
 }
 
 fn count_chars_in_line(line: &str) -> usize {
-    let line = &line[1 .. line.len() - 1];
+    let line = &line[1..line.len() - 1];
 
     let line = regex_replace(&line, r#"\\\\"#, ".");
     let line = regex_replace(&line, r#"\\\""#, ".");
