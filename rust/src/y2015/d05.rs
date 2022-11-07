@@ -1,4 +1,4 @@
-use crate::{aoc::Solution, AocSolution};
+use crate::{aoc::Solution, AocSolution, utils::inputs::lines};
 
 use fancy_regex::Regex;
 
@@ -11,7 +11,7 @@ impl AocSolution for Day05 {
 
     type Input = Vec<String>;
     fn process_input(input: &str) -> Self::Input {
-        input.lines().map(|l| l.to_string()).collect()
+        lines(input)
     }
 
     type Part1Output = usize;
