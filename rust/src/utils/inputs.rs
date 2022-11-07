@@ -54,6 +54,10 @@ fn transform_line_by_regex<T>(regexes: &[(Regex, TransformFn<T>)], line: &str) -
     panic!("Did not match any regexes: \"{}\"", line);
 }
 
+pub fn lines(s: &str) -> Vec<String> {
+    s.lines().map(|l| l.to_string()).collect()
+}
+
 pub fn comma_separated_integers(s: &str) -> Vec<u32> {
     s.trim()
         .split(',')
