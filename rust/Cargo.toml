@@ -15,4 +15,5 @@ md5 = "0.7.0"
 once_cell = "1.15.0"
 
 [profile.release]
-debug = true
+debug = 1
+incremental = true
