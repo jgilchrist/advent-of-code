@@ -1,6 +1,7 @@
 use fancy_regex::Regex;
 
-pub struct Captures<'a>(fancy_regex::Captures<'a>);
+#[derive(Debug)]
+pub struct Captures<'a>(pub fancy_regex::Captures<'a>);
 
 impl Captures<'_> {
     pub fn get_string(&self, i: usize) -> String {
