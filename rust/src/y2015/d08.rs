@@ -7,14 +7,14 @@ pub struct Day08;
 fn regex_replace(s: &str, regex: &str, replace_with: &str) -> String {
     Regex::new(regex)
         .unwrap()
-        .replace_all(&s, replace_with)
+        .replace_all(s, replace_with)
         .to_string()
 }
 
 fn count_chars_in_line(line: &str) -> usize {
     let line = &line[1..line.len() - 1];
 
-    let line = regex_replace(&line, r#"\\\\"#, ".");
+    let line = regex_replace(line, r#"\\\\"#, ".");
     let line = regex_replace(&line, r#"\\\""#, ".");
     let line = regex_replace(&line, r#"\\x[0-9A-Fa-f]{2}"#, ".");
 
@@ -22,7 +22,7 @@ fn count_chars_in_line(line: &str) -> usize {
 }
 
 fn count_expanded_chars_in_line(line: &str) -> usize {
-    let line = regex_replace(&line, r#"""#, "..");
+    let line = regex_replace(line, r#"""#, "..");
     let line = regex_replace(&line, r#"\\"#, "..");
     let line = r#"""#.to_string() + &line + r#"""#;
 
