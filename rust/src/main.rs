@@ -69,7 +69,7 @@ fn main() -> Result<()> {
     match args.len() {
         1 => progress::print_progress(),
         2 | 3 => {
-            let year_str = args.get(1).unwrap();
+            let year_str = &args[1];
             let year = year_str.parse::<u32>().unwrap();
 
             match args.len() {
@@ -84,7 +84,7 @@ fn main() -> Result<()> {
                     _ => bail!("invalid year"),
                 },
                 3 => {
-                    let day_str = args.get(2).unwrap();
+                    let day_str = &args[2];
                     let day_n = day_str.parse::<u32>()?;
 
                     match year {
