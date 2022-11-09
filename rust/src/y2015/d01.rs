@@ -25,9 +25,9 @@ impl AocSolution for Day01 {
 
         for (i, c) in input.chars().enumerate() {
             if c == '(' {
-                floor += 1
+                floor += 1;
             } else {
-                floor -= 1
+                floor -= 1;
             }
 
             if floor == -1 {

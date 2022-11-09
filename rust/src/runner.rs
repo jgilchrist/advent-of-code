@@ -34,7 +34,7 @@ pub fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() -> R
             "{}: {:?}",
             style("Input").black().bold(),
             style(process_input_duration).yellow()
-        )
+        );
     }
 
     let test_data = TSln::tests();

@@ -15,7 +15,7 @@ fn compress_number(number: &str) -> String {
         let [last_char, current_char] = window else { unreachable!() };
 
         if current_char == last_char {
-            count += 1
+            count += 1;
         } else {
             result.push_str(&count.to_string());
             result.push_str(&last_char.to_string());
