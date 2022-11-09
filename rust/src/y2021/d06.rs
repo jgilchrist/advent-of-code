@@ -41,7 +41,7 @@ impl PopulationMap {
     }
 
     fn number(&self, lifetime: u8) -> usize {
-        self.0.get(&lifetime).cloned().unwrap_or(0)
+        self.0.get(&lifetime).copied().unwrap_or(0)
     }
 
     fn total(&self) -> usize {
