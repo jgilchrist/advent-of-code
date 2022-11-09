@@ -257,13 +257,14 @@ enum SolutionCheckStatus {
 
 impl std::fmt::Display for SolutionCheckStatus {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        use SolutionCheckStatus::*;
         write!(
             f,
             "{}",
             match *self {
-                SolutionCheckStatus::Correct => style("+").green(),
-                SolutionCheckStatus::Incorrect => style("x").red(),
-                SolutionCheckStatus::Unknown => style("?").black().bold(),
+                Correct => style("+").green(),
+                Incorrect => style("x").red(),
+                Unknown => style("?").black().bold(),
             }
         )
     }

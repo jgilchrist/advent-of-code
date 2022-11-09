@@ -8,15 +8,15 @@ pub struct Vec2 {
 
 impl Vec2 {
     pub fn new(x: i32, y: i32) -> Self {
-        Vec2 { x, y }
+        Self { x, y }
     }
 }
 
 impl Add for Vec2 {
-    type Output = Vec2;
+    type Output = Self;
 
     fn add(self, rhs: Self) -> Self::Output {
-        Vec2 {
+        Self {
             x: self.x + rhs.x,
             y: self.y + rhs.y,
         }
