@@ -15,7 +15,7 @@ pub struct Board {
 impl Board {
     fn new(numbers: Vec<Vec<u32>>) -> Self {
         let mut all_numbers = HashSet::new();
-        for row in numbers.iter() {
+        for row in &numbers {
             for n in row {
                 all_numbers.insert(*n);
             }
@@ -100,7 +100,7 @@ impl AocSolution for Day04 {
         let mut boards = input.1.clone();
 
         for n in numbers {
-            for board in boards.iter_mut() {
+            for board in &mut boards {
                 board.mark_seen(n);
                 if board.is_winning() {
                     return board.score();
@@ -119,7 +119,7 @@ impl AocSolution for Day04 {
         let mut winning_boards: Vec<Board> = vec![];
 
         for n in numbers {
-            for board in boards.iter_mut() {
+            for board in &mut boards {
                 board.mark_seen(n);
 
                 if board.is_winning() {

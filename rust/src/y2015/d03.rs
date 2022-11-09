@@ -51,13 +51,13 @@ impl AocSolution for Day03 {
         let santas_instructions = input.chars().step_by(2).collect_vec();
         let robo_santas_instructions = input.chars().skip(1).step_by(2).collect_vec();
 
-        for char in santas_instructions.iter() {
+        for char in &santas_instructions {
             let direction = DIRECTION_MAP[char];
             santa += direction;
             visited.insert(santa);
         }
 
-        for char in robo_santas_instructions.iter() {
+        for char in &robo_santas_instructions {
             let direction = DIRECTION_MAP[char];
             robo_santa += direction;
             visited.insert(robo_santa);
