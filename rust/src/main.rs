@@ -1,3 +1,11 @@
+#![warn(clippy::pedantic)]
+#![warn(clippy::restriction)]
+#![warn(clippy::nursery)]
+#![warn(clippy::cargo)]
+
+#![allow(clippy::approx_constant)]
+#![allow(clippy::blanket_clippy_restriction_lints)]
+
 use std::env;
 
 use anyhow::{bail, Result};
