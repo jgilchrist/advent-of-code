@@ -33,7 +33,7 @@ fn has_pairs(password: &str) -> bool {
     let mut chars = password.chars().collect_vec();
     chars.push(' ');
 
-    let mut result = "".to_string();
+    let mut result = String::new();
     let mut count = 1;
 
     for window in chars.windows(2) {
@@ -81,7 +81,7 @@ fn is_valid_password(password: &str) -> bool {
 }
 
 fn next_valid_password(password: &str) -> String {
-    let mut password = password.to_string();
+    let mut password = password.to_owned();
 
     while !is_valid_password(&password) {
         password = increment_password(&password);
@@ -97,7 +97,7 @@ impl AocSolution for Day11 {
 
     type Input = String;
     fn process_input(input: &str) -> Self::Input {
-        input.trim().to_string()
+        input.trim().to_owned()
     }
 
     type Part1Output = &'static str;

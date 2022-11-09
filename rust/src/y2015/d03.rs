@@ -22,7 +22,7 @@ impl AocSolution for Day03 {
 
     type Input = String;
     fn process_input(input: &str) -> Self::Input {
-        input.trim().to_string()
+        input.trim().to_owned()
     }
 
     type Part1Output = usize;

@@ -10,7 +10,7 @@ fn all_hashes(input: &str) -> impl Iterator<Item = String> + '_ {
     let infinite_challenge_input = std::iter::repeat(input);
 
     let inputs_with_numbers = infinite_challenge_input.zip(natural_numbers_as_strings);
-    let inputs = inputs_with_numbers.map(|(a, b)| a.to_string() + &b);
+    let inputs = inputs_with_numbers.map(|(a, b)| a.to_owned() + &b);
 
     inputs.map(|i| format!("{:x}", md5::compute(i)))
 }
@@ -22,7 +22,7 @@ impl AocSolution for Day04 {
 
     type Input = String;
     fn process_input(input: &str) -> Self::Input {
-        input.trim().to_string()
+        input.trim().to_owned()
     }
 
     type Part1Output = usize;

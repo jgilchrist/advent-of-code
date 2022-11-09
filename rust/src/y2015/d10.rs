@@ -8,7 +8,7 @@ fn compress_number(number: &str) -> String {
     let mut chars = number.chars().collect_vec();
     chars.push(' ');
 
-    let mut result = "".to_string();
+    let mut result = String::new();
     let mut count = 1;
 
     for window in chars.windows(2) {
@@ -33,7 +33,7 @@ impl AocSolution for Day10 {
 
     type Input = String;
     fn process_input(input: &str) -> Self::Input {
-        input.trim().to_string()
+        input.trim().to_owned()
     }
 
     type Part1Output = usize;

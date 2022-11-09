@@ -24,7 +24,7 @@ fn count_chars_in_line(line: &str) -> usize {
 fn count_expanded_chars_in_line(line: &str) -> usize {
     let line = regex_replace(line, r#"""#, "..");
     let line = regex_replace(&line, r#"\\"#, "..");
-    let line = r#"""#.to_string() + &line + r#"""#;
+    let line = r#"""#.to_owned() + &line + r#"""#;
 
     line.len()
 }

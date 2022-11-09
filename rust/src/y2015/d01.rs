@@ -9,7 +9,7 @@ impl AocSolution for Day01 {
 
     type Input = String;
     fn process_input(input: &str) -> Self::Input {
-        input.to_string()
+        input.to_owned()
     }
 
     type Part1Output = usize;

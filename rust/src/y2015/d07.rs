@@ -112,17 +112,17 @@ impl AocSolution for Day07 {
     type Part1Output = u16;
     const PART1_SOLUTION: Solution<Self::Part1Output> = Solution::Solved(3176);
     fn part1(input: &Self::Input) -> Self::Part1Output {
-        run_instructions(input)[&Var("a".to_string())]
+        run_instructions(input)[&Var("a".to_owned())]
     }
 
     type Part2Output = u16;
     const PART2_SOLUTION: Solution<Self::Part2Output> = Solution::Solved(14710);
     fn part2(input: &Self::Input) -> Self::Part2Output {
-        let a_state = run_instructions(input)[&Var("a".to_string())];
+        let a_state = run_instructions(input)[&Var("a".to_owned())];
 
         let mut instructions = input.to_vec();
 
-        let var_b = Var("b".to_string());
+        let var_b = Var("b".to_owned());
 
         // Replace anything assigning to 'b' with a literal assignment
         instructions = instructions
@@ -135,7 +135,7 @@ impl AocSolution for Day07 {
             })
             .collect();
 
-        run_instructions(&instructions)[&Var("a".to_string())]
+        run_instructions(&instructions)[&Var("a".to_owned())]
     }
 }
 
