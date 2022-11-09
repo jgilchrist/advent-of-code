@@ -28,8 +28,8 @@ pub struct Line {
 }
 
 impl Line {
-    pub fn new(start: Vec2, end: Vec2) -> Line {
-        Line { start, end }
+    pub fn new(start: Vec2, end: Vec2) -> Self {
+        Self { start, end }
     }
 
     pub fn is_horizontal(&self) -> bool {

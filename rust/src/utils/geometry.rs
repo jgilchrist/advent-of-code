@@ -8,7 +8,7 @@ pub struct Square {
 
 impl Square {
     pub fn new(top_left: Vec2, bottom_right: Vec2) -> Self {
-        Square {
+        Self {
             top_left,
             bottom_right,
         }

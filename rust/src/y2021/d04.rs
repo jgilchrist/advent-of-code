@@ -21,7 +21,7 @@ impl Board {
             }
         }
 
-        Board {
+        Self {
             numbers,
             all_numbers,
             seen: HashSet::new(),
