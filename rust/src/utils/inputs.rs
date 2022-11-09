@@ -6,7 +6,7 @@ pub struct Captures<'a>(pub fancy_regex::Captures<'a>);
 
 impl Captures<'_> {
     pub fn get_string(&self, i: usize) -> String {
-        self.0.get(i).expect("No capture").as_str().to_string()
+        self.0.get(i).expect("No capture").as_str().to_owned()
     }
 
     pub fn get_u32(&self, i: usize) -> u32 {
@@ -57,7 +57,7 @@ fn transform_line_by_regex<T>(regexes: &[(Regex, TransformFn<T>)], line: &str) -
 }
 
 pub fn lines(s: &str) -> Vec<String> {
-    s.lines().map(|l| l.to_string()).collect()
+    s.lines().map(|l| l.to_owned()).collect()
 }
 
 pub fn comma_separated_integers(s: &str) -> Vec<u32> {
