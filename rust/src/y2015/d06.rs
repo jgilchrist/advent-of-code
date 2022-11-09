@@ -104,7 +104,7 @@ impl AocSolution for Day06 {
                     }
                 }
 
-                total_brightness += brightness
+                total_brightness += brightness;
             }
         }
 

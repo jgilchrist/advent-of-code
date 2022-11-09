@@ -18,7 +18,7 @@ fn number_of_fish_after_n_days(fish_start: &PopulationMap, days: u32) -> usize {
         new_fish.store(6, fish.number(7) + fish.number(0));
         new_fish.store(7, fish.number(8));
         new_fish.store(8, fish.number(0));
-        fish = new_fish
+        fish = new_fish;
     }
 
     fish.total()
@@ -37,7 +37,7 @@ impl PopulationMap {
     }
 
     fn increment(&mut self, lifetime: u8) {
-        *self.0.entry(lifetime).or_default() += 1
+        *self.0.entry(lifetime).or_default() += 1;
     }
 
     fn number(&self, lifetime: u8) -> usize {

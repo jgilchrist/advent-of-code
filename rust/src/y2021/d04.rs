@@ -127,7 +127,7 @@ impl AocSolution for Day04 {
                 }
             }
 
-            boards.retain(|b| !b.is_winning())
+            boards.retain(|b| !b.is_winning());
         }
 
         winning_boards.last().unwrap().score()

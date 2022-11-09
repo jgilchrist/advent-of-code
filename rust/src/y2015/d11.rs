@@ -40,10 +40,10 @@ fn has_pairs(password: &str) -> bool {
         let [last_char, current_char] = window else { unreachable!() };
 
         if current_char == last_char {
-            count += 1
+            count += 1;
         } else {
             if count > 1 {
-                result.push_str(&last_char.to_string())
+                result.push_str(&last_char.to_string());
             }
 
             count = 1;

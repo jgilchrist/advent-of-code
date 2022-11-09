@@ -64,7 +64,7 @@ impl AocSolution for Day02 {
                 Down(n) => aim += n,
                 Forward(n) => {
                     position += n;
-                    depth += aim * n
+                    depth += aim * n;
                 }
             }
         });
