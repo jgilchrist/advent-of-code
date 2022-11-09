@@ -80,7 +80,7 @@ pub fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() -> R
 
             let p1_started_timestamp = Instant::now();
             let part1_solution = TSln::part1(&processed_input);
-            print!("{}", part1_solution);
+            print!("{part1_solution}");
 
             let p1_checked = match TSln::PART1_SOLUTION {
                 crate::aoc::Solution::Solved(expected) => {
@@ -134,7 +134,7 @@ pub fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() -> R
 
             let p2_started_timestamp = Instant::now();
             let part2_solution = TSln::part2(&processed_input);
-            print!("{}", part2_solution);
+            print!("{part2_solution}");
 
             let p2_checked = match TSln::PART2_SOLUTION {
                 crate::aoc::Solution::Solved(expected) => {
