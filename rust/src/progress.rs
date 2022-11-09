@@ -1,3 +1,5 @@
+#![allow(clippy::print_stdout)]
+
 use console::style;
 
 use crate::{aoc::Solution, y2015, y2016, y2017, y2018, y2019, y2020, y2021, AocSolution, AocYear};
