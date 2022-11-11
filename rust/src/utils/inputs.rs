@@ -71,7 +71,11 @@ pub fn lines(s: &str) -> Vec<String> {
     s.lines().map(|l| l.to_owned()).collect()
 }
 
-pub fn comma_separated<T>(s: &str) -> Vec<T> where T: FromStr, <T as FromStr>::Err: std::fmt::Debug {
+pub fn comma_separated<T>(s: &str) -> Vec<T>
+where
+    T: FromStr,
+    <T as FromStr>::Err: std::fmt::Debug,
+{
     s.trim()
         .split(',')
         .map(|i| i.parse::<T>().unwrap())
