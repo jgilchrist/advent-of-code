@@ -13,10 +13,7 @@ impl<T> Solution<T> {
     pub fn has_solution(&self) -> bool {
         use Solution::*;
         match *self {
-            Solved(_)
-            | Wip
-            | WipWithKnownAnswerFromPython(_)
-            | MerryChristmas => true,
+            Solved(_) | Wip | WipWithKnownAnswerFromPython(_) | MerryChristmas => true,
             Unsolved | UnsolvedWithKnownAnswerFromPython(_) => false,
         }
     }
