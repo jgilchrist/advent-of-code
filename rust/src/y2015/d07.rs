@@ -120,7 +120,7 @@ impl AocSolution for Day07 {
     fn part2(input: &Self::Input) -> Self::Part2Output {
         let a_state = run_instructions(input)[&Var("a".to_owned())];
 
-        let mut instructions = input.to_vec();
+        let mut instructions = input.clone();
 
         let var_b = Var("b".to_owned());
 
