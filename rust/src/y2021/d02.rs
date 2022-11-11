@@ -38,14 +38,14 @@ impl AocSolution for Day02 {
         let mut depth = 0;
         let mut position = 0;
 
-        input.iter().for_each(|instruction| {
+        for instruction in input.iter() {
             use Instruction::*;
-            match *instruction {
+            match instruction {
                 Up(n) => depth -= n,
                 Down(n) => depth += n,
                 Forward(n) => position += n,
             }
-        });
+        }
 
         depth * position
     }
@@ -57,9 +57,9 @@ impl AocSolution for Day02 {
         let mut depth = 0;
         let mut position = 0;
 
-        input.iter().for_each(|instruction| {
+        for instruction in input.iter() {
             use Instruction::*;
-            match *instruction {
+            match instruction {
                 Up(n) => aim -= n,
                 Down(n) => aim += n,
                 Forward(n) => {
@@ -67,7 +67,7 @@ impl AocSolution for Day02 {
                     depth += aim * n;
                 }
             }
-        });
+        }
 
         depth * position
     }
