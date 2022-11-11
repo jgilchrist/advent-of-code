@@ -1,5 +1,6 @@
 pub type TestDefinition<Output> = (&'static str, Option<Output>, Option<Output>);
 
+#[allow(unused)]
 pub enum Solution<T> {
     Solved(T),
     Wip,
@@ -7,16 +8,6 @@ pub enum Solution<T> {
     Unsolved,
     UnsolvedWithKnownAnswerFromPython(T),
     MerryChristmas,
-}
-
-impl<T> Solution<T> {
-    pub fn has_solution(&self) -> bool {
-        use Solution::*;
-        match *self {
-            Solved(_) | Wip | WipWithKnownAnswerFromPython(_) | MerryChristmas => true,
-            Unsolved | UnsolvedWithKnownAnswerFromPython(_) => false,
-        }
-    }
 }
 
 pub trait AocSolution {
