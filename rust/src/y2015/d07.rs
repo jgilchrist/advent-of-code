@@ -43,8 +43,8 @@ impl CapturesExtensions for Captures<'_> {
     fn get_operand(&self, idx: usize) -> Operand {
         let val = self.get_string(idx);
 
-        match val.parse::<u32>() {
-            Ok(literal) => Operand::Literal(literal as u16),
+        match val.parse::<u16>() {
+            Ok(literal) => Operand::Literal(literal),
             Err(_) => Operand::Var(Var(val)),
         }
     }
@@ -90,7 +90,7 @@ impl AocSolution for Day07 {
                 r#"(\w+) LSHIFT (\d+) -> (\w+)"#,
                 Box::new(move |c| {
                     Instruction(
-                        Operation::LShift(c.get_operand(1), c.get_u32(2) as u8),
+                        Operation::LShift(c.get_operand(1), c.get_u8(2)),
                         Var(c.get_string(3)),
                     )
                 }),
@@ -99,7 +99,7 @@ impl AocSolution for Day07 {
                 r#"(\w+) RSHIFT (\d+) -> (\w+)"#,
                 Box::new(move |c| {
                     Instruction(
-                        Operation::RShift(c.get_operand(1), c.get_u32(2) as u8),
+                        Operation::RShift(c.get_operand(1), c.get_u8(2)),
                         Var(c.get_string(3)),
                     )
                 }),

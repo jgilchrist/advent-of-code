@@ -1,6 +1,6 @@
 use std::collections::HashSet;
 
-use crate::{aoc::Solution, utils::inputs::comma_separated_integers, AocSolution};
+use crate::{aoc::Solution, utils::inputs::comma_separated, AocSolution};
 
 pub struct Day04;
 
@@ -71,7 +71,7 @@ impl AocSolution for Day04 {
     fn process_input(input: &str) -> Self::Input {
         let mut file = input.lines();
 
-        let bingo_numbers = comma_separated_integers(file.next().unwrap());
+        let bingo_numbers = comma_separated::<u32>(file.next().unwrap());
 
         let mut boards: Vec<Board> = vec![];
         let mut board_lines: Vec<Vec<u32>> = vec![];
