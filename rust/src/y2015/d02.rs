@@ -33,7 +33,7 @@ fn ribbon_length_required(
     }: &Present,
 ) -> u32 {
     let mut dimensions = [length, width, height];
-    dimensions.sort();
+    dimensions.sort_unstable();
 
     let [smallest, middle, _] = dimensions[..] else {
         unreachable!();
