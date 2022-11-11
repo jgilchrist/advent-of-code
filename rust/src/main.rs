@@ -51,7 +51,7 @@ mod progress;
 mod runner;
 mod utils;
 
-pub use aoc::{AocSolution, AocYear, Unsolved};
+use aoc::{AocSolution, AocYear, Unsolved};
 
 mod y2015;
 mod y2016;
