@@ -9,9 +9,9 @@ use crate::aoc::{AocSolution, AocYear};
 
 pub fn init() {
     // Ensure the cursor is always visible on exit, even if it was hidden
-    let _ = ctrlc::set_handler(move || {
+    let _ctrlc_handle = ctrlc::set_handler(move || {
         let term = console::Term::stderr();
-        let _ = term.show_cursor();
+        let _show_cursor_handle = term.show_cursor();
         std::process::exit(1);
     });
 }
