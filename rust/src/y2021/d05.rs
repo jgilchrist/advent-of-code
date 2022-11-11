@@ -10,11 +10,11 @@ use crate::{
 
 pub struct Day05;
 
-fn direction_of_travel<T>(from: T, to: T) -> i32
+fn direction_of_travel<T>(from: &T, to: &T) -> i32
 where
     T: Ord,
 {
-    match from.cmp(&to) {
+    match from.cmp(to) {
         Ordering::Less => 1,
         Ordering::Equal => 0,
         Ordering::Greater => -1,
@@ -41,8 +41,8 @@ impl Line {
     }
 
     fn points(&self) -> Vec<Vec2> {
-        let x_dir = direction_of_travel(self.start.x, self.end.x);
-        let y_dir = direction_of_travel(self.start.y, self.end.y);
+        let x_dir = direction_of_travel(&self.start.x, &self.end.x);
+        let y_dir = direction_of_travel(&self.start.y, &self.end.y);
         let adjustment = Vec2 { x: x_dir, y: y_dir };
 
         let mut points = vec![self.start];
