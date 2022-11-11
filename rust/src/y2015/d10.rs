@@ -12,7 +12,7 @@ fn compress_number(number: &str) -> String {
     let mut count = 1;
 
     for window in chars.windows(2) {
-        let [last_char, current_char] = window else { unreachable!() };
+        let &[last_char, current_char] = window else { unreachable!() };
 
         if current_char == last_char {
             count += 1;
