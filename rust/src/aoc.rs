@@ -51,13 +51,13 @@ impl AocSolution for Unsolved {
     type Part1Output = usize;
     const PART1_SOLUTION: Solution<Self::Part1Output> = Solution::Unsolved;
     fn part1(_: &Self::Input) -> Self::Part1Output {
-        unimplemented!()
+        0
     }
 
     type Part2Output = usize;
     const PART2_SOLUTION: Solution<Self::Part2Output> = Solution::Unsolved;
     fn part2(_: &Self::Input) -> Self::Part2Output {
-        unimplemented!()
+        0
     }
 }
 
