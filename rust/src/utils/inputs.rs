@@ -1,3 +1,5 @@
+use std::str::FromStr;
+
 use fancy_regex::Regex;
 use itertools::Itertools;
 
@@ -7,6 +9,15 @@ pub struct Captures<'a>(pub fancy_regex::Captures<'a>);
 impl Captures<'_> {
     pub fn get_string(&self, i: usize) -> String {
         self.0.get(i).expect("No capture").as_str().to_owned()
+    }
+
+    pub fn get_u8(&self, i: usize) -> u8 {
+        self.0
+            .get(i)
+            .expect("No capture")
+            .as_str()
+            .parse::<u8>()
+            .expect("Unable to parse to u8")
     }
 
     pub fn get_u32(&self, i: usize) -> u32 {
@@ -60,10 +71,10 @@ pub fn lines(s: &str) -> Vec<String> {
     s.lines().map(|l| l.to_owned()).collect()
 }
 
-pub fn comma_separated_integers(s: &str) -> Vec<u32> {
+pub fn comma_separated<T>(s: &str) -> Vec<T> where T: FromStr, <T as FromStr>::Err: std::fmt::Debug {
     s.trim()
         .split(',')
-        .map(|i| i.parse::<u32>().unwrap())
+        .map(|i| i.parse::<T>().unwrap())
         .collect()
 }
 

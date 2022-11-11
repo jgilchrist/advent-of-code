@@ -4,6 +4,7 @@ use crate::{aoc::Solution, AocSolution};
 
 pub struct Day11;
 
+#[allow(clippy::as_conversions)]
 fn increment_letter(c: char) -> (char, bool) {
     let index_into_alphabet = c as u8 - 97;
     let incremented_and_wrapped = (index_into_alphabet + 1) % 26;
@@ -53,6 +54,7 @@ fn has_pairs(password: &str) -> bool {
     result.len() >= 2
 }
 
+#[allow(clippy::as_conversions)]
 fn has_incrementing_character_run(password: &str) -> bool {
     let chars = password.chars().collect_vec();
 

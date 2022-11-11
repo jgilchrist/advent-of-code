@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-use crate::{aoc::Solution, utils::inputs::comma_separated_integers, AocSolution};
+use crate::{aoc::Solution, utils::inputs::comma_separated, AocSolution};
 
 pub struct Day07;
 
@@ -16,6 +16,11 @@ where
     *positions_to_costs.iter().min_by_key(|&x| *x.1).unwrap().1
 }
 
+#[allow(clippy::as_conversions)]
+fn abs_difference(a: u64, b: u64) -> u64 {
+    (a as i64 - b as i64).unsigned_abs()
+}
+
 impl AocSolution for Day07 {
     fn get_input() -> &'static str {
         include_str!("d07.in")
@@ -23,25 +28,20 @@ impl AocSolution for Day07 {
 
     type Input = Vec<u64>;
     fn process_input(input: &str) -> Self::Input {
-        comma_separated_integers(input)
-            .iter()
-            .map(|x| *x as u64)
-            .collect()
+        comma_separated::<u64>(input)
     }
 
     type Part1Output = u64;
     const PART1_SOLUTION: Solution<Self::Part1Output> = Solution::Solved(328262);
     fn part1(input: &Self::Input) -> Self::Part1Output {
-        get_minimum_cost_by(input, |pos, crab_pos| {
-            (pos as i64 - crab_pos as i64).unsigned_abs()
-        })
+        get_minimum_cost_by(input, abs_difference)
     }
 
     type Part2Output = u64;
     const PART2_SOLUTION: Solution<Self::Part2Output> = Solution::Solved(90040997);
     fn part2(input: &Self::Input) -> Self::Part2Output {
         get_minimum_cost_by(input, |pos, crab_pos| {
-            let diff = (pos as i64 - crab_pos as i64).unsigned_abs();
+            let diff = abs_difference(pos, crab_pos);
             (diff * (diff + 1)) / 2
         })
     }
