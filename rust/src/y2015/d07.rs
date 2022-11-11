@@ -40,6 +40,7 @@ impl CapturesExtensions for Captures<'_> {
         Var(self.get_string(idx))
     }
 
+    #[allow(clippy::option_if_let_else)]
     fn get_operand(&self, idx: usize) -> Operand {
         let val = self.get_string(idx);
 
