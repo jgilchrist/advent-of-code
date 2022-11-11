@@ -23,7 +23,7 @@ fn compress_number(number: &str) -> String {
         }
     }
 
-    result.to_string()
+    result
 }
 
 impl AocSolution for Day10 {
