@@ -4,10 +4,8 @@ pub struct Day12;
 
 fn count_numbers(json: &serde_json::Value) -> i32 {
     match json {
-        serde_json::Value::Null => 0,
-        serde_json::Value::Bool(_) => 0,
+        serde_json::Value::Null | serde_json::Value::Bool(_) | serde_json::Value::String(_) => 0,
         serde_json::Value::Number(n) => n.as_i64().unwrap() as i32,
-        serde_json::Value::String(_) => 0,
         serde_json::Value::Array(elems) => elems.iter().map(count_numbers).sum(),
         serde_json::Value::Object(obj) => obj
             .iter()
@@ -18,14 +16,9 @@ fn count_numbers(json: &serde_json::Value) -> i32 {
 
 fn count_numbers_ignoring_red(json: &serde_json::Value) -> i32 {
     match json {
-        serde_json::Value::Null => 0,
-        serde_json::Value::Bool(_) => 0,
+        serde_json::Value::Null | serde_json::Value::Bool(_) | serde_json::Value::String(_) => 0,
         serde_json::Value::Number(n) => n.as_i64().unwrap() as i32,
-        serde_json::Value::String(_) => 0,
-        serde_json::Value::Array(elems) => elems
-            .iter()
-            .map(count_numbers_ignoring_red)
-            .sum(),
+        serde_json::Value::Array(elems) => elems.iter().map(count_numbers_ignoring_red).sum(),
         serde_json::Value::Object(obj) => {
             let contains_red = obj
                 .iter()
