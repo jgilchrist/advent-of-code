@@ -45,11 +45,11 @@ pub fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() -> R
         | crate::aoc::Solution::WipWithKnownAnswerFromPython(_) => {
             if !test_data.is_empty() {
                 for (i, test) in test_data.iter().enumerate() {
-                    let (input, expected_part1_output, _) = test;
-                    let processed_input = TSln::process_input(input);
+                    let (test_input, expected_part1_output, _) = test;
+                    let processed_test_input = TSln::process_input(test_input);
 
                     if let Some(expected_part1_output) = expected_part1_output {
-                        let actual_part1_output = TSln::part1(&processed_input);
+                        let actual_part1_output = TSln::part1(&processed_test_input);
                         let passed_part1_test = actual_part1_output == *expected_part1_output;
 
                         if passed_part1_test {
