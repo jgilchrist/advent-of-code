@@ -17,7 +17,7 @@ fn most_common_in(items: &[char]) -> char {
     let (most_common, most_common_count) = counts.iter().max_by_key(|&(_, count)| count).unwrap();
     if counts
         .iter()
-        .filter(|(_, count)| *most_common_count == **count)
+        .filter(|&(_, count)| *most_common_count == *count)
         .count()
         > 1
     {
@@ -33,7 +33,7 @@ fn least_common_in(items: &[char]) -> char {
     let (least_common, least_common_count) = counts.iter().min_by_key(|&(_, count)| count).unwrap();
     if counts
         .iter()
-        .filter(|(_, count)| *least_common_count == **count)
+        .filter(|&(_, count)| *least_common_count == *count)
         .count()
         > 1
     {

@@ -12,7 +12,7 @@ pub enum Solution<T> {
 impl<T> Solution<T> {
     pub fn has_solution(&self) -> bool {
         use Solution::*;
-        match self {
+        match *self {
             Solved(_)
             | Wip
             | WipWithKnownAnswerFromPython(_)

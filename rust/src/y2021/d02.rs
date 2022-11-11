@@ -40,7 +40,7 @@ impl AocSolution for Day02 {
 
         input.iter().for_each(|instruction| {
             use Instruction::*;
-            match instruction {
+            match *instruction {
                 Up(n) => depth -= n,
                 Down(n) => depth += n,
                 Forward(n) => position += n,
@@ -59,7 +59,7 @@ impl AocSolution for Day02 {
 
         input.iter().for_each(|instruction| {
             use Instruction::*;
-            match instruction {
+            match *instruction {
                 Up(n) => aim -= n,
                 Down(n) => aim += n,
                 Forward(n) => {
