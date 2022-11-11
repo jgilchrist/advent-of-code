@@ -29,7 +29,7 @@ pub struct PopulationMap(HashMap<u8, usize>);
 
 impl PopulationMap {
     fn new() -> Self {
-        Self(Default::default())
+        Self(HashMap::default())
     }
 
     fn store(&mut self, lifetime: u8, num: usize) {
