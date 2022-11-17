@@ -364,6 +364,8 @@ name = "y2016"
 version = "0.1.0"
 dependencies = [
  "aoc",
+ "fancy-regex",
+ "itertools",
  "utils",
 ]
 
