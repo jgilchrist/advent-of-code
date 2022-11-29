@@ -15,7 +15,8 @@ pub enum CompassHeading {
 }
 
 impl CompassHeading {
-    #[must_use] pub fn turn(&self, direction: TurnDirection) -> Self {
+    #[must_use]
+    pub fn turn(&self, direction: TurnDirection) -> Self {
         use TurnDirection::*;
         match direction {
             Clockwise => self.clockwise(),
@@ -23,7 +24,8 @@ impl CompassHeading {
         }
     }
 
-    #[must_use] pub fn clockwise(&self) -> Self {
+    #[must_use]
+    pub fn clockwise(&self) -> Self {
         use CompassHeading::*;
         match *self {
             North => East,
@@ -33,7 +35,8 @@ impl CompassHeading {
         }
     }
 
-    #[must_use] pub fn anticlockwise(&self) -> Self {
+    #[must_use]
+    pub fn anticlockwise(&self) -> Self {
         use CompassHeading::*;
         match *self {
             North => West,

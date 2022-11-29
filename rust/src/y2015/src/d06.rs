@@ -1,7 +1,7 @@
 use aoc::{AocSolution, Solution};
 use utils::{
     geometry::d2::{shapes::Square, vecs::Vec2},
-    inputs::{transform_lines_by_regex, Captures, TransformRegexes},
+    inputs::{transform_lines_by_regex, Captures},
 };
 
 pub struct Day06;
@@ -33,22 +33,23 @@ impl AocSolution for Day06 {
 
     type Input = Vec<(Square, Command)>;
     fn process_input(input: &str) -> Self::Input {
-        let regexes: TransformRegexes<(Square, Command)> = vec![
-            (
-                r#"turn on (\d+),(\d+) through (\d+),(\d+)"#,
-                Box::new(move |c| (c.get_square(), Command::TurnOn)),
-            ),
-            (
-                r#"turn off (\d+),(\d+) through (\d+),(\d+)"#,
-                Box::new(move |c| (c.get_square(), Command::TurnOff)),
-            ),
-            (
-                r#"toggle (\d+),(\d+) through (\d+),(\d+)"#,
-                Box::new(move |c| (c.get_square(), Command::Toggle)),
-            ),
-        ];
-
-        transform_lines_by_regex(input, regexes)
+        transform_lines_by_regex(
+            input,
+            vec![
+                (
+                    r#"turn on (\d+),(\d+) through (\d+),(\d+)"#,
+                    Box::new(move |c| (c.get_square(), Command::TurnOn)),
+                ),
+                (
+                    r#"turn off (\d+),(\d+) through (\d+),(\d+)"#,
+                    Box::new(move |c| (c.get_square(), Command::TurnOff)),
+                ),
+                (
+                    r#"toggle (\d+),(\d+) through (\d+),(\d+)"#,
+                    Box::new(move |c| (c.get_square(), Command::Toggle)),
+                ),
+            ],
+        )
     }
 
     type Part1Output = usize;
