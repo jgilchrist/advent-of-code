@@ -1,8 +1,7 @@
 use aoc::{AocSolution, Solution};
 use utils::{
-    geometry::Square,
+    geometry::d2::{shapes::Square, vecs::Vec2},
     inputs::{transform_lines_by_regex, Captures, TransformRegexes},
-    vecs::Vec2,
 };
 
 pub struct Day06;

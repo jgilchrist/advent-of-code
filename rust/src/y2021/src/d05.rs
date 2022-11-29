@@ -2,7 +2,7 @@ use std::cmp::Ordering;
 
 use aoc::{AocSolution, Solution};
 use itertools::Itertools;
-use utils::{iters::count_items, vecs::Vec2};
+use utils::{geometry::d2::vecs::Vec2, iters::count_items};
 
 pub struct Day05;
 
