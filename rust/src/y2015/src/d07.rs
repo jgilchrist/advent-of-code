@@ -1,7 +1,7 @@
 use std::collections::HashMap;
 
 use aoc::{AocSolution, Solution};
-use utils::inputs::{transform_lines_by_regex, Captures, TransformRegexes};
+use utils::inputs::{transform_lines_by_regex, Captures};
 
 pub struct Day07;
 
@@ -55,56 +55,59 @@ impl AocSolution for Day07 {
 
     type Input = Vec<Instruction>;
     fn process_input(input: &str) -> Self::Input {
-        let regexes: TransformRegexes<Instruction> = vec![
-            (
-                r#"(\w+) -> (\w+)"#,
-                Box::new(move |c| Instruction(Operation::Assign(c.get_operand(1)), c.get_var(2))),
-            ),
-            (
-                r#"NOT (\w+) -> (\w+)"#,
-                Box::new(move |c| {
-                    Instruction(Operation::Not(c.get_operand(1)), Var(c.get_string(2)))
-                }),
-            ),
-            (
-                r#"(\w+) AND (\w+) -> (\w+)"#,
-                Box::new(move |c| {
-                    Instruction(
-                        Operation::And(c.get_operand(1), c.get_operand(2)),
-                        c.get_var(3),
-                    )
-                }),
-            ),
-            (
-                r#"(\w+) OR (\w+) -> (\w+)"#,
-                Box::new(move |c| {
-                    Instruction(
-                        Operation::Or(c.get_operand(1), c.get_operand(2)),
-                        c.get_var(3),
-                    )
-                }),
-            ),
-            (
-                r#"(\w+) LSHIFT (\d+) -> (\w+)"#,
-                Box::new(move |c| {
-                    Instruction(
-                        Operation::LShift(c.get_operand(1), c.get_u8(2)),
-                        Var(c.get_string(3)),
-                    )
-                }),
-            ),
-            (
-                r#"(\w+) RSHIFT (\d+) -> (\w+)"#,
-                Box::new(move |c| {
-                    Instruction(
-                        Operation::RShift(c.get_operand(1), c.get_u8(2)),
-                        Var(c.get_string(3)),
-                    )
-                }),
-            ),
-        ];
-
-        transform_lines_by_regex(input, regexes)
+        transform_lines_by_regex(
+            input,
+            vec![
+                (
+                    r#"(\w+) -> (\w+)"#,
+                    Box::new(move |c| {
+                        Instruction(Operation::Assign(c.get_operand(1)), c.get_var(2))
+                    }),
+                ),
+                (
+                    r#"NOT (\w+) -> (\w+)"#,
+                    Box::new(move |c| {
+                        Instruction(Operation::Not(c.get_operand(1)), Var(c.get_string(2)))
+                    }),
+                ),
+                (
+                    r#"(\w+) AND (\w+) -> (\w+)"#,
+                    Box::new(move |c| {
+                        Instruction(
+                            Operation::And(c.get_operand(1), c.get_operand(2)),
+                            c.get_var(3),
+                        )
+                    }),
+                ),
+                (
+                    r#"(\w+) OR (\w+) -> (\w+)"#,
+                    Box::new(move |c| {
+                        Instruction(
+                            Operation::Or(c.get_operand(1), c.get_operand(2)),
+                            c.get_var(3),
+                        )
+                    }),
+                ),
+                (
+                    r#"(\w+) LSHIFT (\d+) -> (\w+)"#,
+                    Box::new(move |c| {
+                        Instruction(
+                            Operation::LShift(c.get_operand(1), c.get_u8(2)),
+                            Var(c.get_string(3)),
+                        )
+                    }),
+                ),
+                (
+                    r#"(\w+) RSHIFT (\d+) -> (\w+)"#,
+                    Box::new(move |c| {
+                        Instruction(
+                            Operation::RShift(c.get_operand(1), c.get_u8(2)),
+                            Var(c.get_string(3)),
+                        )
+                    }),
+                ),
+            ],
+        )
     }
 
     type Part1Output = u16;

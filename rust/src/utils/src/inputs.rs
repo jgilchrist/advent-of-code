@@ -39,8 +39,8 @@ impl Captures<'_> {
     }
 }
 
-pub type TransformRegexes<T> = Vec<(&'static str, TransformFn<T>)>;
-pub type TransformFn<T> = Box<dyn Fn(Captures) -> T>;
+type TransformRegexes<T> = Vec<(&'static str, TransformFn<T>)>;
+type TransformFn<T> = Box<dyn Fn(Captures) -> T>;
 
 pub fn transform_lines_by_regex<T>(input: &str, regexes: TransformRegexes<T>) -> Vec<T> {
     let compiled_regexes = regexes
