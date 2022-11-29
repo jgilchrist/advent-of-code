@@ -11,6 +11,7 @@ pub fn print_progress() {
     print_year_progress::<y2019::Y2019, 2019>();
     print_year_progress::<y2020::Y2020, 2020>();
     print_year_progress::<y2021::Y2021, 2021>();
+    print_year_progress::<y2022::Y2022, 2022>();
 }
 
 pub fn print_year_progress<TYear: AocYear, const NYEAR: u32>() {

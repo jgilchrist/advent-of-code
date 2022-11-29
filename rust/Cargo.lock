@@ -260,6 +260,7 @@ dependencies = [
  "y2019",
  "y2020",
  "y2021",
+ "y2022",
 ]
 
 [[package]]
@@ -410,6 +411,14 @@ dependencies = [
  "fancy-regex",
  "indicatif",
  "itertools",
+ "utils",
+]
+
+[[package]]
+name = "y2022"
+version = "0.1.0"
+dependencies = [
+ "aoc",
  "utils",
 ]
 
