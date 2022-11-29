@@ -1,0 +1,8 @@
+[package]
+name = "y2020"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+aoc = { "path" = "../aoc" }
+utils = { "path" = "../utils" }
