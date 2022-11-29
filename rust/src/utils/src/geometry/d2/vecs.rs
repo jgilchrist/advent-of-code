@@ -11,7 +11,7 @@ impl Vec2 {
         Self { x, y }
     }
 
-    pub fn distance_from(&self, rhs: Vec2) -> usize {
+    pub fn distance_from(&self, rhs: Self) -> usize {
         ((self.x - rhs.x).abs() + (self.y - rhs.y).abs())
             .try_into()
             .unwrap()
