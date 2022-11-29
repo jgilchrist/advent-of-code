@@ -1,7 +1,7 @@
 use itertools::Itertools;
 use once_cell::sync::Lazy;
 use std::collections::{HashMap, HashSet};
-use utils::vecs::Vec2;
+use utils::geometry::d2::vecs::Vec2;
 
 use aoc::{AocSolution, Solution};
 
