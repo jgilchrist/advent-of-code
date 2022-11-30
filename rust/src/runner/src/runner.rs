@@ -38,10 +38,11 @@ pub(crate) fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>
 
     let test_data = TSln::tests();
 
+    use aoc::Solution::*;
     match TSln::PART1_SOLUTION {
-        aoc::Solution::Solved(_)
-        | aoc::Solution::Wip
-        | aoc::Solution::WipWithKnownAnswerFromPython(_) => {
+        Solved(_)
+        | Wip
+        | WipWithKnownAnswerFromPython(_) => {
             if !test_data.is_empty() {
                 for (i, test) in test_data.iter().enumerate() {
                     let (test_input, expected_part1_output, _) = test;
@@ -82,18 +83,18 @@ pub(crate) fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>
             print!("{part1_solution}");
 
             let p1_checked = match TSln::PART1_SOLUTION {
-                aoc::Solution::Solved(expected)
-                | aoc::Solution::WipWithKnownAnswerFromPython(expected) => {
+                Solved(expected)
+                | WipWithKnownAnswerFromPython(expected) => {
                     if expected == part1_solution {
                         SolutionCheckStatus::Correct
                     } else {
                         SolutionCheckStatus::Incorrect
                     }
                 }
-                aoc::Solution::Wip => SolutionCheckStatus::Unknown,
-                aoc::Solution::Unsolved
-                | aoc::Solution::UnsolvedWithKnownAnswerFromPython(_)
-                | aoc::Solution::MerryChristmas => unreachable!(),
+                Wip => SolutionCheckStatus::Unknown,
+                Unsolved
+                | UnsolvedWithKnownAnswerFromPython(_)
+                | MerryChristmas => unreachable!(),
             };
 
             print!(
@@ -104,10 +105,10 @@ pub(crate) fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>
                 style(")").black().bold(),
             );
         }
-        aoc::Solution::MerryChristmas => {
+        MerryChristmas => {
             unreachable!()
         }
-        aoc::Solution::Unsolved | aoc::Solution::UnsolvedWithKnownAnswerFromPython(_) => {
+        Unsolved | UnsolvedWithKnownAnswerFromPython(_) => {
             print!(
                 "{}: {}",
                 style("1").black().bold(),
@@ -119,9 +120,9 @@ pub(crate) fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>
     println!();
 
     match TSln::PART2_SOLUTION {
-        aoc::Solution::Solved(_)
-        | aoc::Solution::Wip
-        | aoc::Solution::WipWithKnownAnswerFromPython(_) => {
+        Solved(_)
+        | Wip
+        | WipWithKnownAnswerFromPython(_) => {
             print!("{}: ", style("2").red().bold());
 
             let p2_started_timestamp = Instant::now();
@@ -129,18 +130,18 @@ pub(crate) fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>
             print!("{part2_solution}");
 
             let p2_checked = match TSln::PART2_SOLUTION {
-                aoc::Solution::Solved(expected)
-                | aoc::Solution::WipWithKnownAnswerFromPython(expected) => {
+                Solved(expected)
+                | WipWithKnownAnswerFromPython(expected) => {
                     if expected == part2_solution {
                         SolutionCheckStatus::Correct
                     } else {
                         SolutionCheckStatus::Incorrect
                     }
                 }
-                aoc::Solution::Wip => SolutionCheckStatus::Unknown,
-                aoc::Solution::Unsolved
-                | aoc::Solution::UnsolvedWithKnownAnswerFromPython(_)
-                | aoc::Solution::MerryChristmas => unreachable!(),
+                Wip => SolutionCheckStatus::Unknown,
+                Unsolved
+                | UnsolvedWithKnownAnswerFromPython(_)
+                | MerryChristmas => unreachable!(),
             };
 
             print!(
@@ -151,14 +152,14 @@ pub(crate) fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>
                 style(")").black().bold(),
             );
         }
-        aoc::Solution::MerryChristmas => {
+        MerryChristmas => {
             print!(
                 "{}: {}",
                 style("2").black().bold(),
                 style("Merry Christmas!").green().bold()
             );
         }
-        aoc::Solution::Unsolved | aoc::Solution::UnsolvedWithKnownAnswerFromPython(_) => {
+        Unsolved | UnsolvedWithKnownAnswerFromPython(_) => {
             print!(
                 "{}: {}",
                 style("2").black().bold(),

@@ -80,29 +80,31 @@ fn print_year_progress<TYear: AocYear, const NYEAR: u32>() {
 }
 
 fn print_day_header<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() {
+    use Solution::*;
     print!(
         "{:0>2}  ",
         match (TSln::PART1_SOLUTION, TSln::PART2_SOLUTION) {
-            (Solution::Solved(_), Solution::Solved(_)) => style(NDAY).yellow().bold(),
+            (Solved(_), Solved(_)) => style(NDAY).yellow().bold(),
             _ => style(NDAY).black().bold(),
         }
     );
 }
 
 fn print_day_progress<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() {
+    use Solution::*;
     print!(
         "{}{}  ",
         match TSln::PART1_SOLUTION {
-            Solution::Solved(_) | Solution::MerryChristmas => style("*").yellow().bold(),
-            Solution::Wip | Solution::WipWithKnownAnswerFromPython(_) => style("*").blue().bold(),
-            Solution::UnsolvedWithKnownAnswerFromPython(_) => style("*").black().bold(),
-            Solution::Unsolved => style(" "),
+            Solved(_) | MerryChristmas => style("*").yellow().bold(),
+            Wip | WipWithKnownAnswerFromPython(_) => style("*").blue().bold(),
+            UnsolvedWithKnownAnswerFromPython(_) => style("*").black().bold(),
+            Unsolved => style(" "),
         },
         match TSln::PART2_SOLUTION {
-            Solution::Solved(_) | Solution::MerryChristmas => style("*").yellow().bold(),
-            Solution::Wip | Solution::WipWithKnownAnswerFromPython(_) => style("*").blue().bold(),
-            Solution::UnsolvedWithKnownAnswerFromPython(_) => style("*").black().bold(),
-            Solution::Unsolved => style(" "),
+            Solved(_) | MerryChristmas => style("*").yellow().bold(),
+            Wip | WipWithKnownAnswerFromPython(_) => style("*").blue().bold(),
+            UnsolvedWithKnownAnswerFromPython(_) => style("*").black().bold(),
+            Unsolved => style(" "),
         }
     );
 }
