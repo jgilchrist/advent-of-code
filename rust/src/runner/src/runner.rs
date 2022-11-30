@@ -6,7 +6,7 @@ use std::time::{Duration, Instant};
 
 use console::style;
 
-pub(crate) fn init() {
+pub fn init() {
     // Ensure the cursor is always visible on exit, even if it was hidden
     let _ctrlc_handle = ctrlc::set_handler(move || {
         let term = console::Term::stderr();
@@ -15,7 +15,9 @@ pub(crate) fn init() {
     });
 }
 
-pub(crate) fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() -> Result<()> {
+pub fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() -> Result<()> {
+    use aoc::Solution::*;
+
     println!(
         "{}{} Day {:0>2}",
         style("=").red().bold(),
@@ -38,11 +40,8 @@ pub(crate) fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>
 
     let test_data = TSln::tests();
 
-    use aoc::Solution::*;
     match TSln::PART1_SOLUTION {
-        Solved(_)
-        | Wip
-        | WipWithKnownAnswerFromPython(_) => {
+        Solved(_) | Wip | WipWithKnownAnswerFromPython(_) => {
             if !test_data.is_empty() {
                 for (i, test) in test_data.iter().enumerate() {
                     let (test_input, expected_part1_output, _) = test;
@@ -83,8 +82,7 @@ pub(crate) fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>
             print!("{part1_solution}");
 
             let p1_checked = match TSln::PART1_SOLUTION {
-                Solved(expected)
-                | WipWithKnownAnswerFromPython(expected) => {
+                Solved(expected) | WipWithKnownAnswerFromPython(expected) => {
                     if expected == part1_solution {
                         SolutionCheckStatus::Correct
                     } else {
@@ -92,9 +90,7 @@ pub(crate) fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>
                     }
                 }
                 Wip => SolutionCheckStatus::Unknown,
-                Unsolved
-                | UnsolvedWithKnownAnswerFromPython(_)
-                | MerryChristmas => unreachable!(),
+                Unsolved | UnsolvedWithKnownAnswerFromPython(_) | MerryChristmas => unreachable!(),
             };
 
             print!(
@@ -120,9 +116,7 @@ pub(crate) fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>
     println!();
 
     match TSln::PART2_SOLUTION {
-        Solved(_)
-        | Wip
-        | WipWithKnownAnswerFromPython(_) => {
+        Solved(_) | Wip | WipWithKnownAnswerFromPython(_) => {
             print!("{}: ", style("2").red().bold());
 
             let p2_started_timestamp = Instant::now();
@@ -130,8 +124,7 @@ pub(crate) fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>
             print!("{part2_solution}");
 
             let p2_checked = match TSln::PART2_SOLUTION {
-                Solved(expected)
-                | WipWithKnownAnswerFromPython(expected) => {
+                Solved(expected) | WipWithKnownAnswerFromPython(expected) => {
                     if expected == part2_solution {
                         SolutionCheckStatus::Correct
                     } else {
@@ -139,9 +132,7 @@ pub(crate) fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>
                     }
                 }
                 Wip => SolutionCheckStatus::Unknown,
-                Unsolved
-                | UnsolvedWithKnownAnswerFromPython(_)
-                | MerryChristmas => unreachable!(),
+                Unsolved | UnsolvedWithKnownAnswerFromPython(_) | MerryChristmas => unreachable!(),
             };
 
             print!(
@@ -173,7 +164,7 @@ pub(crate) fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>
     Ok(())
 }
 
-pub(crate) fn run_year<TYear: AocYear, const NYEAR: u32>() -> Result<()> {
+pub fn run_year<TYear: AocYear, const NYEAR: u32>() -> Result<()> {
     run_solution::<TYear::D01, 1, NYEAR>()?;
     run_solution::<TYear::D02, 2, NYEAR>()?;
     run_solution::<TYear::D03, 3, NYEAR>()?;
@@ -202,7 +193,7 @@ pub(crate) fn run_year<TYear: AocYear, const NYEAR: u32>() -> Result<()> {
     Ok(())
 }
 
-pub(crate) fn run_year_solution<TYear: AocYear, const NYEAR: u32>(day: u32) -> Result<()> {
+pub fn run_year_solution<TYear: AocYear, const NYEAR: u32>(day: u32) -> Result<()> {
     match day {
         1 => run_solution::<TYear::D01, 1, NYEAR>()?,
         2 => run_solution::<TYear::D02, 2, NYEAR>()?,

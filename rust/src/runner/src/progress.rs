@@ -3,7 +3,7 @@
 use aoc::{AocSolution, AocYear, Solution};
 use console::style;
 
-pub(crate) fn print_progress() {
+pub fn print_progress() {
     print_year_progress::<y2015::Y2015, 2015>();
     print_year_progress::<y2016::Y2016, 2016>();
     print_year_progress::<y2017::Y2017, 2017>();
