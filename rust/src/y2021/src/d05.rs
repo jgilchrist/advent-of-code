@@ -82,7 +82,7 @@ impl AocSolution for Day05 {
     }
 
     type Part1Output = usize;
-    const PART1_SOLUTION: Solution<Self::Part1Output> = Solution::Wip;
+    const PART1_SOLUTION: Solution<Self::Part1Output> = Solution::Solved(6267);
     fn part1(input: &Self::Input) -> Self::Part1Output {
         let relevant_lines = input
             .iter()
@@ -96,7 +96,7 @@ impl AocSolution for Day05 {
     }
 
     type Part2Output = usize;
-    const PART2_SOLUTION: Solution<Self::Part2Output> = Solution::Wip;
+    const PART2_SOLUTION: Solution<Self::Part2Output> = Solution::Solved(20196);
     fn part2(input: &Self::Input) -> Self::Part2Output {
         let points = input.iter().flat_map(|line| line.points()).collect_vec();
 
