@@ -1,9 +1,8 @@
 use std::collections::{HashMap, HashSet};
 
 use aoc::{AocSolution, Solution};
-use fancy_regex::Regex;
 use itertools::Itertools;
-use utils::inputs::Captures;
+use utils::inputs::regex_lines;
 
 pub struct Day13;
 
@@ -45,17 +44,14 @@ impl AocSolution for Day13 {
         let mut pairings: HashMap<Pairing, i32> = HashMap::new();
         let mut people: HashSet<Person> = HashSet::new();
 
-        let line_regex =
-            Regex::new(r#"^(\w+) would (\w+) (\d+) happiness units by sitting next to (\w+).$"#)
-                .unwrap();
-
-        for line in input.lines() {
-            let captures = Captures(line_regex.captures(line).unwrap().unwrap());
-
-            let person = Person(captures.get_string(1));
-            let action = captures.get_string(2);
-            let points = captures.get_i32(3);
-            let adjacent_person = Person(captures.get_string(4));
+        for line in regex_lines(
+            input,
+            r#"(\w+) would (\w+) (\d+) happiness units by sitting next to (\w+)."#,
+        ) {
+            let person = Person(line.get_string(1));
+            let action = line.get_string(2);
+            let points = line.get_i32(3);
+            let adjacent_person = Person(line.get_string(4));
 
             let points_multiplier: i32 = match action.as_str() {
                 "gain" => 1,

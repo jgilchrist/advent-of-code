@@ -42,7 +42,7 @@ impl Captures<'_> {
 type TransformRegexes<T> = Vec<(&'static str, TransformFn<T>)>;
 type TransformFn<T> = Box<dyn Fn(Captures) -> T>;
 
-pub fn transform_lines_by_regex<T>(input: &str, regexes: TransformRegexes<T>) -> Vec<T> {
+pub fn regexes<T>(input: &str, regexes: TransformRegexes<T>) -> Vec<T> {
     let compiled_regexes = regexes
         .into_iter()
         .map(|(re, x)| ("^".to_owned() + re + "$", x))
@@ -51,20 +51,32 @@ pub fn transform_lines_by_regex<T>(input: &str, regexes: TransformRegexes<T>) ->
 
     let transformed_lines = input
         .lines()
-        .map(|l| transform_line_by_regex(&compiled_regexes, l))
+        .map(|l| {
+            let regexes: &[(Regex, TransformFn<T>)] = &compiled_regexes;
+            for (regex, transform_fn) in regexes.iter() {
+                if let Some(captures) = regex.captures(l).expect("Invalid regex") {
+                    return transform_fn(Captures(captures));
+                }
+            }
+
+            panic!("Did not match any regexes: \"{l}\"");
+        })
         .collect_vec();
 
     transformed_lines
 }
 
-fn transform_line_by_regex<T>(regexes: &[(Regex, TransformFn<T>)], line: &str) -> T {
-    for (regex, transform_fn) in regexes.iter() {
-        if let Some(captures) = regex.captures(line).expect("Invalid regex") {
-            return transform_fn(Captures(captures));
-        }
-    }
+pub fn regex_lines<'a>(input: &'a str, regex: &'static str) -> impl Iterator<Item = Captures<'a>> {
+    let compiled_regex = Regex::new(&("^".to_owned() + regex + "$")).unwrap();
 
-    panic!("Did not match any regexes: \"{line}\"");
+    input.lines().map(move |l| {
+        Captures(
+            compiled_regex
+                .captures(l)
+                .expect("Invalid regex")
+                .expect(&format!("Did not match regex: {}", l)),
+        )
+    })
 }
 
 pub fn lines(s: &str) -> Vec<String> {
