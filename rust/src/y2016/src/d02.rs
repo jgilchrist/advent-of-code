@@ -70,10 +70,7 @@ impl AocSolution for Day02 {
 
     type Input = Vec<Vec<CardinalDirection>>;
     fn process_input(input: &str) -> Self::Input {
-        input
-            .lines()
-            .map(get_instructions_from_line)
-            .collect_vec()
+        input.lines().map(get_instructions_from_line).collect_vec()
     }
 
     type Part1Output = &'static str;
