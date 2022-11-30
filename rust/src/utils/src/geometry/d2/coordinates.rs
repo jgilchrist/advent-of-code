@@ -49,10 +49,11 @@ impl CardinalDirection {
     pub fn as_vec(&self) -> Vec2 {
         use CardinalDirection::*;
         match *self {
-            North => Vec2::new(0, -1),
-            South => Vec2::new(0, 1),
-            East => Vec2::new(1, 0),
-            West => Vec2::new(-1, 0),
+            North => (0, -1),
+            South => (0, 1),
+            East => (1, 0),
+            West => (-1, 0),
         }
+        .into()
     }
 }

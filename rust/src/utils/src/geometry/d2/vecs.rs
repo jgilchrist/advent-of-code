@@ -13,12 +13,20 @@ impl Vec2 {
         Self { x, y }
     }
 
-    #[must_use] pub fn move_in_direction(&self, dir: CardinalDirection, amount: i32) -> Self {
+    #[must_use]
+    pub fn move_in_direction(&self, dir: CardinalDirection) -> Self {
+        self.move_in_direction_by(dir, 1)
+    }
+
+    #[must_use]
+    pub fn move_in_direction_by(&self, dir: CardinalDirection, amount: i32) -> Self {
         *self + dir.as_vec() * amount
     }
 
-    pub fn distance_from(&self, rhs: Self) -> usize {
-        ((self.x - rhs.x).abs() + (self.y - rhs.y).abs())
+    pub fn distance_from(&self, rhs: impl Into<Self>) -> usize {
+        let r = rhs.into();
+
+        ((self.x - r.x).abs() + (self.y - r.y).abs())
             .try_into()
             .unwrap()
     }
@@ -50,5 +58,11 @@ impl Mul<i32> for Vec2 {
             x: self.x * rhs,
             y: self.y * rhs,
         }
+    }
+}
+
+impl From<(i32, i32)> for Vec2 {
+    fn from(val: (i32, i32)) -> Self {
+        Self::new(val.0, val.1)
     }
 }
