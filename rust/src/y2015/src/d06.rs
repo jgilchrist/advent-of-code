@@ -1,7 +1,7 @@
 use aoc::{AocSolution, Solution};
 use utils::{
     geometry::d2::shapes::Square,
-    inputs::{transform_lines_by_regex, Captures},
+    inputs::{regexes, Captures},
 };
 
 pub struct Day06;
@@ -33,7 +33,7 @@ impl AocSolution for Day06 {
 
     type Input = Vec<(Square, Command)>;
     fn process_input(input: &str) -> Self::Input {
-        transform_lines_by_regex(
+        regexes(
             input,
             vec![
                 (

@@ -1,7 +1,7 @@
 use std::collections::HashMap;
 
 use aoc::{AocSolution, Solution};
-use utils::inputs::{transform_lines_by_regex, Captures};
+use utils::inputs::{regexes, Captures};
 
 pub struct Day07;
 
@@ -55,7 +55,7 @@ impl AocSolution for Day07 {
 
     type Input = Vec<Instruction>;
     fn process_input(input: &str) -> Self::Input {
-        transform_lines_by_regex(
+        regexes(
             input,
             vec![
                 (

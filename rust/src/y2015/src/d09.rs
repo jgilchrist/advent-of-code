@@ -2,9 +2,8 @@ use std::collections::HashMap;
 
 use aoc::{AocSolution, Solution};
 
-use fancy_regex::Regex;
 use itertools::Itertools;
-use utils::inputs::Captures;
+use utils::inputs::regex_lines;
 
 pub struct Day09;
 
@@ -46,22 +45,18 @@ impl AocSolution for Day09 {
 
     type Input = HashMap<Route, u32>;
     fn process_input(input: &str) -> Self::Input {
-        let mut distances: HashMap<Route, u32> = HashMap::new();
+        HashMap::from_iter(
+            regex_lines(input, r#"(\w+) to (\w+) = (\d+)"#).flat_map(|line| {
+                let from_city = City(line.get_string(1));
+                let to_city = City(line.get_string(2));
+                let distance = line.get_u32(3);
 
-        let line_regex = Regex::new(r#"^(\w+) to (\w+) = (\d+)$"#).unwrap();
-
-        for line in input.lines() {
-            let captures = Captures(line_regex.captures(line).unwrap().unwrap());
-
-            let from_city = City(captures.get_string(1));
-            let to_city = City(captures.get_string(2));
-            let distance = captures.get_u32(3);
-
-            distances.insert(Route(from_city.clone(), to_city.clone()), distance);
-            distances.insert(Route(to_city.clone(), from_city.clone()), distance);
-        }
-
-        distances
+                [
+                    (Route(from_city.clone(), to_city.clone()), distance),
+                    (Route(to_city.clone(), from_city.clone()), distance),
+                ]
+            }),
+        )
     }
 
     type Part1Output = u32;
