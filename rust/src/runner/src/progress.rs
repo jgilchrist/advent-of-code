@@ -3,7 +3,7 @@
 use aoc::{AocSolution, AocYear, Solution};
 use console::style;
 
-pub fn print_progress() {
+pub(crate) fn print_progress() {
     print_year_progress::<y2015::Y2015, 2015>();
     print_year_progress::<y2016::Y2016, 2016>();
     print_year_progress::<y2017::Y2017, 2017>();
@@ -14,7 +14,7 @@ pub fn print_progress() {
     print_year_progress::<y2022::Y2022, 2022>();
 }
 
-pub fn print_year_progress<TYear: AocYear, const NYEAR: u32>() {
+fn print_year_progress<TYear: AocYear, const NYEAR: u32>() {
     print!(
         "{} {} ",
         style(NYEAR).blue().bold(),
@@ -79,7 +79,7 @@ pub fn print_year_progress<TYear: AocYear, const NYEAR: u32>() {
     println!("     {} ", style("│").black().bold());
 }
 
-pub fn print_day_header<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() {
+fn print_day_header<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() {
     print!(
         "{:0>2}  ",
         match (TSln::PART1_SOLUTION, TSln::PART2_SOLUTION) {
@@ -89,7 +89,7 @@ pub fn print_day_header<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() 
     );
 }
 
-pub fn print_day_progress<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() {
+fn print_day_progress<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() {
     print!(
         "{}{}  ",
         match TSln::PART1_SOLUTION {
