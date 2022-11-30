@@ -1,5 +1,7 @@
 use std::ops::{Add, AddAssign, Mul};
 
+use super::coordinates::CardinalDirection;
+
 #[derive(PartialEq, Eq, Clone, Copy, Hash, Debug)]
 pub struct Vec2 {
     pub x: i32,
@@ -9,6 +11,10 @@ pub struct Vec2 {
 impl Vec2 {
     pub fn new(x: i32, y: i32) -> Self {
         Self { x, y }
+    }
+
+    #[must_use] pub fn move_in_direction(&self, dir: CardinalDirection, amount: i32) -> Self {
+        *self + dir.as_vec() * amount
     }
 
     pub fn distance_from(&self, rhs: Self) -> usize {
