@@ -7,14 +7,14 @@ pub enum TurnDirection {
 }
 
 #[derive(PartialEq, Eq, Clone, Copy, Debug)]
-pub enum CompassHeading {
+pub enum CardinalDirection {
     North,
     East,
     South,
     West,
 }
 
-impl CompassHeading {
+impl CardinalDirection {
     #[must_use]
     pub fn turn(&self, direction: TurnDirection) -> Self {
         use TurnDirection::*;
@@ -26,7 +26,7 @@ impl CompassHeading {
 
     #[must_use]
     pub fn clockwise(&self) -> Self {
-        use CompassHeading::*;
+        use CardinalDirection::*;
         match *self {
             North => East,
             East => South,
@@ -37,7 +37,7 @@ impl CompassHeading {
 
     #[must_use]
     pub fn anticlockwise(&self) -> Self {
-        use CompassHeading::*;
+        use CardinalDirection::*;
         match *self {
             North => West,
             East => North,
@@ -47,7 +47,7 @@ impl CompassHeading {
     }
 
     pub fn as_vec(&self) -> Vec2 {
-        use CompassHeading::*;
+        use CardinalDirection::*;
         match *self {
             North => Vec2::new(0, -1),
             South => Vec2::new(0, 1),

@@ -3,7 +3,7 @@ use std::collections::HashSet;
 use aoc::{AocSolution, Solution};
 use itertools::Itertools;
 use utils::geometry::d2::{
-    coordinates::{CompassHeading, TurnDirection},
+    coordinates::{CardinalDirection, TurnDirection},
     vecs::Vec2,
 };
 
@@ -14,7 +14,7 @@ pub struct Instruction {
 
 pub struct Day01;
 
-type State = (Vec2, CompassHeading);
+type State = (Vec2, CardinalDirection);
 
 fn run_instruction(state: &State, instruction: &Instruction) -> (State, Vec<Vec2>) {
     let &(position, heading) = state;
@@ -55,7 +55,7 @@ impl AocSolution for Day01 {
     const PART1_SOLUTION: Solution<Self::Part1Output> = Solution::Solved(252);
     fn part1(input: &Self::Input) -> Self::Part1Output {
         let start = Vec2::new(0, 0);
-        let mut state = (start, CompassHeading::North);
+        let mut state = (start, CardinalDirection::North);
 
         for instruction in input.iter() {
             (state, _) = run_instruction(&state, instruction);
@@ -71,7 +71,7 @@ impl AocSolution for Day01 {
         let mut visited_locations: HashSet<Vec2> = HashSet::new();
 
         let start = Vec2::new(0, 0);
-        let mut state = (start, CompassHeading::North);
+        let mut state = (start, CardinalDirection::North);
 
         for instruction in input.iter() {
             let (new_state, locs) = run_instruction(&state, instruction);
