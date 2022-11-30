@@ -1,12 +1,12 @@
 use super::vecs::Vec2;
 
-#[derive(PartialEq, Eq, Clone, Copy)]
+#[derive(PartialEq, Eq, Clone, Copy, Debug)]
 pub enum TurnDirection {
     Clockwise,
     Anticlockwise,
 }
 
-#[derive(PartialEq, Eq, Clone, Copy)]
+#[derive(PartialEq, Eq, Clone, Copy, Debug)]
 pub enum CompassHeading {
     North,
     East,
