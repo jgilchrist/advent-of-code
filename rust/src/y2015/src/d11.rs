@@ -1,6 +1,7 @@
 use itertools::Itertools;
 
 use aoc::{AocSolution, Solution};
+use utils::hacks::leak_string_to_str;
 
 pub struct Day11;
 
@@ -105,14 +106,8 @@ impl AocSolution for Day11 {
     type Part1Output = &'static str;
     const PART1_SOLUTION: Solution<Self::Part1Output> = Solution::Solved("cqjxxyzz");
     fn part1(input: &Self::Input) -> Self::Part1Output {
-        // TODO: Allow dynamically comparing strings
-        let solution = next_valid_password(input);
-
-        if solution != "cqjxxyzz" {
-            todo!()
-        }
-
-        "cqjxxyzz"
+        let password = next_valid_password(input);
+        leak_string_to_str(password)
     }
 
     type Part2Output = &'static str;
@@ -120,11 +115,6 @@ impl AocSolution for Day11 {
     fn part2(input: &Self::Input) -> Self::Part2Output {
         let new_password = Self::part1(input);
         let solution = next_valid_password(&increment_password(new_password));
-
-        if solution != "cqkaabcc" {
-            todo!()
-        }
-
-        "cqkaabcc"
+        leak_string_to_str(solution)
     }
 }

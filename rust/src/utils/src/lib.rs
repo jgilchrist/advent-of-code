@@ -16,5 +16,6 @@
 #![allow(clippy::must_use_candidate)]
 
 pub mod geometry;
+pub mod hacks;
 pub mod inputs;
 pub mod iters;
