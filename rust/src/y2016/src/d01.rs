@@ -54,8 +54,8 @@ impl AocSolution for Day01 {
     type Part1Output = usize;
     const PART1_SOLUTION: Solution<Self::Part1Output> = Solution::Solved(252);
     fn part1(input: &Self::Input) -> Self::Part1Output {
-        let start = Vec2::new(0, 0);
-        let mut state = (start, CardinalDirection::North);
+        let start = (0, 0);
+        let mut state: State = (start.into(), CardinalDirection::North);
 
         for instruction in input.iter() {
             (state, _) = run_instruction(&state, instruction);
@@ -70,7 +70,7 @@ impl AocSolution for Day01 {
     fn part2(input: &Self::Input) -> Self::Part2Output {
         let mut visited_locations: HashSet<Vec2> = HashSet::new();
 
-        let start = Vec2::new(0, 0);
+        let start: Vec2 = (0, 0).into();
         let mut state = (start, CardinalDirection::North);
 
         for instruction in input.iter() {

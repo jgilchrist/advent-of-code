@@ -1,6 +1,6 @@
 use aoc::{AocSolution, Solution};
 use utils::{
-    geometry::d2::{shapes::Square, vecs::Vec2},
+    geometry::d2::shapes::Square,
     inputs::{transform_lines_by_regex, Captures},
 };
 
@@ -20,8 +20,8 @@ pub trait CapturesExtensions {
 impl CapturesExtensions for Captures<'_> {
     fn get_square(&self) -> Square {
         Square::new(
-            Vec2::new(self.get_i32(1), self.get_i32(2)),
-            Vec2::new(self.get_i32(3), self.get_i32(4)),
+            (self.get_i32(1), self.get_i32(2)),
+            (self.get_i32(3), self.get_i32(4)),
         )
     }
 }
@@ -59,7 +59,7 @@ impl AocSolution for Day06 {
 
         for x in 0..1000 {
             for y in 0..1000 {
-                let pt = Vec2::new(x, y);
+                let pt = (x, y);
                 let mut lit = false;
 
                 for (square, command) in input {
@@ -88,7 +88,7 @@ impl AocSolution for Day06 {
 
         for x in 0..1000 {
             for y in 0..1000 {
-                let pt = Vec2::new(x, y);
+                let pt = (x, y);
                 let mut brightness = 0;
 
                 for (square, command) in input {

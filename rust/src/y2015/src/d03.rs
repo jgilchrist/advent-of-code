@@ -1,29 +1,29 @@
 use itertools::Itertools;
-use once_cell::sync::Lazy;
-use std::collections::{HashMap, HashSet};
-use utils::geometry::d2::vecs::Vec2;
+use std::collections::HashSet;
+use utils::geometry::d2::{coordinates::CardinalDirection, vecs::Vec2};
 
 use aoc::{AocSolution, Solution};
 
 pub struct Day03;
-
-static DIRECTION_MAP: Lazy<HashMap<char, Vec2>> = Lazy::new(|| {
-    HashMap::from([
-        ('^', Vec2::new(0, -1)),
-        ('v', Vec2::new(0, 1)),
-        ('<', Vec2::new(-1, 0)),
-        ('>', Vec2::new(1, 0)),
-    ])
-});
 
 impl AocSolution for Day03 {
     fn get_input() -> &'static str {
         include_str!("d03.in")
     }
 
-    type Input = String;
+    type Input = Vec<CardinalDirection>;
     fn process_input(input: &str) -> Self::Input {
-        input.trim().to_owned()
+        input
+            .trim()
+            .chars()
+            .map(|c| match c {
+                '^' => CardinalDirection::North,
+                'v' => CardinalDirection::South,
+                '<' => CardinalDirection::West,
+                '>' => CardinalDirection::East,
+                _ => unreachable!(),
+            })
+            .collect_vec()
     }
 
     type Part1Output = usize;
@@ -32,9 +32,8 @@ impl AocSolution for Day03 {
         let mut pos = Vec2 { x: 0, y: 0 };
         let mut visited = HashSet::from([pos]);
 
-        for char in input.chars() {
-            let direction = DIRECTION_MAP[&char];
-            pos += direction;
+        for direction in input {
+            pos = pos.move_in_direction(*direction);
             visited.insert(pos);
         }
 
@@ -49,18 +48,16 @@ impl AocSolution for Day03 {
 
         let mut visited = HashSet::from([santa, robo_santa]);
 
-        let santas_instructions = input.chars().step_by(2).collect_vec();
-        let robo_santas_instructions = input.chars().skip(1).step_by(2).collect_vec();
+        let santas_instructions = input.iter().step_by(2).collect_vec();
+        let robo_santas_instructions = input.iter().skip(1).step_by(2).collect_vec();
 
-        for char in &santas_instructions {
-            let direction = DIRECTION_MAP[char];
-            santa += direction;
+        for direction in santas_instructions {
+            santa = santa.move_in_direction(*direction);
             visited.insert(santa);
         }
 
-        for char in &robo_santas_instructions {
-            let direction = DIRECTION_MAP[char];
-            robo_santa += direction;
+        for direction in robo_santas_instructions {
+            robo_santa = robo_santa.move_in_direction(*direction);
             visited.insert(robo_santa);
         }
 

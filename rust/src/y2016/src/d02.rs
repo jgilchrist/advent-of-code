@@ -1,6 +1,9 @@
 use aoc::{AocSolution, Solution};
 use itertools::Itertools;
-use utils::{geometry::d2::{coordinates::CardinalDirection, vecs::Vec2}, hacks::leak_string_to_str};
+use utils::{
+    geometry::d2::{coordinates::CardinalDirection, vecs::Vec2},
+    hacks::leak_string_to_str,
+};
 
 pub struct Day02;
 
@@ -10,15 +13,16 @@ struct Map {
 
 impl Map {
     fn new(cells: Vec<Vec<Option<char>>>) -> Self {
-        Map {
-            cells,
-        }
+        Self { cells }
     }
 
+    #[allow(clippy::cast_sign_loss)]
     fn at(&self, pos: Vec2) -> Option<char> {
-        *self.cells.get(pos.y as usize)
-                  .and_then(|y| y.get(pos.x as usize))
-                  .unwrap_or(&None)
+        *self
+            .cells
+            .get(pos.y as usize)
+            .and_then(|y| y.get(pos.x as usize))
+            .unwrap_or(&None)
     }
 }
 
@@ -29,22 +33,26 @@ fn get_instructions_from_line(line: &str) -> Vec<CardinalDirection> {
             'D' => CardinalDirection::South,
             'L' => CardinalDirection::West,
             'R' => CardinalDirection::East,
-            _ => unreachable!()
+            _ => unreachable!(),
         })
         .collect_vec()
 }
 
-fn run_input(map: &Map, start: Vec2, instructions: &Vec<Vec<CardinalDirection>>) -> String {
+fn run_input(
+    map: &Map,
+    start: impl Into<Vec2>,
+    instructions: &Vec<Vec<CardinalDirection>>,
+) -> String {
     let mut code = String::new();
-    let mut pos = start.clone();
+    let mut pos = start.into();
 
     for line in instructions {
         for instruction in line {
-            let new_pos = pos.move_in_direction(*instruction, 1);
+            let new_pos = pos.move_in_direction(*instruction);
 
             let at_pos = map.at(new_pos);
 
-            if let Some(_) = at_pos {
+            if at_pos.is_some() {
                 pos = new_pos;
             }
         }
@@ -62,23 +70,22 @@ impl AocSolution for Day02 {
 
     type Input = Vec<Vec<CardinalDirection>>;
     fn process_input(input: &str) -> Self::Input {
-        input.lines()
-            .map(|l| get_instructions_from_line(l))
+        input
+            .lines()
+            .map(get_instructions_from_line)
             .collect_vec()
     }
 
     type Part1Output = &'static str;
     const PART1_SOLUTION: Solution<Self::Part1Output> = Solution::Solved("78293");
     fn part1(input: &Self::Input) -> Self::Part1Output {
-        let map = Map::new(
-            vec![
-                vec![Some('1'), Some('2'), Some('3')],
-                vec![Some('4'), Some('5'), Some('6')],
-                vec![Some('7'), Some('8'), Some('9')]
-            ],
-        );
+        let map = Map::new(vec![
+            vec![Some('1'), Some('2'), Some('3')],
+            vec![Some('4'), Some('5'), Some('6')],
+            vec![Some('7'), Some('8'), Some('9')],
+        ]);
 
-        let code = run_input(&map, Vec2::new(1, 1), input);
+        let code = run_input(&map, (1, 1), input);
 
         leak_string_to_str(code)
     }
@@ -91,10 +98,10 @@ impl AocSolution for Day02 {
             vec![None, Some('2'), Some('3'), Some('4'), None],
             vec![Some('5'), Some('6'), Some('7'), Some('8'), Some('9')],
             vec![None, Some('A'), Some('B'), Some('C'), None],
-            vec![None, None,  Some('D'), None, None],
+            vec![None, None, Some('D'), None, None],
         ]);
 
-        let code = run_input(&map, Vec2::new(0, 2), input);
+        let code = run_input(&map, (0, 2), input);
 
         leak_string_to_str(code)
     }
