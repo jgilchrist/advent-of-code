@@ -158,7 +158,9 @@ fn get_input(year: u32, day: u32) -> String {
     let manifest_dir = env!("CARGO_MANIFEST_DIR");
     let file_path_within_directory_structure = format!("y{year}/src/d{day:0>2}.in");
     let filename = format!("{manifest_dir}/../{file_path_within_directory_structure}");
-    let input = std::fs::read_to_string(&filename).expect(&format!("No input file: {file_path_within_directory_structure}"));
+    let input = std::fs::read_to_string(&filename).expect(&format!(
+        "No input file: {file_path_within_directory_structure}"
+    ));
     input
 }
 
