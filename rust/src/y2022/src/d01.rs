@@ -11,26 +11,26 @@ impl AocSolution for Day01 {
 
     type Input = Vec<u32>;
     fn process_input(input: &str) -> Self::Input {
-        input
+        let mut calories = input
             .split("\n\n")
             .map(|group| separated_by::<u32>(group, "\n"))
             .map(|group| group.iter().sum())
-            .collect_vec()
+            .collect_vec();
+
+        calories.sort_unstable();
+        calories.reverse();
+        calories
     }
 
     type Part1Output = u32;
     const PART1_SOLUTION: Solution<Self::Part1Output> = Solution::Solved(66616);
     fn part1(input: &Self::Input) -> Self::Part1Output {
-        *input.iter().max().unwrap()
+        *input.first().unwrap()
     }
 
     type Part2Output = u32;
     const PART2_SOLUTION: Solution<Self::Part2Output> = Solution::Solved(199172);
     fn part2(input: &Self::Input) -> Self::Part2Output {
-        let mut sorted_elves = input.clone();
-        sorted_elves.sort_unstable();
-        sorted_elves.reverse();
-
-        sorted_elves.iter().take(3).sum()
+        input.iter().take(3).sum()
     }
 }
