@@ -107,15 +107,13 @@ impl AocSolution for Day07 {
         )
     }
 
-    type Part1Output = u16;
-    const PART1_SOLUTION: Solution<Self::Part1Output> = Solution::Solved(3176);
-    fn part1(input: &Self::Input) -> Self::Part1Output {
+    const PART1_SOLUTION: Solution = solution(3176);
+    fn part1(input: &Self::Input) -> impl Into<Solution> {
         run_instructions(input)[&Var("a".to_owned())]
     }
 
-    type Part2Output = u16;
-    const PART2_SOLUTION: Solution<Self::Part2Output> = Solution::Solved(14710);
-    fn part2(input: &Self::Input) -> Self::Part2Output {
+    const PART2_SOLUTION: Solution = solution(14710);
+    fn part2(input: &Self::Input) -> impl Into<Solution> {
         let a_state = run_instructions(input)[&Var("a".to_owned())];
 
         let mut instructions = input.clone();

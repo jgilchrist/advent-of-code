@@ -1,7 +1,7 @@
 #![allow(clippy::print_stdout)]
 
 use anyhow::{bail, Result};
-use aoc::{AocSolution, AocYear};
+use aoc::{AocSolution, AocYear, SolutionStatus};
 use std::time::{Duration, Instant};
 
 use console::style;
@@ -16,8 +16,6 @@ pub fn init() {
 }
 
 pub fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() -> Result<()> {
-    use aoc::Solution::*;
-
     println!(
         "{}{} Day {:0>2}",
         style("=").red().bold(),
@@ -40,15 +38,15 @@ pub fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() -> R
 
     let test_data = TSln::tests();
 
-    match TSln::PART1_SOLUTION {
-        Solved(_) | Wip | WipWithKnownAnswerFromPython(_) => {
+    match TSln::PART1_STATUS {
+        SolutionStatus::Solved | SolutionStatus::Wip => {
             if !test_data.is_empty() {
                 for (i, test) in test_data.iter().enumerate() {
                     let (test_input, expected_part1_output, _) = test;
                     let processed_test_input = TSln::process_input(test_input);
 
                     if let Some(expected_part1_output) = expected_part1_output {
-                        let actual_part1_output = TSln::part1(&processed_test_input);
+                        let actual_part1_output = TSln::part1(&processed_test_input).into();
                         let passed_part1_test = actual_part1_output == *expected_part1_output;
 
                         if passed_part1_test {
@@ -78,19 +76,20 @@ pub fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() -> R
             print!("{}: ", style("1").red().bold());
 
             let p1_started_timestamp = Instant::now();
-            let part1_solution = TSln::part1(&processed_input);
+            let part1_solution = TSln::part1(&processed_input).into();
             print!("{part1_solution}");
 
-            let p1_checked = match TSln::PART1_SOLUTION {
-                Solved(expected) | WipWithKnownAnswerFromPython(expected) => {
-                    if expected == part1_solution {
+            let p1_checked = match TSln::PART1_STATUS {
+                SolutionStatus::Solved => {
+                    if TSln::PART1_SOLUTION == part1_solution {
                         SolutionCheckStatus::Correct
                     } else {
                         SolutionCheckStatus::Incorrect
                     }
                 }
-                Wip => SolutionCheckStatus::Unknown,
-                Unsolved | UnsolvedWithKnownAnswerFromPython(_) | MerryChristmas => unreachable!(),
+                SolutionStatus::SolvedInPython => SolutionCheckStatus::Unknown,
+                SolutionStatus::Wip => SolutionCheckStatus::Unknown,
+                SolutionStatus::Unsolved => unreachable!(),
             };
 
             print!(
@@ -101,10 +100,7 @@ pub fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() -> R
                 style(")").black().bold(),
             );
         }
-        MerryChristmas => {
-            unreachable!()
-        }
-        Unsolved | UnsolvedWithKnownAnswerFromPython(_) => {
+        SolutionStatus::SolvedInPython | SolutionStatus::Unsolved => {
             print!(
                 "{}: {}",
                 style("1").black().bold(),
@@ -115,24 +111,25 @@ pub fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() -> R
 
     println!();
 
-    match TSln::PART2_SOLUTION {
-        Solved(_) | Wip | WipWithKnownAnswerFromPython(_) => {
+    match TSln::PART2_STATUS {
+        SolutionStatus::Solved | SolutionStatus::Wip => {
             print!("{}: ", style("2").red().bold());
 
             let p2_started_timestamp = Instant::now();
-            let part2_solution = TSln::part2(&processed_input);
+            let part2_solution = TSln::part2(&processed_input).into();
             print!("{part2_solution}");
 
-            let p2_checked = match TSln::PART2_SOLUTION {
-                Solved(expected) | WipWithKnownAnswerFromPython(expected) => {
-                    if expected == part2_solution {
+            let p2_checked = match TSln::PART2_STATUS {
+                SolutionStatus::Solved => {
+                    if TSln::PART2_SOLUTION == part2_solution {
                         SolutionCheckStatus::Correct
                     } else {
                         SolutionCheckStatus::Incorrect
                     }
                 }
-                Wip => SolutionCheckStatus::Unknown,
-                Unsolved | UnsolvedWithKnownAnswerFromPython(_) | MerryChristmas => unreachable!(),
+                SolutionStatus::SolvedInPython => SolutionCheckStatus::Unknown,
+                SolutionStatus::Wip => SolutionCheckStatus::Unknown,
+                SolutionStatus::Unsolved => unreachable!(),
             };
 
             print!(
@@ -143,17 +140,10 @@ pub fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() -> R
                 style(")").black().bold(),
             );
         }
-        MerryChristmas => {
+        SolutionStatus::SolvedInPython | SolutionStatus::Unsolved => {
             print!(
                 "{}: {}",
-                style("2").black().bold(),
-                style("Merry Christmas!").green().bold()
-            );
-        }
-        Unsolved | UnsolvedWithKnownAnswerFromPython(_) => {
-            print!(
-                "{}: {}",
-                style("2").black().bold(),
+                style("1").black().bold(),
                 style("Unsolved").black().bold()
             );
         }

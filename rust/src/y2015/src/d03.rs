@@ -24,9 +24,8 @@ impl AocSolution for Day03 {
             .collect_vec()
     }
 
-    type Part1Output = usize;
-    const PART1_SOLUTION: Solution<Self::Part1Output> = Solution::Solved(2565);
-    fn part1(input: &Self::Input) -> Self::Part1Output {
+    const PART1_SOLUTION: Solution = solution(2565);
+    fn part1(input: &Self::Input) -> impl Into<Solution> {
         let mut pos = Vec2 { x: 0, y: 0 };
         let mut visited = HashSet::from([pos]);
 
@@ -38,9 +37,8 @@ impl AocSolution for Day03 {
         visited.len()
     }
 
-    type Part2Output = usize;
-    const PART2_SOLUTION: Solution<Self::Part2Output> = Solution::Solved(2639);
-    fn part2(input: &Self::Input) -> Self::Part2Output {
+    const PART2_SOLUTION: Solution = solution(2639);
+    fn part2(input: &Self::Input) -> impl Into<Solution> {
         let mut santa = Vec2 { x: 0, y: 0 };
         let mut robo_santa = Vec2 { x: 0, y: 0 };
 

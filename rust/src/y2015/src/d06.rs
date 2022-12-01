@@ -1,7 +1,5 @@
 use prelude::*;
-use utils::{
-    geometry::d2::shapes::Square
-};
+use utils::geometry::d2::shapes::Square;
 
 pub struct Day06;
 
@@ -51,9 +49,8 @@ impl AocSolution for Day06 {
         )
     }
 
-    type Part1Output = usize;
-    const PART1_SOLUTION: Solution<Self::Part1Output> = Solution::Solved(400410);
-    fn part1(input: &Self::Input) -> Self::Part1Output {
+    const PART1_SOLUTION: Solution = solution(400410);
+    fn part1(input: &Self::Input) -> impl Into<Solution> {
         let mut points = Vec::new();
 
         for x in 0..1000 {
@@ -80,9 +77,8 @@ impl AocSolution for Day06 {
         points.len()
     }
 
-    type Part2Output = isize;
-    const PART2_SOLUTION: Solution<Self::Part2Output> = Solution::Solved(15343601);
-    fn part2(input: &Self::Input) -> Self::Part2Output {
+    const PART2_SOLUTION: Solution = solution(15343601);
+    fn part2(input: &Self::Input) -> impl Into<Solution> {
         let mut total_brightness = 0;
 
         for x in 0..1000 {

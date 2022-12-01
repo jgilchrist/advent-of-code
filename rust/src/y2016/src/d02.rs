@@ -69,23 +69,19 @@ impl AocSolution for Day02 {
         input.lines().map(get_instructions_from_line).collect_vec()
     }
 
-    type Part1Output = &'static str;
-    const PART1_SOLUTION: Solution<Self::Part1Output> = Solution::Solved("78293");
-    fn part1(input: &Self::Input) -> Self::Part1Output {
+    const PART1_SOLUTION: Solution = solution("78293");
+    fn part1(input: &Self::Input) -> impl Into<Solution> {
         let map = Map::new(vec![
             vec![Some('1'), Some('2'), Some('3')],
             vec![Some('4'), Some('5'), Some('6')],
             vec![Some('7'), Some('8'), Some('9')],
         ]);
 
-        let code = run_input(&map, (1, 1), input);
-
-        leak_string_to_str(code)
+        run_input(&map, (1, 1), input)
     }
 
-    type Part2Output = &'static str;
-    const PART2_SOLUTION: Solution<Self::Part2Output> = Solution::Solved("AC8C8");
-    fn part2(input: &Self::Input) -> Self::Part2Output {
+    const PART2_SOLUTION: Solution = solution("AC8C8");
+    fn part2(input: &Self::Input) -> impl Into<Solution> {
         let map = Map::new(vec![
             vec![None, None, Some('1'), None, None],
             vec![None, Some('2'), Some('3'), Some('4'), None],
@@ -94,8 +90,6 @@ impl AocSolution for Day02 {
             vec![None, None, Some('D'), None, None],
         ]);
 
-        let code = run_input(&map, (0, 2), input);
-
-        leak_string_to_str(code)
+        run_input(&map, (0, 2), input)
     }
 }

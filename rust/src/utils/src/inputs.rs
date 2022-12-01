@@ -83,8 +83,10 @@ pub fn lines(s: &str) -> Vec<String> {
     s.lines().map(|l| l.to_owned()).collect()
 }
 
-pub fn separated_by<T>(s: &str, separator: &str) -> Vec<T> where T: FromStr,
-    <T as FromStr>::Err: std::fmt::Debug
+pub fn separated_by<T>(s: &str, separator: &str) -> Vec<T>
+where
+    T: FromStr,
+    <T as FromStr>::Err: std::fmt::Debug,
 {
     s.trim()
         .split(separator)
