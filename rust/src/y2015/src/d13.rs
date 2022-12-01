@@ -66,8 +66,7 @@ impl AocSolution for Day13 {
         max_seating_plan_utility(people, pairings)
     }
 
-    const PART2_STATUS: SolutionStatus = SolutionStatus::Wip;
-    const PART2_SOLUTION: Solution = Solution::Unsolved;
+    const PART2_SOLUTION: Solution = solution(725);
     fn part2(input: &Self::Input) -> impl Into<Solution> {
         let input = input.clone();
         let (mut people, mut pairings) = input;
