@@ -83,15 +83,21 @@ pub fn lines(s: &str) -> Vec<String> {
     s.lines().map(|l| l.to_owned()).collect()
 }
 
+pub fn separated_by<T>(s: &str, separator: &str) -> Vec<T> where T: FromStr,
+    <T as FromStr>::Err: std::fmt::Debug
+{
+    s.trim()
+        .split(separator)
+        .map(|i| i.parse::<T>().unwrap())
+        .collect()
+}
+
 pub fn comma_separated<T>(s: &str) -> Vec<T>
 where
     T: FromStr,
     <T as FromStr>::Err: std::fmt::Debug,
 {
-    s.trim()
-        .split(',')
-        .map(|i| i.parse::<T>().unwrap())
-        .collect()
+    separated_by::<T>(s, ",")
 }
 
 pub fn positive_numbers(s: &str) -> Vec<u32> {
