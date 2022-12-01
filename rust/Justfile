@@ -1,6 +1,9 @@
 help:
 	@just --list
 
+build:
+	@cargo build --release
+
 run-year YEAR:
 	@cargo run --release -- {{YEAR}}
 
