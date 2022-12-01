@@ -1,6 +1,4 @@
-use aoc::{AocSolution, Solution};
-use itertools::Itertools;
-use utils::inputs::separated_by;
+use prelude::*;
 
 pub struct Day01;
 
@@ -13,7 +11,7 @@ impl AocSolution for Day01 {
     fn process_input(input: &str) -> Self::Input {
         let mut calories = input
             .split("\n\n")
-            .map(|group| separated_by::<u32>(group, "\n"))
+            .map(|group| inputs::separated_by::<u32>(group, "\n"))
             .map(|group| group.iter().sum())
             .collect_vec();
 

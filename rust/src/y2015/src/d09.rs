@@ -1,9 +1,4 @@
-use std::collections::HashMap;
-
-use aoc::{AocSolution, Solution};
-
-use itertools::Itertools;
-use utils::inputs::regex_lines;
+use prelude::*;
 
 pub struct Day09;
 
@@ -46,7 +41,7 @@ impl AocSolution for Day09 {
     type Input = HashMap<Route, u32>;
     fn process_input(input: &str) -> Self::Input {
         HashMap::from_iter(
-            regex_lines(input, r#"(\w+) to (\w+) = (\d+)"#).flat_map(|line| {
+            inputs::regex_lines(input, r#"(\w+) to (\w+) = (\d+)"#).flat_map(|line| {
                 let from_city = City(line.get_string(1));
                 let to_city = City(line.get_string(2));
                 let distance = line.get_u32(3);

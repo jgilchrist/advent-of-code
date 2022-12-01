@@ -1,6 +1,5 @@
-use itertools::Itertools;
+use prelude::*;
 
-use aoc::{AocSolution, Solution};
 use utils::hacks::leak_string_to_str;
 
 pub struct Day11;

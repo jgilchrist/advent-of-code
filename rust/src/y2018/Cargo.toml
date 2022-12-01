@@ -5,4 +5,5 @@ edition = "2021"
 
 [dependencies]
 aoc = { "path" = "../aoc" }
+prelude = { "path" = "../prelude" }
 utils = { "path" = "../utils" }

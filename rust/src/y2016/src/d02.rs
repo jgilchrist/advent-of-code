@@ -1,9 +1,5 @@
-use aoc::{AocSolution, Solution};
-use itertools::Itertools;
-use utils::{
-    geometry::d2::{coordinates::CardinalDirection, vecs::Vec2},
-    hacks::leak_string_to_str,
-};
+use prelude::*;
+use utils::geometry::d2::{coordinates::CardinalDirection, vecs::Vec2};
 
 pub struct Day02;
 

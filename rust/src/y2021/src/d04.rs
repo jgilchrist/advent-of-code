@@ -1,7 +1,4 @@
-use std::collections::HashSet;
-
-use aoc::{AocSolution, Solution};
-use utils::inputs::comma_separated;
+use prelude::*;
 
 pub struct Day04;
 
@@ -72,7 +69,7 @@ impl AocSolution for Day04 {
     fn process_input(input: &str) -> Self::Input {
         let mut file = input.lines();
 
-        let bingo_numbers = comma_separated::<u32>(file.next().unwrap());
+        let bingo_numbers = inputs::comma_separated::<u32>(file.next().unwrap());
 
         let mut boards: Vec<Board> = vec![];
         let mut board_lines: Vec<Vec<u32>> = vec![];

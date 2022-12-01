@@ -1,7 +1,4 @@
-use std::collections::HashMap;
-
-use aoc::{AocSolution, Solution};
-use utils::inputs::{regexes, Captures};
+use prelude::*;
 
 pub struct Day07;
 
@@ -32,7 +29,7 @@ pub trait CapturesExtensions {
     fn get_operand(&self, idx: usize) -> Operand;
 }
 
-impl CapturesExtensions for Captures<'_> {
+impl CapturesExtensions for inputs::Captures<'_> {
     fn get_var(&self, idx: usize) -> Var {
         Var(self.get_string(idx))
     }
@@ -55,7 +52,7 @@ impl AocSolution for Day07 {
 
     type Input = Vec<Instruction>;
     fn process_input(input: &str) -> Self::Input {
-        regexes(
+        inputs::regexes(
             input,
             vec![
                 (

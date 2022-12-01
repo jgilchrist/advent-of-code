@@ -1,8 +1,4 @@
-use std::collections::{HashMap, HashSet};
-
-use aoc::{AocSolution, Solution};
-use itertools::Itertools;
-use utils::inputs::regex_lines;
+use prelude::*;
 
 pub struct Day13;
 
@@ -44,7 +40,7 @@ impl AocSolution for Day13 {
         let mut pairings: HashMap<Pairing, i32> = HashMap::new();
         let mut people: HashSet<Person> = HashSet::new();
 
-        for line in regex_lines(
+        for line in inputs::regex_lines(
             input,
             r#"(\w+) would (\w+) (\d+) happiness units by sitting next to (\w+)."#,
         ) {

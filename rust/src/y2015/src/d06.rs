@@ -1,7 +1,6 @@
-use aoc::{AocSolution, Solution};
+use prelude::*;
 use utils::{
-    geometry::d2::shapes::Square,
-    inputs::{regexes, Captures},
+    geometry::d2::shapes::Square
 };
 
 pub struct Day06;
@@ -17,7 +16,7 @@ pub trait CapturesExtensions {
     fn get_square(&self) -> Square;
 }
 
-impl CapturesExtensions for Captures<'_> {
+impl CapturesExtensions for inputs::Captures<'_> {
     fn get_square(&self) -> Square {
         Square::new(
             (self.get_i32(1), self.get_i32(2)),
@@ -33,7 +32,7 @@ impl AocSolution for Day06 {
 
     type Input = Vec<(Square, Command)>;
     fn process_input(input: &str) -> Self::Input {
-        regexes(
+        inputs::regexes(
             input,
             vec![
                 (
