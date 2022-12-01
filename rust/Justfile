@@ -9,7 +9,7 @@ profile YEAR DAY:
 	@cargo flamegraph --flamechart --deterministic --root --open --output ./target/flamegraphs/{{YEAR}}-{{DAY}}-$(date +%s).svg -- {{YEAR}} {{DAY}}
 
 new YEAR DAY:
-	@cp --no-clobber template.rs ./src/y{{YEAR}}/d{{DAY}}.rs && sed -i 's/DAY/{{DAY}}/g' ./src/y{{YEAR}}/d{{DAY}}.rs
+	@cp --no-clobber template.rs ./src/y{{YEAR}}/src/d{{DAY}}.rs && sed -i 's/DAY/{{DAY}}/g' ./src/y{{YEAR}}/src/d{{DAY}}.rs
 
 progress:
 	@cargo run
