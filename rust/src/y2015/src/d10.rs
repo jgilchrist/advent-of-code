@@ -25,10 +25,6 @@ fn compress_number(number: &str) -> String {
 }
 
 impl AocSolution for Day10 {
-    fn get_input() -> &'static str {
-        include_str!("d10.in")
-    }
-
     type Input = String;
     fn process_input(input: &str) -> Self::Input {
         input.trim().to_owned()

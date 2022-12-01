@@ -17,10 +17,6 @@ fn count_valid_triangles(ts: &[Triangle]) -> usize {
 }
 
 impl AocSolution for Day03 {
-    fn get_input() -> &'static str {
-        include_str!("d03.in")
-    }
-
     type Input = Vec<[u32; 3]>;
     fn process_input(input: &str) -> Self::Input {
         input

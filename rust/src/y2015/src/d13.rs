@@ -31,10 +31,6 @@ fn max_seating_plan_utility(people: &HashSet<Person>, pairings: &HashMap<Pairing
 }
 
 impl AocSolution for Day13 {
-    fn get_input() -> &'static str {
-        include_str!("d13.in")
-    }
-
     type Input = (HashSet<Person>, HashMap<Pairing, i32>);
     fn process_input(input: &str) -> Self::Input {
         let mut pairings: HashMap<Pairing, i32> = HashMap::new();

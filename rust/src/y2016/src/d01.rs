@@ -28,10 +28,6 @@ fn run_instruction(state: &State, instruction: &Instruction) -> (State, Vec<Vec2
 }
 
 impl AocSolution for Day01 {
-    fn get_input() -> &'static str {
-        include_str!("d01.in")
-    }
-
     type Input = Vec<Instruction>;
     fn process_input(input: &str) -> Self::Input {
         input

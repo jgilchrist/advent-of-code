@@ -34,10 +34,6 @@ fn calculate_all_journey_distances(distances: &HashMap<Route, u32>) -> Vec<u32> 
 }
 
 impl AocSolution for Day09 {
-    fn get_input() -> &'static str {
-        include_str!("d09.in")
-    }
-
     type Input = HashMap<Route, u32>;
     fn process_input(input: &str) -> Self::Input {
         HashMap::from_iter(

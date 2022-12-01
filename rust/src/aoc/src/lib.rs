@@ -118,8 +118,6 @@ pub trait AocSolution {
         vec![]
     }
 
-    fn get_input() -> &'static str;
-
     type Input;
     fn process_input(input: &str) -> Self::Input;
 
@@ -134,10 +132,6 @@ pub trait AocSolution {
 
 pub struct Unsolved;
 impl AocSolution for Unsolved {
-    fn get_input() -> &'static str {
-        ""
-    }
-
     type Input = ();
     fn process_input(_: &str) -> Self::Input {}
 

@@ -91,10 +91,6 @@ fn next_valid_password(password: &str) -> String {
 }
 
 impl AocSolution for Day11 {
-    fn get_input() -> &'static str {
-        include_str!("d11.in")
-    }
-
     type Input = String;
     fn process_input(input: &str) -> Self::Input {
         input.trim().to_owned()

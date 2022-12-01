@@ -5,10 +5,6 @@ use utils::geometry::d2::{coordinates::CardinalDirection, vecs::Vec2};
 pub struct Day03;
 
 impl AocSolution for Day03 {
-    fn get_input() -> &'static str {
-        include_str!("d03.in")
-    }
-
     type Input = Vec<CardinalDirection>;
     fn process_input(input: &str) -> Self::Input {
         input

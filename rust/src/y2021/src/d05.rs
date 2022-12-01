@@ -71,10 +71,6 @@ fn parse_line(s: &str) -> Line {
 }
 
 impl AocSolution for Day05 {
-    fn get_input() -> &'static str {
-        include_str!("d05.in")
-    }
-
     type Input = Vec<Line>;
     fn process_input(input: &str) -> Self::Input {
         input.lines().map(parse_line).collect()

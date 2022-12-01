@@ -60,10 +60,6 @@ fn run_input(
 }
 
 impl AocSolution for Day02 {
-    fn get_input() -> &'static str {
-        include_str!("d02.in")
-    }
-
     type Input = Vec<Vec<CardinalDirection>>;
     fn process_input(input: &str) -> Self::Input {
         input.lines().map(get_instructions_from_line).collect_vec()
