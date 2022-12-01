@@ -1,6 +1,9 @@
 help:
 	@just --list
 
+run-year YEAR:
+	@cargo run --release -- {{YEAR}}
+
 run YEAR DAY:
 	@cargo run --release -- {{YEAR}} {{DAY}}
 
