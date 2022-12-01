@@ -12,4 +12,4 @@ new YEAR DAY:
 	@cp --no-clobber template.rs ./src/y{{YEAR}}/src/d{{DAY}}.rs && sed -i 's/DAY/{{DAY}}/g' ./src/y{{YEAR}}/src/d{{DAY}}.rs
 
 progress:
-	@cargo run
+	@cargo run --release
