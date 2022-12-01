@@ -34,9 +34,8 @@ impl AocSolution for Day10 {
         input.trim().to_owned()
     }
 
-    type Part1Output = usize;
-    const PART1_SOLUTION: Solution<Self::Part1Output> = Solution::Solved(252594);
-    fn part1(input: &Self::Input) -> Self::Part1Output {
+    const PART1_SOLUTION: Solution = solution(252594);
+    fn part1(input: &Self::Input) -> impl Into<Solution> {
         let mut s = input.clone();
 
         for _ in 0..40 {
@@ -46,9 +45,8 @@ impl AocSolution for Day10 {
         s.len()
     }
 
-    type Part2Output = usize;
-    const PART2_SOLUTION: Solution<Self::Part2Output> = Solution::Solved(3579328);
-    fn part2(input: &Self::Input) -> Self::Part2Output {
+    const PART2_SOLUTION: Solution = solution(3579328);
+    fn part2(input: &Self::Input) -> impl Into<Solution> {
         let mut s = input.clone();
 
         for _ in 0..50 {

@@ -63,17 +63,16 @@ impl AocSolution for Day13 {
         (people, pairings)
     }
 
-    type Part1Output = i32;
-    const PART1_SOLUTION: Solution<Self::Part1Output> = Solution::Solved(733);
-    fn part1(input: &Self::Input) -> Self::Part1Output {
+    const PART1_SOLUTION: Solution = solution(733);
+    fn part1(input: &Self::Input) -> impl Into<Solution> {
         let (people, pairings) = input;
 
         max_seating_plan_utility(people, pairings)
     }
 
-    type Part2Output = i32;
-    const PART2_SOLUTION: Solution<Self::Part2Output> = Solution::Wip;
-    fn part2(input: &Self::Input) -> Self::Part2Output {
+    const PART2_STATUS: SolutionStatus = SolutionStatus::Wip;
+    const PART2_SOLUTION: Solution = Solution::Unsolved;
+    fn part2(input: &Self::Input) -> impl Into<Solution> {
         let input = input.clone();
         let (mut people, mut pairings) = input;
 

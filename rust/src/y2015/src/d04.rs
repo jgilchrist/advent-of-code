@@ -24,9 +24,8 @@ impl AocSolution for Day04 {
         input.trim().to_owned()
     }
 
-    type Part1Output = usize;
-    const PART1_SOLUTION: Solution<Self::Part1Output> = Solution::Solved(346386);
-    fn part1(input: &Self::Input) -> Self::Part1Output {
+    const PART1_SOLUTION: Solution = solution(346386);
+    fn part1(input: &Self::Input) -> impl Into<Solution> {
         for (i, hash) in all_hashes(input).enumerate() {
             if hash.starts_with("00000") {
                 return i;
@@ -36,9 +35,8 @@ impl AocSolution for Day04 {
         unreachable!()
     }
 
-    type Part2Output = usize;
-    const PART2_SOLUTION: Solution<Self::Part2Output> = Solution::Solved(9958218);
-    fn part2(input: &Self::Input) -> Self::Part2Output {
+    const PART2_SOLUTION: Solution = solution(9958218);
+    fn part2(input: &Self::Input) -> impl Into<Solution> {
         for (i, hash) in all_hashes(input).enumerate() {
             if hash.starts_with("000000") {
                 return i;

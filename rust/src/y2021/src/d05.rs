@@ -80,9 +80,8 @@ impl AocSolution for Day05 {
         input.lines().map(parse_line).collect()
     }
 
-    type Part1Output = usize;
-    const PART1_SOLUTION: Solution<Self::Part1Output> = Solution::Solved(6267);
-    fn part1(input: &Self::Input) -> Self::Part1Output {
+    const PART1_SOLUTION: Solution = solution(6267);
+    fn part1(input: &Self::Input) -> impl Into<Solution> {
         let relevant_lines = input
             .iter()
             .filter(|line| line.is_horizontal() || line.is_vertical());
@@ -94,9 +93,8 @@ impl AocSolution for Day05 {
         counted_points.into_iter().filter(|&(_, v)| v >= 2).count()
     }
 
-    type Part2Output = usize;
-    const PART2_SOLUTION: Solution<Self::Part2Output> = Solution::Solved(20196);
-    fn part2(input: &Self::Input) -> Self::Part2Output {
+    const PART2_SOLUTION: Solution = solution(20196);
+    fn part2(input: &Self::Input) -> impl Into<Solution> {
         let points = input.iter().flat_map(|line| line.points()).collect_vec();
 
         let counted_points = count_items(&points);

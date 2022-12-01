@@ -67,15 +67,13 @@ impl AocSolution for Day02 {
         input.lines().map(parse_line).collect_vec()
     }
 
-    type Part1Output = u32;
-    const PART1_SOLUTION: Solution<Self::Part1Output> = Solution::Solved(1586300);
-    fn part1(input: &Self::Input) -> Self::Part1Output {
-        input.iter().map(paper_area_required).sum()
+    const PART1_SOLUTION: Solution = solution(1586300);
+    fn part1(input: &Self::Input) -> impl Into<Solution> {
+        input.iter().map(paper_area_required).sum::<u32>()
     }
 
-    type Part2Output = u32;
-    const PART2_SOLUTION: Solution<Self::Part2Output> = Solution::Solved(3737498);
-    fn part2(input: &Self::Input) -> Self::Part2Output {
-        input.iter().map(ribbon_length_required).sum()
+    const PART2_SOLUTION: Solution = solution(3737498);
+    fn part2(input: &Self::Input) -> impl Into<Solution> {
+        input.iter().map(ribbon_length_required).sum::<u32>()
     }
 }

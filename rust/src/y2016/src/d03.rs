@@ -36,15 +36,13 @@ impl AocSolution for Day03 {
             .collect_vec()
     }
 
-    type Part1Output = usize;
-    const PART1_SOLUTION: Solution<Self::Part1Output> = Solution::Solved(1050);
-    fn part1(input: &Self::Input) -> Self::Part1Output {
+    const PART1_SOLUTION: Solution = solution(1050);
+    fn part1(input: &Self::Input) -> impl Into<Solution> {
         count_valid_triangles(input)
     }
 
-    type Part2Output = usize;
-    const PART2_SOLUTION: Solution<Self::Part2Output> = Solution::Solved(1921);
-    fn part2(input: &Self::Input) -> Self::Part2Output {
+    const PART2_SOLUTION: Solution = solution(1921);
+    fn part2(input: &Self::Input) -> impl Into<Solution> {
         let slices = input
             .iter()
             .map(|&l| l.into_iter().collect_vec())

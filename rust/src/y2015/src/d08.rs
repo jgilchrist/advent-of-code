@@ -37,18 +37,16 @@ impl AocSolution for Day08 {
         inputs::lines(input)
     }
 
-    type Part1Output = usize;
-    const PART1_SOLUTION: Solution<Self::Part1Output> = Solution::Solved(1342);
-    fn part1(input: &Self::Input) -> Self::Part1Output {
+    const PART1_SOLUTION: Solution = solution(1342);
+    fn part1(input: &Self::Input) -> impl Into<Solution> {
         let total_len: usize = input.iter().map(|l| l.len()).sum();
         let string_len: usize = input.iter().map(|l| count_chars_in_line(l)).sum();
 
         total_len - string_len
     }
 
-    type Part2Output = usize;
-    const PART2_SOLUTION: Solution<Self::Part2Output> = Solution::Solved(2074);
-    fn part2(input: &Self::Input) -> Self::Part2Output {
+    const PART2_SOLUTION: Solution = solution(2074);
+    fn part2(input: &Self::Input) -> impl Into<Solution> {
         let total_len: usize = input.iter().map(|l| l.len()).sum();
         let expanded_len: usize = input.iter().map(|l| count_expanded_chars_in_line(l)).sum();
 

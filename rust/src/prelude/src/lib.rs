@@ -1,6 +1,5 @@
-pub use aoc::{AocSolution, Solution};
+pub use aoc::{solution, AocSolution, Solution, SolutionStatus};
 pub use utils::inputs;
-pub use utils::hacks::leak_string_to_str;
 
 pub use std::collections::HashMap;
 pub use std::collections::HashSet;

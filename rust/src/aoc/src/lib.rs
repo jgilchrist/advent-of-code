@@ -1,3 +1,6 @@
+#![feature(return_position_impl_trait_in_trait)]
+#![feature(const_trait_impl)]
+#![allow(incomplete_features)]
 #![warn(clippy::pedantic)]
 #![warn(clippy::nursery)]
 #![warn(clippy::cargo)]
@@ -17,18 +20,101 @@
 
 pub type TestDefinition<Output> = (&'static str, Option<Output>, Option<Output>);
 
-#[allow(unused)]
-pub enum Solution<T> {
-    Solved(T),
+pub enum SolutionStatus {
+    Solved,
+    SolvedInPython,
     Wip,
-    WipWithKnownAnswerFromPython(T),
     Unsolved,
-    UnsolvedWithKnownAnswerFromPython(T),
+}
+
+pub enum Solution {
+    Number(i64),
+    String(&'static str),
     MerryChristmas,
+    Unsolved,
+}
+
+impl const From<&'static str> for Solution {
+    fn from(s: &'static str) -> Self {
+        Solution::String(s)
+    }
+}
+
+impl From<String> for Solution {
+    fn from(s: String) -> Self {
+        // Used to be able to compare runtime-generated String results with
+        // static strings embedded in the binary. There's likely a better
+        // way to do this, but I haven't found it.
+        // This is fine since the process lives only long enough to run the solution.
+        let leaked_string = Box::leak(s.into_boxed_str());
+        Solution::String(leaked_string)
+    }
+}
+
+impl const From<u16> for Solution {
+    fn from(n: u16) -> Self {
+        Solution::Number(n as i64)
+    }
+}
+
+impl const From<u32> for Solution {
+    fn from(n: u32) -> Self {
+        Solution::Number(n as i64)
+    }
+}
+
+impl const From<u64> for Solution {
+    fn from(n: u64) -> Self {
+        Solution::Number(n as i64)
+    }
+}
+
+impl const From<usize> for Solution {
+    fn from(n: usize) -> Self {
+        Solution::Number(n as i64)
+    }
+}
+
+impl const From<i32> for Solution {
+    fn from(n: i32) -> Self {
+        Solution::Number(n as i64)
+    }
+}
+
+impl const From<i64> for Solution {
+    fn from(n: i64) -> Self {
+        Solution::Number(n)
+    }
+}
+
+impl std::fmt::Display for Solution {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Solution::Number(n) => write!(f, "{}", n),
+            Solution::String(n) => write!(f, "{}", n),
+            Solution::MerryChristmas => write!(f, "{}", "Merry Christmas!"),
+            Solution::Unsolved => write!(f, ""),
+        }
+    }
+}
+
+impl PartialEq for Solution {
+    fn eq(&self, other: &Self) -> bool {
+        match (self, other) {
+            (Self::Number(l0), Self::Number(r0)) => l0 == r0,
+            (Self::String(l0), Self::String(r0)) => l0 == r0,
+            (Self::MerryChristmas, Self::MerryChristmas) => true,
+            _ => panic!("Tried to compare results of different types"),
+        }
+    }
+}
+
+pub const fn solution<T: ~const Into<Solution>>(sln: T) -> Solution {
+    sln.into()
 }
 
 pub trait AocSolution {
-    fn tests() -> Vec<TestDefinition<Self::Part1Output>> {
+    fn tests() -> Vec<TestDefinition<Solution>> {
         vec![]
     }
 
@@ -37,35 +123,34 @@ pub trait AocSolution {
     type Input;
     fn process_input(input: &str) -> Self::Input;
 
-    type Part1Output: std::fmt::Display + Eq;
-    const PART1_SOLUTION: Solution<Self::Part1Output>;
-    fn part1(i: &Self::Input) -> Self::Part1Output;
+    const PART1_SOLUTION: Solution;
+    const PART1_STATUS: SolutionStatus = SolutionStatus::Solved;
+    fn part1(i: &Self::Input) -> impl Into<Solution>;
 
-    type Part2Output: std::fmt::Display + Eq;
-    const PART2_SOLUTION: Solution<Self::Part2Output>;
-    fn part2(i: &Self::Input) -> Self::Part2Output;
+    const PART2_SOLUTION: Solution;
+    const PART2_STATUS: SolutionStatus = SolutionStatus::Solved;
+    fn part2(i: &Self::Input) -> impl Into<Solution>;
 }
 
 pub struct Unsolved;
 impl AocSolution for Unsolved {
-    type Input = ();
-
     fn get_input() -> &'static str {
         ""
     }
 
+    type Input = ();
     fn process_input(_: &str) -> Self::Input {}
 
-    type Part1Output = usize;
-    const PART1_SOLUTION: Solution<Self::Part1Output> = Solution::Unsolved;
-    fn part1(_: &Self::Input) -> Self::Part1Output {
-        0
+    const PART1_SOLUTION: Solution = Solution::Unsolved;
+    const PART1_STATUS: SolutionStatus = SolutionStatus::Unsolved;
+    fn part1(_: &Self::Input) -> impl Into<Solution> {
+        Solution::Unsolved
     }
 
-    type Part2Output = usize;
-    const PART2_SOLUTION: Solution<Self::Part2Output> = Solution::Unsolved;
-    fn part2(_: &Self::Input) -> Self::Part2Output {
-        0
+    const PART2_SOLUTION: Solution = Solution::Unsolved;
+    const PART2_STATUS: SolutionStatus = SolutionStatus::Unsolved;
+    fn part2(_: &Self::Input) -> impl Into<Solution> {
+        Solution::Unsolved
     }
 }
 

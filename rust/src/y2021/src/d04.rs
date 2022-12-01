@@ -91,9 +91,8 @@ impl AocSolution for Day04 {
         (bingo_numbers, boards)
     }
 
-    type Part1Output = u32;
-    const PART1_SOLUTION: Solution<Self::Part1Output> = Solution::Solved(4662);
-    fn part1(input: &Self::Input) -> Self::Part1Output {
+    const PART1_SOLUTION: Solution = solution(4662);
+    fn part1(input: &Self::Input) -> impl Into<Solution> {
         let numbers = input.0.clone();
         let mut boards = input.1.clone();
 
@@ -109,9 +108,8 @@ impl AocSolution for Day04 {
         unreachable!();
     }
 
-    type Part2Output = u32;
-    const PART2_SOLUTION: Solution<Self::Part2Output> = Solution::Solved(12080);
-    fn part2(input: &Self::Input) -> Self::Part2Output {
+    const PART2_SOLUTION: Solution = solution(12080);
+    fn part2(input: &Self::Input) -> impl Into<Solution> {
         let numbers = input.0.clone();
         let mut boards = input.1.clone();
         let mut winning_boards: Vec<Board> = vec![];

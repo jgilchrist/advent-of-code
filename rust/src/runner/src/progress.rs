@@ -1,6 +1,6 @@
 #![allow(clippy::print_stdout)]
 
-use aoc::{AocSolution, AocYear, Solution};
+use aoc::{AocSolution, AocYear, SolutionStatus};
 use console::style;
 
 pub fn print_progress() {
@@ -80,31 +80,29 @@ fn print_year_progress<TYear: AocYear, const NYEAR: u32>() {
 }
 
 fn print_day_header<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() {
-    use Solution::*;
     print!(
         "{:0>2}  ",
-        match (TSln::PART1_SOLUTION, TSln::PART2_SOLUTION) {
-            (Solved(_), Solved(_)) => style(NDAY).yellow().bold(),
+        match (TSln::PART1_STATUS, TSln::PART2_STATUS) {
+            (SolutionStatus::Solved, SolutionStatus::Solved) => style(NDAY).yellow().bold(),
             _ => style(NDAY).black().bold(),
         }
     );
 }
 
 fn print_day_progress<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() {
-    use Solution::*;
     print!(
         "{}{}  ",
-        match TSln::PART1_SOLUTION {
-            Solved(_) | MerryChristmas => style("*").yellow().bold(),
-            Wip | WipWithKnownAnswerFromPython(_) => style("*").blue().bold(),
-            UnsolvedWithKnownAnswerFromPython(_) => style("*").black().bold(),
-            Unsolved => style(" "),
-        },
-        match TSln::PART2_SOLUTION {
-            Solved(_) | MerryChristmas => style("*").yellow().bold(),
-            Wip | WipWithKnownAnswerFromPython(_) => style("*").blue().bold(),
-            UnsolvedWithKnownAnswerFromPython(_) => style("*").black().bold(),
-            Unsolved => style(" "),
-        }
+        solution_progress_str(TSln::PART1_STATUS),
+        solution_progress_str(TSln::PART2_STATUS)
     );
+}
+
+fn solution_progress_str(status: SolutionStatus) -> String {
+    match status {
+        SolutionStatus::Solved => style("*").yellow().bold(),
+        SolutionStatus::Wip => style("*").blue().bold(),
+        SolutionStatus::SolvedInPython => style("*").black().bold(),
+        SolutionStatus::Unsolved => style(" "),
+    }
+    .to_string()
 }

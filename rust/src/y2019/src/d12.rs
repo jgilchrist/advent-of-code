@@ -12,17 +12,15 @@ impl AocSolution for Day12 {
         input.lines().collect()
     }
 
-    type Part1Output = usize;
-    const PART1_SOLUTION: Solution<Self::Part1Output> =
-        Solution::UnsolvedWithKnownAnswerFromPython(12053);
-    fn part1(_input: &Self::Input) -> Self::Part1Output {
-        todo!()
+    const PART1_SOLUTION: Solution = solution(12053);
+    const PART1_STATUS: SolutionStatus = SolutionStatus::SolvedInPython;
+    fn part1(_input: &Self::Input) -> impl Into<Solution> {
+        Solution::Unsolved
     }
 
-    type Part2Output = usize;
-    const PART2_SOLUTION: Solution<Self::Part2Output> =
-        Solution::UnsolvedWithKnownAnswerFromPython(320380285873116);
-    fn part2(_input: &Self::Input) -> Self::Part2Output {
-        todo!()
+    const PART2_SOLUTION: Solution = solution(320380285873116u64);
+    const PART2_STATUS: SolutionStatus = SolutionStatus::SolvedInPython;
+    fn part2(_input: &Self::Input) -> impl Into<Solution> {
+        Solution::Unsolved
     }
 }

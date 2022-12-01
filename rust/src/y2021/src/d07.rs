@@ -29,15 +29,13 @@ impl AocSolution for Day07 {
         inputs::comma_separated::<u64>(input)
     }
 
-    type Part1Output = u64;
-    const PART1_SOLUTION: Solution<Self::Part1Output> = Solution::Solved(328262);
-    fn part1(input: &Self::Input) -> Self::Part1Output {
+    const PART1_SOLUTION: Solution = solution(328262);
+    fn part1(input: &Self::Input) -> impl Into<Solution> {
         get_minimum_cost_by(input, abs_difference)
     }
 
-    type Part2Output = u64;
-    const PART2_SOLUTION: Solution<Self::Part2Output> = Solution::Solved(90040997);
-    fn part2(input: &Self::Input) -> Self::Part2Output {
+    const PART2_SOLUTION: Solution = solution(90040997);
+    fn part2(input: &Self::Input) -> impl Into<Solution> {
         get_minimum_cost_by(input, |pos, crab_pos| {
             let diff = abs_difference(pos, crab_pos);
             (diff * (diff + 1)) / 2

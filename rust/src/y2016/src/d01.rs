@@ -1,5 +1,8 @@
 use prelude::*;
-use utils::geometry::d2::{coordinates::{TurnDirection, CardinalDirection}, vecs::Vec2};
+use utils::geometry::d2::{
+    coordinates::{CardinalDirection, TurnDirection},
+    vecs::Vec2,
+};
 
 pub struct Instruction {
     direction: TurnDirection,
@@ -45,9 +48,8 @@ impl AocSolution for Day01 {
             .collect_vec()
     }
 
-    type Part1Output = usize;
-    const PART1_SOLUTION: Solution<Self::Part1Output> = Solution::Solved(252);
-    fn part1(input: &Self::Input) -> Self::Part1Output {
+    const PART1_SOLUTION: Solution = solution(252);
+    fn part1(input: &Self::Input) -> impl Into<Solution> {
         let start = (0, 0);
         let mut state: State = (start.into(), CardinalDirection::North);
 
@@ -59,9 +61,8 @@ impl AocSolution for Day01 {
         final_position.distance_from(start)
     }
 
-    type Part2Output = usize;
-    const PART2_SOLUTION: Solution<Self::Part2Output> = Solution::Solved(143);
-    fn part2(input: &Self::Input) -> Self::Part2Output {
+    const PART2_SOLUTION: Solution = solution(143);
+    fn part2(input: &Self::Input) -> impl Into<Solution> {
         let mut visited_locations: HashSet<Vec2> = HashSet::new();
 
         let start: Vec2 = (0, 0).into();
