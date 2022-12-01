@@ -20,10 +20,6 @@ fn abs_difference(a: u64, b: u64) -> u64 {
 }
 
 impl AocSolution for Day07 {
-    fn get_input() -> &'static str {
-        include_str!("d07.in")
-    }
-
     type Input = Vec<u64>;
     fn process_input(input: &str) -> Self::Input {
         inputs::comma_separated::<u64>(input)

@@ -28,10 +28,6 @@ fn count_expanded_chars_in_line(line: &str) -> usize {
 }
 
 impl AocSolution for Day08 {
-    fn get_input() -> &'static str {
-        include_str!("d08.in")
-    }
-
     type Input = Vec<String>;
     fn process_input(input: &str) -> Self::Input {
         inputs::lines(input)

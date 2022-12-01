@@ -48,10 +48,6 @@ impl PopulationMap {
 }
 
 impl AocSolution for Day06 {
-    fn get_input() -> &'static str {
-        include_str!("d06.in")
-    }
-
     type Input = PopulationMap;
     fn process_input(input: &str) -> Self::Input {
         let fish = inputs::comma_separated::<u8>(input);

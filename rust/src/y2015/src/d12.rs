@@ -36,10 +36,6 @@ fn count_numbers_ignoring_red(json: &serde_json::Value) -> i32 {
 }
 
 impl AocSolution for Day12 {
-    fn get_input() -> &'static str {
-        include_str!("d12.in")
-    }
-
     type Input = serde_json::Value;
     fn process_input(input: &str) -> Self::Input {
         serde_json::from_str(input).unwrap()

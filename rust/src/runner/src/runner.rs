@@ -24,8 +24,8 @@ pub fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() -> R
     );
 
     let start_time = Instant::now();
-    let input = TSln::get_input();
-    let processed_input = TSln::process_input(input);
+    let input = get_input(NYEAR, NDAY);
+    let processed_input = TSln::process_input(&input);
     let process_input_duration = start_time.elapsed();
 
     if process_input_duration.as_secs() >= 1 {
@@ -152,6 +152,14 @@ pub fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() -> R
     println!();
 
     Ok(())
+}
+
+fn get_input(year: u32, day: u32) -> String {
+    let manifest_dir = env!("CARGO_MANIFEST_DIR");
+    let file_path_within_directory_structure = format!("y{year}/src/d{day:0>2}.in");
+    let filename = format!("{manifest_dir}/../{file_path_within_directory_structure}");
+    let input = std::fs::read_to_string(&filename).expect(&format!("No input file: {file_path_within_directory_structure}"));
+    input
 }
 
 pub fn run_year<TYear: AocYear, const NYEAR: u32>() -> Result<()> {

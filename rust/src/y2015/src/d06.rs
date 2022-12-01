@@ -24,10 +24,6 @@ impl CapturesExtensions for inputs::Captures<'_> {
 }
 
 impl AocSolution for Day06 {
-    fn get_input() -> &'static str {
-        include_str!("d06.in")
-    }
-
     type Input = Vec<(Square, Command)>;
     fn process_input(input: &str) -> Self::Input {
         inputs::regexes(

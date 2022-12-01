@@ -3,10 +3,6 @@ use prelude::*;
 pub struct Day05;
 
 impl AocSolution for Day05 {
-    fn get_input() -> &'static str {
-        include_str!("d05.in")
-    }
-
     type Input = String;
     fn process_input(input: &str) -> Self::Input {
         input.lines().collect()

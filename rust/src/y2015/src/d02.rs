@@ -44,10 +44,6 @@ fn ribbon_length_required(
 }
 
 impl AocSolution for Day02 {
-    fn get_input() -> &'static str {
-        include_str!("d02.in")
-    }
-
     type Input = Vec<Present>;
     fn process_input(input: &str) -> Self::Input {
         fn parse_line(line: &str) -> Present {

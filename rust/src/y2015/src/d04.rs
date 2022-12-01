@@ -15,10 +15,6 @@ fn all_hashes(input: &str) -> impl Iterator<Item = String> + '_ {
 }
 
 impl AocSolution for Day04 {
-    fn get_input() -> &'static str {
-        include_str!("d04.in")
-    }
-
     type Input = String;
     fn process_input(input: &str) -> Self::Input {
         input.trim().to_owned()

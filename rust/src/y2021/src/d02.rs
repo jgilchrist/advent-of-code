@@ -23,10 +23,6 @@ fn parse_instruction(l: &str) -> Instruction {
 }
 
 impl AocSolution for Day02 {
-    fn get_input() -> &'static str {
-        include_str!("d02.in")
-    }
-
     type Input = Vec<Instruction>;
     fn process_input(input: &str) -> Self::Input {
         input.lines().map(parse_instruction).collect()
