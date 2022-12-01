@@ -1,5 +1,4 @@
-use aoc::{AocSolution, Solution};
-use itertools::iterate;
+use prelude::*;
 
 pub struct Day04;
 

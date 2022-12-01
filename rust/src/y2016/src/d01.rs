@@ -1,11 +1,5 @@
-use std::collections::HashSet;
-
-use aoc::{AocSolution, Solution};
-use itertools::Itertools;
-use utils::geometry::d2::{
-    coordinates::{CardinalDirection, TurnDirection},
-    vecs::Vec2,
-};
+use prelude::*;
+use utils::geometry::d2::{coordinates::{TurnDirection, CardinalDirection}, vecs::Vec2};
 
 pub struct Instruction {
     direction: TurnDirection,

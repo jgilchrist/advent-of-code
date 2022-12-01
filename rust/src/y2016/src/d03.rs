@@ -1,6 +1,5 @@
-use aoc::{AocSolution, Solution};
-use itertools::Itertools;
-use utils::{inputs, iters::transpose};
+use prelude::*;
+use utils::iters::transpose;
 
 pub struct Day03;
 

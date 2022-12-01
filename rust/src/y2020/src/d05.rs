@@ -1,4 +1,4 @@
-use aoc::{AocSolution, Solution};
+use prelude::*;
 
 pub struct Day05;
 

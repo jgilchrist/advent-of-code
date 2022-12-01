@@ -1,7 +1,4 @@
-use std::collections::HashMap;
-
-use aoc::{AocSolution, Solution};
-use utils::inputs::comma_separated;
+use prelude::*;
 
 pub struct Day07;
 
@@ -29,7 +26,7 @@ impl AocSolution for Day07 {
 
     type Input = Vec<u64>;
     fn process_input(input: &str) -> Self::Input {
-        comma_separated::<u64>(input)
+        inputs::comma_separated::<u64>(input)
     }
 
     type Part1Output = u64;

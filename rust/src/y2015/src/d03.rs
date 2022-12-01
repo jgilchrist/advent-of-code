@@ -1,8 +1,6 @@
-use itertools::Itertools;
-use std::collections::HashSet;
-use utils::geometry::d2::{coordinates::CardinalDirection, vecs::Vec2};
+use prelude::*;
 
-use aoc::{AocSolution, Solution};
+use utils::geometry::d2::{coordinates::CardinalDirection, vecs::Vec2};
 
 pub struct Day03;
 

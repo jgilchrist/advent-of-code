@@ -79,17 +79,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "dialoguer"
-version = "0.10.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a92e7e37ecef6857fdc0c0c5d42fd5b0938e46590c2183cc92dd310a6d078eb1"
-dependencies = [
- "console",
- "tempfile",
- "zeroize",
-]
-
-[[package]]
 name = "either"
 version = "1.8.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -109,36 +98,6 @@ checksum = "0678ab2d46fa5195aaf59ad034c083d351377d4af57f3e073c074d0da3e3c766"
 dependencies = [
  "bit-set",
  "regex",
-]
-
-[[package]]
-name = "fastrand"
-version = "1.8.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a7a407cfaa3385c4ae6b23e84623d48c2798d06e3e6a1878f7f59f17b3f86499"
-dependencies = [
- "instant",
-]
-
-[[package]]
-name = "indicatif"
-version = "0.17.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4295cbb7573c16d310e99e713cf9e75101eb190ab31fccd35f2d2691b4352b19"
-dependencies = [
- "console",
- "number_prefix",
- "portable-atomic",
- "unicode-width",
-]
-
-[[package]]
-name = "instant"
-version = "0.1.12"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7a5bbe824c507c5da5956355e86a746d82e0e1464f65d862cc5e71da70e94b2c"
-dependencies = [
- "cfg-if",
 ]
 
 [[package]]
@@ -193,30 +152,13 @@ dependencies = [
 ]
 
 [[package]]
-name = "number_prefix"
-version = "0.4.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "830b246a0e5f20af87141b25c173cd1b609bd7779a4617d6ec582abaf90870f3"
-
-[[package]]
-name = "once_cell"
-version = "1.16.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "86f0b0d4bf799edbc74508c1e8bf170ff5f41238e5f8225603ca7caaae2b7860"
-
-[[package]]
-name = "portable-atomic"
-version = "0.3.15"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "15eb2c6e362923af47e13c23ca5afb859e83d54452c55b0b9ac763b8f7c1ac16"
-
-[[package]]
-name = "redox_syscall"
-version = "0.2.16"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "fb5a58c1855b4b6819d59012155603f0b22ad30cad752600aadfcb695265519a"
+name = "prelude"
+version = "0.1.0"
 dependencies = [
- "bitflags",
+ "aoc",
+ "fancy-regex",
+ "itertools",
+ "utils",
 ]
 
 [[package]]
@@ -235,15 +177,6 @@ name = "regex-syntax"
 version = "0.6.28"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "456c603be3e8d448b072f410900c09faf164fbce2d480456f50eea6e25f9c848"
-
-[[package]]
-name = "remove_dir_all"
-version = "0.5.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3acd125665422973a33ac9d3dd2df85edad0f4ae9b00dafb1a05e43a9f5ef8e7"
-dependencies = [
- "winapi",
-]
 
 [[package]]
 name = "runner"
@@ -284,20 +217,6 @@ dependencies = [
  "itoa",
  "ryu",
  "serde",
-]
-
-[[package]]
-name = "tempfile"
-version = "3.3.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5cdb1ef4eaeeaddc8fbd371e5017057064af0911902ef36b39801f67cc6d79e4"
-dependencies = [
- "cfg-if",
- "fastrand",
- "libc",
- "redox_syscall",
- "remove_dir_all",
- "winapi",
 ]
 
 [[package]]
@@ -351,10 +270,8 @@ name = "y2015"
 version = "0.1.0"
 dependencies = [
  "aoc",
- "fancy-regex",
- "itertools",
  "md5",
- "once_cell",
+ "prelude",
  "serde_json",
  "utils",
 ]
@@ -364,8 +281,7 @@ name = "y2016"
 version = "0.1.0"
 dependencies = [
  "aoc",
- "fancy-regex",
- "itertools",
+ "prelude",
  "utils",
 ]
 
@@ -374,6 +290,7 @@ name = "y2017"
 version = "0.1.0"
 dependencies = [
  "aoc",
+ "prelude",
  "utils",
 ]
 
@@ -382,6 +299,7 @@ name = "y2018"
 version = "0.1.0"
 dependencies = [
  "aoc",
+ "prelude",
  "utils",
 ]
 
@@ -390,6 +308,7 @@ name = "y2019"
 version = "0.1.0"
 dependencies = [
  "aoc",
+ "prelude",
  "utils",
 ]
 
@@ -398,6 +317,7 @@ name = "y2020"
 version = "0.1.0"
 dependencies = [
  "aoc",
+ "prelude",
  "utils",
 ]
 
@@ -405,14 +325,8 @@ dependencies = [
 name = "y2021"
 version = "0.1.0"
 dependencies = [
- "anyhow",
  "aoc",
- "console",
- "ctrlc",
- "dialoguer",
- "fancy-regex",
- "indicatif",
- "itertools",
+ "prelude",
  "utils",
 ]
 
@@ -421,12 +335,6 @@ name = "y2022"
 version = "0.1.0"
 dependencies = [
  "aoc",
- "itertools",
+ "prelude",
  "utils",
 ]
-
-[[package]]
-name = "zeroize"
-version = "1.5.7"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c394b5bd0c6f669e7275d9c20aa90ae064cb22e75a1cad54e1b34088034b149f"

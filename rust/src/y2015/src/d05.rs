@@ -1,7 +1,4 @@
-use aoc::{AocSolution, Solution};
-
-use fancy_regex::Regex;
-use utils::inputs::lines;
+use prelude::*;
 
 pub struct Day05;
 
@@ -12,7 +9,7 @@ impl AocSolution for Day05 {
 
     type Input = Vec<String>;
     fn process_input(input: &str) -> Self::Input {
-        lines(input)
+        inputs::lines(input)
     }
 
     type Part1Output = usize;

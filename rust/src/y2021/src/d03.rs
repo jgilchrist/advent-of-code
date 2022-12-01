@@ -1,4 +1,4 @@
-use aoc::{AocSolution, Solution};
+use prelude::*;
 use utils::iters::{count_items, transpose};
 
 pub struct Day03;
