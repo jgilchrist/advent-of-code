@@ -36,7 +36,7 @@ pub enum Solution {
 
 impl const From<&'static str> for Solution {
     fn from(s: &'static str) -> Self {
-        Solution::String(s)
+        Self::String(s)
     }
 }
 
@@ -47,53 +47,58 @@ impl From<String> for Solution {
         // way to do this, but I haven't found it.
         // This is fine since the process lives only long enough to run the solution.
         let leaked_string = Box::leak(s.into_boxed_str());
-        Solution::String(leaked_string)
+        Self::String(leaked_string)
     }
 }
 
+#[allow(clippy::cast_lossless)]
 impl const From<u16> for Solution {
     fn from(n: u16) -> Self {
-        Solution::Number(n as i64)
+        Self::Number(n as i64)
     }
 }
 
+#[allow(clippy::cast_lossless)]
 impl const From<u32> for Solution {
     fn from(n: u32) -> Self {
-        Solution::Number(n as i64)
+        Self::Number(n as i64)
     }
 }
 
+#[allow(clippy::cast_lossless)]
 impl const From<u64> for Solution {
     fn from(n: u64) -> Self {
-        Solution::Number(n as i64)
+        Self::Number(n as i64)
     }
 }
 
+#[allow(clippy::cast_lossless)]
 impl const From<usize> for Solution {
     fn from(n: usize) -> Self {
-        Solution::Number(n as i64)
+        Self::Number(n as i64)
     }
 }
 
+#[allow(clippy::cast_lossless)]
 impl const From<i32> for Solution {
     fn from(n: i32) -> Self {
-        Solution::Number(n as i64)
+        Self::Number(n as i64)
     }
 }
 
 impl const From<i64> for Solution {
     fn from(n: i64) -> Self {
-        Solution::Number(n)
+        Self::Number(n)
     }
 }
 
 impl std::fmt::Display for Solution {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
-            Solution::Number(n) => write!(f, "{}", n),
-            Solution::String(n) => write!(f, "{}", n),
-            Solution::MerryChristmas => write!(f, "{}", "Merry Christmas!"),
-            Solution::Unsolved => write!(f, ""),
+            Self::Number(n) => write!(f, "{n}"),
+            Self::String(n) => write!(f, "{n}"),
+            Self::MerryChristmas => write!(f, "Merry Christmas!"),
+            Self::Unsolved => write!(f, ""),
         }
     }
 }

@@ -74,7 +74,7 @@ pub fn regex_lines<'a>(input: &'a str, regex: &'static str) -> impl Iterator<Ite
             compiled_regex
                 .captures(l)
                 .expect("Invalid regex")
-                .expect(&format!("Did not match regex: {}", l)),
+                .unwrap_or_else(|| panic!("Did not match regex: {l}")),
         )
     })
 }
