@@ -28,21 +28,24 @@ impl<'a> Captures<'a> {
     }
 
     pub fn next_u8(&mut self) -> u8 {
-        self.next_capture()
+        let next_capture = self.next_capture();
+        next_capture
             .parse::<u8>()
-            .expect("Unable to parse to u8")
+            .unwrap_or_else(|_| panic!("Unable to parse to u8: {next_capture}"))
     }
 
     pub fn next_u32(&mut self) -> u32 {
-        self.next_capture()
+        let next_capture = self.next_capture();
+        next_capture
             .parse::<u32>()
-            .expect("Unable to parse to u32")
+            .unwrap_or_else(|_| panic!("Unable to parse to u32: {next_capture}"))
     }
 
     pub fn next_i32(&mut self) -> i32 {
-        self.next_capture()
+        let next_capture = self.next_capture();
+        next_capture
             .parse::<i32>()
-            .expect("Unable to parse to i32")
+            .unwrap_or_else(|_| panic!("Unable to parse to i32: {next_capture}"))
     }
 }
 
