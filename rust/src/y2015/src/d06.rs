@@ -11,14 +11,14 @@ pub enum Command {
 }
 
 pub trait CapturesExtensions {
-    fn get_square(&self) -> Square;
+    fn next_square(&mut self) -> Square;
 }
 
 impl CapturesExtensions for inputs::Captures<'_> {
-    fn get_square(&self) -> Square {
+    fn next_square(&mut self) -> Square {
         Square::new(
-            (self.get_i32(1), self.get_i32(2)),
-            (self.get_i32(3), self.get_i32(4)),
+            (self.next_i32(), self.next_i32()),
+            (self.next_i32(), self.next_i32()),
         )
     }
 }
@@ -31,15 +31,15 @@ impl AocSolution for Day06 {
             vec![
                 (
                     r#"turn on (\d+),(\d+) through (\d+),(\d+)"#,
-                    Box::new(move |c| (c.get_square(), Command::TurnOn)),
+                    Box::new(move |mut c| (c.next_square(), Command::TurnOn)),
                 ),
                 (
                     r#"turn off (\d+),(\d+) through (\d+),(\d+)"#,
-                    Box::new(move |c| (c.get_square(), Command::TurnOff)),
+                    Box::new(move |mut c| (c.next_square(), Command::TurnOff)),
                 ),
                 (
                     r#"toggle (\d+),(\d+) through (\d+),(\d+)"#,
-                    Box::new(move |c| (c.get_square(), Command::Toggle)),
+                    Box::new(move |mut c| (c.next_square(), Command::Toggle)),
                 ),
             ],
         )

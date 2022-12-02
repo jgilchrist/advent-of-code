@@ -36,14 +36,14 @@ impl AocSolution for Day13 {
         let mut pairings: HashMap<Pairing, i32> = HashMap::new();
         let mut people: HashSet<Person> = HashSet::new();
 
-        for line in inputs::regex_lines(
+        for mut line in inputs::regex_lines(
             input,
             r#"(\w+) would (\w+) (\d+) happiness units by sitting next to (\w+)."#,
         ) {
-            let person = Person(line.get_string(1));
-            let action = line.get_string(2);
-            let points = line.get_i32(3);
-            let adjacent_person = Person(line.get_string(4));
+            let person = Person(line.next_string());
+            let action = line.next_string();
+            let points = line.next_i32();
+            let adjacent_person = Person(line.next_string());
 
             let points_multiplier: i32 = match action.as_str() {
                 "gain" => 1,
