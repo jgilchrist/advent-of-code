@@ -92,12 +92,12 @@ fn print_day_header<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() {
 fn print_day_progress<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() {
     print!(
         "{}{}  ",
-        solution_progress_str(TSln::PART1_STATUS),
-        solution_progress_str(TSln::PART2_STATUS)
+        solution_progress_str(&TSln::PART1_STATUS),
+        solution_progress_str(&TSln::PART2_STATUS)
     );
 }
 
-fn solution_progress_str(status: SolutionStatus) -> String {
+fn solution_progress_str(status: &SolutionStatus) -> String {
     match status {
         SolutionStatus::Solved => style("*").yellow().bold(),
         SolutionStatus::Wip => style("*").blue().bold(),

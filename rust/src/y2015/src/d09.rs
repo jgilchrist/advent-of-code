@@ -36,18 +36,18 @@ fn calculate_all_journey_distances(distances: &HashMap<Route, u32>) -> Vec<u32> 
 impl AocSolution for Day09 {
     type Input = HashMap<Route, u32>;
     fn process_input(input: &str) -> Self::Input {
-        HashMap::from_iter(
-            inputs::regex_lines(input, r#"(\w+) to (\w+) = (\d+)"#).flat_map(|line| {
+        inputs::regex_lines(input, r#"(\w+) to (\w+) = (\d+)"#)
+            .flat_map(|line| {
                 let from_city = City(line.get_string(1));
                 let to_city = City(line.get_string(2));
                 let distance = line.get_u32(3);
 
                 [
                     (Route(from_city.clone(), to_city.clone()), distance),
-                    (Route(to_city.clone(), from_city.clone()), distance),
+                    (Route(to_city, from_city), distance),
                 ]
-            }),
-        )
+            })
+            .collect()
     }
 
     const PART1_SOLUTION: Solution = solution(207);

@@ -64,7 +64,7 @@ impl AocSolution for Day14 {
         let mut states = (*input).clone();
 
         for _ in 0..2503 {
-            for r in states.iter_mut() {
+            for r in &mut states {
                 let (reindeer, state) = r;
                 state.time_until_transition -= 1;
 
@@ -93,7 +93,7 @@ impl AocSolution for Day14 {
         for _ in 0..2503 {
             let mut max_distance_this_go = 0;
 
-            for r in input.iter_mut() {
+            for r in &mut input {
                 let (reindeer, state) = r;
                 state.time_until_transition -= 1;
 
@@ -115,7 +115,7 @@ impl AocSolution for Day14 {
                 }
             }
 
-            for r in input.iter_mut() {
+            for r in &mut input {
                 let (_, state) = r;
                 if state.distance == max_distance_this_go {
                     state.score += 1;

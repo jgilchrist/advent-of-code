@@ -87,8 +87,9 @@ pub fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() -> R
                         SolutionCheckStatus::Incorrect
                     }
                 }
-                SolutionStatus::SolvedInPython => SolutionCheckStatus::Unknown,
-                SolutionStatus::Wip => SolutionCheckStatus::Unknown,
+                SolutionStatus::SolvedInPython | SolutionStatus::Wip => {
+                    SolutionCheckStatus::Unknown
+                }
                 SolutionStatus::Unsolved => unreachable!(),
             };
 
@@ -127,8 +128,9 @@ pub fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() -> R
                         SolutionCheckStatus::Incorrect
                     }
                 }
-                SolutionStatus::SolvedInPython => SolutionCheckStatus::Unknown,
-                SolutionStatus::Wip => SolutionCheckStatus::Unknown,
+                SolutionStatus::SolvedInPython | SolutionStatus::Wip => {
+                    SolutionCheckStatus::Unknown
+                }
                 SolutionStatus::Unsolved => unreachable!(),
             };
 
@@ -158,10 +160,9 @@ fn get_input(year: u32, day: u32) -> String {
     let manifest_dir = env!("CARGO_MANIFEST_DIR");
     let file_path_within_directory_structure = format!("y{year}/src/d{day:0>2}.in");
     let filename = format!("{manifest_dir}/../{file_path_within_directory_structure}");
-    let input = std::fs::read_to_string(&filename).expect(&format!(
-        "No input file: {file_path_within_directory_structure}"
-    ));
-    input
+
+    std::fs::read_to_string(filename)
+        .unwrap_or_else(|_| panic!("No input file: {file_path_within_directory_structure}"))
 }
 
 pub fn run_year<TYear: AocYear, const NYEAR: u32>() -> Result<()> {
