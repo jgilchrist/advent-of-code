@@ -57,6 +57,12 @@ impl From<char> for PlayResult {
     }
 }
 
+fn play_game(rounds: impl Iterator<Item = (Play, Play)>) -> u32 {
+    rounds
+        .map(|(them, me)| play(them, me).score() + me.score())
+        .sum::<u32>()
+}
+
 fn play(them: Play, me: Play) -> PlayResult {
     use Play::*;
     use PlayResult::*;
@@ -89,25 +95,25 @@ impl AocSolution for Day02 {
 
     const PART1_SOLUTION: Solution = solution(8392);
     fn part1(input: &Self::Input) -> impl Into<Solution> {
-        input
-            .iter()
-            .map(|&(them, me)| (Into::<Play>::into(them), Into::<Play>::into(me)))
-            .map(|(them, me)| play(them, me).score() + me.score())
-            .sum::<u32>()
+        play_game(
+            input
+                .iter()
+                .map(|&(them, me)| (Into::<Play>::into(them), Into::<Play>::into(me))),
+        )
     }
 
     const PART2_SOLUTION: Solution = solution(10116);
     fn part2(input: &Self::Input) -> impl Into<Solution> {
-        input
-            .iter()
-            .map(|&(them, my_desired_result)| {
-                (
-                    Into::<Play>::into(them),
-                    Into::<PlayResult>::into(my_desired_result),
-                )
-            })
-            .map(|(them, my_desired_result)| (them, desired_play(them, my_desired_result)))
-            .map(|(them, me)| play(them, me).score() + me.score())
-            .sum::<u32>()
+        play_game(
+            input
+                .iter()
+                .map(|&(them, my_desired_result)| {
+                    (
+                        Into::<Play>::into(them),
+                        Into::<PlayResult>::into(my_desired_result),
+                    )
+                })
+                .map(|(them, my_desired_result)| (them, desired_play(them, my_desired_result))),
+        )
     }
 }
