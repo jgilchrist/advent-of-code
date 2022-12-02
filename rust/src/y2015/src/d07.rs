@@ -25,18 +25,18 @@ pub enum Operation {
 pub struct Instruction(Operation, Var);
 
 pub trait CapturesExtensions {
-    fn get_var(&self, idx: usize) -> Var;
-    fn get_operand(&self, idx: usize) -> Operand;
+    fn next_var(&mut self) -> Var;
+    fn next_operand(&mut self) -> Operand;
 }
 
 impl CapturesExtensions for inputs::Captures<'_> {
-    fn get_var(&self, idx: usize) -> Var {
-        Var(self.get_string(idx))
+    fn next_var(&mut self) -> Var {
+        Var(self.next_string())
     }
 
     #[allow(clippy::option_if_let_else)]
-    fn get_operand(&self, idx: usize) -> Operand {
-        let val = self.get_string(idx);
+    fn next_operand(&mut self) -> Operand {
+        let val = self.next_string();
 
         match val.parse::<u16>() {
             Ok(literal) => Operand::Literal(literal),
@@ -53,49 +53,49 @@ impl AocSolution for Day07 {
             vec![
                 (
                     r#"(\w+) -> (\w+)"#,
-                    Box::new(move |c| {
-                        Instruction(Operation::Assign(c.get_operand(1)), c.get_var(2))
+                    Box::new(move |mut c| {
+                        Instruction(Operation::Assign(c.next_operand()), c.next_var())
                     }),
                 ),
                 (
                     r#"NOT (\w+) -> (\w+)"#,
-                    Box::new(move |c| {
-                        Instruction(Operation::Not(c.get_operand(1)), Var(c.get_string(2)))
+                    Box::new(move |mut c| {
+                        Instruction(Operation::Not(c.next_operand()), Var(c.next_string()))
                     }),
                 ),
                 (
                     r#"(\w+) AND (\w+) -> (\w+)"#,
-                    Box::new(move |c| {
+                    Box::new(move |mut c| {
                         Instruction(
-                            Operation::And(c.get_operand(1), c.get_operand(2)),
-                            c.get_var(3),
+                            Operation::And(c.next_operand(), c.next_operand()),
+                            c.next_var(),
                         )
                     }),
                 ),
                 (
                     r#"(\w+) OR (\w+) -> (\w+)"#,
-                    Box::new(move |c| {
+                    Box::new(move |mut c| {
                         Instruction(
-                            Operation::Or(c.get_operand(1), c.get_operand(2)),
-                            c.get_var(3),
+                            Operation::Or(c.next_operand(), c.next_operand()),
+                            c.next_var(),
                         )
                     }),
                 ),
                 (
                     r#"(\w+) LSHIFT (\d+) -> (\w+)"#,
-                    Box::new(move |c| {
+                    Box::new(move |mut c| {
                         Instruction(
-                            Operation::LShift(c.get_operand(1), c.get_u8(2)),
-                            Var(c.get_string(3)),
+                            Operation::LShift(c.next_operand(), c.next_u8()),
+                            Var(c.next_string()),
                         )
                     }),
                 ),
                 (
                     r#"(\w+) RSHIFT (\d+) -> (\w+)"#,
-                    Box::new(move |c| {
+                    Box::new(move |mut c| {
                         Instruction(
-                            Operation::RShift(c.get_operand(1), c.get_u8(2)),
-                            Var(c.get_string(3)),
+                            Operation::RShift(c.next_operand(), c.next_u8()),
+                            Var(c.next_string()),
                         )
                     }),
                 ),

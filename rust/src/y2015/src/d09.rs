@@ -37,10 +37,10 @@ impl AocSolution for Day09 {
     type Input = HashMap<Route, u32>;
     fn process_input(input: &str) -> Self::Input {
         inputs::regex_lines(input, r#"(\w+) to (\w+) = (\d+)"#)
-            .flat_map(|line| {
-                let from_city = City(line.get_string(1));
-                let to_city = City(line.get_string(2));
-                let distance = line.get_u32(3);
+            .flat_map(|mut line| {
+                let from_city = City(line.next_string());
+                let to_city = City(line.next_string());
+                let distance = line.next_u32();
 
                 [
                     (Route(from_city.clone(), to_city.clone()), distance),

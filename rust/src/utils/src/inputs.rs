@@ -4,36 +4,43 @@ use fancy_regex::Regex;
 use itertools::Itertools;
 
 #[derive(Debug)]
-pub struct Captures<'a>(pub fancy_regex::Captures<'a>);
+pub struct Captures<'a> {
+    captures: fancy_regex::Captures<'a>,
+    idx: usize,
+}
 
-impl Captures<'_> {
-    pub fn get_string(&self, i: usize) -> String {
-        self.0.get(i).expect("No capture").as_str().to_owned()
+impl<'a> Captures<'a> {
+    fn new(captures: fancy_regex::Captures<'a>) -> Self {
+        Self {
+            captures,
+            idx: 1,
+        }
     }
 
-    pub fn get_u8(&self, i: usize) -> u8 {
-        self.0
-            .get(i)
-            .expect("No capture")
-            .as_str()
+    fn next_capture(&mut self) -> &str {
+        let capture = self.captures.get(self.idx).expect("No capture").as_str();
+        self.idx += 1;
+        capture
+    }
+
+    pub fn next_string(&mut self) -> String {
+        self.next_capture().to_owned()
+    }
+
+    pub fn next_u8(&mut self) -> u8 {
+        self.next_capture()
             .parse::<u8>()
             .expect("Unable to parse to u8")
     }
 
-    pub fn get_u32(&self, i: usize) -> u32 {
-        self.0
-            .get(i)
-            .expect("No capture")
-            .as_str()
+    pub fn next_u32(&mut self) -> u32 {
+        self.next_capture()
             .parse::<u32>()
             .expect("Unable to parse to u32")
     }
 
-    pub fn get_i32(&self, i: usize) -> i32 {
-        self.0
-            .get(i)
-            .expect("No capture")
-            .as_str()
+    pub fn next_i32(&mut self) -> i32 {
+        self.next_capture()
             .parse::<i32>()
             .expect("Unable to parse to i32")
     }
@@ -55,7 +62,7 @@ pub fn regexes<T>(input: &str, regexes: TransformRegexes<T>) -> Vec<T> {
             let regexes: &[(Regex, TransformFn<T>)] = &compiled_regexes;
             for (regex, transform_fn) in regexes.iter() {
                 if let Some(captures) = regex.captures(l).expect("Invalid regex") {
-                    return transform_fn(Captures(captures));
+                    return transform_fn(Captures::new(captures));
                 }
             }
 
@@ -70,7 +77,7 @@ pub fn regex_lines<'a>(input: &'a str, regex: &'static str) -> impl Iterator<Ite
     let compiled_regex = Regex::new(&("^".to_owned() + regex + "$")).unwrap();
 
     input.lines().map(move |l| {
-        Captures(
+        Captures::new(
             compiled_regex
                 .captures(l)
                 .expect("Invalid regex")

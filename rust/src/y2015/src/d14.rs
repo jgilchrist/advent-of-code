@@ -40,10 +40,10 @@ impl AocSolution for Day14 {
             input,
             r#"\w+ can fly (\d+) km/s for (\d+) seconds, but then must rest for (\d+) seconds."#,
         )
-        .map(|l| Reindeer {
-            fly_speed: l.get_u32(1),
-            fly_period: l.get_u32(2),
-            rest_period: l.get_u32(3),
+        .map(|mut l| Reindeer {
+            fly_speed: l.next_u32(),
+            fly_period: l.next_u32(),
+            rest_period: l.next_u32(),
         })
         .map(|r| {
             (
