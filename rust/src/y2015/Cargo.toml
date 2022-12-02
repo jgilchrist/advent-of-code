@@ -10,3 +10,4 @@ serde_json = "1.0.87"
 aoc = { "path" = "../aoc" }
 prelude = { "path" = "../prelude" }
 utils = { "path" = "../utils" }
+rand = "0.8.5"
