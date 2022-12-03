@@ -110,7 +110,7 @@ where
 }
 
 pub fn n_positive_numbers<const N: usize>(s: &str) -> [u32; N] {
-    let positive_numbers_regex: Regex = Regex::new(r"\d+").unwrap();
+    let positive_numbers_regex = Regex::new(r"\d+").unwrap();
 
     positive_numbers_regex
         .find_iter(s)
@@ -120,11 +120,13 @@ pub fn n_positive_numbers<const N: usize>(s: &str) -> [u32; N] {
         .expect("Incorrect number of numbers")
 }
 
-pub fn numbers(s: &str) -> Vec<i32> {
-    let positive_numbers_regex: Regex = Regex::new(r"-?\d+").unwrap();
+pub fn n_numbers<const N: usize>(s: &str) -> [i32; N] {
+    let numbers_regex = Regex::new(r"-?\d+").unwrap();
 
-    positive_numbers_regex
+    numbers_regex
         .find_iter(s)
         .map(|i| i.unwrap().as_str().parse::<i32>().unwrap())
-        .collect_vec()
+        .collect::<Vec<_>>()
+        .try_into()
+        .expect("Incorrect number of numbers")
 }
