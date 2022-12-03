@@ -44,17 +44,15 @@ fn ribbon_length_required(
 impl AocSolution for Day02 {
     type Input = Vec<Present>;
     fn process_input(input: &str) -> Self::Input {
-        fn parse_line(line: &str) -> Present {
-            let [x1, x2, x3] = utils::inputs::n_positive_numbers(line);
-
-            Present {
-                length: x1,
-                width: x2,
-                height: x3,
-            }
-        }
-
-        input.lines().map(parse_line).collect()
+        input
+            .lines()
+            .map(utils::inputs::n_positive_numbers)
+            .map(|[length, width, height]| Present {
+                length,
+                width,
+                height,
+            })
+            .collect()
     }
 
     const PART1_SOLUTION: Solution = solution(1586300);
