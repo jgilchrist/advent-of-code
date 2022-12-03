@@ -1,5 +1,3 @@
-use rand::Rng;
-
 use prelude::*;
 
 pub struct Day15;
@@ -39,132 +37,53 @@ impl Cookie {
     }
 }
 
-// 100, 4 -> [34, 3, 21, 42]
-fn randomly_partition_into_buckets(n: u32, buckets: usize) -> Vec<u32> {
-    let mut rng = rand::thread_rng();
-    let mut randoms = (0..buckets - 1)
-        .map(|_| rng.gen_range(0..n))
-        .sorted_unstable()
-        .collect_vec();
-    randoms.insert(0, 0);
-    randoms.push(n);
-    randoms.array_windows().map(|[x, y]| y - x).collect_vec()
+fn all_ingredient_combinations() -> impl Iterator<Item = [u32; 4]> {
+    (0..=100u32).flat_map(move |x| {
+        (0..=100 - x).flat_map(move |y| (0..=100 - x - y).map(move |z| [x, y, z, 100 - x - y - z]))
+    })
 }
 
-// Because any negative amounts become 0-terms in our product, there are areas of the state
-// space which we can't use. We need to try a few different distributions of ingredients to
-// find one that is usable.
-fn get_initial_cookie(ingredients: &Vec<Ingredient>, heuristic: fn(&Cookie) -> i32) -> Cookie {
-    let number_of_ingredients = ingredients.len();
-    let mut loops = 0;
-
-    loop {
-        let ingredient_amounts = randomly_partition_into_buckets(100, number_of_ingredients);
-
-        let cookie = Cookie {
-            amounts: ingredients
-                .into_iter()
-                .zip(ingredient_amounts)
-                .map(|(ingredient, amount)| (ingredient.clone(), amount))
-                .collect(),
-        };
-
-        if heuristic(&cookie) > 0 {
-            return cookie;
-        }
-
-        loops += 1;
-        if loops > 100 {
-            panic!();
-        }
-    }
-}
-
-fn find_best_cookie(ingredients: &Vec<Ingredient>, heuristic: fn(&Cookie) -> i32) -> Cookie {
-    let mut possible_delta_components = vec![1, -1];
-    possible_delta_components.extend(std::iter::repeat(0).take(ingredients.len() - 2));
-    let possible_deltas = possible_delta_components
-        .iter()
-        .permutations(possible_delta_components.len())
-        .collect_vec();
-
-    let mut best_cookie = get_initial_cookie(ingredients, heuristic);
-    let mut current_best_heuristic = heuristic(&best_cookie);
-
-    loop {
-        let new_cookies = possible_deltas
-            .iter()
-            .filter_map(|deltas| {
-                let amounts: HashMap<Ingredient, i32> = best_cookie
-                    .amounts
-                    .iter()
-                    .zip(deltas)
-                    .map(|((ingredient, current_amount), delta)| {
-                        (ingredient.clone(), (*current_amount as i32 + *delta))
-                    })
-                    .collect();
-
-                if amounts.values().any(|a| *a < 0) {
-                    return None;
-                }
-
-                Some(Cookie {
-                    amounts: amounts
-                        .into_iter()
-                        .map(|(ingredient, current_amount)| (ingredient, current_amount as u32))
-                        .collect(),
-                })
-            })
-            .collect_vec();
-
-        let best_cookie_this_round = new_cookies
-            .iter()
-            .max_by_key(|c| heuristic(c) - current_best_heuristic)
-            .unwrap();
-
-        let this_rounds_best_heuristic = heuristic(best_cookie_this_round);
-
-        // None of our changes to ingredients improved the cookie, so we've found our optimal
-        // (or at least a local maxima).
-        if this_rounds_best_heuristic <= current_best_heuristic {
-            break;
-        }
-
-        best_cookie = best_cookie_this_round.clone();
-        current_best_heuristic = this_rounds_best_heuristic;
-    }
-
-    best_cookie
+fn all_cookies(ingredients: &Vec<Ingredient>) -> impl Iterator<Item = Cookie> + '_ {
+    all_ingredient_combinations().map(|amounts| Cookie {
+        amounts: ingredients
+            .into_iter()
+            .zip(amounts)
+            .map(|(ingredient, amount)| (ingredient.clone(), amount))
+            .collect(),
+    })
 }
 
 impl AocSolution for Day15 {
     type Input = Vec<Ingredient>;
     fn process_input(input: &str) -> Self::Input {
-        inputs::regex_lines(input, r#"\w+: capacity (-?\d+), durability (-?\d+), flavor (-?\d+), texture (-?\d+), calories (-?\d+)"#)
-            .map(|mut l| Ingredient {
-                capacity: l.next_i32(),
-                durability: l.next_i32(),
-                flavor: l.next_i32(),
-                texture: l.next_i32(),
-                calories: l.next_i32(),
-            }).collect()
+        input
+            .lines()
+            .map(inputs::n_numbers)
+            .map(
+                |[capacity, durability, flavor, texture, calories]| Ingredient {
+                    capacity,
+                    durability,
+                    flavor,
+                    texture,
+                    calories,
+                },
+            )
+            .collect()
     }
 
     const PART1_SOLUTION: Solution = solution(13882464);
     fn part1(input: &Self::Input) -> impl Into<Solution> {
-        find_best_cookie(input, |c| c.score()).score()
+        all_cookies(input)
+            .max_by_key(|c| c.score())
+            .unwrap()
+            .score()
     }
 
-    const PART2_STATUS: SolutionStatus = SolutionStatus::Wip;
-    const PART2_SOLUTION: Solution = Solution::Unsolved;
+    const PART2_SOLUTION: Solution = solution(11171160);
     fn part2(input: &Self::Input) -> impl Into<Solution> {
-        let best_cookie = find_best_cookie(input, |c| dbg!(if dbg!(c.calories()) <= 500 {
-            c.score()
-        } else {
-            0
-        }));
-
-        dbg!(best_cookie.calories());
-        best_cookie.score()
+        all_cookies(input)
+            .max_by_key(|c| if c.calories() == 500 { c.score() } else { 0 })
+            .unwrap()
+            .score()
     }
 }
