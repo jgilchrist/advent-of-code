@@ -60,7 +60,7 @@ impl AocSolution for Day02 {
             }
         }
 
-        input.lines().map(parse_line).collect_vec()
+        input.lines().map(parse_line).collect()
     }
 
     const PART1_SOLUTION: Solution = solution(1586300);

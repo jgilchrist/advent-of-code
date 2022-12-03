@@ -41,7 +41,7 @@ impl AocSolution for Day01 {
                 },
                 amount: s[1..].parse::<u8>().unwrap(),
             })
-            .collect_vec()
+            .collect()
     }
 
     const PART1_SOLUTION: Solution = solution(252);

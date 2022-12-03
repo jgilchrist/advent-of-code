@@ -31,7 +31,7 @@ fn get_instructions_from_line(line: &str) -> Vec<CardinalDirection> {
             'R' => CardinalDirection::East,
             _ => unreachable!(),
         })
-        .collect_vec()
+        .collect()
 }
 
 fn run_input(
@@ -62,7 +62,7 @@ fn run_input(
 impl AocSolution for Day02 {
     type Input = Vec<Vec<CardinalDirection>>;
     fn process_input(input: &str) -> Self::Input {
-        input.lines().map(get_instructions_from_line).collect_vec()
+        input.lines().map(get_instructions_from_line).collect()
     }
 
     const PART1_SOLUTION: Solution = solution("78293");

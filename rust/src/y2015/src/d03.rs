@@ -17,7 +17,7 @@ impl AocSolution for Day03 {
                 '>' => CardinalDirection::East,
                 _ => unreachable!(),
             })
-            .collect_vec()
+            .collect()
     }
 
     const PART1_SOLUTION: Solution = solution(2565);
