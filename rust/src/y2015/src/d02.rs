@@ -45,11 +45,7 @@ impl AocSolution for Day02 {
     type Input = Vec<Present>;
     fn process_input(input: &str) -> Self::Input {
         fn parse_line(line: &str) -> Present {
-            let numbers = utils::inputs::positive_numbers(line);
-
-            let [x1, x2, x3] = numbers[..] else {
-                unreachable!()
-            };
+            let [x1, x2, x3] = utils::inputs::n_positive_numbers(line);
 
             Present {
                 length: x1,
