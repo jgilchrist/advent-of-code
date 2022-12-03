@@ -21,7 +21,7 @@ impl AocSolution for Day03 {
     fn process_input(input: &str) -> Self::Input {
         input
             .lines()
-            .map(|l| inputs::n_positive_numbers::<3>(l))
+            .map(|l| inputs::n_positive_numbers(l))
             .collect()
     }
 
