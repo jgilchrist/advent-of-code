@@ -35,6 +35,7 @@ mod d12;
 mod d13;
 mod d14;
 mod d15;
+mod d16;
 
 pub struct Y2015;
 
@@ -54,7 +55,7 @@ impl AocYear for Y2015 {
     type D13 = d13::Day13;
     type D14 = d14::Day14;
     type D15 = d15::Day15;
-    type D16 = Unsolved;
+    type D16 = d16::Day16;
     type D17 = Unsolved;
     type D18 = Unsolved;
     type D19 = Unsolved;
