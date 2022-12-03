@@ -1,7 +1,7 @@
 use std::cmp::Ordering;
 
 use prelude::*;
-use utils::{geometry::d2::vecs::Vec2, iters::count_items};
+use utils::geometry::d2::vecs::Vec2;
 
 pub struct Day05;
 
@@ -84,17 +84,23 @@ impl AocSolution for Day05 {
 
         let points = relevant_lines.flat_map(|line| line.points()).collect_vec();
 
-        let counted_points = count_items(&points);
-
-        counted_points.into_iter().filter(|&(_, v)| v >= 2).count()
+        points
+            .iter()
+            .counts()
+            .iter()
+            .filter(|&(_, &v)| v >= 2)
+            .count()
     }
 
     const PART2_SOLUTION: Solution = solution(20196);
     fn part2(input: &Self::Input) -> impl Into<Solution> {
         let points = input.iter().flat_map(|line| line.points()).collect_vec();
 
-        let counted_points = count_items(&points);
-
-        counted_points.into_iter().filter(|&(_, v)| v >= 2).count()
+        points
+            .iter()
+            .counts()
+            .iter()
+            .filter(|&(_, &v)| v >= 2)
+            .count()
     }
 }
