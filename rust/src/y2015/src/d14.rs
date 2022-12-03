@@ -36,27 +36,26 @@ pub struct ReindeerState {
 impl AocSolution for Day14 {
     type Input = Vec<(Reindeer, ReindeerState)>;
     fn process_input(input: &str) -> Self::Input {
-        inputs::regex_lines(
-            input,
-            r#"\w+ can fly (\d+) km/s for (\d+) seconds, but then must rest for (\d+) seconds."#,
-        )
-        .map(|mut l| Reindeer {
-            fly_speed: l.next_u32(),
-            fly_period: l.next_u32(),
-            rest_period: l.next_u32(),
-        })
-        .map(|r| {
-            (
-                r,
-                ReindeerState {
-                    action: ReindeerAction::Flying,
-                    time_until_transition: r.fly_period,
-                    distance: 0,
-                    score: 0,
-                },
-            )
-        })
-        .collect()
+        input
+            .lines()
+            .map(|l| inputs::n_positive_numbers(l))
+            .map(|[fly_speed, fly_period, rest_period]| Reindeer {
+                fly_speed,
+                fly_period,
+                rest_period,
+            })
+            .map(|r| {
+                (
+                    r,
+                    ReindeerState {
+                        action: ReindeerAction::Flying,
+                        time_until_transition: r.fly_period,
+                        distance: 0,
+                        score: 0,
+                    },
+                )
+            })
+            .collect()
     }
 
     const PART1_SOLUTION: Solution = solution(2696);
