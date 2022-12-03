@@ -44,17 +44,11 @@ impl AocSolution for Day03 {
             .map(|&l| l.into_iter().collect_vec())
             .collect_vec();
 
-        let new_triangles = transpose(&slices)
+        let new_triangles: Vec<Triangle> = transpose(&slices)
             .concat()
-            .chunks(3)
-            .map(|c| {
-                let [x1, x2, x3] = c[..] else {
-                    unreachable!()
-                };
-
-                [x1, x2, x3]
-            })
-            .collect_vec();
+            .array_chunks()
+            .map(|&[x1, x2, x3]| { [x1, x2, x3] })
+            .collect();
 
         count_valid_triangles(&new_triangles)
     }
