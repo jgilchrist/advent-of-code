@@ -43,10 +43,10 @@ fn all_ingredient_combinations() -> impl Iterator<Item = [u32; 4]> {
     })
 }
 
-fn all_cookies(ingredients: &Vec<Ingredient>) -> impl Iterator<Item = Cookie> + '_ {
+fn all_cookies(ingredients: &[Ingredient]) -> impl Iterator<Item = Cookie> + '_ {
     all_ingredient_combinations().map(|amounts| Cookie {
         amounts: ingredients
-            .into_iter()
+            .iter()
             .zip(amounts)
             .map(|(ingredient, amount)| (ingredient.clone(), amount))
             .collect(),
