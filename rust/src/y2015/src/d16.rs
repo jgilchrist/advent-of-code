@@ -44,16 +44,11 @@ const CRITERIA: Criteria = Criteria {
 };
 
 fn get_criteria(line: &str, name: &str) -> Option<u32> {
-    let regex = Regex::new(&format!(r#"{name}: (\d+)"#)).unwrap();
-    let captures = regex
+    Regex::new(&format!(r#"{name}: (\d+)"#)).unwrap()
         .captures(line)
         .expect("Invalid regex")
-        .map(|c| inputs::Captures::new(c));
-
-    match captures {
-        Some(mut c) => Some(c.next_u32()),
-        None => None,
-    }
+        .map(inputs::Captures::new)
+        .map(|mut c| c.next_u32())
 }
 
 impl AocSolution for Day16 {
@@ -86,7 +81,7 @@ impl AocSolution for Day16 {
     fn part1(input: &Self::Input) -> impl Into<Solution> {
         input
             .iter()
-            .filter(|s| {
+            .find(|s| {
                 s.children.map_or(true, |c| c == CRITERIA.children)
                     && s.cats.map_or(true, |c| c == CRITERIA.cats)
                     && s.samoyeds.map_or(true, |c| c == CRITERIA.samoyeds)
@@ -98,7 +93,6 @@ impl AocSolution for Day16 {
                     && s.cars.map_or(true, |c| c == CRITERIA.cars)
                     && s.perfumes.map_or(true, |c| c == CRITERIA.perfumes)
             })
-            .next()
             .unwrap()
             .number
     }
@@ -107,7 +101,7 @@ impl AocSolution for Day16 {
     fn part2(input: &Self::Input) -> impl Into<Solution> {
         input
             .iter()
-            .filter(|s| {
+            .find(|s| {
                 s.children.map_or(true, |c| c == CRITERIA.children)
                     && s.cats.map_or(true, |c| c > CRITERIA.cats)
                     && s.samoyeds.map_or(true, |c| c == CRITERIA.samoyeds)
@@ -119,7 +113,6 @@ impl AocSolution for Day16 {
                     && s.cars.map_or(true, |c| c == CRITERIA.cars)
                     && s.perfumes.map_or(true, |c| c == CRITERIA.perfumes)
             })
-            .next()
             .unwrap()
             .number
     }
