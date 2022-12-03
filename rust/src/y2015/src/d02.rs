@@ -33,9 +33,7 @@ fn ribbon_length_required(
     let mut dimensions = [length, width, height];
     dimensions.sort_unstable();
 
-    let [smallest, middle, _] = dimensions[..] else {
-        unreachable!();
-    };
+    let [smallest, middle, _] = dimensions;
 
     let smallest_perimeter = (smallest + middle) * 2;
     let volume = length * width * height;
