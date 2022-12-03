@@ -29,7 +29,7 @@ impl AocSolution for Day03 {
 
                 [x1, x2, x3]
             })
-            .collect_vec()
+            .collect()
     }
 
     const PART1_SOLUTION: Solution = solution(1050);
@@ -39,15 +39,12 @@ impl AocSolution for Day03 {
 
     const PART2_SOLUTION: Solution = solution(1921);
     fn part2(input: &Self::Input) -> impl Into<Solution> {
-        let slices = input
-            .iter()
-            .map(|&l| l.into_iter().collect_vec())
-            .collect_vec();
+        let slices = input.iter().map(|&l| l.into_iter().collect()).collect_vec();
 
         let new_triangles: Vec<Triangle> = transpose(&slices)
             .concat()
             .array_chunks()
-            .map(|&[x1, x2, x3]| { [x1, x2, x3] })
+            .map(|&[x1, x2, x3]| [x1, x2, x3])
             .collect();
 
         count_valid_triangles(&new_triangles)

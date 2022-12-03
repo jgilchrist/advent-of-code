@@ -68,7 +68,7 @@ pub fn regexes<T>(input: &str, regexes: TransformRegexes<T>) -> Vec<T> {
 
             panic!("Did not match any regexes: \"{l}\"");
         })
-        .collect_vec();
+        .collect();
 
     transformed_lines
 }
@@ -115,5 +115,5 @@ pub fn positive_numbers(s: &str) -> Vec<u32> {
     positive_numbers_regex
         .find_iter(s)
         .map(|i| i.unwrap().as_str().parse::<u32>().unwrap())
-        .collect_vec()
+        .collect()
 }

@@ -56,7 +56,7 @@ impl AocSolution for Day14 {
                 },
             )
         })
-        .collect_vec()
+        .collect()
     }
 
     const PART1_SOLUTION: Solution = solution(2696);

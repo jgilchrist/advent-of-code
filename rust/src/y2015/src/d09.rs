@@ -11,11 +11,7 @@ pub struct Route(City, City);
 fn calculate_journey_distance(route: &[&City], distances: &HashMap<Route, u32>) -> u32 {
     route
         .array_windows()
-        .map(|&[a, b]| {
-            distances
-                .get(&Route(a.clone(), b.clone()))
-                .unwrap()
-        })
+        .map(|&[a, b]| distances.get(&Route(a.clone(), b.clone())).unwrap())
         .sum()
 }
 
