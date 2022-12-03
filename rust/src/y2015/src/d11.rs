@@ -35,9 +35,7 @@ fn has_pairs(password: &str) -> bool {
     let mut result = String::new();
     let mut count = 1;
 
-    for window in chars.windows(2) {
-        let &[last_char, current_char] = window else { unreachable!() };
-
+    for &[last_char, current_char] in chars.array_windows() {
         if current_char == last_char {
             count += 1;
         } else {
@@ -54,14 +52,9 @@ fn has_pairs(password: &str) -> bool {
 
 #[allow(clippy::as_conversions)]
 fn has_incrementing_character_run(password: &str) -> bool {
-    let chars = password.chars().collect_vec();
+    let chars = password.chars().map(|c| c as u8).collect_vec();
 
-    for window in chars.windows(3) {
-        let &[a, b, c] = window else { unreachable!() };
-        let a = a as u8;
-        let b = b as u8;
-        let c = c as u8;
-
+    for &[a, b, c] in chars.array_windows() {
         if a == b - 1 && a == c - 2 {
             return true;
         }

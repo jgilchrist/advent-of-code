@@ -18,10 +18,10 @@ fn max_seating_plan_utility(people: &HashSet<Person>, pairings: &HashMap<Pairing
             wrapped_plan.push(wrapped_plan[0].clone());
 
             wrapped_plan
-                .windows(2)
-                .map(|window| {
-                    let pairing = Pairing(window[0].clone(), window[1].clone());
-                    let opposite_pairing = Pairing(window[1].clone(), window[0].clone());
+                .array_windows()
+                .map(|[a, b]| {
+                    let pairing = Pairing(a.clone(), b.clone());
+                    let opposite_pairing = Pairing(b.clone(), a.clone());
                     pairings[&pairing] + pairings[&opposite_pairing]
                 })
                 .sum()

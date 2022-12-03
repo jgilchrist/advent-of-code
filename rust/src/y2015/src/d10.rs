@@ -9,9 +9,7 @@ fn compress_number(number: &str) -> String {
     let mut result = String::new();
     let mut count = 1;
 
-    for window in chars.windows(2) {
-        let &[last_char, current_char] = window else { unreachable!() };
-
+    for &[last_char, current_char] in chars.array_windows() {
         if current_char == last_char {
             count += 1;
         } else {
