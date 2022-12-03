@@ -3,8 +3,8 @@ use prelude::*;
 pub struct Day01;
 
 fn number_of_positive_diffs(ns: &[i32]) -> usize {
-    ns.windows(2)
-        .map(|w| w[1] - w[0])
+    ns.array_windows()
+        .map(|&[a, b]| b - a)
         .filter(|diff| *diff > 0)
         .count()
 }
