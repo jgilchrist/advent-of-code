@@ -11,10 +11,7 @@ pub struct Captures<'a> {
 
 impl<'a> Captures<'a> {
     fn new(captures: fancy_regex::Captures<'a>) -> Self {
-        Self {
-            captures,
-            idx: 1,
-        }
+        Self { captures, idx: 1 }
     }
 
     fn next_capture(&mut self) -> &str {
