@@ -1,5 +1,5 @@
 use prelude::*;
-use utils::iters::{count_items, transpose};
+use utils::iters::transpose;
 
 pub struct Day03;
 
@@ -9,7 +9,7 @@ fn to_decimal(chars: &[char]) -> u32 {
 }
 
 fn most_common_in(items: &[char]) -> char {
-    let counts = count_items(items);
+    let counts = items.iter().counts();
 
     let (most_common, most_common_count) = counts.iter().max_by_key(|&(_, count)| count).unwrap();
     if counts
@@ -25,7 +25,7 @@ fn most_common_in(items: &[char]) -> char {
 }
 
 fn least_common_in(items: &[char]) -> char {
-    let counts = count_items(items);
+    let counts = items.iter().counts();
 
     let (least_common, least_common_count) = counts.iter().min_by_key(|&(_, count)| count).unwrap();
     if counts
