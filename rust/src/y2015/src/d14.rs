@@ -38,7 +38,7 @@ impl AocSolution for Day14 {
     fn process_input(input: &str) -> Self::Input {
         input
             .lines()
-            .map(|l| inputs::n_positive_numbers(l))
+            .map(inputs::n_positive_numbers)
             .map(|[fly_speed, fly_period, rest_period]| Reindeer {
                 fly_speed,
                 fly_period,

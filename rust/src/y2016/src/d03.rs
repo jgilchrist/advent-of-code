@@ -19,10 +19,7 @@ fn count_valid_triangles(ts: &[Triangle]) -> usize {
 impl AocSolution for Day03 {
     type Input = Vec<[u32; 3]>;
     fn process_input(input: &str) -> Self::Input {
-        input
-            .lines()
-            .map(|l| inputs::n_positive_numbers(l))
-            .collect()
+        input.lines().map(inputs::n_positive_numbers).collect()
     }
 
     const PART1_SOLUTION: Solution = solution(1050);
