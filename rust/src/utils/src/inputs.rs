@@ -10,7 +10,7 @@ pub struct Captures<'a> {
 }
 
 impl<'a> Captures<'a> {
-    fn new(captures: fancy_regex::Captures<'a>) -> Self {
+    pub fn new(captures: fancy_regex::Captures<'a>) -> Self {
         Self { captures, idx: 1 }
     }
 
@@ -20,29 +20,35 @@ impl<'a> Captures<'a> {
         capture
     }
 
+    fn try_next<T>(&mut self) -> Option<T>
+    where
+        T: FromStr,
+    {
+        let next_capture = self.next_capture();
+        next_capture.parse::<T>().ok()
+    }
+
+    fn next<T>(&mut self) -> T
+    where
+        T: FromStr,
+    {
+        self.try_next().unwrap()
+    }
+
     pub fn next_string(&mut self) -> String {
-        self.next_capture().to_owned()
+        self.next::<String>()
     }
 
     pub fn next_u8(&mut self) -> u8 {
-        let next_capture = self.next_capture();
-        next_capture
-            .parse::<u8>()
-            .unwrap_or_else(|_| panic!("Unable to parse to u8: {next_capture}"))
+        self.next::<u8>()
     }
 
     pub fn next_u32(&mut self) -> u32 {
-        let next_capture = self.next_capture();
-        next_capture
-            .parse::<u32>()
-            .unwrap_or_else(|_| panic!("Unable to parse to u32: {next_capture}"))
+        self.next::<u32>()
     }
 
     pub fn next_i32(&mut self) -> i32 {
-        let next_capture = self.next_capture();
-        next_capture
-            .parse::<i32>()
-            .unwrap_or_else(|_| panic!("Unable to parse to i32: {next_capture}"))
+        self.next::<i32>()
     }
 }
 
