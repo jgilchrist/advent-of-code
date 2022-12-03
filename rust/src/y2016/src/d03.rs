@@ -21,14 +21,7 @@ impl AocSolution for Day03 {
     fn process_input(input: &str) -> Self::Input {
         input
             .lines()
-            .map(|l| {
-                let numbers = inputs::positive_numbers(l);
-                let [x1, x2, x3] = numbers[..] else {
-                    unreachable!()
-                };
-
-                [x1, x2, x3]
-            })
+            .map(|l| inputs::n_positive_numbers::<3>(l))
             .collect()
     }
 
