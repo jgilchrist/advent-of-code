@@ -145,7 +145,7 @@ pub fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() -> R
         SolutionStatus::SolvedInPython | SolutionStatus::Unsolved => {
             print!(
                 "{}: {}",
-                style("1").black().bold(),
+                style("2").black().bold(),
                 style("Unsolved").black().bold()
             );
         }
