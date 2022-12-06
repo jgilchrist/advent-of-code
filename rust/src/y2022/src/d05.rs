@@ -14,7 +14,10 @@ pub struct Move {
 }
 
 fn top_crates(crates: &Vec<Stack>) -> String {
-    crates.iter().map(|stack| stack.iter().last().unwrap()).join("")
+    crates
+        .iter()
+        .map(|stack| stack.iter().last().unwrap())
+        .join("")
 }
 
 impl AocSolution for Day05 {
