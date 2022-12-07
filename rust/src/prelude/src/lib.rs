@@ -1,6 +1,7 @@
 pub use aoc::{solution, AocSolution, Solution, SolutionStatus};
 pub use utils::inputs;
 
+pub use std::collections::hash_map::Entry::{Occupied, Vacant};
 pub use std::collections::HashMap;
 pub use std::collections::HashSet;
 
