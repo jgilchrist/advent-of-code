@@ -14,6 +14,18 @@ pub enum CardinalDirection {
     West,
 }
 
+#[derive(PartialEq, Eq, Clone, Copy, Debug)]
+pub enum ExtendedCardinalDirection {
+    North,
+    NorthEast,
+    East,
+    SouthEast,
+    South,
+    SouthWest,
+    West,
+    NorthWest,
+}
+
 impl CardinalDirection {
     pub fn all() -> impl Iterator<Item = Self> {
         vec![Self::North, Self::East, Self::South, Self::West].into_iter()
@@ -49,14 +61,49 @@ impl CardinalDirection {
             West => South,
         }
     }
+}
 
-    pub fn as_vec(&self) -> Vec2 {
+impl ExtendedCardinalDirection {
+    pub fn all() -> impl Iterator<Item = Self> {
+        vec![
+            Self::North,
+            Self::NorthEast,
+            Self::East,
+            Self::SouthEast,
+            Self::South,
+            Self::SouthWest,
+            Self::West,
+            Self::NorthWest,
+        ]
+        .into_iter()
+    }
+}
+
+impl From<CardinalDirection> for Vec2 {
+    fn from(value: CardinalDirection) -> Self {
         use CardinalDirection::*;
-        match *self {
+        match value {
             North => (0, -1),
             South => (0, 1),
             East => (1, 0),
             West => (-1, 0),
+        }
+        .into()
+    }
+}
+
+impl From<ExtendedCardinalDirection> for Vec2 {
+    fn from(value: ExtendedCardinalDirection) -> Self {
+        use ExtendedCardinalDirection::*;
+        match value {
+            North => (0, -1),
+            South => (0, 1),
+            East => (1, 0),
+            West => (-1, 0),
+            NorthEast => (1, -1),
+            NorthWest => (-1, -1),
+            SouthEast => (1, 1),
+            SouthWest => (-1, 1),
         }
         .into()
     }
