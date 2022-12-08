@@ -18,8 +18,6 @@
 #![allow(clippy::missing_panics_doc)]
 #![allow(clippy::must_use_candidate)]
 
-pub type TestDefinition<Output> = (&'static str, Option<Output>, Option<Output>);
-
 pub enum SolutionStatus {
     Solved,
     SolvedInPython,
@@ -119,10 +117,6 @@ pub const fn solution<T: ~const Into<Solution>>(sln: T) -> Solution {
 }
 
 pub trait AocSolution {
-    fn tests() -> Vec<TestDefinition<Solution>> {
-        vec![]
-    }
-
     type Input;
     fn process_input(input: &str) -> Self::Input;
 
