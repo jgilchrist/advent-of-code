@@ -14,8 +14,10 @@ pub enum CardinalDirection {
     West,
 }
 
+// https://en.wikipedia.org/wiki/Compass_rose
+// Cardinal + intercardinal directions are referred to as the 'principal winds'
 #[derive(PartialEq, Eq, Clone, Copy, Debug)]
-pub enum ExtendedCardinalDirection {
+pub enum PrincipalWinds {
     North,
     NorthEast,
     East,
@@ -63,7 +65,7 @@ impl CardinalDirection {
     }
 }
 
-impl ExtendedCardinalDirection {
+impl PrincipalWinds {
     pub fn all() -> impl Iterator<Item = Self> {
         vec![
             Self::North,
@@ -92,9 +94,9 @@ impl From<CardinalDirection> for Vec2 {
     }
 }
 
-impl From<ExtendedCardinalDirection> for Vec2 {
-    fn from(value: ExtendedCardinalDirection) -> Self {
-        use ExtendedCardinalDirection::*;
+impl From<PrincipalWinds> for Vec2 {
+    fn from(value: PrincipalWinds) -> Self {
+        use PrincipalWinds::*;
         match value {
             North => (0, -1),
             South => (0, 1),
