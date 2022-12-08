@@ -1,5 +1,5 @@
 use prelude::*;
-use utils::geometry::d2::{map::Map, vecs::Vec2};
+use utils::geometry::d2::{grid::Grid, vecs::Vec2};
 
 pub struct Day18;
 
@@ -32,9 +32,9 @@ impl From<char> for Cell {
     }
 }
 
-fn evolve_using<F>(initial_state: &Map<Cell>, iters: u32, f: F) -> Map<Cell>
+fn evolve_using<F>(initial_state: &Grid<Cell>, iters: u32, f: F) -> Grid<Cell>
 where
-    F: Fn(&Map<Cell>, Vec2, &Cell) -> Cell,
+    F: Fn(&Grid<Cell>, Vec2, &Cell) -> Cell,
 {
     let mut state = initial_state.clone();
 
@@ -45,7 +45,7 @@ where
     state
 }
 
-fn game_of_life_rule(map: &Map<Cell>, coord: Vec2, cell: &Cell) -> Cell {
+fn game_of_life_rule(map: &Grid<Cell>, coord: Vec2, cell: &Cell) -> Cell {
     let lit_neighbors = map
         .neighbor_cells8(coord)
         .filter(|&c| *c == Cell::On)
@@ -69,18 +69,16 @@ fn game_of_life_rule(map: &Map<Cell>, coord: Vec2, cell: &Cell) -> Cell {
     }
 }
 
-fn count_lit_cells(map: &Map<Cell>) -> usize {
+fn count_lit_cells(map: &Grid<Cell>) -> usize {
     map.iter_cells()
         .filter(|&(_, value)| *value == Cell::On)
         .count()
 }
 
 impl AocSolution for Day18 {
-    type Input = Map<Cell>;
+    type Input = Grid<Cell>;
     fn process_input(input: &str) -> Self::Input {
-        let cells: Vec<Cell> = input.lines().join("").chars().map(|c| c.into()).collect();
-
-        Map::new(cells)
+        inputs::grid_of::<Cell>(input)
     }
 
     const PART1_SOLUTION: Solution = solution(768);

@@ -71,6 +71,12 @@ impl From<(u32, u32)> for Vec2 {
     }
 }
 
+impl From<(usize, usize)> for Vec2 {
+    fn from(val: (usize, usize)) -> Self {
+        Self::new(val.0 as i32, val.1 as i32)
+    }
+}
+
 impl std::fmt::Debug for Vec2 {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         write!(f, "({}, {})", self.x, self.y)

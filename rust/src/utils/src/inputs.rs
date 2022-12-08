@@ -3,6 +3,8 @@ use std::str::FromStr;
 use fancy_regex::Regex;
 use itertools::Itertools;
 
+use crate::geometry::d2::grid::Grid;
+
 #[derive(Debug)]
 pub struct Captures<'a> {
     captures: fancy_regex::Captures<'a>,
@@ -144,4 +146,22 @@ pub fn n_numbers<const N: usize>(s: &str) -> [i32; N] {
         .collect::<Vec<_>>()
         .try_into()
         .expect("Incorrect number of numbers")
+}
+
+pub fn grid_of<T>(s: &str) -> Grid<T>
+where
+    T: From<char>,
+{
+    let lines = s.lines().collect_vec();
+    let x_size = lines[0].len();
+    let y_size = lines.len();
+
+    if x_size != y_size {
+        panic!("Non-square grids are currently not supported");
+    }
+
+    Grid::new(
+        x_size,
+        s.lines().join("").chars().map(|c| c.into()).collect(),
+    )
 }
