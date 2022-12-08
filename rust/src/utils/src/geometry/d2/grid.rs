@@ -3,7 +3,7 @@
 use itertools::Itertools;
 
 use super::{
-    coordinates::{CardinalDirection, ExtendedCardinalDirection},
+    coordinates::{CardinalDirection, PrincipalWinds},
     vecs::Vec2,
 };
 
@@ -47,7 +47,7 @@ impl<T> Grid<T> {
     }
 
     pub fn neighbors8(&self, v: Vec2) -> impl Iterator<Item = Vec2> + '_ {
-        ExtendedCardinalDirection::all()
+        PrincipalWinds::all()
             .map(move |dir| v.move_in_direction(dir))
             .filter(|coord| self.is_valid_coord(coord))
     }
