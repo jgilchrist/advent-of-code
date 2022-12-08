@@ -8,18 +8,17 @@ use super::{
 };
 
 #[derive(Clone)]
-pub struct Map<T> {
-    size: u32,
+pub struct Grid<T> {
+    size: usize,
     cells: Vec<T>,
 }
 
-impl<T> Map<T> {
-    pub fn new(cells: Vec<T>) -> Self {
-        let size = (cells.len() as f32).sqrt() as u32;
+impl<T> Grid<T> {
+    pub(crate) fn new(size: usize, cells: Vec<T>) -> Self {
         Self { size, cells }
     }
 
-    pub fn size(&self) -> u32 {
+    pub fn size(&self) -> usize {
         self.size
     }
 
@@ -30,7 +29,7 @@ impl<T> Map<T> {
         if v.y < 0 {
             unreachable!();
         }
-        let idx: usize = v.y as usize * self.size as usize + v.x as usize;
+        let idx: usize = v.y as usize * self.size + v.x as usize;
         self.cells.get(idx)
     }
 
@@ -66,11 +65,12 @@ impl<T> Map<T> {
         self.iter_coords().map(|c| (c, self.at(c).unwrap()))
     }
 
-    pub fn map_cells<X, F>(&self, f: F) -> Map<X>
+    pub fn map_cells<X, F>(&self, f: F) -> Grid<X>
     where
         F: Fn(Vec2, &T) -> X,
     {
-        Map::new(
+        Grid::new(
+            self.size,
             self.iter_cells()
                 .map(|(coord, value)| f(coord, value))
                 .collect_vec(),
@@ -83,7 +83,7 @@ impl<T> Map<T> {
         direction: CardinalDirection,
     ) -> impl Iterator<Item = Vec2> + '_ {
         (1..self.size)
-            .map(move |amount| from_coord.move_in_direction_by(direction, amount))
+            .map(move |amount| from_coord.move_in_direction_by(direction, amount as u32))
             .take_while(|coord| self.is_valid_coord(coord))
     }
 
@@ -97,7 +97,7 @@ impl<T> Map<T> {
     }
 }
 
-impl<T> std::fmt::Debug for Map<T>
+impl<T> std::fmt::Debug for Grid<T>
 where
     T: std::fmt::Debug,
 {

@@ -1,4 +1,4 @@
 pub mod coordinates;
-pub mod map;
+pub mod grid;
 pub mod shapes;
 pub mod vecs;

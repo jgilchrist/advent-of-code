@@ -1,20 +1,13 @@
 use prelude::*;
-use utils::geometry::d2::{coordinates::CardinalDirection, map::Map};
+use utils::geometry::d2::{coordinates::CardinalDirection, grid::Grid};
 use utils::iters::TakeUntilExt;
 
 pub struct Day08;
 
 impl AocSolution for Day08 {
-    type Input = Map<u32>;
+    type Input = Grid<u32>;
     fn process_input(input: &str) -> Self::Input {
-        Map::new(
-            input
-                .lines()
-                .join("")
-                .chars()
-                .map(|c| c.to_string().parse::<u32>().unwrap())
-                .collect(),
-        )
+        inputs::grid_of::<u32>(input)
     }
 
     const PART1_SOLUTION: Solution = solution(1717);
