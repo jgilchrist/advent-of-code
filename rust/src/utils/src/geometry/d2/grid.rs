@@ -9,27 +9,34 @@ use super::{
 
 #[derive(Clone)]
 pub struct Grid<T> {
-    size: usize,
+    x_size: usize,
+    y_size: usize,
     cells: Vec<T>,
 }
 
 impl<T> Grid<T> {
-    pub(crate) fn new(size: usize, cells: Vec<T>) -> Self {
-        Self { size, cells }
+    pub(crate) fn new(x_size: usize, y_size: usize, cells: Vec<T>) -> Self {
+        assert!(cells.len() == x_size * y_size);
+        Self {
+            x_size,
+            y_size,
+            cells,
+        }
     }
 
-    pub fn size(&self) -> usize {
-        self.size
+    pub fn x_size(&self) -> usize {
+        self.x_size
+    }
+
+    pub fn y_size(&self) -> usize {
+        self.y_size
     }
 
     pub fn at(&self, v: Vec2) -> Option<&T> {
-        if v.x < 0 {
-            unreachable!();
-        }
-        if v.y < 0 {
-            unreachable!();
-        }
-        let idx: usize = v.y as usize * self.size + v.x as usize;
+        assert!(v.x >= 0);
+        assert!(v.y >= 0);
+
+        let idx: usize = v.y as usize * self.x_size + v.x as usize;
         self.cells.get(idx)
     }
 
@@ -54,11 +61,12 @@ impl<T> Grid<T> {
     }
 
     pub fn is_valid_coord(&self, v: &Vec2) -> bool {
-        v.x >= 0 && v.x < self.size as i32 && v.y >= 0 && v.y < self.size as i32
+        v.x >= 0 && v.x < self.x_size as i32 && v.y >= 0 && v.y < self.y_size as i32
     }
 
     pub fn iter_coords(&self) -> impl Iterator<Item = Vec2> + '_ {
-        (0..self.size).flat_map(move |y| (0..self.size).map(move |x| Vec2::new(x as i32, y as i32)))
+        (0..self.y_size)
+            .flat_map(move |y| (0..self.x_size).map(move |x| Vec2::new(x as i32, y as i32)))
     }
 
     pub fn iter_cells(&self) -> impl Iterator<Item = (Vec2, &T)> + '_ {
@@ -70,7 +78,8 @@ impl<T> Grid<T> {
         F: Fn(Vec2, &T) -> X,
     {
         Grid::new(
-            self.size,
+            self.x_size,
+            self.y_size,
             self.iter_cells()
                 .map(|(coord, value)| f(coord, value))
                 .collect_vec(),
@@ -82,7 +91,9 @@ impl<T> Grid<T> {
         from_coord: Vec2,
         direction: CardinalDirection,
     ) -> impl Iterator<Item = Vec2> + '_ {
-        (1..self.size)
+        let max_possible_size = self.x_size.max(self.y_size);
+
+        (1..max_possible_size)
             .map(move |amount| from_coord.move_in_direction_by(direction, amount as u32))
             .take_while(|coord| self.is_valid_coord(coord))
     }

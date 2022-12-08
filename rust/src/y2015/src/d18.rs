@@ -90,7 +90,7 @@ impl AocSolution for Day18 {
 
     const PART2_SOLUTION: Solution = solution(781);
     fn part2(input: &Self::Input) -> impl Into<Solution> {
-        let map_size = input.size() - 1;
+        let map_size = input.x_size() - 1;
 
         let corners: HashSet<Vec2> =
             vec![(0, 0), (map_size, 0), (0, map_size), (map_size, map_size)]

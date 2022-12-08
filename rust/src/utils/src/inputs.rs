@@ -156,12 +156,9 @@ where
     let x_size = lines[0].len();
     let y_size = lines.len();
 
-    if x_size != y_size {
-        panic!("Non-square grids are currently not supported");
-    }
-
     Grid::new(
         x_size,
+        y_size,
         s.lines().join("").chars().map(|c| c.into()).collect(),
     )
 }
