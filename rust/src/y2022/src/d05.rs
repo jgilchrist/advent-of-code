@@ -13,7 +13,7 @@ pub struct Move {
     pub to_idx: usize,
 }
 
-fn top_crates(crates: &Vec<Stack>) -> String {
+fn top_crates(crates: &[Stack]) -> String {
     crates
         .iter()
         .map(|stack| stack.iter().last().unwrap())

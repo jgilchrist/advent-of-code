@@ -15,6 +15,10 @@ pub enum CardinalDirection {
 }
 
 impl CardinalDirection {
+    pub fn all() -> impl Iterator<Item = Self> {
+        vec![Self::North, Self::East, Self::South, Self::West].into_iter()
+    }
+
     #[must_use]
     pub fn turn(&self, direction: TurnDirection) -> Self {
         use TurnDirection::*;

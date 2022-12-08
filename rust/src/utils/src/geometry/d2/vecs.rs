@@ -2,7 +2,7 @@ use std::ops::{Add, AddAssign, Mul};
 
 use super::coordinates::CardinalDirection;
 
-#[derive(PartialEq, Eq, Clone, Copy, Hash, Debug)]
+#[derive(PartialEq, Eq, Clone, Copy, Hash)]
 pub struct Vec2 {
     pub x: i32,
     pub y: i32,
@@ -19,8 +19,8 @@ impl Vec2 {
     }
 
     #[must_use]
-    pub fn move_in_direction_by(&self, dir: CardinalDirection, amount: i32) -> Self {
-        *self + dir.as_vec() * amount
+    pub fn move_in_direction_by(&self, dir: CardinalDirection, amount: u32) -> Self {
+        *self + dir.as_vec() * amount as i32
     }
 
     pub fn distance_from(&self, rhs: impl Into<Self>) -> usize {
@@ -64,5 +64,11 @@ impl Mul<i32> for Vec2 {
 impl From<(i32, i32)> for Vec2 {
     fn from(val: (i32, i32)) -> Self {
         Self::new(val.0, val.1)
+    }
+}
+
+impl std::fmt::Debug for Vec2 {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "({}, {})", self.x, self.y)
     }
 }
