@@ -36,43 +36,8 @@ pub fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() -> R
         );
     }
 
-    let test_data = TSln::tests();
-
     match TSln::PART1_STATUS {
         SolutionStatus::Solved | SolutionStatus::Wip => {
-            if !test_data.is_empty() {
-                for (i, test) in test_data.iter().enumerate() {
-                    let (test_input, expected_part1_output, _) = test;
-                    let processed_test_input = TSln::process_input(test_input);
-
-                    if let Some(expected_part1_output) = expected_part1_output {
-                        let actual_part1_output = TSln::part1(&processed_test_input).into();
-                        let passed_part1_test = actual_part1_output == *expected_part1_output;
-
-                        if passed_part1_test {
-                            println!(
-                                "{} {}{} {}",
-                                style("Test").black().bold(),
-                                style(i + 1).black().bold(),
-                                style(":").black().bold(),
-                                style("+").green()
-                            );
-                        } else {
-                            println!(
-                                "{} {} {}{} {}",
-                                style(format!("Test {}:", i + 1)).red(),
-                                style("expected").black().bold(),
-                                style(expected_part1_output).green(),
-                                style(", found").black().bold(),
-                                style(actual_part1_output).red()
-                            );
-
-                            bail!("Failed test")
-                        }
-                    }
-                }
-            }
-
             print!("{}: ", style("1").red().bold());
 
             let p1_started_timestamp = Instant::now();
