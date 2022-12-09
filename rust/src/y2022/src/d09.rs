@@ -54,7 +54,7 @@ impl AocSolution for Day09 {
                 sections[idx + 1] = move_tail(&sections[idx], &sections[idx + 1])
             }
 
-            visited_coords.insert(sections[9]);
+            visited_coords.insert(*sections.last().unwrap());
         }
 
         visited_coords.len()
@@ -62,25 +62,12 @@ impl AocSolution for Day09 {
 }
 
 fn move_tail(head: &Vec2, tail: &Vec2) -> Vec2 {
-    dbg!(head, tail);
-
     if (head.x - tail.x).abs() <= 1 && (head.y - tail.y).abs() <= 1 {
         tail.clone()
     } else {
-        // We'll be moving horizontally
-        if head.y == tail.y && head.x != tail.x {
-            let x_direction = (head.x - tail.x).signum();
-            dbg!("tail moved x", x_direction);
-            *tail + Vec2::new(x_direction, 0)
-        } else if head.x == tail.x && head.y != tail.y {
-            let y_direction = (head.y - tail.y).signum();
-            dbg!("tail moved y", y_direction);
-            *tail + Vec2::new(0, y_direction)
-        } else {
-            let x_direction = (head.x - tail.x).signum();
-            let y_direction = (head.y - tail.y).signum();
-            dbg!("tail moved diagonal", Vec2::new(x_direction, y_direction));
-            *tail + Vec2::new(x_direction, y_direction)
-        }
+        *tail + Vec2::new(
+            (head.x - tail.x).signum(),
+            (head.y - tail.y).signum(),
+        )
     }
 }
