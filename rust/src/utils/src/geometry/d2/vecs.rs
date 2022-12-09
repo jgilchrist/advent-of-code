@@ -1,4 +1,4 @@
-use std::ops::{Add, AddAssign, Sub, SubAssign, Mul};
+use std::ops::{Add, AddAssign, Mul, Sub, SubAssign};
 
 #[derive(PartialEq, Eq, Clone, Copy, Hash)]
 pub struct Vec2 {
