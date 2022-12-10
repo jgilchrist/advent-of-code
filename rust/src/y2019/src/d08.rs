@@ -14,16 +14,7 @@ impl AocSolution for Day08 {
         Solution::Unsolved
     }
 
-    const PART2_SOLUTION: Solution = solution(
-        r#"
-  **  **  ***   **  ***  
-   * *  * *  * *  * *  * 
-   * *    *  * *    ***  
-   * *    ***  *    *  * 
-*  * *  * * *  *  * *  * 
- **   **  *  *  **  ***  
-"#,
-    );
+    const PART2_SOLUTION: Solution = solution("JCRCB");
     const PART2_STATUS: SolutionStatus = SolutionStatus::SolvedInPython;
     fn part2(_input: &Self::Input) -> impl Into<Solution> {
         Solution::Unsolved

@@ -1,4 +1,5 @@
 use prelude::*;
+use utils::ascii_ocr;
 
 pub struct Day10;
 
@@ -52,16 +53,7 @@ impl AocSolution for Day10 {
             .sum::<i32>()
     }
 
-    const PART2_SOLUTION: Solution = solution(
-        r#"
-###   ##  ###  ###  #  #  ##  ###    ## 
-#  # #  # #  # #  # # #  #  # #  #    # 
-#  # #    #  # ###  ##   #  # #  #    # 
-###  #    ###  #  # # #  #### ###     # 
-#    #  # #    #  # # #  #  # #    #  # 
-#     ##  #    ###  #  # #  # #     ##  
-"#,
-    );
+    const PART2_SOLUTION: Solution = solution("PCPBKAPJ");
     #[allow(clippy::cast_sign_loss)]
     fn part2(input: &Self::Input) -> impl Into<Solution> {
         let xs = get_all_xs(input);
@@ -88,6 +80,6 @@ impl AocSolution for Day10 {
             output += "\n";
         }
 
-        output
+        ascii_ocr::convert(&output)
     }
 }
