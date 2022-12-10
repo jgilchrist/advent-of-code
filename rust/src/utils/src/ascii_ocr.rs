@@ -2,6 +2,8 @@ use std::collections::HashMap;
 
 use itertools::Itertools;
 
+const LETTER_WIDTH: usize = 5;
+
 pub fn convert(s: &str) -> String {
     let alphabet_6: HashMap<String, char> = HashMap::from([
         (
@@ -202,21 +204,18 @@ pub fn convert(s: &str) -> String {
         "Lines of ASCII text were of different lengths"
     );
 
-    let number_of_letters = cols / 5;
+    let number_of_letters = cols / LETTER_WIDTH;
 
-    let mut s: String = String::new();
-
-    for i in 0..number_of_letters {
-        let letter_start_pos = i * 5;
-        let parts_of_char = lines
-            .iter()
-            .map(|l| l[letter_start_pos..letter_start_pos + 4].to_string())
-            .join("\n");
-        let this_char = alphabet_6[parts_of_char.as_str()];
-        s.push(this_char);
-    }
-
-    s
+    (0..number_of_letters)
+        .map(|i| {
+            let letter_start_pos = i * LETTER_WIDTH;
+            let parts_of_char = lines
+                .iter()
+                .map(|l| l[letter_start_pos..letter_start_pos + LETTER_WIDTH - 1].to_string())
+                .join("\n");
+            alphabet_6[parts_of_char.as_str()]
+        })
+        .join("")
 }
 
 #[cfg(test)]
