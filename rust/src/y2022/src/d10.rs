@@ -54,12 +54,12 @@ impl AocSolution for Day10 {
 
     const PART2_SOLUTION: Solution = solution(
         r#"
-###...##..###..###..#..#..##..###....##.
-#..#.#..#.#..#.#..#.#.#..#..#.#..#....#.
-#..#.#....#..#.###..##...#..#.#..#....#.
-###..#....###..#..#.#.#..####.###.....#.
-#....#..#.#....#..#.#.#..#..#.#....#..#.
-#.....##..#....###..#..#.#..#.#.....##..
+###   ##  ###  ###  #  #  ##  ###    ## 
+#  # #  # #  # #  # # #  #  # #  #    # 
+#  # #    #  # ###  ##   #  # #  #    # 
+###  #    ###  #  # # #  #### ###     # 
+#    #  # #    #  # # #  #  # #    #  # 
+#     ##  #    ###  #  # #  # #     ##  
 "#,
     );
     #[allow(clippy::cast_sign_loss)]
@@ -79,7 +79,7 @@ impl AocSolution for Day10 {
 
         for y in 0..6 {
             for x in 0..line_width {
-                output += if pixels[y * line_width as usize + x as usize] { "#" } else { "." }
+                output += if pixels[y * line_width as usize + x as usize] { "#" } else { " " }
             }
             output += "\n";
         }
