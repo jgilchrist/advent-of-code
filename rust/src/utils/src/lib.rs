@@ -15,6 +15,7 @@
 #![allow(clippy::missing_panics_doc)]
 #![allow(clippy::must_use_candidate)]
 
+pub mod ascii_ocr;
 pub mod geometry;
 pub mod inputs;
 pub mod iters;
