@@ -35,6 +35,14 @@ impl Vec2 {
             .try_into()
             .unwrap()
     }
+
+    #[must_use]
+    pub fn sign(&self) -> Self {
+        Self {
+            x: self.x.signum(),
+            y: self.y.signum(),
+        }
+    }
 }
 
 impl Add for Vec2 {
