@@ -21,7 +21,14 @@ impl Vec2 {
         *self + dir.into() * amount as i32
     }
 
-    pub fn distance_from(&self, rhs: impl Into<Self>) -> usize {
+    pub fn chessboard_distance_from(&self, rhs: impl Into<Self>) -> usize {
+        let r = rhs.into();
+        let x_dist = (self.x - r.x).abs();
+        let y_dist = (self.y - r.y).abs();
+        x_dist.max(y_dist).try_into().unwrap()
+    }
+
+    pub fn manhattan_distance_from(&self, rhs: impl Into<Self>) -> usize {
         let r = rhs.into();
 
         ((self.x - r.x).abs() + (self.y - r.y).abs())
