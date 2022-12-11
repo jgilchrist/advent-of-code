@@ -54,7 +54,7 @@ impl AocSolution for Day01 {
         }
 
         let (final_position, _) = state;
-        final_position.distance_from(start)
+        final_position.manhattan_distance_from(start)
     }
 
     const PART2_SOLUTION: Solution = solution(143);
@@ -70,7 +70,7 @@ impl AocSolution for Day01 {
 
             for loc in locs {
                 if visited_locations.contains(&loc) {
-                    return loc.distance_from(start);
+                    return loc.manhattan_distance_from(start);
                 }
 
                 visited_locations.insert(loc);

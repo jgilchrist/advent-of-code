@@ -56,7 +56,7 @@ fn simulate_chain(instructions: &[CardinalDirection], len: usize) -> usize {
 }
 
 fn move_tail(head: Vec2, tail: Vec2) -> Vec2 {
-    if (head.x - tail.x).abs() <= 1 && (head.y - tail.y).abs() <= 1 {
+    if head.chessboard_distance_from(tail) <= 1 {
         tail
     } else {
         tail + Vec2::new((head.x - tail.x).signum(), (head.y - tail.y).signum())
