@@ -120,8 +120,8 @@ pub fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() {
 
 fn get_input(year: u32, day: u32) -> String {
     let manifest_dir = env!("CARGO_MANIFEST_DIR");
-    let file_path_within_directory_structure = format!("y{year}/src/d{day:0>2}.in");
-    let filename = format!("{manifest_dir}/../{file_path_within_directory_structure}");
+    let file_path_within_directory_structure = format!("{year}/{day:0>2}.in");
+    let filename = format!("{manifest_dir}/../../../inputs/{file_path_within_directory_structure}");
 
     std::fs::read_to_string(filename)
         .unwrap_or_else(|_| panic!("No input file: {file_path_within_directory_structure}"))

@@ -18,7 +18,7 @@ new YEAR DAY:
 	@cp --no-clobber template.rs ./src/y{{YEAR}}/src/d{{DAY}}.rs \
 	&& sed -i 's/DAY/{{DAY}}/g' ./src/y{{YEAR}}/src/d{{DAY}}.rs \
 	&& sed -i 's/type D{{DAY}} = Unsolved/type D{{DAY}} = d{{DAY}}::Day{{DAY}}/g' ./src/y{{YEAR}}/src/lib.rs \
-	&& touch ./src/y{{YEAR}}/src/d{{DAY}}.in
+	&& touch ../inputs/{{YEAR}}/{{DAY}}.in
 
 progress:
 	@cargo run --release
