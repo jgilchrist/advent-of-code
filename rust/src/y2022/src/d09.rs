@@ -59,6 +59,6 @@ fn move_tail(head: Vec2, tail: Vec2) -> Vec2 {
     if head.chessboard_distance_from(tail) <= 1 {
         tail
     } else {
-        tail + Vec2::new((head.x - tail.x).signum(), (head.y - tail.y).signum())
+        tail + (head - tail).sign()
     }
 }
