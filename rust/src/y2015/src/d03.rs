@@ -23,7 +23,7 @@ impl AocSolution for Day03 {
     const PART1_SOLUTION: Solution = solution(2565);
     fn part1(input: &Self::Input) -> impl Into<Solution> {
         let mut pos = Vec2 { x: 0, y: 0 };
-        let mut visited = HashSet::from([pos]);
+        let mut visited: HashSet<Vec2> = HashSet::from([pos]);
 
         for direction in input {
             pos = pos.move_in_direction(*direction);
@@ -38,7 +38,7 @@ impl AocSolution for Day03 {
         let mut santa = Vec2 { x: 0, y: 0 };
         let mut robo_santa = Vec2 { x: 0, y: 0 };
 
-        let mut visited = HashSet::from([santa, robo_santa]);
+        let mut visited: HashSet<Vec2> = HashSet::from([santa, robo_santa]);
 
         let santas_instructions = input.iter().step_by(2).collect_vec();
         let robo_santas_instructions = input.iter().skip(1).step_by(2).collect_vec();
