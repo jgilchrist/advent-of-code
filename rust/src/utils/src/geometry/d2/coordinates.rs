@@ -6,7 +6,7 @@ pub enum TurnDirection {
     Anticlockwise,
 }
 
-#[derive(PartialEq, Eq, Clone, Copy, Debug)]
+#[derive(PartialEq, Eq, Clone, Copy, Debug, Hash)]
 pub enum CardinalDirection {
     North,
     East,
@@ -16,7 +16,7 @@ pub enum CardinalDirection {
 
 // https://en.wikipedia.org/wiki/Compass_rose
 // Cardinal + intercardinal directions are referred to as the 'principal winds'
-#[derive(PartialEq, Eq, Clone, Copy, Debug)]
+#[derive(PartialEq, Eq, Clone, Copy, Debug, Hash)]
 pub enum PrincipalWinds {
     North,
     NorthEast,
