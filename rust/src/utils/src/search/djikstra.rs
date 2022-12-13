@@ -34,9 +34,8 @@ where
                 *previous
                     .entry(neighbor.clone())
                     .or_insert_with(|| node.clone()) = node.clone();
+                to_process.push(neighbor, Reverse(cost_to_neighbor_on_this_path));
             }
-
-            to_process.push(neighbor, Reverse(cost_to_neighbor_on_this_path));
         }
 
         if is_goal(&node) {
