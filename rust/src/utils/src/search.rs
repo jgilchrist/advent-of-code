@@ -1,6 +1,6 @@
-mod djikstra;
 mod astar;
 mod backtrace;
+mod djikstra;
 
-pub use djikstra::djikstra;
 pub use astar::astar;
+pub use djikstra::djikstra;
