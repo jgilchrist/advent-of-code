@@ -6,4 +6,5 @@ edition = "2021"
 [dependencies]
 aoc = { "path" = "../aoc" }
 prelude = { "path" = "../prelude" }
+serde_json = "1.0.89"
 utils = { "path" = "../utils" }
