@@ -17,8 +17,8 @@ impl AocSolution for Day01 {
     }
 
     const PART1_SOLUTION: Solution = solution(66616);
-    fn part1(input: &Self::Input) -> impl Into<Solution> {
-        *input.first().unwrap()
+    fn part1(input: &Self::Input) -> impl Into<PartResult> {
+        *input.first().ok_or_else(|| bail!(""))?
     }
 
     const PART2_SOLUTION: Solution = solution(199172);

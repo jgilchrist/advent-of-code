@@ -10,3 +10,4 @@ itertools = "0.10.5"
 aoc = { "path" = "../aoc" }
 utils = { "path" = "../utils" }
 hashbrown = "0.13.1"
+anyhow = "1.0.66"

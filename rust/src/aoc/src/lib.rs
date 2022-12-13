@@ -1,5 +1,6 @@
 #![feature(return_position_impl_trait_in_trait)]
 #![feature(const_trait_impl)]
+#![feature(try_trait_v2)]
 #![allow(incomplete_features)]
 #![warn(clippy::pedantic)]
 #![warn(clippy::nursery)]
@@ -15,6 +16,8 @@
 #![allow(clippy::too_many_lines)]
 #![allow(clippy::missing_panics_doc)]
 #![allow(clippy::must_use_candidate)]
+
+use std::ops::FromResidual;
 
 use anyhow::Result;
 
@@ -132,6 +135,12 @@ impl<T> From<Result<T>> for PartResult where T: Into<Solution> {
         Self(value.map(|v| v.into()))
     }
 }
+
+// impl std::ops::FromResidual<Option<std::convert::Infallible>> for PartResult {
+//     fn from_residual(residual: Option<std::convert::Infallible>) -> Self {
+//         residual.unwrap()
+//     }
+// }
 
 pub const fn solution<T: ~const Into<Solution>>(sln: T) -> Solution {
     sln.into()
