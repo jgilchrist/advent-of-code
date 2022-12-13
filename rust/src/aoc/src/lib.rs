@@ -16,6 +16,8 @@
 #![allow(clippy::missing_panics_doc)]
 #![allow(clippy::must_use_candidate)]
 
+use anyhow::Result;
+
 pub enum SolutionStatus {
     Solved,
     SolvedInPython,
@@ -23,11 +25,34 @@ pub enum SolutionStatus {
     Unsolved,
 }
 
+
 pub enum Solution {
     Number(i64),
     String(&'static str),
     MerryChristmas,
     Unsolved,
+}
+
+impl std::fmt::Display for Solution {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Self::Number(n) => write!(f, "{n}"),
+            Self::String(n) => write!(f, "{n}"),
+            Self::MerryChristmas => write!(f, "Merry Christmas!"),
+            Self::Unsolved => write!(f, ""),
+        }
+    }
+}
+
+impl PartialEq for Solution {
+    fn eq(&self, other: &Self) -> bool {
+        match (self, other) {
+            (Self::Number(l0), Self::Number(r0)) => l0 == r0,
+            (Self::String(l0), Self::String(r0)) => l0 == r0,
+            (Self::MerryChristmas, Self::MerryChristmas) => true,
+            _ => panic!("Tried to compare results of different types"),
+        }
+    }
 }
 
 impl const From<&'static str> for Solution {
@@ -88,25 +113,23 @@ impl const From<i64> for Solution {
     }
 }
 
-impl std::fmt::Display for Solution {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        match self {
-            Self::Number(n) => write!(f, "{n}"),
-            Self::String(n) => write!(f, "{n}"),
-            Self::MerryChristmas => write!(f, "Merry Christmas!"),
-            Self::Unsolved => write!(f, ""),
-        }
+pub struct PartResult(Result<Solution>);
+
+impl PartResult {
+    pub fn value(self) -> Result<Solution> {
+        self.0
     }
 }
 
-impl PartialEq for Solution {
-    fn eq(&self, other: &Self) -> bool {
-        match (self, other) {
-            (Self::Number(l0), Self::Number(r0)) => l0 == r0,
-            (Self::String(l0), Self::String(r0)) => l0 == r0,
-            (Self::MerryChristmas, Self::MerryChristmas) => true,
-            _ => panic!("Tried to compare results of different types"),
-        }
+impl<T> From<T> for PartResult where T: Into<Solution> {
+    fn from(value: T) -> Self {
+        Self(Ok(value.into()))
+    }
+}
+
+impl<T> From<Result<T>> for PartResult where T: Into<Solution> {
+    fn from(value: Result<T>) -> Self {
+        Self(value.map(|v| v.into()))
     }
 }
 
@@ -120,11 +143,11 @@ pub trait AocSolution {
 
     const PART1_SOLUTION: Solution;
     const PART1_STATUS: SolutionStatus = SolutionStatus::Solved;
-    fn part1(i: &Self::Input) -> impl Into<Solution>;
+    fn part1(i: &Self::Input) -> impl Into<PartResult>;
 
     const PART2_SOLUTION: Solution;
     const PART2_STATUS: SolutionStatus = SolutionStatus::Solved;
-    fn part2(i: &Self::Input) -> impl Into<Solution>;
+    fn part2(i: &Self::Input) -> impl Into<PartResult>;
 }
 
 pub struct Unsolved;
@@ -134,13 +157,13 @@ impl AocSolution for Unsolved {
 
     const PART1_SOLUTION: Solution = Solution::Unsolved;
     const PART1_STATUS: SolutionStatus = SolutionStatus::Unsolved;
-    fn part1(_: &Self::Input) -> impl Into<Solution> {
+    fn part1(_: &Self::Input) -> impl Into<PartResult> {
         Solution::Unsolved
     }
 
     const PART2_SOLUTION: Solution = Solution::Unsolved;
     const PART2_STATUS: SolutionStatus = SolutionStatus::Unsolved;
-    fn part2(_: &Self::Input) -> impl Into<Solution> {
+    fn part2(_: &Self::Input) -> impl Into<PartResult> {
         Solution::Unsolved
     }
 }
