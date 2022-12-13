@@ -83,15 +83,21 @@ impl AocSolution for Day12 {
     fn part2(input: &Self::Input) -> impl Into<Solution> {
         let (grid, _) = input;
 
-        let starts = grid.cells_matching(|cell| cell.0 == 'a');
-
-        let path = djikstra::djikstra_from_n_states(
-            &starts,
-            |pos| generate_successors(grid, *pos),
-            |pos| is_goal(grid, *pos),
-        )
-        .unwrap();
-
-        path.len() - 1
+        // This can be done faster by starting with all a's as starting states
+        // in a single run of the algorithm, but to keep the general algorithm
+        // implementation clean it's done this way instead - it's fast enough
+        // anyway.
+        grid.cells_matching(|cell| cell.0 == 'a')
+            .iter()
+            .filter_map(|&coord| {
+                djikstra::djikstra(
+                    &coord,
+                    |pos| generate_successors(grid, *pos),
+                    |pos| is_goal(grid, *pos),
+                )
+            })
+            .map(|path| path.len() - 1)
+            .min()
+            .unwrap()
     }
 }
