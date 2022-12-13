@@ -1,8 +1,5 @@
 use priority_queue::PriorityQueue;
-use std::{
-    cmp::Reverse,
-    collections::{HashMap, HashSet},
-};
+use std::{cmp::Reverse, collections::HashMap};
 
 pub fn djikstra<TState, FSuccessors, FGoal>(
     initial_state: &TState,
@@ -14,33 +11,16 @@ where
     FGoal: Fn(&TState) -> bool,
     TState: Clone + std::fmt::Debug + Eq + std::hash::Hash,
 {
-    djikstra_from_n_states(&[initial_state.clone()], generate_successors, is_goal)
-}
-
-pub fn djikstra_from_n_states<TState, FSuccessors, FGoal>(
-    initial_states: &[TState],
-    generate_successors: FSuccessors,
-    is_goal: FGoal,
-) -> Option<Vec<TState>>
-where
-    FSuccessors: Fn(&TState) -> Vec<(TState, u32)>,
-    FGoal: Fn(&TState) -> bool,
-    TState: Clone + std::fmt::Debug + Eq + std::hash::Hash,
-{
-    let mut visited: HashSet<TState> = HashSet::new();
-    let mut to_process: PriorityQueue<TState, Reverse<u32>> = PriorityQueue::new();
-    let mut best_distance: HashMap<TState, u32> =
-        initial_states.iter().map(|s| (s.clone(), 0)).collect();
+    let mut best_distance: HashMap<TState, u32> = HashMap::from([(initial_state.clone(), 0)]);
     let mut previous: HashMap<TState, TState> = HashMap::new();
     let mut goal: Option<TState> = None;
 
-    for state in initial_states {
-        to_process.push(state.clone(), Reverse(0));
-    }
+    let mut to_process: PriorityQueue<TState, Reverse<u32>> = PriorityQueue::new();
+    to_process.push(initial_state.clone(), Reverse(0));
 
     while let Some((node, _)) = to_process.pop() {
         for (neighbor, cost) in generate_successors(&node) {
-            if visited.contains(&neighbor) {
+            if best_distance.contains_key(&neighbor) {
                 continue;
             }
 
@@ -60,9 +40,6 @@ where
         if is_goal(&node) {
             goal = Some(node.clone());
         }
-
-        to_process.remove(&node);
-        visited.insert(node);
     }
 
     goal.map(|g| {
