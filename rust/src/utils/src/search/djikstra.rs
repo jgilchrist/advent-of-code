@@ -1,6 +1,8 @@
 use priority_queue::PriorityQueue;
 use std::{cmp::Reverse, collections::HashMap};
 
+use super::backtrace::backtrace_from_goal;
+
 pub fn djikstra<TState, FSuccessors, FGoal>(
     initial_state: &TState,
     generate_successors: FSuccessors,
@@ -42,14 +44,5 @@ where
         }
     }
 
-    goal.map(|g| {
-        let mut path = vec![g];
-
-        while let Some(n) = previous.get(path.last().unwrap()) {
-            path.push(n.clone());
-        }
-
-        path.reverse();
-        path
-    })
+    goal.map(|g| backtrace_from_goal(&previous, &g))
 }
