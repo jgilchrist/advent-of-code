@@ -26,7 +26,10 @@ where
             if cost_to_neighbor_on_this_path < *best_distance.get(&neighbor).unwrap_or(&u32::MAX) {
                 best_distance.insert(neighbor.clone(), cost_to_neighbor_on_this_path);
                 previous.insert(neighbor.clone(), node.clone());
-                to_process.push(neighbor.clone(), Reverse(cost_to_neighbor_on_this_path + heuristic_fn(&neighbor)));
+                to_process.push(
+                    neighbor.clone(),
+                    Reverse(cost_to_neighbor_on_this_path + heuristic_fn(&neighbor)),
+                );
             }
         }
 
