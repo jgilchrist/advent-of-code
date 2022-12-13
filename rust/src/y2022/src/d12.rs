@@ -1,7 +1,7 @@
 use prelude::*;
 use utils::{
     geometry::d2::{grid::Grid, vecs::Vec2},
-    search::djikstra,
+    search,
 };
 
 pub struct Day12;
@@ -69,7 +69,7 @@ impl AocSolution for Day12 {
     fn part1(input: &Self::Input) -> impl Into<Solution> {
         let (grid, start) = input;
 
-        let path = djikstra::djikstra(
+        let path = search::djikstra(
             start,
             |pos| generate_successors(grid, *pos),
             |pos| is_goal(grid, *pos),
@@ -90,7 +90,7 @@ impl AocSolution for Day12 {
         grid.cells_matching(|cell| cell.0 == 'a')
             .iter()
             .filter_map(|&coord| {
-                djikstra::djikstra(
+                search::djikstra(
                     &coord,
                     |pos| generate_successors(grid, *pos),
                     |pos| is_goal(grid, *pos),
