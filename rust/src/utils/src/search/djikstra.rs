@@ -1,4 +1,8 @@
-use std::collections::{HashMap, HashSet};
+use priority_queue::PriorityQueue;
+use std::{
+    cmp::Reverse,
+    collections::{HashMap, HashSet},
+};
 
 pub fn djikstra<TState, FSuccessors, FGoal>(
     initial_state: &TState,
@@ -24,25 +28,22 @@ where
     TState: Clone + std::fmt::Debug + Eq + std::hash::Hash,
 {
     let mut visited: HashSet<TState> = HashSet::new();
-    let mut to_process: HashSet<TState> = initial_states.iter().cloned().collect();
+    let mut to_process: PriorityQueue<TState, Reverse<u32>> = PriorityQueue::new();
     let mut best_distance: HashMap<TState, u32> =
         initial_states.iter().map(|s| (s.clone(), 0)).collect();
     let mut previous: HashMap<TState, TState> = HashMap::new();
     let mut goal: Option<TState> = None;
 
-    let get_next_node_to_process =
-        |nodes: &HashSet<TState>, distances: &HashMap<TState, u32>| -> Option<TState> {
-            let n = nodes
-                .iter()
-                .map(|state| (state, distances.get(state).unwrap_or(&u32::MAX)))
-                .min_by_key(|&(_, cost)| cost)
-                .map(|(state, _)| state.clone());
+    for state in initial_states {
+        to_process.push(state.clone(), Reverse(0));
+    }
 
-            n
-        };
-
-    while let Some(node) = get_next_node_to_process(&to_process, &best_distance) {
+    while let Some((node, _)) = to_process.pop() {
         for (neighbor, cost) in generate_successors(&node) {
+            if visited.contains(&neighbor) {
+                continue;
+            }
+
             let cost_to_neighbor_on_this_path = best_distance[&node] + cost;
             if cost_to_neighbor_on_this_path < *best_distance.get(&neighbor).unwrap_or(&u32::MAX) {
                 *best_distance
@@ -53,9 +54,7 @@ where
                     .or_insert_with(|| node.clone()) = node.clone();
             }
 
-            if !visited.contains(&neighbor) {
-                to_process.insert(neighbor);
-            }
+            to_process.push(neighbor, Reverse(cost_to_neighbor_on_this_path));
         }
 
         if is_goal(&node) {
