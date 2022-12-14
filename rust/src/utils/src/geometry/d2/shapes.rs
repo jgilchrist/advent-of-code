@@ -1,4 +1,33 @@
+use std::collections::HashSet;
+
 use super::vecs::Vec2;
+
+#[derive(Debug)]
+pub struct Line {
+    start: Vec2,
+    end: Vec2,
+}
+
+impl Line {
+    pub fn new(start: Vec2, end: Vec2) -> Self {
+        Self { start, end }
+    }
+
+    pub fn points(&self) -> HashSet<Vec2> {
+        let line_direction = (self.end - self.start).sign();
+        let mut points: HashSet<Vec2> = HashSet::new();
+
+        let mut current_point = self.start;
+        points.insert(current_point);
+
+        while current_point != self.end {
+            current_point += line_direction;
+            points.insert(current_point);
+        }
+
+        points
+    }
+}
 
 #[derive(Debug)]
 pub struct Square {
