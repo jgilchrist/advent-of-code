@@ -23,7 +23,8 @@ impl AocSolution for Day20 {
             }
         }
 
-        ns.iter().enumerate()
+        ns.iter()
+            .enumerate()
             .find(|(_, n)| **n >= *input)
             .map(|(i, _)| i)
             .unwrap()
@@ -44,7 +45,8 @@ impl AocSolution for Day20 {
             }
         }
 
-        ns.iter().enumerate()
+        ns.iter()
+            .enumerate()
             .find(|(_, n)| **n >= *input)
             .map(|(i, _)| i)
             .unwrap()
