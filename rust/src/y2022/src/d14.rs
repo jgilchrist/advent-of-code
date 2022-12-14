@@ -10,37 +10,42 @@ pub struct Day14;
 const SAND_SPAWN_POS: Vec2 = Vec2::new(500, 0);
 
 impl AocSolution for Day14 {
-    type Input = HashSet<Vec2>;
+    type Input = (HashSet<Vec2>, i32);
     fn process_input(input: &str) -> Self::Input {
-        input.lines().flat_map(get_points_in_line).collect()
+        let occupied_cells: HashSet<Vec2> = input.lines().flat_map(get_points_in_line).collect();
+        let floor_position = occupied_cells.iter().map(|v| v.y).max().unwrap() + 2;
+
+        (occupied_cells, floor_position)
     }
 
     const PART1_SOLUTION: Solution = solution(715);
     fn part1(input: &Self::Input) -> impl Into<Solution> {
-        let mut occupied_cells = input.clone();
-        let floor_position = occupied_cells.iter().map(|v| v.y).max().unwrap() + 2;
+        let (mut occupied_cells, floor_position) = input.clone();
+        let mut units_placed = 0;
 
         while let Some(pos) = simulate_sand(&occupied_cells, floor_position, false) {
             occupied_cells.insert(pos);
+            units_placed += 1;
         }
 
-        occupied_cells.len() - input.len()
+        units_placed
     }
 
     const PART2_SOLUTION: Solution = solution(25248);
     fn part2(input: &Self::Input) -> impl Into<Solution> {
-        let mut occupied_cells = input.clone();
-        let floor_position = occupied_cells.iter().map(|v| v.y).max().unwrap() + 2;
+        let (mut occupied_cells, floor_position) = input.clone();
+        let mut units_placed = 0;
 
         while let Some(pos) = simulate_sand(&occupied_cells, floor_position, true) {
             occupied_cells.insert(pos);
+            units_placed += 1;
 
             if pos == SAND_SPAWN_POS {
                 break;
             }
         }
 
-        occupied_cells.len() - input.len()
+        units_placed
     }
 }
 
