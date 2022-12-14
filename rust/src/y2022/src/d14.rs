@@ -21,32 +21,33 @@ impl AocSolution for Day14 {
     const PART1_SOLUTION: Solution = solution(715);
     fn part1(input: &Self::Input) -> impl Into<Solution> {
         let (mut occupied_cells, floor_position) = input.clone();
-        let mut units_placed = 0;
-
-        while let Some(pos) = simulate_sand(&occupied_cells, floor_position, false) {
-            occupied_cells.insert(pos);
-            units_placed += 1;
-        }
-
-        units_placed
+        simulate_to_end(&mut occupied_cells, floor_position, false)
     }
 
     const PART2_SOLUTION: Solution = solution(25248);
     fn part2(input: &Self::Input) -> impl Into<Solution> {
         let (mut occupied_cells, floor_position) = input.clone();
-        let mut units_placed = 0;
-
-        while let Some(pos) = simulate_sand(&occupied_cells, floor_position, true) {
-            occupied_cells.insert(pos);
-            units_placed += 1;
-
-            if pos == SAND_SPAWN_POS {
-                break;
-            }
-        }
-
-        units_placed
+        simulate_to_end(&mut occupied_cells, floor_position, true)
     }
+}
+
+fn simulate_to_end(
+    occupied_cells: &mut HashSet<Vec2>,
+    floor_position: i32,
+    floor_collision: bool,
+) -> u32 {
+    let mut units_placed = 0;
+
+    while let Some(pos) = simulate_sand(occupied_cells, floor_position, floor_collision) {
+        occupied_cells.insert(pos);
+        units_placed += 1;
+
+        if pos == SAND_SPAWN_POS {
+            break;
+        }
+    }
+
+    units_placed
 }
 
 fn simulate_sand(
