@@ -1,5 +1,6 @@
 #![feature(return_position_impl_trait_in_trait)]
 #![feature(array_windows)]
+#![feature(let_chains)]
 #![allow(incomplete_features)]
 #![allow(unreachable_patterns)]
 #![warn(clippy::pedantic)]
@@ -34,6 +35,7 @@ mod d10;
 mod d11;
 mod d12;
 mod d13;
+mod d14;
 
 impl AocYear for Y2022 {
     type D01 = d01::Day01;
@@ -49,7 +51,7 @@ impl AocYear for Y2022 {
     type D11 = d11::Day11;
     type D12 = d12::Day12;
     type D13 = d13::Day13;
-    type D14 = Unsolved;
+    type D14 = d14::Day14;
     type D15 = Unsolved;
     type D16 = Unsolved;
     type D17 = Unsolved;
