@@ -34,7 +34,10 @@ impl AocSolution for Day19 {
     const PART1_SOLUTION: Solution = solution(535);
     fn part1(input: &Self::Input) -> impl Into<Solution> {
         let (rules, initial_state) = input;
-        let unique_states: HashSet<String> = rules.iter().flat_map(|rule| apply_rule(initial_state, rule)).collect();
+        let unique_states: HashSet<String> = rules
+            .iter()
+            .flat_map(|rule| apply_rule(initial_state, rule))
+            .collect();
         unique_states.len()
     }
 
@@ -44,11 +47,11 @@ impl AocSolution for Day19 {
         Solution::Unsolved
         // let (rules, goal_state) = input;
         //
-        // let path = 
+        // let path =
         //     search::djikstra(
         //     &"e".to_string(),
         //     |state| rules.iter()
-        //         .flat_map(|rule| 
+        //         .flat_map(|rule|
         //             apply_rule(state, rule)
         //                 .into_iter()
         //                 .map(|new_state| (new_state.clone(), 1))
