@@ -43,7 +43,7 @@ impl AocSolution for Day19 {
 
     const PART2_STATUS: SolutionStatus = SolutionStatus::Wip;
     const PART2_SOLUTION: Solution = Solution::Unsolved;
-    fn part2(input: &Self::Input) -> impl Into<Solution> {
+    fn part2(_input: &Self::Input) -> impl Into<Solution> {
         Solution::Unsolved
         // let (rules, goal_state) = input;
         //
