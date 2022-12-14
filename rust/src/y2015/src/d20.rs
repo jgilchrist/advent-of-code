@@ -2,6 +2,7 @@ use prelude::*;
 
 pub struct Day20;
 
+#[allow(clippy::large_stack_arrays)]
 impl AocSolution for Day20 {
     type Input = u32;
     fn process_input(input: &str) -> Self::Input {
