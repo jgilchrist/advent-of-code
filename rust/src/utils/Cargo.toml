@@ -3,6 +3,9 @@ name = "utils"
 version = "0.1.0"
 edition = "2021"
 
+[lib]
+doctest = false
+
 [dependencies]
 fancy-regex = "0.10.0"
 itertools = "0.10.5"

@@ -1,6 +1,6 @@
 #![allow(clippy::print_stdout)]
 
-use aoc::{AocSolution, AocYear, SolutionStatus};
+use aoc::{AocSolution, AocYear};
 use console::style;
 
 pub fn print_progress() {

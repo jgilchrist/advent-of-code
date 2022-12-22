@@ -16,13 +16,7 @@
 #![allow(clippy::missing_panics_doc)]
 #![allow(clippy::must_use_candidate)]
 
-pub enum SolutionStatus {
-    Solved,
-    SolvedInPython,
-    Wip,
-    Unsolved,
-}
-
+#[derive(Debug)]
 pub enum Solution {
     Number(i64),
     String(&'static str),
@@ -118,12 +112,7 @@ pub trait AocSolution {
     type Input;
     fn process_input(input: &str) -> Self::Input;
 
-    const PART1_SOLUTION: Solution;
-    const PART1_STATUS: SolutionStatus = SolutionStatus::Solved;
     fn part1(i: &Self::Input) -> impl Into<Solution>;
-
-    const PART2_SOLUTION: Solution;
-    const PART2_STATUS: SolutionStatus = SolutionStatus::Solved;
     fn part2(i: &Self::Input) -> impl Into<Solution>;
 }
 
@@ -132,14 +121,10 @@ impl AocSolution for Unsolved {
     type Input = ();
     fn process_input(_: &str) -> Self::Input {}
 
-    const PART1_SOLUTION: Solution = Solution::Unsolved;
-    const PART1_STATUS: SolutionStatus = SolutionStatus::Unsolved;
     fn part1(_: &Self::Input) -> impl Into<Solution> {
         Solution::Unsolved
     }
 
-    const PART2_SOLUTION: Solution = Solution::Unsolved;
-    const PART2_STATUS: SolutionStatus = SolutionStatus::Unsolved;
     fn part2(_: &Self::Input) -> impl Into<Solution> {
         Solution::Unsolved
     }
@@ -171,4 +156,50 @@ pub trait AocYear {
     type D23: AocSolution;
     type D24: AocSolution;
     type D25: AocSolution;
+}
+
+pub fn get_input(year: u32, day: u32) -> String {
+    let manifest_dir = env!("CARGO_MANIFEST_DIR");
+    let file_path_within_directory_structure = format!("{year}/{day:0>2}.in");
+    let filename = format!("{manifest_dir}/../../../inputs/{file_path_within_directory_structure}");
+
+    std::fs::read_to_string(filename)
+        .unwrap_or_else(|_| panic!("No input file: {file_path_within_directory_structure}"))
+}
+
+
+#[allow(dead_code)]
+pub fn assert_part1<TSln: AocSolution, const NYEAR: u32, const NDAY: u32>(expected_solution: impl Into<Solution>)
+{
+    let input = get_input(NYEAR, NDAY);
+    let processed_input = TSln::process_input(&input);
+    let solution = TSln::part1(&processed_input);
+    assert_eq!(solution.into(), expected_solution.into());
+}
+
+#[allow(dead_code)]
+pub fn assert_part2<TSln: AocSolution, const NYEAR: u32, const NDAY: u32>(expected_solution: impl Into<Solution>) {
+    let input = get_input(NYEAR, NDAY);
+    let processed_input = TSln::process_input(&input);
+    let solution = TSln::part2(&processed_input);
+    assert_eq!(solution.into(), expected_solution.into());
+}
+
+#[macro_export] macro_rules! solutions {
+    ($sym:ident, $year:literal, $day:literal, $p1sln:literal, $p2sln:literal) => {
+        #[cfg(test)]
+        mod tests {
+            use super::Day01;
+
+            #[test]
+            fn part1() {
+                aoc::assert_part1::<$sym, $year, $day>($p1sln);
+            }
+
+            #[test]
+            fn part2() {
+                super::assert_part2::<$sym, $year, $day>($p2sln);
+            }
+        }
+    };
 }
