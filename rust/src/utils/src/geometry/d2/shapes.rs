@@ -51,4 +51,9 @@ impl Square {
             && self.top_left.y <= p.y
             && p.y <= self.bottom_right.y
     }
+
+    pub fn coords(&self) -> impl Iterator<Item = Vec2> + '_ {
+        (self.top_left.y..self.bottom_right.y)
+            .flat_map(move |y| (self.top_left.x..self.bottom_right.x).map(move |x| Vec2::new(x as i32, y as i32)))
+    }
 }

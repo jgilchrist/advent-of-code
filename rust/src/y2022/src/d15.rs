@@ -1,61 +1,63 @@
 use prelude::*;
-use utils::geometry::d2::{vecs::Vec2, coordinates::CardinalDirection};
+use utils::geometry::d2::{vecs::Vec2, shapes::Square};
 
 pub struct Day15;
 
-struct Diamond {
+pub struct Diamond {
     center: Vec2,
-    height: u32,
+    radius: u32,
 }
 
+type Sensor = Vec2;
+type Beacon = Vec2;
+
 impl Diamond {
-    fn coords(&self) -> HashSet<Vec2> {
-        let mut slice_center = self.center.move_in_direction_by(CardinalDirection::North, self.height);
-        let mut width = 0;
-        let mut points: HashSet<Vec2> = HashSet::new();
+    fn coords(&self) -> impl Iterator<Item = Vec2> + '_ {
+        let top_left = self.center - Vec2::new(self.radius as i32 - 1, self.radius as i32 - 1);
+        let bottom_right = self.center + Vec2::new(self.radius as i32 + 1, self.radius as i32 + 1);
 
-        while slice_center.y != self.center.y {
-            let new_points = (slice_center.x - width ..= slice_center.x + width).map(|x| Vec2::new(x, slice_center.y)).collect_vec();
-            points.extend(new_points.into_iter());
-            width += 1;
-            slice_center = slice_center.move_in_direction(CardinalDirection::South);
-        }
-
-        let new_points = (slice_center.x - width ..= slice_center.x + width).map(|x| Vec2::new(x, slice_center.y)).collect_vec();
-        points.extend(new_points.into_iter());
-        width -= 1;
-        slice_center = slice_center.move_in_direction(CardinalDirection::South);
-
-        while width >= 0 {
-            let new_points = (slice_center.x - width ..= slice_center.x + width).map(|x| Vec2::new(x, slice_center.y)).collect_vec();
-            points.extend(new_points.into_iter());
-            width -= 1;
-            slice_center = slice_center.move_in_direction(CardinalDirection::South);
-        }
-
-        points
+        Square::new(top_left, bottom_right).coords()
+            .filter(|c| c.manhattan_distance_from(self.center) <= self.radius as usize)
     }
 
     fn from_center_and_point_on_boundary(center: Vec2, point_on_boundary: Vec2) -> Self {
+        let radius = center.manhattan_distance_from(point_on_boundary);
+        Diamond { center, radius: radius.try_into().unwrap() }
     }
 }
 
 impl AocSolution for Day15 {
-    type Input = String;
+    type Input = Vec<(Sensor, Beacon)>;
     fn process_input(input: &str) -> Self::Input {
-        input.to_owned()
+        input.lines()
+            .map(|l| {
+                let [sensor_x, sensor_y, beacon_x, beacon_y] = inputs::n_numbers(l);
+                let sensor = Vec2::new(sensor_x, sensor_y);
+                let beacon = Vec2::new(beacon_x, beacon_y);
+                (sensor, beacon)
+            })
+            .collect()
     }
 
     const PART1_STATUS: SolutionStatus = SolutionStatus::Wip;
     const PART1_SOLUTION: Solution = Solution::Unsolved;
     fn part1(input: &Self::Input) -> impl Into<Solution> {
-        dbg!(Diamond {
-            center: Vec2::new(0, 0),
-            height: 2,
-        }.coords());
+        let beacons: HashSet<Beacon> = input.iter()
+            .map(|&(_, beacon)| beacon)
+            .collect();
 
-        todo!();
-        0
+        input.iter()
+            .flat_map(|&(sensor, beacon)| {
+                let radius = sensor.manhattan_distance_from(beacon);
+                let top_left = sensor - Vec2::new(radius as i32 - 1, radius as i32 - 1);
+                let bottom_right = sensor + Vec2::new(radius as i32 + 1, radius as i32 + 1);
+                Square::new(top_left, bottom_right).coords()
+                    .filter(|c| c.manhattan_distance_from(sensor) <= radius as usize)
+                // Diamond { center: sensor, radius: radius.try_into().unwrap() }.coords()
+            })
+            .unique()
+            .filter(|c| c.y == 2000000 && !beacons.contains(c))
+            .count()
     }
 
     const PART2_STATUS: SolutionStatus = SolutionStatus::Wip;
