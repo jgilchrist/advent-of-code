@@ -48,7 +48,6 @@ impl Board {
 
     fn has_winning_columns(&self) -> bool {
         (0..self.numbers.len())
-            .into_iter()
             .any(|col| self.numbers.iter().all(|row| self.seen.contains(&row[col])))
     }
 
