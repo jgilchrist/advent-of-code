@@ -156,7 +156,7 @@ fn run_instruction(instruction: &Instruction, vars: &mut HashMap<Var, u16>) -> R
     Ok(())
 }
 
-fn get(vars: &mut HashMap<Var, u16>, src: &Operand) -> Result<u16, ()> {
+fn get(vars: &HashMap<Var, u16>, src: &Operand) -> Result<u16, ()> {
     match src {
         Operand::Var(s) => vars.get(s).ok_or(()).map(|r| *r),
         Operand::Literal(lit) => Ok(*lit),

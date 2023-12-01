@@ -44,35 +44,30 @@ impl ToSolution for String {
     }
 }
 
-#[allow(clippy::cast_lossless)]
 impl const ToSolution for u16 {
     fn to_solution(self) -> Solution {
         Solution::Number(self as i64)
     }
 }
 
-#[allow(clippy::cast_lossless)]
 impl const ToSolution for u32 {
     fn to_solution(self) -> Solution {
         Solution::Number(self as i64)
     }
 }
 
-#[allow(clippy::cast_lossless)]
 impl const ToSolution for u64 {
     fn to_solution(self) -> Solution {
         Solution::Number(self as i64)
     }
 }
 
-#[allow(clippy::cast_lossless)]
 impl const ToSolution for usize {
     fn to_solution(self) -> Solution {
         Solution::Number(self as i64)
     }
 }
 
-#[allow(clippy::cast_lossless)]
 impl const ToSolution for i32 {
     fn to_solution(self) -> Solution {
         Solution::Number(self as i64)

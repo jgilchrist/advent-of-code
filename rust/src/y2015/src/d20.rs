@@ -2,7 +2,6 @@ use prelude::*;
 
 pub struct Day20;
 
-#[allow(clippy::large_stack_arrays)]
 impl AocSolution for Day20 {
     type Input = u32;
     fn process_input(input: &str) -> Self::Input {
@@ -12,6 +11,7 @@ impl AocSolution for Day20 {
     // Originally attempted to solve with modulos, but it was slower than just
     // allocating a huge array.
     const PART1_SOLUTION: Solution = solution(665280);
+    #[allow(clippy::large_stack_arrays, clippy::large_stack_frames)]
     fn part1(input: &Self::Input) -> impl ToSolution {
         let mut ns = [0; 1_000_000];
 
@@ -32,6 +32,7 @@ impl AocSolution for Day20 {
     }
 
     const PART2_SOLUTION: Solution = solution(705600);
+    #[allow(clippy::large_stack_arrays, clippy::large_stack_frames)]
     fn part2(input: &Self::Input) -> impl ToSolution {
         let mut ns = [0; 1_000_000];
 
