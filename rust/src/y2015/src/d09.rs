@@ -46,12 +46,12 @@ impl AocSolution for Day09 {
             .collect()
     }
 
-    const PART1_SOLUTION: Solution = solution(207);
+    const PART1_SOLUTION: SolutionStatus = solution(207);
     fn part1(input: &Self::Input) -> impl ToSolution {
         *calculate_all_journey_distances(input).iter().min().unwrap()
     }
 
-    const PART2_SOLUTION: Solution = solution(804);
+    const PART2_SOLUTION: SolutionStatus = solution(804);
     fn part2(input: &Self::Input) -> impl ToSolution {
         *calculate_all_journey_distances(input).iter().max().unwrap()
     }

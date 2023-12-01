@@ -44,7 +44,7 @@ impl AocSolution for Day01 {
             .collect()
     }
 
-    const PART1_SOLUTION: Solution = solution(252);
+    const PART1_SOLUTION: SolutionStatus = solution(252);
     fn part1(input: &Self::Input) -> impl ToSolution {
         let start = (0, 0);
         let mut state: State = (start.into(), CardinalDirection::North);
@@ -57,7 +57,7 @@ impl AocSolution for Day01 {
         final_position.manhattan_distance_from(start)
     }
 
-    const PART2_SOLUTION: Solution = solution(143);
+    const PART2_SOLUTION: SolutionStatus = solution(143);
     fn part2(input: &Self::Input) -> impl ToSolution {
         let mut visited_locations: HashSet<Vec2> = HashSet::new();
 

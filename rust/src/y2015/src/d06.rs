@@ -45,7 +45,7 @@ impl AocSolution for Day06 {
         )
     }
 
-    const PART1_SOLUTION: Solution = solution(400410);
+    const PART1_SOLUTION: SolutionStatus = solution(400410);
     fn part1(input: &Self::Input) -> impl ToSolution {
         let mut points = Vec::new();
 
@@ -73,7 +73,7 @@ impl AocSolution for Day06 {
         points.len()
     }
 
-    const PART2_SOLUTION: Solution = solution(15343601);
+    const PART2_SOLUTION: SolutionStatus = solution(15343601);
     fn part2(input: &Self::Input) -> impl ToSolution {
         let mut total_brightness = 0;
 

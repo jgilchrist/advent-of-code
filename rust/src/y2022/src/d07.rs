@@ -138,7 +138,7 @@ impl AocSolution for Day07 {
             .collect()
     }
 
-    const PART1_SOLUTION: Solution = solution(1517599);
+    const PART1_SOLUTION: SolutionStatus = solution(1517599);
     fn part1(input: &Self::Input) -> impl ToSolution {
         input
             .iter()
@@ -147,7 +147,7 @@ impl AocSolution for Day07 {
             .sum::<u64>()
     }
 
-    const PART2_SOLUTION: Solution = solution(2481982);
+    const PART2_SOLUTION: SolutionStatus = solution(2481982);
     fn part2(input: &Self::Input) -> impl ToSolution {
         let total_filesystem_space = 70_000_000;
         let required_unused_space = 30_000_000;

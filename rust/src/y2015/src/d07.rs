@@ -103,12 +103,12 @@ impl AocSolution for Day07 {
         )
     }
 
-    const PART1_SOLUTION: Solution = solution(3176);
+    const PART1_SOLUTION: SolutionStatus = solution(3176);
     fn part1(input: &Self::Input) -> impl ToSolution {
         run_instructions(input)[&Var("a".to_owned())]
     }
 
-    const PART2_SOLUTION: Solution = solution(14710);
+    const PART2_SOLUTION: SolutionStatus = solution(14710);
     fn part2(input: &Self::Input) -> impl ToSolution {
         let a_state = run_instructions(input)[&Var("a".to_owned())];
 

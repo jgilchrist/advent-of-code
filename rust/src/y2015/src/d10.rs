@@ -28,7 +28,7 @@ impl AocSolution for Day10 {
         input.trim().to_owned()
     }
 
-    const PART1_SOLUTION: Solution = solution(252594);
+    const PART1_SOLUTION: SolutionStatus = solution(252594);
     fn part1(input: &Self::Input) -> impl ToSolution {
         let mut s = input.clone();
 
@@ -39,7 +39,7 @@ impl AocSolution for Day10 {
         s.len()
     }
 
-    const PART2_SOLUTION: Solution = solution(3579328);
+    const PART2_SOLUTION: SolutionStatus = solution(3579328);
     fn part2(input: &Self::Input) -> impl ToSolution {
         let mut s = input.clone();
 

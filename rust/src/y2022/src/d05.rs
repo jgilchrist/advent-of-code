@@ -64,7 +64,7 @@ impl AocSolution for Day05 {
         (crates, moves.collect())
     }
 
-    const PART1_SOLUTION: Solution = solution("TWSGQHNHL");
+    const PART1_SOLUTION: SolutionStatus = solution("TWSGQHNHL");
     fn part1(input: &Self::Input) -> impl ToSolution {
         let (mut crates, moves) = input.clone();
 
@@ -78,7 +78,7 @@ impl AocSolution for Day05 {
         top_crates(&crates)
     }
 
-    const PART2_SOLUTION: Solution = solution("JNRSCDWPP");
+    const PART2_SOLUTION: SolutionStatus = solution("JNRSCDWPP");
     fn part2(input: &Self::Input) -> impl ToSolution {
         let (mut crates, moves) = input.clone();
 

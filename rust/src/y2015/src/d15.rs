@@ -71,7 +71,7 @@ impl AocSolution for Day15 {
             .collect()
     }
 
-    const PART1_SOLUTION: Solution = solution(13882464);
+    const PART1_SOLUTION: SolutionStatus = solution(13882464);
     fn part1(input: &Self::Input) -> impl ToSolution {
         all_cookies(input)
             .max_by_key(|c| c.score())
@@ -79,7 +79,7 @@ impl AocSolution for Day15 {
             .score()
     }
 
-    const PART2_SOLUTION: Solution = solution(11171160);
+    const PART2_SOLUTION: SolutionStatus = solution(11171160);
     fn part2(input: &Self::Input) -> impl ToSolution {
         all_cookies(input)
             .max_by_key(|c| if c.calories() == 500 { c.score() } else { 0 })

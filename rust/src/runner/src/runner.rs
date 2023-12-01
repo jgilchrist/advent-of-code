@@ -35,26 +35,24 @@ pub fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() {
         );
     }
 
-    match TSln::PART1_STATUS {
-        SolutionStatus::Solved | SolutionStatus::Wip => {
+    match TSln::PART1_SOLUTION {
+        SolutionStatus::Solved(_) | SolutionStatus::Wip => {
             print!("{}: ", style("1").red().bold());
 
             let p1_started_timestamp = Instant::now();
             let part1_solution = TSln::part1(&processed_input).to_solution();
             print!("{part1_solution}");
 
-            let p1_checked = match TSln::PART1_STATUS {
-                SolutionStatus::Solved => {
-                    if TSln::PART1_SOLUTION == part1_solution {
+            let p1_checked = match TSln::PART1_SOLUTION {
+                SolutionStatus::Solved(sln) => {
+                    if sln == part1_solution {
                         SolutionCheckStatus::Correct
                     } else {
                         SolutionCheckStatus::Incorrect
                     }
                 }
-                SolutionStatus::SolvedInPython | SolutionStatus::Wip => {
-                    SolutionCheckStatus::Unknown
-                }
-                SolutionStatus::Unsolved => unreachable!(),
+                SolutionStatus::Wip => SolutionCheckStatus::Unknown,
+                SolutionStatus::SolvedInPython(_) | SolutionStatus::Unsolved => unreachable!(),
             };
 
             print!(
@@ -65,7 +63,7 @@ pub fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() {
                 style(")").black().bold(),
             );
         }
-        SolutionStatus::SolvedInPython | SolutionStatus::Unsolved => {
+        SolutionStatus::SolvedInPython(_) | SolutionStatus::Unsolved => {
             print!(
                 "{}: {}",
                 style("1").black().bold(),
@@ -76,26 +74,24 @@ pub fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() {
 
     println!();
 
-    match TSln::PART2_STATUS {
-        SolutionStatus::Solved | SolutionStatus::Wip => {
+    match TSln::PART2_SOLUTION {
+        SolutionStatus::Solved(_) | SolutionStatus::Wip => {
             print!("{}: ", style("2").red().bold());
 
             let p2_started_timestamp = Instant::now();
             let part2_solution = TSln::part2(&processed_input).to_solution();
             print!("{part2_solution}");
 
-            let p2_checked = match TSln::PART2_STATUS {
-                SolutionStatus::Solved => {
-                    if TSln::PART2_SOLUTION == part2_solution {
+            let p2_checked = match TSln::PART2_SOLUTION {
+                SolutionStatus::Solved(sln) => {
+                    if sln == part2_solution {
                         SolutionCheckStatus::Correct
                     } else {
                         SolutionCheckStatus::Incorrect
                     }
                 }
-                SolutionStatus::SolvedInPython | SolutionStatus::Wip => {
-                    SolutionCheckStatus::Unknown
-                }
-                SolutionStatus::Unsolved => unreachable!(),
+                SolutionStatus::Wip => SolutionCheckStatus::Unknown,
+                SolutionStatus::SolvedInPython(_) | SolutionStatus::Unsolved => unreachable!(),
             };
 
             print!(
@@ -106,7 +102,7 @@ pub fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() {
                 style(")").black().bold(),
             );
         }
-        SolutionStatus::SolvedInPython | SolutionStatus::Unsolved => {
+        SolutionStatus::SolvedInPython(_) | SolutionStatus::Unsolved => {
             print!(
                 "{}: {}",
                 style("2").black().bold(),

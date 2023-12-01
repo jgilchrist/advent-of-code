@@ -26,12 +26,12 @@ impl AocSolution for Day09 {
             .collect()
     }
 
-    const PART1_SOLUTION: Solution = solution(6057);
+    const PART1_SOLUTION: SolutionStatus = solution(6057);
     fn part1(input: &Self::Input) -> impl ToSolution {
         simulate_chain(input, 2)
     }
 
-    const PART2_SOLUTION: Solution = solution(2514);
+    const PART2_SOLUTION: SolutionStatus = solution(2514);
     fn part2(input: &Self::Input) -> impl ToSolution {
         simulate_chain(input, 10)
     }

@@ -58,7 +58,7 @@ impl AocSolution for Day14 {
             .collect()
     }
 
-    const PART1_SOLUTION: Solution = solution(2696);
+    const PART1_SOLUTION: SolutionStatus = solution(2696);
     fn part1(input: &Self::Input) -> impl ToSolution {
         let mut states = (*input).clone();
 
@@ -85,7 +85,7 @@ impl AocSolution for Day14 {
         states.iter().map(|r| r.1.distance).max().unwrap()
     }
 
-    const PART2_SOLUTION: Solution = solution(1084);
+    const PART2_SOLUTION: SolutionStatus = solution(1084);
     fn part2(input: &Self::Input) -> impl ToSolution {
         let mut input = (*input).clone();
 

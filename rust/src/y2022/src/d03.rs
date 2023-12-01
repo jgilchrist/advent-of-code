@@ -25,7 +25,7 @@ impl AocSolution for Day03 {
             .collect()
     }
 
-    const PART1_SOLUTION: Solution = solution(8252);
+    const PART1_SOLUTION: SolutionStatus = solution(8252);
     fn part1(input: &Self::Input) -> impl ToSolution {
         input
             .iter()
@@ -35,7 +35,7 @@ impl AocSolution for Day03 {
             .sum::<u32>()
     }
 
-    const PART2_SOLUTION: Solution = solution(2828);
+    const PART2_SOLUTION: SolutionStatus = solution(2828);
     fn part2(input: &Self::Input) -> impl ToSolution {
         input
             .iter()

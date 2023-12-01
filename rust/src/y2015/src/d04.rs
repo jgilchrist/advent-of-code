@@ -20,7 +20,7 @@ impl AocSolution for Day04 {
         input.trim().to_owned()
     }
 
-    const PART1_SOLUTION: Solution = solution(346386);
+    const PART1_SOLUTION: SolutionStatus = solution(346386);
     fn part1(input: &Self::Input) -> impl ToSolution {
         for (i, hash) in all_hashes(input).enumerate() {
             if hash.starts_with("00000") {
@@ -31,7 +31,7 @@ impl AocSolution for Day04 {
         unreachable!()
     }
 
-    const PART2_SOLUTION: Solution = solution(9958218);
+    const PART2_SOLUTION: SolutionStatus = solution(9958218);
     fn part2(input: &Self::Input) -> impl ToSolution {
         for (i, hash) in all_hashes(input).enumerate() {
             if hash.starts_with("000000") {

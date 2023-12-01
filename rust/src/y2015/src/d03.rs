@@ -20,7 +20,7 @@ impl AocSolution for Day03 {
             .collect()
     }
 
-    const PART1_SOLUTION: Solution = solution(2565);
+    const PART1_SOLUTION: SolutionStatus = solution(2565);
     fn part1(input: &Self::Input) -> impl ToSolution {
         let mut pos = Vec2 { x: 0, y: 0 };
         let mut visited: HashSet<Vec2> = HashSet::from([pos]);
@@ -33,7 +33,7 @@ impl AocSolution for Day03 {
         visited.len()
     }
 
-    const PART2_SOLUTION: Solution = solution(2639);
+    const PART2_SOLUTION: SolutionStatus = solution(2639);
     fn part2(input: &Self::Input) -> impl ToSolution {
         let mut santa = Vec2 { x: 0, y: 0 };
         let mut robo_santa = Vec2 { x: 0, y: 0 };

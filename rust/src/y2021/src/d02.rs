@@ -28,7 +28,7 @@ impl AocSolution for Day02 {
         input.lines().map(parse_instruction).collect()
     }
 
-    const PART1_SOLUTION: Solution = solution(1924923);
+    const PART1_SOLUTION: SolutionStatus = solution(1924923);
     fn part1(input: &Self::Input) -> impl ToSolution {
         let mut depth = 0;
         let mut position = 0;
@@ -45,7 +45,7 @@ impl AocSolution for Day02 {
         depth * position
     }
 
-    const PART2_SOLUTION: Solution = solution(1982495697);
+    const PART2_SOLUTION: SolutionStatus = solution(1982495697);
     fn part2(input: &Self::Input) -> impl ToSolution {
         let mut aim = 0;
         let mut depth = 0;

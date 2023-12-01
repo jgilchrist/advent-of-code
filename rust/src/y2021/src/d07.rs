@@ -25,12 +25,12 @@ impl AocSolution for Day07 {
         inputs::comma_separated::<u64>(input)
     }
 
-    const PART1_SOLUTION: Solution = solution(328262);
+    const PART1_SOLUTION: SolutionStatus = solution(328262);
     fn part1(input: &Self::Input) -> impl ToSolution {
         get_minimum_cost_by(input, abs_difference)
     }
 
-    const PART2_SOLUTION: Solution = solution(90040997);
+    const PART2_SOLUTION: SolutionStatus = solution(90040997);
     fn part2(input: &Self::Input) -> impl ToSolution {
         get_minimum_cost_by(input, |pos, crab_pos| {
             let diff = abs_difference(pos, crab_pos);

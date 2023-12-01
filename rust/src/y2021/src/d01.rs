@@ -15,12 +15,12 @@ impl AocSolution for Day01 {
         input.lines().map(|l| l.parse::<i32>().unwrap()).collect()
     }
 
-    const PART1_SOLUTION: Solution = solution(1184);
+    const PART1_SOLUTION: SolutionStatus = solution(1184);
     fn part1(input: &Self::Input) -> impl ToSolution {
         number_of_positive_diffs(input)
     }
 
-    const PART2_SOLUTION: Solution = solution(1158);
+    const PART2_SOLUTION: SolutionStatus = solution(1158);
     fn part2(input: &Self::Input) -> impl ToSolution {
         number_of_positive_diffs(
             &input
