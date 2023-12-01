@@ -1,6 +1,5 @@
 use prelude::*;
 use utils::geometry::d2::{coordinates::CardinalDirection, grid::Grid};
-use utils::iters::TakeUntilExt;
 
 pub struct Day08;
 
@@ -34,7 +33,7 @@ impl AocSolution for Day08 {
             .map(|(tree_coord, tree_height)| {
                 CardinalDirection::all()
                     .map(|direction| input.raycast_cells(tree_coord, direction))
-                    .map(|heights| heights.take_until(|h| *h >= tree_height).count())
+                    .map(|heights| heights.take_while_inclusive(|h| *h < tree_height).count())
                     .product::<usize>()
             })
             .max()
