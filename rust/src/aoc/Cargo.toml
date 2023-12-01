@@ -3,4 +3,5 @@ name = "aoc"
 version.workspace = true
 edition.workspace = true
 
-[dependencies]
+[lints]
+workspace = true

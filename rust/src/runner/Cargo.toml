@@ -3,6 +3,9 @@ name = "runner"
 version.workspace = true
 edition.workspace = true
 
+[lints]
+workspace = true
+
 [dependencies]
 anyhow = "1.0.44"
 console = "0.15.2"

@@ -3,6 +3,9 @@ name = "y2015"
 version.workspace = true
 edition.workspace = true
 
+[lints]
+workspace = true
+
 [dependencies]
 md5 = "0.7.0"
 serde_json = "1.0.87"
