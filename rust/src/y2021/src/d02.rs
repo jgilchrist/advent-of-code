@@ -33,7 +33,7 @@ impl AocSolution for Day02 {
         let mut depth = 0;
         let mut position = 0;
 
-        for instruction in input.iter() {
+        for instruction in input {
             use Instruction::*;
             match instruction {
                 Up(n) => depth -= n,
@@ -51,7 +51,7 @@ impl AocSolution for Day02 {
         let mut depth = 0;
         let mut position = 0;
 
-        for instruction in input.iter() {
+        for instruction in input {
             use Instruction::*;
             match instruction {
                 Up(n) => aim -= n,

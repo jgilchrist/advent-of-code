@@ -12,16 +12,16 @@ fn regex_replace(s: &str, regex: &str, replace_with: &str) -> String {
 fn count_chars_in_line(line: &str) -> usize {
     let line = &line[1..line.len() - 1];
 
-    let line = regex_replace(line, r#"\\\\"#, ".");
+    let line = regex_replace(line, r"\\\\", ".");
     let line = regex_replace(&line, r#"\\\""#, ".");
-    let line = regex_replace(&line, r#"\\x[0-9A-Fa-f]{2}"#, ".");
+    let line = regex_replace(&line, r"\\x[0-9A-Fa-f]{2}", ".");
 
     line.len()
 }
 
 fn count_expanded_chars_in_line(line: &str) -> usize {
     let line = regex_replace(line, r#"""#, "..");
-    let line = regex_replace(&line, r#"\\"#, "..");
+    let line = regex_replace(&line, r"\\", "..");
     let line = r#"""#.to_owned() + &line + r#"""#;
 
     line.len()

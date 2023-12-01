@@ -68,7 +68,7 @@ pub fn regexes<T>(input: &str, regexes: TransformRegexes<T>) -> Vec<T> {
         .lines()
         .map(|l| {
             let regexes: &[(Regex, TransformFn<T>)] = &compiled_regexes;
-            for (regex, transform_fn) in regexes.iter() {
+            for (regex, transform_fn) in regexes {
                 if let Some(captures) = regex.captures(l).expect("Invalid regex") {
                     return transform_fn(Captures::new(captures));
                 }

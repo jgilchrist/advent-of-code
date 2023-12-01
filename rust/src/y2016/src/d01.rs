@@ -49,7 +49,7 @@ impl AocSolution for Day01 {
         let start = (0, 0);
         let mut state: State = (start.into(), CardinalDirection::North);
 
-        for instruction in input.iter() {
+        for instruction in input {
             (state, _) = run_instruction(&state, instruction);
         }
 
@@ -64,7 +64,7 @@ impl AocSolution for Day01 {
         let start: Vec2 = (0, 0).into();
         let mut state = (start, CardinalDirection::North);
 
-        for instruction in input.iter() {
+        for instruction in input {
             let (new_state, locs) = run_instruction(&state, instruction);
             state = new_state;
 

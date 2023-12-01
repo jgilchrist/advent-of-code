@@ -30,15 +30,15 @@ impl AocSolution for Day06 {
             input,
             vec![
                 (
-                    r#"turn on (\d+),(\d+) through (\d+),(\d+)"#,
+                    r"turn on (\d+),(\d+) through (\d+),(\d+)",
                     Box::new(move |mut c| (c.next_square(), Command::TurnOn)),
                 ),
                 (
-                    r#"turn off (\d+),(\d+) through (\d+),(\d+)"#,
+                    r"turn off (\d+),(\d+) through (\d+),(\d+)",
                     Box::new(move |mut c| (c.next_square(), Command::TurnOff)),
                 ),
                 (
-                    r#"toggle (\d+),(\d+) through (\d+),(\d+)"#,
+                    r"toggle (\d+),(\d+) through (\d+),(\d+)",
                     Box::new(move |mut c| (c.next_square(), Command::Toggle)),
                 ),
             ],
