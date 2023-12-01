@@ -1,4 +1,3 @@
-#![feature(return_position_impl_trait_in_trait)]
 #![feature(array_chunks)]
 #![allow(incomplete_features)]
 #![warn(clippy::pedantic)]
