@@ -247,6 +247,7 @@ dependencies = [
  "y2020",
  "y2021",
  "y2022",
+ "y2023",
 ]
 
 [[package]]
@@ -460,5 +461,14 @@ dependencies = [
  "aoc",
  "prelude",
  "serde_json",
+ "utils",
+]
+
+[[package]]
+name = "y2023"
+version = "1.0.0"
+dependencies = [
+ "aoc",
+ "prelude",
  "utils",
 ]

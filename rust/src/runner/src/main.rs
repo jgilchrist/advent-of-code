@@ -26,6 +26,7 @@ fn main() -> Result<()> {
                     2020 => runner::run_year::<y2020::Y2020, 2020>(),
                     2021 => runner::run_year::<y2021::Y2021, 2021>(),
                     2022 => runner::run_year::<y2022::Y2022, 2022>(),
+                    2023 => runner::run_year::<y2023::Y2023, 2023>(),
                     _ => panic!("invalid year"),
                 },
                 3 => {
@@ -41,6 +42,7 @@ fn main() -> Result<()> {
                         2020 => runner::run_year_solution::<y2020::Y2020, 2020>(day_n),
                         2021 => runner::run_year_solution::<y2021::Y2021, 2021>(day_n),
                         2022 => runner::run_year_solution::<y2022::Y2022, 2022>(day_n),
+                        2023 => runner::run_year_solution::<y2023::Y2023, 2023>(day_n),
                         _ => panic!("invalid year"),
                     }
                 }
