@@ -30,7 +30,7 @@ checksum = "216261ddc8289130e551ddcd5ce8a064710c0d064a4d2895c67151c92b5443f6"
 
 [[package]]
 name = "aoc"
-version = "0.1.0"
+version = "1.0.0"
 
 [[package]]
 name = "autocfg"
@@ -195,7 +195,7 @@ checksum = "86f0b0d4bf799edbc74508c1e8bf170ff5f41238e5f8225603ca7caaae2b7860"
 
 [[package]]
 name = "prelude"
-version = "0.1.0"
+version = "1.0.0"
 dependencies = [
  "aoc",
  "fancy-regex",
@@ -233,7 +233,7 @@ checksum = "456c603be3e8d448b072f410900c09faf164fbce2d480456f50eea6e25f9c848"
 
 [[package]]
 name = "runner"
-version = "0.1.0"
+version = "1.0.0"
 dependencies = [
  "anyhow",
  "aoc",
@@ -296,7 +296,7 @@ checksum = "c0edd1e5b14653f783770bce4a4dabb4a5108a5370a5f5d8cfe8710c361f6c8b"
 
 [[package]]
 name = "utils"
-version = "0.1.0"
+version = "1.0.0"
 dependencies = [
  "fancy-regex",
  "itertools",
@@ -390,7 +390,7 @@ checksum = "f40009d85759725a34da6d89a94e63d7bdc50a862acf0dbc7c8e488f1edcb6f5"
 
 [[package]]
 name = "y2015"
-version = "0.1.0"
+version = "1.0.0"
 dependencies = [
  "aoc",
  "md5",
@@ -401,7 +401,7 @@ dependencies = [
 
 [[package]]
 name = "y2016"
-version = "0.1.0"
+version = "1.0.0"
 dependencies = [
  "aoc",
  "prelude",
@@ -410,7 +410,7 @@ dependencies = [
 
 [[package]]
 name = "y2017"
-version = "0.1.0"
+version = "1.0.0"
 dependencies = [
  "aoc",
  "prelude",
@@ -419,7 +419,7 @@ dependencies = [
 
 [[package]]
 name = "y2018"
-version = "0.1.0"
+version = "1.0.0"
 dependencies = [
  "aoc",
  "prelude",
@@ -428,7 +428,7 @@ dependencies = [
 
 [[package]]
 name = "y2019"
-version = "0.1.0"
+version = "1.0.0"
 dependencies = [
  "aoc",
  "prelude",
@@ -437,7 +437,7 @@ dependencies = [
 
 [[package]]
 name = "y2020"
-version = "0.1.0"
+version = "1.0.0"
 dependencies = [
  "aoc",
  "prelude",
@@ -446,7 +446,7 @@ dependencies = [
 
 [[package]]
 name = "y2021"
-version = "0.1.0"
+version = "1.0.0"
 dependencies = [
  "aoc",
  "prelude",
@@ -455,7 +455,7 @@ dependencies = [
 
 [[package]]
 name = "y2022"
-version = "0.1.0"
+version = "1.0.0"
 dependencies = [
  "aoc",
  "prelude",
