@@ -32,7 +32,7 @@ impl AocSolution for Day19 {
     }
 
     const PART1_SOLUTION: Solution = solution(535);
-    fn part1(input: &Self::Input) -> impl Into<Solution> {
+    fn part1(input: &Self::Input) -> impl ToSolution {
         let (rules, initial_state) = input;
         let unique_states: HashSet<String> = rules
             .iter()
@@ -43,7 +43,7 @@ impl AocSolution for Day19 {
 
     const PART2_STATUS: SolutionStatus = SolutionStatus::Wip;
     const PART2_SOLUTION: Solution = Solution::Unsolved;
-    fn part2(_input: &Self::Input) -> impl Into<Solution> {
+    fn part2(_input: &Self::Input) -> impl ToSolution {
         Solution::Unsolved
         // let (rules, goal_state) = input;
         //

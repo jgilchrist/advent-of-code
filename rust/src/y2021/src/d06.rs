@@ -61,12 +61,12 @@ impl AocSolution for Day06 {
     }
 
     const PART1_SOLUTION: Solution = solution(389726);
-    fn part1(input: &Self::Input) -> impl Into<Solution> {
+    fn part1(input: &Self::Input) -> impl ToSolution {
         number_of_fish_after_n_days(input, 80)
     }
 
     const PART2_SOLUTION: Solution = solution(1743335992042u64);
-    fn part2(input: &Self::Input) -> impl Into<Solution> {
+    fn part2(input: &Self::Input) -> impl ToSolution {
         number_of_fish_after_n_days(input, 256)
     }
 }

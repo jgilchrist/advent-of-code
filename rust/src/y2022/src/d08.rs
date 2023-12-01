@@ -11,7 +11,7 @@ impl AocSolution for Day08 {
     }
 
     const PART1_SOLUTION: Solution = solution(1717);
-    fn part1(input: &Self::Input) -> impl Into<Solution> {
+    fn part1(input: &Self::Input) -> impl ToSolution {
         input
             .iter_cells()
             .filter(|(tree_coord, tree_height)| {
@@ -28,7 +28,7 @@ impl AocSolution for Day08 {
     }
 
     const PART2_SOLUTION: Solution = solution(321975);
-    fn part2(input: &Self::Input) -> impl Into<Solution> {
+    fn part2(input: &Self::Input) -> impl ToSolution {
         input
             .iter_cells()
             .map(|(tree_coord, tree_height)| {

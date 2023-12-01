@@ -35,7 +35,7 @@ impl AocSolution for Day04 {
     }
 
     const PART1_SOLUTION: Solution = solution(602);
-    fn part1(input: &Self::Input) -> impl Into<Solution> {
+    fn part1(input: &Self::Input) -> impl ToSolution {
         input
             .iter()
             .filter(|(r1, r2)| r1.contains_range(r2) || r2.contains_range(r1))
@@ -43,7 +43,7 @@ impl AocSolution for Day04 {
     }
 
     const PART2_SOLUTION: Solution = solution(891);
-    fn part2(input: &Self::Input) -> impl Into<Solution> {
+    fn part2(input: &Self::Input) -> impl ToSolution {
         input
             .iter()
             .filter(|(r1, r2)| r1.overlaps(r2) || r2.overlaps(r1))

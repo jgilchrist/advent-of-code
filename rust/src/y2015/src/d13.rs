@@ -60,14 +60,14 @@ impl AocSolution for Day13 {
     }
 
     const PART1_SOLUTION: Solution = solution(733);
-    fn part1(input: &Self::Input) -> impl Into<Solution> {
+    fn part1(input: &Self::Input) -> impl ToSolution {
         let (people, pairings) = input;
 
         max_seating_plan_utility(people, pairings)
     }
 
     const PART2_SOLUTION: Solution = solution(725);
-    fn part2(input: &Self::Input) -> impl Into<Solution> {
+    fn part2(input: &Self::Input) -> impl ToSolution {
         let input = input.clone();
         let (mut people, mut pairings) = input;
 

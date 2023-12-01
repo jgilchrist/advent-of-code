@@ -1,6 +1,6 @@
 #![allow(clippy::print_stdout)]
 
-use aoc::{AocSolution, AocYear, SolutionStatus};
+use aoc::{AocSolution, AocYear, SolutionStatus, ToSolution};
 use std::time::{Duration, Instant};
 
 use console::style;
@@ -40,7 +40,7 @@ pub fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() {
             print!("{}: ", style("1").red().bold());
 
             let p1_started_timestamp = Instant::now();
-            let part1_solution = TSln::part1(&processed_input).into();
+            let part1_solution = TSln::part1(&processed_input).to_solution();
             print!("{part1_solution}");
 
             let p1_checked = match TSln::PART1_STATUS {
@@ -81,7 +81,7 @@ pub fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() {
             print!("{}: ", style("2").red().bold());
 
             let p2_started_timestamp = Instant::now();
-            let part2_solution = TSln::part2(&processed_input).into();
+            let part2_solution = TSln::part2(&processed_input).to_solution();
             print!("{part2_solution}");
 
             let p2_checked = match TSln::PART2_STATUS {

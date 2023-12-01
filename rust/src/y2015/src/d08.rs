@@ -34,7 +34,7 @@ impl AocSolution for Day08 {
     }
 
     const PART1_SOLUTION: Solution = solution(1342);
-    fn part1(input: &Self::Input) -> impl Into<Solution> {
+    fn part1(input: &Self::Input) -> impl ToSolution {
         let total_len: usize = input.iter().map(|l| l.len()).sum();
         let string_len: usize = input.iter().map(|l| count_chars_in_line(l)).sum();
 
@@ -42,7 +42,7 @@ impl AocSolution for Day08 {
     }
 
     const PART2_SOLUTION: Solution = solution(2074);
-    fn part2(input: &Self::Input) -> impl Into<Solution> {
+    fn part2(input: &Self::Input) -> impl ToSolution {
         let total_len: usize = input.iter().map(|l| l.len()).sum();
         let expanded_len: usize = input.iter().map(|l| count_expanded_chars_in_line(l)).sum();
 

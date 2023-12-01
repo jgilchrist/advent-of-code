@@ -77,7 +77,7 @@ impl AocSolution for Day05 {
     }
 
     const PART1_SOLUTION: Solution = solution(6267);
-    fn part1(input: &Self::Input) -> impl Into<Solution> {
+    fn part1(input: &Self::Input) -> impl ToSolution {
         let relevant_lines = input
             .iter()
             .filter(|line| line.is_horizontal() || line.is_vertical());
@@ -93,7 +93,7 @@ impl AocSolution for Day05 {
     }
 
     const PART2_SOLUTION: Solution = solution(20196);
-    fn part2(input: &Self::Input) -> impl Into<Solution> {
+    fn part2(input: &Self::Input) -> impl ToSolution {
         let points = input.iter().flat_map(|line| line.points()).collect_vec();
 
         points

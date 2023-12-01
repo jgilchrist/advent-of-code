@@ -78,7 +78,7 @@ impl AocSolution for Day13 {
     }
 
     const PART1_SOLUTION: Solution = solution(5529);
-    fn part1(input: &Self::Input) -> impl Into<Solution> {
+    fn part1(input: &Self::Input) -> impl ToSolution {
         input
             .iter()
             .enumerate()
@@ -88,7 +88,7 @@ impl AocSolution for Day13 {
     }
 
     const PART2_SOLUTION: Solution = solution(27690);
-    fn part2(input: &Self::Input) -> impl Into<Solution> {
+    fn part2(input: &Self::Input) -> impl ToSolution {
         let divider_packets = [
             Value::List(vec![Value::list_of(2)]),
             Value::List(vec![Value::list_of(6)]),

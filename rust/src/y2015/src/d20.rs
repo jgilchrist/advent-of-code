@@ -12,7 +12,7 @@ impl AocSolution for Day20 {
     // Originally attempted to solve with modulos, but it was slower than just
     // allocating a huge array.
     const PART1_SOLUTION: Solution = solution(665280);
-    fn part1(input: &Self::Input) -> impl Into<Solution> {
+    fn part1(input: &Self::Input) -> impl ToSolution {
         let mut ns = [0; 1_000_000];
 
         for i in 1..ns.len() {
@@ -32,7 +32,7 @@ impl AocSolution for Day20 {
     }
 
     const PART2_SOLUTION: Solution = solution(705600);
-    fn part2(input: &Self::Input) -> impl Into<Solution> {
+    fn part2(input: &Self::Input) -> impl ToSolution {
         let mut ns = [0; 1_000_000];
 
         for i in 1..ns.len() {

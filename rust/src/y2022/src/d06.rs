@@ -21,12 +21,12 @@ impl AocSolution for Day06 {
     }
 
     const PART1_SOLUTION: Solution = solution(1766);
-    fn part1(input: &Self::Input) -> impl Into<Solution> {
+    fn part1(input: &Self::Input) -> impl ToSolution {
         index_of_first_distinct_sequence(input, 4)
     }
 
     const PART2_SOLUTION: Solution = solution(2383);
-    fn part2(input: &Self::Input) -> impl Into<Solution> {
+    fn part2(input: &Self::Input) -> impl ToSolution {
         index_of_first_distinct_sequence(input, 14)
     }
 }

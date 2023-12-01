@@ -1,5 +1,5 @@
-#![feature(return_position_impl_trait_in_trait)]
 #![feature(const_trait_impl)]
+#![feature(effects)]
 #![allow(incomplete_features)]
 #![warn(clippy::pedantic)]
 #![warn(clippy::nursery)]
@@ -30,61 +30,72 @@ pub enum Solution {
     Unsolved,
 }
 
-impl const From<&'static str> for Solution {
-    fn from(s: &'static str) -> Self {
-        Self::String(s)
+#[const_trait]
+pub trait ToSolution {
+    fn to_solution(self) -> Solution;
+}
+
+impl const ToSolution for Solution {
+    fn to_solution(self) -> Solution {
+        self
     }
 }
 
-impl From<String> for Solution {
-    fn from(s: String) -> Self {
+impl const ToSolution for &'static str {
+    fn to_solution(self) -> Solution {
+        Solution::String(self)
+    }
+}
+
+impl ToSolution for String {
+    fn to_solution(self) -> Solution {
         // Used to be able to compare runtime-generated String results with
         // static strings embedded in the binary. There's likely a better
         // way to do this, but I haven't found it.
         // This is fine since the process lives only long enough to run the solution.
-        let leaked_string = Box::leak(s.into_boxed_str());
-        Self::String(leaked_string)
+        let leaked_string = Box::leak(self.into_boxed_str());
+        Solution::String(leaked_string)
     }
 }
 
 #[allow(clippy::cast_lossless)]
-impl const From<u16> for Solution {
-    fn from(n: u16) -> Self {
-        Self::Number(n as i64)
+impl const ToSolution for u16 {
+    fn to_solution(self) -> Solution {
+        Solution::Number(self as i64)
     }
 }
 
 #[allow(clippy::cast_lossless)]
-impl const From<u32> for Solution {
-    fn from(n: u32) -> Self {
-        Self::Number(n as i64)
+impl const ToSolution for u32 {
+    fn to_solution(self) -> Solution {
+        Solution::Number(self as i64)
     }
 }
 
 #[allow(clippy::cast_lossless)]
-impl const From<u64> for Solution {
-    fn from(n: u64) -> Self {
-        Self::Number(n as i64)
+impl const ToSolution for u64 {
+    fn to_solution(self) -> Solution {
+        Solution::Number(self as i64)
     }
 }
 
 #[allow(clippy::cast_lossless)]
-impl const From<usize> for Solution {
-    fn from(n: usize) -> Self {
-        Self::Number(n as i64)
+impl const ToSolution for usize {
+    fn to_solution(self) -> Solution {
+        Solution::Number(self as i64)
     }
 }
 
 #[allow(clippy::cast_lossless)]
-impl const From<i32> for Solution {
-    fn from(n: i32) -> Self {
-        Self::Number(n as i64)
+impl const ToSolution for i32 {
+    fn to_solution(self) -> Solution {
+        Solution::Number(self as i64)
     }
 }
 
-impl const From<i64> for Solution {
-    fn from(n: i64) -> Self {
-        Self::Number(n)
+impl const ToSolution for i64 {
+    fn to_solution(self) -> Solution {
+        Solution::Number(self)
     }
 }
 
@@ -110,8 +121,8 @@ impl PartialEq for Solution {
     }
 }
 
-pub const fn solution<T: ~const Into<Solution>>(sln: T) -> Solution {
-    sln.into()
+pub const fn solution<T: ~const ToSolution>(sln: T) -> Solution {
+    sln.to_solution()
 }
 
 pub trait AocSolution {
@@ -120,11 +131,11 @@ pub trait AocSolution {
 
     const PART1_SOLUTION: Solution;
     const PART1_STATUS: SolutionStatus = SolutionStatus::Solved;
-    fn part1(i: &Self::Input) -> impl Into<Solution>;
+    fn part1(i: &Self::Input) -> impl ToSolution;
 
     const PART2_SOLUTION: Solution;
     const PART2_STATUS: SolutionStatus = SolutionStatus::Solved;
-    fn part2(i: &Self::Input) -> impl Into<Solution>;
+    fn part2(i: &Self::Input) -> impl ToSolution;
 }
 
 pub struct Unsolved;
@@ -134,13 +145,13 @@ impl AocSolution for Unsolved {
 
     const PART1_SOLUTION: Solution = Solution::Unsolved;
     const PART1_STATUS: SolutionStatus = SolutionStatus::Unsolved;
-    fn part1(_: &Self::Input) -> impl Into<Solution> {
+    fn part1(_: &Self::Input) -> impl ToSolution {
         Solution::Unsolved
     }
 
     const PART2_SOLUTION: Solution = Solution::Unsolved;
     const PART2_STATUS: SolutionStatus = SolutionStatus::Unsolved;
-    fn part2(_: &Self::Input) -> impl Into<Solution> {
+    fn part2(_: &Self::Input) -> impl ToSolution {
         Solution::Unsolved
     }
 }

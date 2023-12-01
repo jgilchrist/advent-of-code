@@ -47,12 +47,12 @@ impl AocSolution for Day11 {
     }
 
     const PART1_SOLUTION: Solution = solution(316888);
-    fn part1(input: &Self::Input) -> impl Into<Solution> {
+    fn part1(input: &Self::Input) -> impl ToSolution {
         play_rounds(input, 20, true)
     }
 
     const PART2_SOLUTION: Solution = solution(35270398814i64);
-    fn part2(input: &Self::Input) -> impl Into<Solution> {
+    fn part2(input: &Self::Input) -> impl ToSolution {
         play_rounds(input, 10000, false)
     }
 }
@@ -120,14 +120,9 @@ fn play_round(
 
 fn parse_monkey(m: &str) -> (MonkeyId, (Monkey, Vec<u64>)) {
     let lines = m.lines().collect_vec();
-    let [
-        monkey_id_line,
-        starting_items_line,
-        operation_line,
-        test_line,
-        true_line,
-        false_line,
-    ] = lines[..] else {
+    let [monkey_id_line, starting_items_line, operation_line, test_line, true_line, false_line] =
+        lines[..]
+    else {
         unreachable!()
     };
 

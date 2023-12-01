@@ -9,7 +9,7 @@ impl AocSolution for Day05 {
     }
 
     const PART1_SOLUTION: Solution = solution(255);
-    fn part1(input: &Self::Input) -> impl Into<Solution> {
+    fn part1(input: &Self::Input) -> impl ToSolution {
         fn is_nice(line: &str) -> bool {
             let number_of_vowels = line.matches('a').count()
                 + line.matches('e').count()
@@ -31,7 +31,7 @@ impl AocSolution for Day05 {
     }
 
     const PART2_SOLUTION: Solution = solution(55);
-    fn part2(input: &Self::Input) -> impl Into<Solution> {
+    fn part2(input: &Self::Input) -> impl ToSolution {
         fn is_nice(line: &str) -> bool {
             let has_matching_pair = Regex::new(r"(..).*\1")
                 .unwrap()

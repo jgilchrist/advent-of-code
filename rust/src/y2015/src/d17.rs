@@ -18,12 +18,12 @@ impl AocSolution for Day17 {
     }
 
     const PART1_SOLUTION: Solution = solution(1638);
-    fn part1(input: &Self::Input) -> impl Into<Solution> {
+    fn part1(input: &Self::Input) -> impl ToSolution {
         matching_combinations(input).count()
     }
 
     const PART2_SOLUTION: Solution = solution(17);
-    fn part2(input: &Self::Input) -> impl Into<Solution> {
+    fn part2(input: &Self::Input) -> impl ToSolution {
         let (_, &number_of_combinations) = matching_combinations(input)
             .counts_by(|c| c.len())
             .iter()

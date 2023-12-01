@@ -26,12 +26,12 @@ impl AocSolution for Day07 {
     }
 
     const PART1_SOLUTION: Solution = solution(328262);
-    fn part1(input: &Self::Input) -> impl Into<Solution> {
+    fn part1(input: &Self::Input) -> impl ToSolution {
         get_minimum_cost_by(input, abs_difference)
     }
 
     const PART2_SOLUTION: Solution = solution(90040997);
-    fn part2(input: &Self::Input) -> impl Into<Solution> {
+    fn part2(input: &Self::Input) -> impl ToSolution {
         get_minimum_cost_by(input, |pos, crab_pos| {
             let diff = abs_difference(pos, crab_pos);
             (diff * (diff + 1)) / 2
