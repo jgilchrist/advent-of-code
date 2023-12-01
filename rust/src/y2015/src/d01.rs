@@ -9,12 +9,12 @@ impl AocSolution for Day01 {
     }
 
     const PART1_SOLUTION: Solution = solution(74);
-    fn part1(input: &Self::Input) -> impl Into<Solution> {
+    fn part1(input: &Self::Input) -> impl ToSolution {
         input.matches('(').count() - input.matches(')').count()
     }
 
     const PART2_SOLUTION: Solution = solution(1795);
-    fn part2(input: &Self::Input) -> impl Into<Solution> {
+    fn part2(input: &Self::Input) -> impl ToSolution {
         let mut floor = 0;
 
         for (i, c) in input.chars().enumerate() {

@@ -47,7 +47,7 @@ impl AocSolution for Day03 {
     }
 
     const PART1_SOLUTION: Solution = solution(2261546);
-    fn part1(input: &Self::Input) -> impl Into<Solution> {
+    fn part1(input: &Self::Input) -> impl ToSolution {
         let cols: Vec<Vec<char>> = transpose(input);
 
         let gamma_rate_chars: Vec<char> = cols.iter().map(|c| most_common_in(c)).collect();
@@ -60,7 +60,7 @@ impl AocSolution for Day03 {
     }
 
     const PART2_SOLUTION: Solution = solution(6775520);
-    fn part2(input: &Self::Input) -> impl Into<Solution> {
+    fn part2(input: &Self::Input) -> impl ToSolution {
         let mut oxygen_candidates = input.clone();
 
         let mut current_oxygen_bit_idx = 0;

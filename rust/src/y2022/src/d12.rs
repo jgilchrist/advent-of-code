@@ -66,7 +66,7 @@ impl AocSolution for Day12 {
     }
 
     const PART1_SOLUTION: Solution = solution(462);
-    fn part1(input: &Self::Input) -> impl Into<Solution> {
+    fn part1(input: &Self::Input) -> impl ToSolution {
         let (grid, start) = input;
 
         let path = search::djikstra(
@@ -80,7 +80,7 @@ impl AocSolution for Day12 {
     }
 
     const PART2_SOLUTION: Solution = solution(451);
-    fn part2(input: &Self::Input) -> impl Into<Solution> {
+    fn part2(input: &Self::Input) -> impl ToSolution {
         let (grid, _) = input;
 
         // This can be done faster by starting with all a's as starting states

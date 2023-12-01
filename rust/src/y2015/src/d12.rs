@@ -42,12 +42,12 @@ impl AocSolution for Day12 {
     }
 
     const PART1_SOLUTION: Solution = solution(119433);
-    fn part1(input: &Self::Input) -> impl Into<Solution> {
+    fn part1(input: &Self::Input) -> impl ToSolution {
         count_numbers(input)
     }
 
     const PART2_SOLUTION: Solution = solution(68466);
-    fn part2(input: &Self::Input) -> impl Into<Solution> {
+    fn part2(input: &Self::Input) -> impl ToSolution {
         count_numbers_ignoring_red(input)
     }
 }

@@ -1,4 +1,4 @@
-pub use aoc::{solution, AocSolution, Solution, SolutionStatus};
+pub use aoc::{solution, AocSolution, Solution, SolutionStatus, ToSolution};
 pub use utils::inputs;
 
 pub use hashbrown::HashMap;

@@ -79,7 +79,7 @@ impl AocSolution for Day16 {
     }
 
     const PART1_SOLUTION: Solution = solution(103);
-    fn part1(input: &Self::Input) -> impl Into<Solution> {
+    fn part1(input: &Self::Input) -> impl ToSolution {
         input
             .iter()
             .find(|s| {
@@ -99,7 +99,7 @@ impl AocSolution for Day16 {
     }
 
     const PART2_SOLUTION: Solution = solution(405);
-    fn part2(input: &Self::Input) -> impl Into<Solution> {
+    fn part2(input: &Self::Input) -> impl ToSolution {
         input
             .iter()
             .find(|s| {

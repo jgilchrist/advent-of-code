@@ -82,14 +82,14 @@ impl AocSolution for Day18 {
     }
 
     const PART1_SOLUTION: Solution = solution(768);
-    fn part1(input: &Self::Input) -> impl Into<Solution> {
+    fn part1(input: &Self::Input) -> impl ToSolution {
         count_lit_cells(&evolve_using(input, 100, |map, coord, cell| {
             game_of_life_rule(map, coord, cell)
         }))
     }
 
     const PART2_SOLUTION: Solution = solution(781);
-    fn part2(input: &Self::Input) -> impl Into<Solution> {
+    fn part2(input: &Self::Input) -> impl ToSolution {
         let map_size = input.x_size() - 1;
 
         let corners: HashSet<Vec2> =

@@ -19,13 +19,13 @@ impl AocSolution for Day14 {
     }
 
     const PART1_SOLUTION: Solution = solution(715);
-    fn part1(input: &Self::Input) -> impl Into<Solution> {
+    fn part1(input: &Self::Input) -> impl ToSolution {
         let (mut occupied_cells, floor_position) = input.clone();
         simulate_to_end(&mut occupied_cells, floor_position, false)
     }
 
     const PART2_SOLUTION: Solution = solution(25248);
-    fn part2(input: &Self::Input) -> impl Into<Solution> {
+    fn part2(input: &Self::Input) -> impl ToSolution {
         let (mut occupied_cells, floor_position) = input.clone();
         simulate_to_end(&mut occupied_cells, floor_position, true)
     }

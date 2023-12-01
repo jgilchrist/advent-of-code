@@ -88,7 +88,7 @@ impl AocSolution for Day04 {
     }
 
     const PART1_SOLUTION: Solution = solution(4662);
-    fn part1(input: &Self::Input) -> impl Into<Solution> {
+    fn part1(input: &Self::Input) -> impl ToSolution {
         let numbers = input.0.clone();
         let mut boards = input.1.clone();
 
@@ -105,7 +105,7 @@ impl AocSolution for Day04 {
     }
 
     const PART2_SOLUTION: Solution = solution(12080);
-    fn part2(input: &Self::Input) -> impl Into<Solution> {
+    fn part2(input: &Self::Input) -> impl ToSolution {
         let numbers = input.0.clone();
         let mut boards = input.1.clone();
         let mut winning_boards: Vec<Board> = vec![];

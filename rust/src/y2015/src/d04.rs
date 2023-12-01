@@ -21,7 +21,7 @@ impl AocSolution for Day04 {
     }
 
     const PART1_SOLUTION: Solution = solution(346386);
-    fn part1(input: &Self::Input) -> impl Into<Solution> {
+    fn part1(input: &Self::Input) -> impl ToSolution {
         for (i, hash) in all_hashes(input).enumerate() {
             if hash.starts_with("00000") {
                 return i;
@@ -32,7 +32,7 @@ impl AocSolution for Day04 {
     }
 
     const PART2_SOLUTION: Solution = solution(9958218);
-    fn part2(input: &Self::Input) -> impl Into<Solution> {
+    fn part2(input: &Self::Input) -> impl ToSolution {
         for (i, hash) in all_hashes(input).enumerate() {
             if hash.starts_with("000000") {
                 return i;

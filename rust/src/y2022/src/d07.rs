@@ -139,7 +139,7 @@ impl AocSolution for Day07 {
     }
 
     const PART1_SOLUTION: Solution = solution(1517599);
-    fn part1(input: &Self::Input) -> impl Into<Solution> {
+    fn part1(input: &Self::Input) -> impl ToSolution {
         input
             .iter()
             .map(|(_, size)| size)
@@ -148,7 +148,7 @@ impl AocSolution for Day07 {
     }
 
     const PART2_SOLUTION: Solution = solution(2481982);
-    fn part2(input: &Self::Input) -> impl Into<Solution> {
+    fn part2(input: &Self::Input) -> impl ToSolution {
         let total_filesystem_space = 70_000_000;
         let required_unused_space = 30_000_000;
         let current_used_space = input.get("/").unwrap();

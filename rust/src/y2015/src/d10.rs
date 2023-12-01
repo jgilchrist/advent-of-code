@@ -29,7 +29,7 @@ impl AocSolution for Day10 {
     }
 
     const PART1_SOLUTION: Solution = solution(252594);
-    fn part1(input: &Self::Input) -> impl Into<Solution> {
+    fn part1(input: &Self::Input) -> impl ToSolution {
         let mut s = input.clone();
 
         for _ in 0..40 {
@@ -40,7 +40,7 @@ impl AocSolution for Day10 {
     }
 
     const PART2_SOLUTION: Solution = solution(3579328);
-    fn part2(input: &Self::Input) -> impl Into<Solution> {
+    fn part2(input: &Self::Input) -> impl ToSolution {
         let mut s = input.clone();
 
         for _ in 0..50 {

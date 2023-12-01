@@ -26,7 +26,7 @@ impl AocSolution for Day03 {
     }
 
     const PART1_SOLUTION: Solution = solution(8252);
-    fn part1(input: &Self::Input) -> impl Into<Solution> {
+    fn part1(input: &Self::Input) -> impl ToSolution {
         input
             .iter()
             .map(|(left, right)| left & right)
@@ -36,7 +36,7 @@ impl AocSolution for Day03 {
     }
 
     const PART2_SOLUTION: Solution = solution(2828);
-    fn part2(input: &Self::Input) -> impl Into<Solution> {
+    fn part2(input: &Self::Input) -> impl ToSolution {
         input
             .iter()
             .map(|(left, right)| left | right)

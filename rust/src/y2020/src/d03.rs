@@ -10,13 +10,13 @@ impl AocSolution for Day03 {
 
     const PART1_SOLUTION: Solution = solution(151);
     const PART1_STATUS: SolutionStatus = SolutionStatus::SolvedInPython;
-    fn part1(_input: &Self::Input) -> impl Into<Solution> {
+    fn part1(_input: &Self::Input) -> impl ToSolution {
         Solution::Unsolved
     }
 
     const PART2_SOLUTION: Solution = solution(7540141059u64);
     const PART2_STATUS: SolutionStatus = SolutionStatus::SolvedInPython;
-    fn part2(_input: &Self::Input) -> impl Into<Solution> {
+    fn part2(_input: &Self::Input) -> impl ToSolution {
         Solution::Unsolved
     }
 }

@@ -94,7 +94,7 @@ impl AocSolution for Day02 {
     }
 
     const PART1_SOLUTION: Solution = solution(8392);
-    fn part1(input: &Self::Input) -> impl Into<Solution> {
+    fn part1(input: &Self::Input) -> impl ToSolution {
         play_game(
             input
                 .iter()
@@ -103,7 +103,7 @@ impl AocSolution for Day02 {
     }
 
     const PART2_SOLUTION: Solution = solution(10116);
-    fn part2(input: &Self::Input) -> impl Into<Solution> {
+    fn part2(input: &Self::Input) -> impl ToSolution {
         play_game(
             input
                 .iter()
