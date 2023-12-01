@@ -3,6 +3,9 @@ name = "y2018"
 version.workspace = true
 edition.workspace = true
 
+[lints]
+workspace = true
+
 [dependencies]
 aoc = { "path" = "../aoc" }
 prelude = { "path" = "../prelude" }
