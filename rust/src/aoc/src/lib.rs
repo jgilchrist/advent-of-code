@@ -126,13 +126,13 @@ impl AocSolution for Unsolved {
 
     const PART1_SOLUTION: Solution = Solution::Unsolved;
     const PART1_STATUS: SolutionStatus = SolutionStatus::Unsolved;
-    fn part1(_: &Self::Input) -> impl ToSolution {
+    fn part1((): &Self::Input) -> impl ToSolution {
         Solution::Unsolved
     }
 
     const PART2_SOLUTION: Solution = Solution::Unsolved;
     const PART2_STATUS: SolutionStatus = SolutionStatus::Unsolved;
-    fn part2(_: &Self::Input) -> impl ToSolution {
+    fn part2((): &Self::Input) -> impl ToSolution {
         Solution::Unsolved
     }
 }

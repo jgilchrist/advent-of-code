@@ -38,7 +38,7 @@ impl AocSolution for Day13 {
 
         for mut line in inputs::regex_lines(
             input,
-            r#"(\w+) would (\w+) (\d+) happiness units by sitting next to (\w+)."#,
+            r"(\w+) would (\w+) (\d+) happiness units by sitting next to (\w+).",
         ) {
             let person = Person(line.next_string());
             let action = line.next_string();

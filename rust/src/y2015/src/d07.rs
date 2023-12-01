@@ -52,19 +52,19 @@ impl AocSolution for Day07 {
             input,
             vec![
                 (
-                    r#"(\w+) -> (\w+)"#,
+                    r"(\w+) -> (\w+)",
                     Box::new(move |mut c| {
                         Instruction(Operation::Assign(c.next_operand()), c.next_var())
                     }),
                 ),
                 (
-                    r#"NOT (\w+) -> (\w+)"#,
+                    r"NOT (\w+) -> (\w+)",
                     Box::new(move |mut c| {
                         Instruction(Operation::Not(c.next_operand()), Var(c.next_string()))
                     }),
                 ),
                 (
-                    r#"(\w+) AND (\w+) -> (\w+)"#,
+                    r"(\w+) AND (\w+) -> (\w+)",
                     Box::new(move |mut c| {
                         Instruction(
                             Operation::And(c.next_operand(), c.next_operand()),
@@ -73,7 +73,7 @@ impl AocSolution for Day07 {
                     }),
                 ),
                 (
-                    r#"(\w+) OR (\w+) -> (\w+)"#,
+                    r"(\w+) OR (\w+) -> (\w+)",
                     Box::new(move |mut c| {
                         Instruction(
                             Operation::Or(c.next_operand(), c.next_operand()),
@@ -82,7 +82,7 @@ impl AocSolution for Day07 {
                     }),
                 ),
                 (
-                    r#"(\w+) LSHIFT (\d+) -> (\w+)"#,
+                    r"(\w+) LSHIFT (\d+) -> (\w+)",
                     Box::new(move |mut c| {
                         Instruction(
                             Operation::LShift(c.next_operand(), c.next_u8()),
@@ -91,7 +91,7 @@ impl AocSolution for Day07 {
                     }),
                 ),
                 (
-                    r#"(\w+) RSHIFT (\d+) -> (\w+)"#,
+                    r"(\w+) RSHIFT (\d+) -> (\w+)",
                     Box::new(move |mut c| {
                         Instruction(
                             Operation::RShift(c.next_operand(), c.next_u8()),
