@@ -29,9 +29,7 @@ pub enum PrincipalWinds {
 }
 
 impl CardinalDirection {
-    pub fn all() -> impl Iterator<Item = Self> {
-        vec![Self::North, Self::East, Self::South, Self::West].into_iter()
-    }
+    pub const ALL: [Self; 4] = [Self::North, Self::East, Self::South, Self::West];
 
     #[must_use]
     pub fn turn(&self, direction: TurnDirection) -> Self {
@@ -66,19 +64,16 @@ impl CardinalDirection {
 }
 
 impl PrincipalWinds {
-    pub fn all() -> impl Iterator<Item = Self> {
-        vec![
-            Self::North,
-            Self::NorthEast,
-            Self::East,
-            Self::SouthEast,
-            Self::South,
-            Self::SouthWest,
-            Self::West,
-            Self::NorthWest,
-        ]
-        .into_iter()
-    }
+    pub const ALL: [Self; 8] = [
+        Self::North,
+        Self::NorthEast,
+        Self::East,
+        Self::SouthEast,
+        Self::South,
+        Self::SouthWest,
+        Self::West,
+        Self::NorthWest,
+    ];
 }
 
 impl From<CardinalDirection> for Vec2 {

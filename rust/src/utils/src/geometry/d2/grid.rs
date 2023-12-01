@@ -41,14 +41,16 @@ impl<T> Grid<T> {
     }
 
     pub fn neighbors4(&self, v: Vec2) -> impl Iterator<Item = Vec2> + '_ {
-        CardinalDirection::all()
+        CardinalDirection::ALL
             .map(move |dir| v.move_in_direction(dir))
+            .into_iter()
             .filter(|coord| self.is_valid_coord(coord))
     }
 
     pub fn neighbors8(&self, v: Vec2) -> impl Iterator<Item = Vec2> + '_ {
-        PrincipalWinds::all()
+        PrincipalWinds::ALL
             .map(move |dir| v.move_in_direction(dir))
+            .into_iter()
             .filter(|coord| self.is_valid_coord(coord))
     }
 
