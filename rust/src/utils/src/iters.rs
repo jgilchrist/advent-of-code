@@ -1,7 +1,3 @@
-mod take_until;
-
-pub use take_until::TakeUntilExt;
-
 pub fn transpose<T>(ts: &[Vec<T>]) -> Vec<Vec<T>>
 where
     T: Copy,
