@@ -55,12 +55,12 @@ impl AocSolution for Day02 {
             .collect()
     }
 
-    const PART1_SOLUTION: Solution = solution(1586300);
+    const PART1_SOLUTION: SolutionStatus = solution(1586300);
     fn part1(input: &Self::Input) -> impl ToSolution {
         input.iter().map(paper_area_required).sum::<u32>()
     }
 
-    const PART2_SOLUTION: Solution = solution(3737498);
+    const PART2_SOLUTION: SolutionStatus = solution(3737498);
     fn part2(input: &Self::Input) -> impl ToSolution {
         input.iter().map(ribbon_length_required).sum::<u32>()
     }

@@ -41,12 +41,12 @@ impl AocSolution for Day12 {
         serde_json::from_str(input).unwrap()
     }
 
-    const PART1_SOLUTION: Solution = solution(119433);
+    const PART1_SOLUTION: SolutionStatus = solution(119433);
     fn part1(input: &Self::Input) -> impl ToSolution {
         count_numbers(input)
     }
 
-    const PART2_SOLUTION: Solution = solution(68466);
+    const PART2_SOLUTION: SolutionStatus = solution(68466);
     fn part2(input: &Self::Input) -> impl ToSolution {
         count_numbers_ignoring_red(input)
     }

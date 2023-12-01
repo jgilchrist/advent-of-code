@@ -77,7 +77,7 @@ impl AocSolution for Day13 {
             .collect()
     }
 
-    const PART1_SOLUTION: Solution = solution(5529);
+    const PART1_SOLUTION: SolutionStatus = solution(5529);
     fn part1(input: &Self::Input) -> impl ToSolution {
         input
             .iter()
@@ -87,7 +87,7 @@ impl AocSolution for Day13 {
             .sum::<usize>()
     }
 
-    const PART2_SOLUTION: Solution = solution(27690);
+    const PART2_SOLUTION: SolutionStatus = solution(27690);
     fn part2(input: &Self::Input) -> impl ToSolution {
         let divider_packets = [
             Value::List(vec![Value::list_of(2)]),

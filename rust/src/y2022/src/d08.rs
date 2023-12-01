@@ -9,7 +9,7 @@ impl AocSolution for Day08 {
         inputs::grid_of::<u32>(input)
     }
 
-    const PART1_SOLUTION: Solution = solution(1717);
+    const PART1_SOLUTION: SolutionStatus = solution(1717);
     fn part1(input: &Self::Input) -> impl ToSolution {
         input
             .iter_cells()
@@ -27,7 +27,7 @@ impl AocSolution for Day08 {
             .count()
     }
 
-    const PART2_SOLUTION: Solution = solution(321975);
+    const PART2_SOLUTION: SolutionStatus = solution(321975);
     fn part2(input: &Self::Input) -> impl ToSolution {
         input
             .iter_cells()

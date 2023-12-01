@@ -16,12 +16,12 @@ impl AocSolution for Day01 {
         calories
     }
 
-    const PART1_SOLUTION: Solution = solution(66616);
+    const PART1_SOLUTION: SolutionStatus = solution(66616);
     fn part1(input: &Self::Input) -> impl ToSolution {
         *input.first().unwrap()
     }
 
-    const PART2_SOLUTION: Solution = solution(199172);
+    const PART2_SOLUTION: SolutionStatus = solution(199172);
     fn part2(input: &Self::Input) -> impl ToSolution {
         input.iter().take(3).sum::<u32>()
     }

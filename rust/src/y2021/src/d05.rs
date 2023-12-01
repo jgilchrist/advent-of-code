@@ -76,7 +76,7 @@ impl AocSolution for Day05 {
         input.lines().map(parse_line).collect()
     }
 
-    const PART1_SOLUTION: Solution = solution(6267);
+    const PART1_SOLUTION: SolutionStatus = solution(6267);
     fn part1(input: &Self::Input) -> impl ToSolution {
         let relevant_lines = input
             .iter()
@@ -92,7 +92,7 @@ impl AocSolution for Day05 {
             .count()
     }
 
-    const PART2_SOLUTION: Solution = solution(20196);
+    const PART2_SOLUTION: SolutionStatus = solution(20196);
     fn part2(input: &Self::Input) -> impl ToSolution {
         let points = input.iter().flat_map(|line| line.points()).collect_vec();
 

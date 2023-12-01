@@ -46,12 +46,12 @@ impl AocSolution for Day11 {
         input.split("\n\n").map(parse_monkey).collect()
     }
 
-    const PART1_SOLUTION: Solution = solution(316888);
+    const PART1_SOLUTION: SolutionStatus = solution(316888);
     fn part1(input: &Self::Input) -> impl ToSolution {
         play_rounds(input, 20, true)
     }
 
-    const PART2_SOLUTION: Solution = solution(35270398814i64);
+    const PART2_SOLUTION: SolutionStatus = solution(35270398814i64);
     fn part2(input: &Self::Input) -> impl ToSolution {
         play_rounds(input, 10000, false)
     }

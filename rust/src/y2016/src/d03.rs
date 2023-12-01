@@ -22,12 +22,12 @@ impl AocSolution for Day03 {
         input.lines().map(inputs::n_positive_numbers).collect()
     }
 
-    const PART1_SOLUTION: Solution = solution(1050);
+    const PART1_SOLUTION: SolutionStatus = solution(1050);
     fn part1(input: &Self::Input) -> impl ToSolution {
         count_valid_triangles(input)
     }
 
-    const PART2_SOLUTION: Solution = solution(1921);
+    const PART2_SOLUTION: SolutionStatus = solution(1921);
     fn part2(input: &Self::Input) -> impl ToSolution {
         let slices = input.iter().map(|&l| l.into_iter().collect()).collect_vec();
 

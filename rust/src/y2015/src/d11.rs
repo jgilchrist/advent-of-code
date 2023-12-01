@@ -89,12 +89,12 @@ impl AocSolution for Day11 {
         input.trim().to_owned()
     }
 
-    const PART1_SOLUTION: Solution = solution("cqjxxyzz");
+    const PART1_SOLUTION: SolutionStatus = solution("cqjxxyzz");
     fn part1(input: &Self::Input) -> impl ToSolution {
         next_valid_password(input)
     }
 
-    const PART2_SOLUTION: Solution = solution("cqkaabcc");
+    const PART2_SOLUTION: SolutionStatus = solution("cqkaabcc");
     fn part2(input: &Self::Input) -> impl ToSolution {
         let new_password = next_valid_password(input);
         next_valid_password(&increment_password(&new_password))

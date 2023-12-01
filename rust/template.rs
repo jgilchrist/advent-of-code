@@ -9,13 +9,13 @@ impl AocSolution for DayDAY {
     }
 
     const PART1_STATUS: SolutionStatus = SolutionStatus::Wip;
-    const PART1_SOLUTION: Solution = Solution::Unsolved;
+    const PART1_SOLUTION: SolutionStatus = Solution::Unsolved;
     fn part1(input: &Self::Input) -> impl ToSolution {
         Solution::Unsolved
     }
 
     const PART2_STATUS: SolutionStatus = SolutionStatus::Wip;
-    const PART2_SOLUTION: Solution = Solution::Unsolved;
+    const PART2_SOLUTION: SolutionStatus = Solution::Unsolved;
     fn part2(input: &Self::Input) -> impl ToSolution {
         Solution::Unsolved
     }

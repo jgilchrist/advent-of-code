@@ -65,7 +65,7 @@ impl AocSolution for Day02 {
         input.lines().map(get_instructions_from_line).collect()
     }
 
-    const PART1_SOLUTION: Solution = solution("78293");
+    const PART1_SOLUTION: SolutionStatus = solution("78293");
     fn part1(input: &Self::Input) -> impl ToSolution {
         let map = Map::new(vec![
             vec![Some('1'), Some('2'), Some('3')],
@@ -76,7 +76,7 @@ impl AocSolution for Day02 {
         run_input(&map, (1, 1), input)
     }
 
-    const PART2_SOLUTION: Solution = solution("AC8C8");
+    const PART2_SOLUTION: SolutionStatus = solution("AC8C8");
     fn part2(input: &Self::Input) -> impl ToSolution {
         let map = Map::new(vec![
             vec![None, None, Some('1'), None, None],

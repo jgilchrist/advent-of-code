@@ -31,7 +31,7 @@ impl AocSolution for Day19 {
         (rules.collect(), initial_state.trim().to_owned())
     }
 
-    const PART1_SOLUTION: Solution = solution(535);
+    const PART1_SOLUTION: SolutionStatus = solution(535);
     fn part1(input: &Self::Input) -> impl ToSolution {
         let (rules, initial_state) = input;
         let unique_states: HashSet<String> = rules
@@ -41,8 +41,7 @@ impl AocSolution for Day19 {
         unique_states.len()
     }
 
-    const PART2_STATUS: SolutionStatus = SolutionStatus::Wip;
-    const PART2_SOLUTION: Solution = Solution::Unsolved;
+    const PART2_SOLUTION: SolutionStatus = SolutionStatus::Wip;
     fn part2(_input: &Self::Input) -> impl ToSolution {
         Solution::Unsolved
         // let (rules, goal_state) = input;

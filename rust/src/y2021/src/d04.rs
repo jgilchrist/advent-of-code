@@ -86,7 +86,7 @@ impl AocSolution for Day04 {
         (bingo_numbers, boards)
     }
 
-    const PART1_SOLUTION: Solution = solution(4662);
+    const PART1_SOLUTION: SolutionStatus = solution(4662);
     fn part1(input: &Self::Input) -> impl ToSolution {
         let numbers = input.0.clone();
         let mut boards = input.1.clone();
@@ -103,7 +103,7 @@ impl AocSolution for Day04 {
         unreachable!();
     }
 
-    const PART2_SOLUTION: Solution = solution(12080);
+    const PART2_SOLUTION: SolutionStatus = solution(12080);
     fn part2(input: &Self::Input) -> impl ToSolution {
         let numbers = input.0.clone();
         let mut boards = input.1.clone();

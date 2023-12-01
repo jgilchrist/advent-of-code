@@ -83,8 +83,8 @@ fn print_year_progress<TYear: AocYear, const NYEAR: u32>() {
 fn print_day_header<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() {
     print!(
         "{:0>2}  ",
-        match (TSln::PART1_STATUS, TSln::PART2_STATUS) {
-            (SolutionStatus::Solved, SolutionStatus::Solved) => style(NDAY).yellow().bold(),
+        match (TSln::PART1_SOLUTION, TSln::PART2_SOLUTION) {
+            (SolutionStatus::Solved(_), SolutionStatus::Solved(_)) => style(NDAY).yellow().bold(),
             _ => style(NDAY).black().bold(),
         }
     );
@@ -93,16 +93,16 @@ fn print_day_header<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() {
 fn print_day_progress<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() {
     print!(
         "{}{}  ",
-        solution_progress_str(&TSln::PART1_STATUS),
-        solution_progress_str(&TSln::PART2_STATUS)
+        solution_progress_str(&TSln::PART1_SOLUTION),
+        solution_progress_str(&TSln::PART2_SOLUTION)
     );
 }
 
 fn solution_progress_str(status: &SolutionStatus) -> String {
     match status {
-        SolutionStatus::Solved => style("*").yellow().bold(),
+        SolutionStatus::Solved(_) => style("*").yellow().bold(),
         SolutionStatus::Wip => style("*").blue().bold(),
-        SolutionStatus::SolvedInPython => style("*").black().bold(),
+        SolutionStatus::SolvedInPython(_) => style("*").black().bold(),
         SolutionStatus::Unsolved => style(" "),
     }
     .to_string()

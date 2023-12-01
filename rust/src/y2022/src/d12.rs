@@ -65,7 +65,7 @@ impl AocSolution for Day12 {
         (grid, start)
     }
 
-    const PART1_SOLUTION: Solution = solution(462);
+    const PART1_SOLUTION: SolutionStatus = solution(462);
     fn part1(input: &Self::Input) -> impl ToSolution {
         let (grid, start) = input;
 
@@ -79,7 +79,7 @@ impl AocSolution for Day12 {
         path.len() - 1
     }
 
-    const PART2_SOLUTION: Solution = solution(451);
+    const PART2_SOLUTION: SolutionStatus = solution(451);
     fn part2(input: &Self::Input) -> impl ToSolution {
         let (grid, _) = input;
 

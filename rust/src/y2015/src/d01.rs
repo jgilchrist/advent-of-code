@@ -8,12 +8,12 @@ impl AocSolution for Day01 {
         input.to_owned()
     }
 
-    const PART1_SOLUTION: Solution = solution(74);
+    const PART1_SOLUTION: SolutionStatus = solution(74);
     fn part1(input: &Self::Input) -> impl ToSolution {
         input.matches('(').count() - input.matches(')').count()
     }
 
-    const PART2_SOLUTION: Solution = solution(1795);
+    const PART2_SOLUTION: SolutionStatus = solution(1795);
     fn part2(input: &Self::Input) -> impl ToSolution {
         let mut floor = 0;
 

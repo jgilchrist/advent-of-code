@@ -1,4 +1,4 @@
-pub use aoc::{solution, AocSolution, Solution, SolutionStatus, ToSolution};
+pub use aoc::{solution, solution_from_python, AocSolution, Solution, SolutionStatus, ToSolution};
 pub use utils::inputs;
 
 pub use hashbrown::HashMap;

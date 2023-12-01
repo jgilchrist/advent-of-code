@@ -3,8 +3,8 @@
 #![allow(incomplete_features)]
 
 pub enum SolutionStatus {
-    Solved,
-    SolvedInPython,
+    Solved(Solution),
+    SolvedInPython(Solution),
     Wip,
     Unsolved,
 }
@@ -102,20 +102,22 @@ impl PartialEq for Solution {
     }
 }
 
-pub const fn solution<T: ~const ToSolution>(sln: T) -> Solution {
-    sln.to_solution()
+pub const fn solution<T: ~const ToSolution>(sln: T) -> SolutionStatus {
+    SolutionStatus::Solved(sln.to_solution())
+}
+
+pub const fn solution_from_python<T: ~const ToSolution>(sln: T) -> SolutionStatus {
+    SolutionStatus::SolvedInPython(sln.to_solution())
 }
 
 pub trait AocSolution {
     type Input;
     fn process_input(input: &str) -> Self::Input;
 
-    const PART1_SOLUTION: Solution;
-    const PART1_STATUS: SolutionStatus = SolutionStatus::Solved;
+    const PART1_SOLUTION: SolutionStatus;
     fn part1(i: &Self::Input) -> impl ToSolution;
 
-    const PART2_SOLUTION: Solution;
-    const PART2_STATUS: SolutionStatus = SolutionStatus::Solved;
+    const PART2_SOLUTION: SolutionStatus;
     fn part2(i: &Self::Input) -> impl ToSolution;
 }
 
@@ -124,14 +126,12 @@ impl AocSolution for Unsolved {
     type Input = ();
     fn process_input(_: &str) -> Self::Input {}
 
-    const PART1_SOLUTION: Solution = Solution::Unsolved;
-    const PART1_STATUS: SolutionStatus = SolutionStatus::Unsolved;
+    const PART1_SOLUTION: SolutionStatus = SolutionStatus::Unsolved;
     fn part1((): &Self::Input) -> impl ToSolution {
         Solution::Unsolved
     }
 
-    const PART2_SOLUTION: Solution = Solution::Unsolved;
-    const PART2_STATUS: SolutionStatus = SolutionStatus::Unsolved;
+    const PART2_SOLUTION: SolutionStatus = SolutionStatus::Unsolved;
     fn part2((): &Self::Input) -> impl ToSolution {
         Solution::Unsolved
     }

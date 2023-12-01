@@ -8,14 +8,12 @@ impl AocSolution for Day23 {
         input.lines().collect()
     }
 
-    const PART1_SOLUTION: Solution = solution("78569234");
-    const PART1_STATUS: SolutionStatus = SolutionStatus::SolvedInPython;
+    const PART1_SOLUTION: SolutionStatus = solution_from_python("78569234");
     fn part1(_input: &Self::Input) -> impl ToSolution {
         Solution::Unsolved
     }
 
-    const PART2_SOLUTION: Solution = solution(565615814504u64);
-    const PART2_STATUS: SolutionStatus = SolutionStatus::SolvedInPython;
+    const PART2_SOLUTION: SolutionStatus = solution_from_python(565615814504u64);
     fn part2(_input: &Self::Input) -> impl ToSolution {
         Solution::Unsolved
     }

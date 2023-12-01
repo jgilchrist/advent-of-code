@@ -43,7 +43,7 @@ impl AocSolution for Day10 {
             .collect()
     }
 
-    const PART1_SOLUTION: Solution = solution(14320);
+    const PART1_SOLUTION: SolutionStatus = solution(14320);
     fn part1(input: &Self::Input) -> impl ToSolution {
         let xs = get_all_xs(input);
 
@@ -53,7 +53,7 @@ impl AocSolution for Day10 {
             .sum::<i32>()
     }
 
-    const PART2_SOLUTION: Solution = solution("PCPBKAPJ");
+    const PART2_SOLUTION: SolutionStatus = solution("PCPBKAPJ");
     #[allow(clippy::cast_sign_loss)]
     fn part2(input: &Self::Input) -> impl ToSolution {
         let xs = get_all_xs(input);
