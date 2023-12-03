@@ -5,3 +5,8 @@ edition.workspace = true
 
 [lints]
 workspace = true
+
+[dependencies]
+anyhow = { workspace = true }
+console = { workspace = true }
+ctrlc = { workspace = true }

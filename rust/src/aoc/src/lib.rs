@@ -2,6 +2,11 @@
 #![feature(effects)]
 #![allow(incomplete_features)]
 
+pub mod progress;
+mod runner;
+
+pub use self::runner::{init, run_solution, run_year, run_year_solution};
+
 pub enum SolutionStatus {
     Solved(Solution),
     SolvedInPython(Solution),
@@ -142,6 +147,8 @@ impl AocSolution for Unsolved {
 }
 
 pub trait AocYear {
+    const YEAR: u32;
+
     type D01: AocSolution;
     type D02: AocSolution;
     type D03: AocSolution;
