@@ -8,14 +8,12 @@ impl AocSolution for DayDAY {
         input.to_owned()
     }
 
-    const PART1_STATUS: SolutionStatus = SolutionStatus::Wip;
-    const PART1_SOLUTION: SolutionStatus = Solution::Unsolved;
+    const PART1_SOLUTION: SolutionStatus = SolutionStatus::Wip;
     fn part1(input: &Self::Input) -> impl ToSolution {
         Solution::Unsolved
     }
 
-    const PART2_STATUS: SolutionStatus = SolutionStatus::Wip;
-    const PART2_SOLUTION: SolutionStatus = Solution::Unsolved;
+    const PART2_SOLUTION: SolutionStatus = SolutionStatus::Wip;
     fn part2(input: &Self::Input) -> impl ToSolution {
         Solution::Unsolved
     }
