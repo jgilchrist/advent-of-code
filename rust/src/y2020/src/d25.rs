@@ -15,6 +15,6 @@ impl AocSolution for Day25 {
 
     const PART2_SOLUTION: SolutionStatus = solution(Solution::MerryChristmas);
     fn part2(_input: &Self::Input) -> impl ToSolution {
-        Solution::Unsolved
+        Solution::MerryChristmas
     }
 }
