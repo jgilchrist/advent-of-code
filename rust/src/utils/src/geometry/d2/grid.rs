@@ -33,8 +33,9 @@ impl<T> Grid<T> {
     }
 
     pub fn at(&self, v: Vec2) -> Option<&T> {
-        assert!(v.x >= 0);
-        assert!(v.y >= 0);
+        if !self.is_valid_coord(&v) {
+            return None;
+        }
 
         let idx: usize = v.y as usize * self.x_size + v.x as usize;
         self.cells.get(idx)
