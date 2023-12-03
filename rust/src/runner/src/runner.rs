@@ -15,6 +15,10 @@ pub fn init() {
 }
 
 pub fn run_solution<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() {
+    if !TSln::IS_SOLVED {
+        return;
+    }
+
     println!(
         "{}{} Day {:0>2}",
         style("=").red().bold(),
