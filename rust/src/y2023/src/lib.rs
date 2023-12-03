@@ -7,8 +7,10 @@ use aoc::{AocYear, Unsolved};
 
 pub struct Y2023;
 
+mod d01;
+
 impl AocYear for Y2023 {
-    type D01 = Unsolved;
+    type D01 = d01::Day01;
     type D02 = Unsolved;
     type D03 = Unsolved;
     type D04 = Unsolved;
