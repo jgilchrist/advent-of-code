@@ -204,10 +204,13 @@ impl std::fmt::Display for SolutionCheckStatus {
 }
 
 fn format_duration(d: Duration) -> String {
-    match d.as_millis() {
-        ms if ms <= 1000 => format!("{:?}", style(d).green()),
-        ms if ms > 1000 && ms <= 10000 => format!("{:?}", style(d).yellow()),
-        ms if ms > 10000 => format!("{:?}", style(d).red()),
-        _ => unreachable!(),
-    }
+    format!(
+        "{:.1?}",
+        match d.as_millis() {
+            ms if ms <= 1000 => style(d).green(),
+            ms if ms > 1000 && ms <= 10000 => style(d).yellow(),
+            ms if ms > 10000 => style(d).red(),
+            _ => unreachable!(),
+        }
+    )
 }
