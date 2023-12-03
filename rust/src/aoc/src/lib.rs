@@ -111,6 +111,8 @@ pub const fn solution_from_python<T: ~const ToSolution>(sln: T) -> SolutionStatu
 }
 
 pub trait AocSolution {
+    const IS_SOLVED: bool = true;
+
     type Input;
     fn process_input(input: &str) -> Self::Input;
 
@@ -123,6 +125,8 @@ pub trait AocSolution {
 
 pub struct Unsolved;
 impl AocSolution for Unsolved {
+    const IS_SOLVED: bool = false;
+
     type Input = ();
     fn process_input(_: &str) -> Self::Input {}
 
