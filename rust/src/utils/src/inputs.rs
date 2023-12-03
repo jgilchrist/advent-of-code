@@ -99,6 +99,14 @@ pub fn regex_matches<'a>(input: &'a str, regex: &str) -> impl Iterator<Item = Ca
     })
 }
 
+pub fn line_regex_matches<'a>(input: &'a str, regex: &str) -> Option<Captures<'a>> {
+    let compiled_regex = Regex::new(regex).unwrap();
+
+    let captures = compiled_regex.captures(input).expect("Invalid regex");
+
+    captures.map(|c| Captures::new(c))
+}
+
 pub fn lines(s: &str) -> Vec<String> {
     s.lines().map(|l| l.to_owned()).collect()
 }
