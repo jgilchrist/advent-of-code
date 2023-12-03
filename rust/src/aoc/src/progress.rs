@@ -1,19 +1,10 @@
 #![allow(clippy::print_stdout)]
+#![allow(unused)]
 
-use aoc::{AocSolution, AocYear, SolutionStatus};
+// TODO: Allow printing progress from any individual year
+
+use crate::{AocSolution, AocYear, SolutionStatus};
 use console::style;
-
-pub fn print_progress() {
-    print_year_progress::<y2015::Y2015, 2015>();
-    print_year_progress::<y2016::Y2016, 2016>();
-    print_year_progress::<y2017::Y2017, 2017>();
-    print_year_progress::<y2018::Y2018, 2018>();
-    print_year_progress::<y2019::Y2019, 2019>();
-    print_year_progress::<y2020::Y2020, 2020>();
-    print_year_progress::<y2021::Y2021, 2021>();
-    print_year_progress::<y2022::Y2022, 2022>();
-    print_year_progress::<y2023::Y2023, 2023>();
-}
 
 fn print_year_progress<TYear: AocYear, const NYEAR: u32>() {
     print!(

@@ -1,11 +1,9 @@
 #![feature(array_windows)]
-#![feature(let_chains)]
 #![allow(incomplete_features)]
-#![allow(unreachable_patterns)]
 
+use anyhow::{bail, Result};
 use aoc::{AocYear, Unsolved};
-
-pub struct Y2022;
+use std::env;
 
 mod d01;
 mod d02;
@@ -21,8 +19,18 @@ mod d11;
 mod d12;
 mod d13;
 mod d14;
+mod d15;
+mod d16;
+mod d17;
+mod d18;
+mod d19;
+mod d20;
 
-impl AocYear for Y2022 {
+pub struct Y2015;
+
+impl AocYear for Y2015 {
+    const YEAR: u32 = 2015;
+
     type D01 = d01::Day01;
     type D02 = d02::Day02;
     type D03 = d03::Day03;
@@ -37,15 +45,34 @@ impl AocYear for Y2022 {
     type D12 = d12::Day12;
     type D13 = d13::Day13;
     type D14 = d14::Day14;
-    type D15 = Unsolved;
-    type D16 = Unsolved;
-    type D17 = Unsolved;
-    type D18 = Unsolved;
-    type D19 = Unsolved;
-    type D20 = Unsolved;
+    type D15 = d15::Day15;
+    type D16 = d16::Day16;
+    type D17 = d17::Day17;
+    type D18 = d18::Day18;
+    type D19 = d19::Day19;
+    type D20 = d20::Day20;
     type D21 = Unsolved;
     type D22 = Unsolved;
     type D23 = Unsolved;
     type D24 = Unsolved;
     type D25 = Unsolved;
+}
+
+fn main() -> Result<()> {
+    aoc::init();
+
+    let args: Vec<String> = env::args().collect();
+
+    match args.len() {
+        1 => aoc::run_year::<Y2015>(),
+        2 => {
+            let day_str = &args[1];
+            let day_n = day_str.parse::<u32>()?;
+
+            aoc::run_year_solution::<Y2015>(day_n)
+        }
+        _ => bail!("usage: [day?]"),
+    }
+
+    Ok(())
 }

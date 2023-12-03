@@ -1,6 +1,8 @@
 #![allow(incomplete_features)]
 
+use anyhow::{bail, Result};
 use aoc::{AocYear, Unsolved};
+use std::env;
 
 pub struct Y2019;
 
@@ -19,6 +21,8 @@ mod d12;
 mod d13;
 
 impl AocYear for Y2019 {
+    const YEAR: u32 = 2019;
+
     type D01 = d01::Day01;
     type D02 = d02::Day02;
     type D03 = d03::Day03;
@@ -44,4 +48,23 @@ impl AocYear for Y2019 {
     type D23 = Unsolved;
     type D24 = Unsolved;
     type D25 = Unsolved;
+}
+
+fn main() -> Result<()> {
+    aoc::init();
+
+    let args: Vec<String> = env::args().collect();
+
+    match args.len() {
+        1 => aoc::run_year::<Y2019>(),
+        2 => {
+            let day_str = &args[1];
+            let day_n = day_str.parse::<u32>()?;
+
+            aoc::run_year_solution::<Y2019>(day_n)
+        }
+        _ => bail!("usage: [day?]"),
+    }
+
+    Ok(())
 }
