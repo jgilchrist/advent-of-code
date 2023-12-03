@@ -21,18 +21,18 @@ pub enum Cell {
 impl From<char> for Cell {
     fn from(c: char) -> Self {
         if c == '.' {
-            return Cell::Empty;
+            return Self::Empty;
         }
 
         if c.is_ascii_digit() {
-            return Cell::Digit(c);
+            return Self::Digit(c);
         }
 
         if c == '*' {
-            return Cell::Symbol(SymbolType::Gear);
+            return Self::Symbol(SymbolType::Gear);
         }
 
-        Cell::Symbol(SymbolType::Other)
+        Self::Symbol(SymbolType::Other)
     }
 }
 
@@ -49,7 +49,7 @@ fn extract_number(g: &Grid<Cell>, seen_coords: &mut HashSet<Vec2>, start: Vec2) 
 
     number.insert(0, *d);
 
-    let mut to_start = start.clone();
+    let mut to_start = start;
     to_start = to_start.move_in_direction(CardinalDirection::West);
 
     while let Some(Cell::Digit(d)) = g.at(to_start) {
@@ -62,7 +62,7 @@ fn extract_number(g: &Grid<Cell>, seen_coords: &mut HashSet<Vec2>, start: Vec2) 
         number.insert(0, *d);
     }
 
-    let mut to_end = start.clone();
+    let mut to_end = start;
     to_end = to_end.move_in_direction(CardinalDirection::East);
 
     while let Some(Cell::Digit(d)) = g.at(to_end) {
@@ -78,6 +78,39 @@ fn extract_number(g: &Grid<Cell>, seen_coords: &mut HashSet<Vec2>, start: Vec2) 
     Some(number.parse::<u32>().unwrap())
 }
 
+fn get_symbol_coords(grid: &Grid<Cell>) -> Vec<Vec2> {
+    grid.iter_cells()
+        .filter(|(_, val)| matches!(val, Cell::Symbol(_)))
+        .map(|(c, _)| c)
+        .collect_vec()
+}
+
+fn get_numbers_next_to_symbols(grid: &Grid<Cell>) -> Vec<Vec<u32>> {
+    let symbol_coords = get_symbol_coords(grid);
+
+    symbol_coords
+        .iter()
+        .map(|&sym| {
+            let (numbers, _) = grid
+                .neighbors8(sym)
+                .filter(|&c| matches!(grid.at(c).unwrap(), Cell::Digit(_)))
+                .fold(
+                    (Vec::<u32>::new(), HashSet::<Vec2>::new()),
+                    |(mut numbers, mut seen_coords), coord| {
+                        let Some(number) = extract_number(grid, &mut seen_coords, coord) else {
+                            return (numbers, seen_coords);
+                        };
+
+                        numbers.push(number);
+                        (numbers, seen_coords)
+                    },
+                );
+
+            numbers
+        })
+        .collect_vec()
+}
+
 impl AocSolution for Day03 {
     type Input = Grid<Cell>;
     fn process_input(input: &str) -> Self::Input {
@@ -86,65 +119,16 @@ impl AocSolution for Day03 {
 
     const PART1_SOLUTION: SolutionStatus = solution(535235);
     fn part1(input: &Self::Input) -> impl ToSolution {
-        let symbol_coords = input
-            .iter_cells()
-            .filter(|(_, val)| matches!(val, Cell::Symbol(_)))
-            .map(|(c, val)| c)
-            .collect_vec();
-
-        symbol_coords
+        get_numbers_next_to_symbols(input)
             .iter()
-            .flat_map(|&sym| {
-                let (numbers, _) = input
-                    .neighbors8(sym)
-                    .filter(|&c| matches!(input.at(c).unwrap(), Cell::Digit(_)))
-                    .fold(
-                        (Vec::<u32>::new(), HashSet::<Vec2>::new()),
-                        |(mut numbers, mut seen_coords), coord| {
-                            let Some(number) = extract_number(input, &mut seen_coords, coord)
-                            else {
-                                return (numbers, seen_coords);
-                            };
-
-                            numbers.push(number);
-                            (numbers, seen_coords)
-                        },
-                    );
-
-                numbers
-            })
+            .flatten()
             .sum::<u32>()
     }
 
     const PART2_SOLUTION: SolutionStatus = solution(79844424);
     fn part2(input: &Self::Input) -> impl ToSolution {
-        let symbol_coords = input
-            .iter_cells()
-            .filter(|(_, val)| matches!(val, Cell::Symbol(_)))
-            .map(|(c, val)| c)
-            .collect_vec();
-
-        symbol_coords
+        get_numbers_next_to_symbols(input)
             .iter()
-            .map(|&sym| {
-                let (numbers, _) = input
-                    .neighbors8(sym)
-                    .filter(|&c| matches!(input.at(c).unwrap(), Cell::Digit(_)))
-                    .fold(
-                        (Vec::<u32>::new(), HashSet::<Vec2>::new()),
-                        |(mut numbers, mut seen_coords), coord| {
-                            let Some(number) = extract_number(input, &mut seen_coords, coord)
-                            else {
-                                return (numbers, seen_coords);
-                            };
-
-                            numbers.push(number);
-                            (numbers, seen_coords)
-                        },
-                    );
-
-                numbers
-            })
             .filter(|ns| ns.len() == 2)
             .map(|ns| ns[0] * ns[1])
             .sum::<u32>()
