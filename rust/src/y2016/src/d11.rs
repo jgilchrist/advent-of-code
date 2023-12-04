@@ -1,4 +1,5 @@
-use prelude::*;
+use aoc::prelude::*;
+
 
 pub struct Day11;
 

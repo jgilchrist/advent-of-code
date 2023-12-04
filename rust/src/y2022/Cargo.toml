@@ -11,5 +11,4 @@ anyhow = { workspace = true }
 serde_json = { workspace = true }
 
 aoc = { "path" = "../aoc" }
-prelude = { "path" = "../prelude" }
 utils = { "path" = "../utils" }

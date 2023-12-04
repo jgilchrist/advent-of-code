@@ -1,5 +1,6 @@
-use prelude::*;
+use aoc::prelude::*;
 use utils::geometry::d2::shapes::Square;
+use utils::prelude::*;
 
 pub struct Day06;
 

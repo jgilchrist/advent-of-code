@@ -206,17 +206,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "86f0b0d4bf799edbc74508c1e8bf170ff5f41238e5f8225603ca7caaae2b7860"
 
 [[package]]
-name = "prelude"
-version = "1.0.0"
-dependencies = [
- "aoc",
- "fancy-regex",
- "hashbrown 0.14.3",
- "itertools",
- "utils",
-]
-
-[[package]]
 name = "priority-queue"
 version = "1.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -330,6 +319,7 @@ name = "utils"
 version = "1.0.0"
 dependencies = [
  "fancy-regex",
+ "hashbrown 0.14.3",
  "itertools",
  "priority-queue",
 ]
@@ -428,7 +418,6 @@ dependencies = [
  "anyhow",
  "aoc",
  "md5",
- "prelude",
  "serde_json",
  "utils",
 ]
@@ -439,7 +428,6 @@ version = "1.0.0"
 dependencies = [
  "anyhow",
  "aoc",
- "prelude",
  "utils",
 ]
 
@@ -449,7 +437,6 @@ version = "1.0.0"
 dependencies = [
  "anyhow",
  "aoc",
- "prelude",
  "utils",
 ]
 
@@ -459,7 +446,6 @@ version = "1.0.0"
 dependencies = [
  "anyhow",
  "aoc",
- "prelude",
  "utils",
 ]
 
@@ -469,7 +455,6 @@ version = "1.0.0"
 dependencies = [
  "anyhow",
  "aoc",
- "prelude",
  "utils",
 ]
 
@@ -479,7 +464,6 @@ version = "1.0.0"
 dependencies = [
  "anyhow",
  "aoc",
- "prelude",
  "utils",
 ]
 
@@ -489,7 +473,6 @@ version = "1.0.0"
 dependencies = [
  "anyhow",
  "aoc",
- "prelude",
  "utils",
 ]
 
@@ -499,7 +482,6 @@ version = "1.0.0"
 dependencies = [
  "anyhow",
  "aoc",
- "prelude",
  "serde_json",
  "utils",
 ]
@@ -510,7 +492,6 @@ version = "1.0.0"
 dependencies = [
  "anyhow",
  "aoc",
- "prelude",
  "utils",
 ]
 

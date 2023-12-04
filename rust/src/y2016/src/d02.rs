@@ -1,5 +1,6 @@
-use prelude::*;
+use aoc::prelude::*;
 use utils::geometry::d2::{coordinates::CardinalDirection, vecs::Vec2};
+
 
 pub struct Day02;
 

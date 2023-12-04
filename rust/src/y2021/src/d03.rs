@@ -1,5 +1,6 @@
-use prelude::*;
+use aoc::prelude::*;
 use utils::iters::transpose;
+use utils::prelude::*;
 
 pub struct Day03;
 
