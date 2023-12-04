@@ -1,5 +1,6 @@
-use prelude::*;
+use aoc::prelude::*;
 use utils::geometry::d2::{coordinates::CardinalDirection, grid::Grid};
+use utils::prelude::*;
 
 pub struct Day08;
 

@@ -6,6 +6,12 @@
 mod progress;
 mod runner;
 
+pub mod prelude {
+    pub use crate::{
+        solution, solution_from_python, AocSolution, Solution, SolutionStatus, ToSolution,
+    };
+}
+
 pub use self::progress::print_year_progress;
 pub use self::runner::main;
 

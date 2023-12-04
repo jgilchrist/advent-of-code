@@ -1,9 +1,10 @@
-use prelude::*;
+use aoc::prelude::*;
 use utils::geometry::d2::{
     coordinates::{CardinalDirection, PrincipalWinds},
     shapes::Line,
     vecs::Vec2,
 };
+use utils::prelude::*;
 
 pub struct Day14;
 

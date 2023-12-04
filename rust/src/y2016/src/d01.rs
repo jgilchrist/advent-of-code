@@ -1,8 +1,9 @@
-use prelude::*;
+use aoc::prelude::*;
 use utils::geometry::d2::{
     coordinates::{CardinalDirection, TurnDirection},
     vecs::Vec2,
 };
+use utils::prelude::*;
 
 pub struct Instruction {
     direction: TurnDirection,

@@ -1,5 +1,6 @@
-use prelude::*;
+use aoc::prelude::*;
 use std::hash::Hash;
+use utils::prelude::*;
 
 pub struct Day06;
 

@@ -1,7 +1,8 @@
 use std::cmp::Ordering;
 
-use prelude::*;
+use aoc::prelude::*;
 use utils::geometry::d2::vecs::Vec2;
+use utils::prelude::*;
 
 pub struct Day05;
 

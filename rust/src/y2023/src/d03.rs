@@ -1,7 +1,8 @@
-use prelude::*;
+use aoc::prelude::*;
 use utils::geometry::d2::coordinates::CardinalDirection;
 use utils::geometry::d2::grid::Grid;
 use utils::geometry::d2::vecs::Vec2;
+use utils::prelude::*;
 
 pub struct Day03;
 

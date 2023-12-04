@@ -1,5 +1,6 @@
-use prelude::*;
+use aoc::prelude::*;
 use utils::ascii_ocr;
+use utils::prelude::*;
 
 pub struct Day10;
 
