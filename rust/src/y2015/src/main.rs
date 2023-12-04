@@ -1,9 +1,8 @@
 #![feature(array_windows)]
 #![allow(incomplete_features)]
 
-use anyhow::{Result};
+use anyhow::Result;
 use aoc::{AocYear, Unsolved};
-
 
 mod d01;
 mod d02;

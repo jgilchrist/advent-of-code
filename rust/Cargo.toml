@@ -33,6 +33,7 @@ missing_panics_doc = "allow"
 redundant_closure = "allow"
 redundant_closure_for_method_calls = "allow"
 too_many_lines = "allow"
+missing_errors_doc = "allow"
 
 enum_glob_use = "allow"
 cast_possible_truncation = "allow"

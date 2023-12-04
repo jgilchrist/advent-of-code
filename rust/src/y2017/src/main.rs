@@ -1,8 +1,7 @@
 #![allow(incomplete_features)]
 
-use anyhow::{Result};
+use anyhow::Result;
 use aoc::{AocYear, Unsolved};
-
 
 pub struct Y2017;
 
