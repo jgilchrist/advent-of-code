@@ -63,12 +63,9 @@ impl AocSolution for Day04 {
         for card in 0..input.len() {
             let number_of_this_card = copies[&card];
 
-            // For every copy of that card...
-            for _ in 0..number_of_this_card {
-                // Add copies of future cards...
-                for next_card_idx in 1..=winning_cards[card] {
-                    *copies.entry(card + next_card_idx as usize).or_default() += 1;
-                }
+            // Add copies of future cards...
+            for next_card_idx in 1..=winning_cards[card] {
+                *copies.entry(card + next_card_idx as usize).or_default() += number_of_this_card;
             }
         }
 
