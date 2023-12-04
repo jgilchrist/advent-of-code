@@ -5,7 +5,7 @@
 pub mod progress;
 mod runner;
 
-pub use self::runner::{init, run_solution, run_year, run_year_solution};
+pub use self::runner::main;
 
 pub enum SolutionStatus {
     Solved(Solution),

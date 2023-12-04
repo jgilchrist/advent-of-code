@@ -1,9 +1,9 @@
 #![feature(array_windows)]
 #![allow(incomplete_features)]
 
-use anyhow::{bail, Result};
+use anyhow::{Result};
 use aoc::{AocYear, Unsolved};
-use std::env;
+
 
 mod d01;
 mod d02;
@@ -46,20 +46,5 @@ impl AocYear for Y2021 {
 }
 
 fn main() -> Result<()> {
-    aoc::init();
-
-    let args: Vec<String> = env::args().collect();
-
-    match args.len() {
-        1 => aoc::run_year::<Y2021>(),
-        2 => {
-            let day_str = &args[1];
-            let day_n = day_str.parse::<u32>()?;
-
-            aoc::run_year_solution::<Y2021>(day_n)
-        }
-        _ => bail!("usage: [day?]"),
-    }
-
-    Ok(())
+    aoc::main::<Y2021>()
 }
