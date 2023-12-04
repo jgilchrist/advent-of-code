@@ -1,77 +1,75 @@
 #![allow(clippy::print_stdout)]
 #![allow(unused)]
 
-// TODO: Allow printing progress from any individual year
-
 use crate::{AocSolution, AocYear, SolutionStatus};
 use console::style;
 
-fn print_year_progress<TYear: AocYear, const NYEAR: u32>() {
+pub fn print_year_progress<TYear: AocYear>() {
     print!(
         "{} {} ",
-        style(NYEAR).blue().bold(),
+        style(TYear::YEAR).blue().bold(),
         style("│").black().bold()
     );
-    print_day_header::<TYear::D01, 1, NYEAR>();
-    print_day_header::<TYear::D02, 2, NYEAR>();
-    print_day_header::<TYear::D03, 3, NYEAR>();
-    print_day_header::<TYear::D04, 4, NYEAR>();
-    print_day_header::<TYear::D05, 5, NYEAR>();
-    print_day_header::<TYear::D06, 6, NYEAR>();
-    print_day_header::<TYear::D07, 7, NYEAR>();
-    print_day_header::<TYear::D08, 8, NYEAR>();
-    print_day_header::<TYear::D09, 9, NYEAR>();
-    print_day_header::<TYear::D10, 10, NYEAR>();
-    print_day_header::<TYear::D11, 11, NYEAR>();
-    print_day_header::<TYear::D12, 12, NYEAR>();
-    print_day_header::<TYear::D13, 13, NYEAR>();
-    print_day_header::<TYear::D14, 14, NYEAR>();
-    print_day_header::<TYear::D15, 15, NYEAR>();
-    print_day_header::<TYear::D16, 16, NYEAR>();
-    print_day_header::<TYear::D17, 17, NYEAR>();
-    print_day_header::<TYear::D18, 18, NYEAR>();
-    print_day_header::<TYear::D19, 19, NYEAR>();
-    print_day_header::<TYear::D20, 20, NYEAR>();
-    print_day_header::<TYear::D21, 21, NYEAR>();
-    print_day_header::<TYear::D22, 22, NYEAR>();
-    print_day_header::<TYear::D23, 23, NYEAR>();
-    print_day_header::<TYear::D24, 24, NYEAR>();
-    print_day_header::<TYear::D25, 25, NYEAR>();
+    print_day_header::<TYear::D01, 1>();
+    print_day_header::<TYear::D02, 2>();
+    print_day_header::<TYear::D03, 3>();
+    print_day_header::<TYear::D04, 4>();
+    print_day_header::<TYear::D05, 5>();
+    print_day_header::<TYear::D06, 6>();
+    print_day_header::<TYear::D07, 7>();
+    print_day_header::<TYear::D08, 8>();
+    print_day_header::<TYear::D09, 9>();
+    print_day_header::<TYear::D10, 10>();
+    print_day_header::<TYear::D11, 11>();
+    print_day_header::<TYear::D12, 12>();
+    print_day_header::<TYear::D13, 13>();
+    print_day_header::<TYear::D14, 14>();
+    print_day_header::<TYear::D15, 15>();
+    print_day_header::<TYear::D16, 16>();
+    print_day_header::<TYear::D17, 17>();
+    print_day_header::<TYear::D18, 18>();
+    print_day_header::<TYear::D19, 19>();
+    print_day_header::<TYear::D20, 20>();
+    print_day_header::<TYear::D21, 21>();
+    print_day_header::<TYear::D22, 22>();
+    print_day_header::<TYear::D23, 23>();
+    print_day_header::<TYear::D24, 24>();
+    print_day_header::<TYear::D25, 25>();
 
     println!();
     print!("     {} ", style("│").black().bold());
 
-    print_day_progress::<TYear::D01, 1, NYEAR>();
-    print_day_progress::<TYear::D02, 2, NYEAR>();
-    print_day_progress::<TYear::D03, 3, NYEAR>();
-    print_day_progress::<TYear::D04, 4, NYEAR>();
-    print_day_progress::<TYear::D05, 5, NYEAR>();
-    print_day_progress::<TYear::D06, 6, NYEAR>();
-    print_day_progress::<TYear::D07, 7, NYEAR>();
-    print_day_progress::<TYear::D08, 8, NYEAR>();
-    print_day_progress::<TYear::D09, 9, NYEAR>();
-    print_day_progress::<TYear::D10, 10, NYEAR>();
-    print_day_progress::<TYear::D11, 11, NYEAR>();
-    print_day_progress::<TYear::D12, 12, NYEAR>();
-    print_day_progress::<TYear::D13, 13, NYEAR>();
-    print_day_progress::<TYear::D14, 14, NYEAR>();
-    print_day_progress::<TYear::D15, 15, NYEAR>();
-    print_day_progress::<TYear::D16, 16, NYEAR>();
-    print_day_progress::<TYear::D17, 17, NYEAR>();
-    print_day_progress::<TYear::D18, 18, NYEAR>();
-    print_day_progress::<TYear::D19, 19, NYEAR>();
-    print_day_progress::<TYear::D20, 20, NYEAR>();
-    print_day_progress::<TYear::D21, 21, NYEAR>();
-    print_day_progress::<TYear::D22, 22, NYEAR>();
-    print_day_progress::<TYear::D23, 23, NYEAR>();
-    print_day_progress::<TYear::D24, 24, NYEAR>();
-    print_day_progress::<TYear::D25, 25, NYEAR>();
+    print_day_progress::<TYear::D01, 1>();
+    print_day_progress::<TYear::D02, 2>();
+    print_day_progress::<TYear::D03, 3>();
+    print_day_progress::<TYear::D04, 4>();
+    print_day_progress::<TYear::D05, 5>();
+    print_day_progress::<TYear::D06, 6>();
+    print_day_progress::<TYear::D07, 7>();
+    print_day_progress::<TYear::D08, 8>();
+    print_day_progress::<TYear::D09, 9>();
+    print_day_progress::<TYear::D10, 10>();
+    print_day_progress::<TYear::D11, 11>();
+    print_day_progress::<TYear::D12, 12>();
+    print_day_progress::<TYear::D13, 13>();
+    print_day_progress::<TYear::D14, 14>();
+    print_day_progress::<TYear::D15, 15>();
+    print_day_progress::<TYear::D16, 16>();
+    print_day_progress::<TYear::D17, 17>();
+    print_day_progress::<TYear::D18, 18>();
+    print_day_progress::<TYear::D19, 19>();
+    print_day_progress::<TYear::D20, 20>();
+    print_day_progress::<TYear::D21, 21>();
+    print_day_progress::<TYear::D22, 22>();
+    print_day_progress::<TYear::D23, 23>();
+    print_day_progress::<TYear::D24, 24>();
+    print_day_progress::<TYear::D25, 25>();
 
     println!();
     println!("     {} ", style("│").black().bold());
 }
 
-fn print_day_header<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() {
+fn print_day_header<TSln: AocSolution, const NDAY: u32>() {
     print!(
         "{:0>2}  ",
         match (TSln::PART1_SOLUTION, TSln::PART2_SOLUTION) {
@@ -81,7 +79,7 @@ fn print_day_header<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() {
     );
 }
 
-fn print_day_progress<TSln: AocSolution, const NDAY: u32, const NYEAR: u32>() {
+fn print_day_progress<TSln: AocSolution, const NDAY: u32>() {
     print!(
         "{}{}  ",
         solution_progress_str(&TSln::PART1_SOLUTION),

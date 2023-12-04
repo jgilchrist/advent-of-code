@@ -1,10 +1,12 @@
 #![feature(const_trait_impl)]
 #![feature(effects)]
+#![feature(let_chains)]
 #![allow(incomplete_features)]
 
-pub mod progress;
+mod progress;
 mod runner;
 
+pub use self::progress::print_year_progress;
 pub use self::runner::main;
 
 pub enum SolutionStatus {

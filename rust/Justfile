@@ -10,6 +10,18 @@ run-year YEAR:
 run YEAR DAY:
 	@cargo run --release --bin y{{YEAR}} {{DAY}}
 
+progress:
+	@cargo run --quiet --release --bin y2015 -- progress
+	@cargo run --quiet --release --bin y2016 -- progress
+	@cargo run --quiet --release --bin y2017 -- progress
+	@cargo run --quiet --release --bin y2018 -- progress
+	@cargo run --quiet --release --bin y2019 -- progress
+	@cargo run --quiet --release --bin y2020 -- progress
+	@cargo run --quiet --release --bin y2021 -- progress
+	@cargo run --quiet --release --bin y2022 -- progress
+	@cargo run --quiet --release --bin y2023 -- progress
+
+
 profile YEAR DAY:
 	@mkdir -p ./target/flamegraphs
 	@cargo flamegraph --flamechart --deterministic --root --open --output ./target/flamegraphs/{{YEAR}}-{{DAY}}-$(date +%s).svg --bin y{{YEAR}} {{DAY}}
@@ -19,6 +31,3 @@ new YEAR DAY:
 	&& sed -i 's/DAY/{{DAY}}/g' ./src/y{{YEAR}}/src/d{{DAY}}.rs \
 	&& sed -i 's/type D{{DAY}} = Unsolved/type D{{DAY}} = d{{DAY}}::Day{{DAY}}/g' ./src/y{{YEAR}}/src/main.rs \
 	&& touch ../inputs/{{YEAR}}/{{DAY}}.in
-
-progress:
-	@cargo run --release

@@ -7,23 +7,43 @@ use std::time::{Duration, Instant};
 
 use console::style;
 
+const USAGE: &str = "usage:\n  * [day] - run a day's solution\n  * all - run all the year's solutions\n  * progress - see the progress for the year";
+
 pub fn main<TYear: AocYear>() -> Result<()> {
     init();
 
     let args: Vec<String> = env::args().collect();
 
-    match args.len() {
-        1 => run_year::<TYear>(),
-        2 => {
-            let day_str = &args[1];
-            let day_n = day_str.parse::<u32>()?;
-
-            run_year_solution::<TYear>(day_n);
-        }
-        _ => bail!("usage: [day?]"),
+    if args.len() == 1 {
+        run_year::<TYear>();
+        return Ok(());
     }
 
-    Ok(())
+    if args.len() != 2 {
+        bail!(USAGE);
+    }
+
+    let arg = args.last().unwrap();
+
+    if arg == "all" {
+        run_year::<TYear>();
+        return Ok(());
+    }
+
+    if arg == "progress" {
+        crate::print_year_progress::<TYear>();
+        return Ok(());
+    }
+
+    if let Ok(day) = arg.parse::<u32>()
+        && day > 0
+        && day <= 25
+    {
+        run_year_solution::<TYear>(day);
+        return Ok(());
+    }
+
+    bail!(USAGE);
 }
 
 fn init() {
