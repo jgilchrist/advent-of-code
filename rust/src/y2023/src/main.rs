@@ -3,15 +3,15 @@
 #![allow(incomplete_features)]
 #![allow(unreachable_patterns)]
 
-use anyhow::{Result};
+use anyhow::Result;
 use aoc::{AocYear, Unsolved};
-
 
 pub struct Y2023;
 
 mod d01;
 mod d02;
 mod d03;
+mod d04;
 
 impl AocYear for Y2023 {
     const YEAR: u32 = 2023;
@@ -19,7 +19,7 @@ impl AocYear for Y2023 {
     type D01 = d01::Day01;
     type D02 = d02::Day02;
     type D03 = d03::Day03;
-    type D04 = Unsolved;
+    type D04 = d04::Day04;
     type D05 = Unsolved;
     type D06 = Unsolved;
     type D07 = Unsolved;
