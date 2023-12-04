@@ -3,9 +3,9 @@
 #![allow(incomplete_features)]
 #![allow(unreachable_patterns)]
 
-use anyhow::{bail, Result};
+use anyhow::{Result};
 use aoc::{AocYear, Unsolved};
-use std::env;
+
 
 pub struct Y2023;
 
@@ -44,20 +44,5 @@ impl AocYear for Y2023 {
 }
 
 fn main() -> Result<()> {
-    aoc::init();
-
-    let args: Vec<String> = env::args().collect();
-
-    match args.len() {
-        1 => aoc::run_year::<Y2023>(),
-        2 => {
-            let day_str = &args[1];
-            let day_n = day_str.parse::<u32>()?;
-
-            aoc::run_year_solution::<Y2023>(day_n)
-        }
-        _ => bail!("usage: [day?]"),
-    }
-
-    Ok(())
+    aoc::main::<Y2023>()
 }

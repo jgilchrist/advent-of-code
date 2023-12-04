@@ -1,11 +1,32 @@
 #![allow(clippy::print_stdout)]
 
 use crate::{AocSolution, AocYear, SolutionStatus, ToSolution};
+use anyhow::{bail, Result};
+use std::env;
 use std::time::{Duration, Instant};
 
 use console::style;
 
-pub fn init() {
+pub fn main<TYear: AocYear>() -> Result<()> {
+    init();
+
+    let args: Vec<String> = env::args().collect();
+
+    match args.len() {
+        1 => run_year::<TYear>(),
+        2 => {
+            let day_str = &args[1];
+            let day_n = day_str.parse::<u32>()?;
+
+            run_year_solution::<TYear>(day_n);
+        }
+        _ => bail!("usage: [day?]"),
+    }
+
+    Ok(())
+}
+
+fn init() {
     // Ensure the cursor is always visible on exit, even if it was hidden
     let _ctrlc_handle = ctrlc::set_handler(move || {
         let term = console::Term::stderr();
@@ -14,7 +35,7 @@ pub fn init() {
     });
 }
 
-pub fn run_solution<TYear: AocYear, TSln: AocSolution, const NDAY: u32>() {
+fn run_solution<TYear: AocYear, TSln: AocSolution, const NDAY: u32>() {
     if !TSln::IS_SOLVED {
         return;
     }
@@ -127,7 +148,7 @@ fn get_input(year: u32, day: u32) -> String {
         .unwrap_or_else(|_| panic!("No input file: {file_path_within_directory_structure}"))
 }
 
-pub fn run_year<TYear: AocYear>() {
+fn run_year<TYear: AocYear>() {
     run_solution::<TYear, TYear::D01, 1>();
     run_solution::<TYear, TYear::D02, 2>();
     run_solution::<TYear, TYear::D03, 3>();
@@ -155,7 +176,7 @@ pub fn run_year<TYear: AocYear>() {
     run_solution::<TYear, TYear::D25, 25>();
 }
 
-pub fn run_year_solution<TYear: AocYear>(day: u32) {
+fn run_year_solution<TYear: AocYear>(day: u32) {
     match day {
         1 => run_solution::<TYear, TYear::D01, 1>(),
         2 => run_solution::<TYear, TYear::D02, 2>(),
