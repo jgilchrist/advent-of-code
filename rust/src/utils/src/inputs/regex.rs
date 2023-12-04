@@ -1,9 +1,6 @@
-use std::str::FromStr;
-
 use fancy_regex::Regex;
 use itertools::Itertools;
-
-use crate::geometry::d2::grid::Grid;
+use std::str::FromStr;
 
 #[derive(Debug)]
 pub struct Captures<'a> {
@@ -105,73 +102,4 @@ pub fn line_regex_matches<'a>(input: &'a str, regex: &str) -> Option<Captures<'a
     let captures = compiled_regex.captures(input).expect("Invalid regex");
 
     captures.map(|c| Captures::new(c))
-}
-
-pub fn lines(s: &str) -> Vec<String> {
-    s.lines().map(|l| l.to_owned()).collect()
-}
-
-pub fn separated_by<T>(s: &str, separator: &str) -> Vec<T>
-where
-    T: FromStr,
-    <T as FromStr>::Err: std::fmt::Debug,
-{
-    s.trim()
-        .split(separator)
-        .map(|i| i.parse::<T>().unwrap())
-        .collect()
-}
-
-pub fn comma_separated<T>(s: &str) -> Vec<T>
-where
-    T: FromStr,
-    <T as FromStr>::Err: std::fmt::Debug,
-{
-    separated_by::<T>(s, ",")
-}
-
-pub fn positive_numbers(s: &str) -> Vec<u32> {
-    let positive_numbers_regex: Regex = Regex::new(r"\d+").unwrap();
-
-    positive_numbers_regex
-        .find_iter(s)
-        .map(|i| i.unwrap().as_str().parse::<u32>().unwrap())
-        .collect()
-}
-
-pub fn n_positive_numbers<const N: usize>(s: &str) -> [u32; N] {
-    let positive_numbers_regex = Regex::new(r"\d+").unwrap();
-
-    positive_numbers_regex
-        .find_iter(s)
-        .map(|i| i.unwrap().as_str().parse::<u32>().unwrap())
-        .collect::<Vec<_>>()
-        .try_into()
-        .expect("Incorrect number of numbers")
-}
-
-pub fn n_numbers<const N: usize>(s: &str) -> [i32; N] {
-    let numbers_regex = Regex::new(r"-?\d+").unwrap();
-
-    numbers_regex
-        .find_iter(s)
-        .map(|i| i.unwrap().as_str().parse::<i32>().unwrap())
-        .collect::<Vec<_>>()
-        .try_into()
-        .expect("Incorrect number of numbers")
-}
-
-pub fn grid_of<T>(s: &str) -> Grid<T>
-where
-    T: From<char>,
-{
-    let lines = s.lines().collect_vec();
-    let x_size = lines[0].len();
-    let y_size = lines.len();
-
-    Grid::new(
-        x_size,
-        y_size,
-        s.lines().join("").chars().map(|c| c.into()).collect(),
-    )
 }
