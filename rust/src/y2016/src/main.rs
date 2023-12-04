@@ -1,9 +1,8 @@
 #![feature(array_chunks)]
 #![allow(incomplete_features)]
 
-use anyhow::{Result};
+use anyhow::Result;
 use aoc::AocYear;
-
 
 pub struct Y2016;
 
