@@ -18,6 +18,7 @@ mod d10;
 mod d11;
 mod d12;
 mod d13;
+// @mod@
 
 impl AocYear for Y2019 {
     const YEAR: u32 = 2019;
