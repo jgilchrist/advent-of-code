@@ -26,8 +26,13 @@ profile YEAR DAY:
 	@mkdir -p ./target/flamegraphs
 	@cargo flamegraph --flamechart --deterministic --root --open --output ./target/flamegraphs/{{YEAR}}-{{DAY}}-$(date +%s).svg --bin y{{YEAR}} {{DAY}}
 
+get-input YEAR DAY:
+	@test -s .session || { echo "Advent of Code session file not found (.session)."; exit 1; }
+	mkdir -p ../inputs/{{YEAR}}
+	curl --cookie "session=$(cat .session)" "https://adventofcode.com/{{YEAR}}/day/{{trim_start_match(DAY, '0')}}/input" -o ../inputs/{{YEAR}}/{{DAY}}.in 
+
 new YEAR DAY:
-	@cp --no-clobber template.rs ./src/y{{YEAR}}/src/d{{DAY}}.rs \
+	just get-input {{YEAR}} {{DAY}} \
+	&& cp --no-clobber template.rs ./src/y{{YEAR}}/src/d{{DAY}}.rs \
 	&& sed -i 's/DAY/{{DAY}}/g' ./src/y{{YEAR}}/src/d{{DAY}}.rs \
 	&& sed -i 's/type D{{DAY}} = Unsolved/type D{{DAY}} = d{{DAY}}::Day{{DAY}}/g' ./src/y{{YEAR}}/src/main.rs \
-	&& touch ../inputs/{{YEAR}}/{{DAY}}.in
