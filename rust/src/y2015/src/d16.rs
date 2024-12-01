@@ -45,7 +45,7 @@ const CRITERIA: Criteria = Criteria {
 };
 
 fn get_criteria(line: &str, name: &str) -> Option<u32> {
-    Regex::new(&format!(r#"{name}: (\d+)"#))
+    Regex::new(&format!(r"{name}: (\d+)"))
         .unwrap()
         .captures(line)
         .expect("Invalid regex")

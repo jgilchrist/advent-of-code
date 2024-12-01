@@ -41,7 +41,7 @@ fn has_pairs(password: &str) -> bool {
             count += 1;
         } else {
             if count > 1 {
-                result.push_str(&last_char.to_string());
+                result.push(last_char);
             }
 
             count = 1;

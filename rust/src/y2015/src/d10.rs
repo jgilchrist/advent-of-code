@@ -15,7 +15,7 @@ fn compress_number(number: &str) -> String {
             count += 1;
         } else {
             result.push_str(&count.to_string());
-            result.push_str(&last_char.to_string());
+            result.push(last_char);
             count = 1;
         }
     }
