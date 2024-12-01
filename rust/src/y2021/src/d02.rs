@@ -1,6 +1,5 @@
 use aoc::prelude::*;
 
-
 pub struct Day02;
 
 pub enum Instruction {

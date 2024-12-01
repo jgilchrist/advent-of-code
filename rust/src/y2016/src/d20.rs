@@ -1,6 +1,5 @@
 use aoc::prelude::*;
 
-
 pub struct Day20;
 
 impl AocSolution for Day20 {

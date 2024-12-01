@@ -1,6 +1,5 @@
 use aoc::prelude::*;
 
-
 pub struct Day12;
 
 fn count_numbers(json: &serde_json::Value) -> i32 {

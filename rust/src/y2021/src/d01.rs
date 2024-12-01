@@ -1,6 +1,5 @@
 use aoc::prelude::*;
 
-
 pub struct Day01;
 
 fn number_of_positive_diffs(ns: &[i32]) -> usize {
