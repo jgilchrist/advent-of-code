@@ -1,5 +1,4 @@
 #![feature(const_trait_impl)]
-#![feature(effects)]
 #![feature(let_chains)]
 #![allow(incomplete_features)]
 
@@ -115,11 +114,11 @@ impl PartialEq for Solution {
     }
 }
 
-pub const fn solution<T: ~const ToSolution>(sln: T) -> SolutionStatus {
+pub const fn solution(sln: impl ~const ToSolution) -> SolutionStatus {
     SolutionStatus::Solved(sln.to_solution())
 }
 
-pub const fn solution_from_python<T: ~const ToSolution>(sln: T) -> SolutionStatus {
+pub const fn solution_from_python(sln: impl ~const ToSolution) -> SolutionStatus {
     SolutionStatus::SolvedInPython(sln.to_solution())
 }
 

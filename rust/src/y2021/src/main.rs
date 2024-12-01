@@ -1,4 +1,5 @@
 #![feature(array_windows)]
+#![feature(const_trait_impl)]
 #![allow(incomplete_features)]
 
 use anyhow::Result;

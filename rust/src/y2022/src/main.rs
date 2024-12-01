@@ -1,5 +1,6 @@
 #![feature(array_windows)]
 #![feature(let_chains)]
+#![feature(const_trait_impl)]
 #![allow(incomplete_features)]
 #![allow(unreachable_patterns)]
 
