@@ -97,6 +97,20 @@ impl AocSolution for Day05 {
 
     const PART2_SOLUTION: SolutionStatus = SolutionStatus::Wip;
     fn part2(input: &Self::Input) -> impl ToSolution {
-        Solution::Unsolved
+        let ranges = input
+            .seeds
+            .iter()
+            .array_chunks()
+            .map(|[&a, &b]| a..a + b)
+            .collect_vec();
+
+        dbg!(&ranges);
+
+        ranges
+            .into_iter()
+            .flat_map(|r| r.collect_vec())
+            .map(|seed| input.maps.apply_maps(seed))
+            .min()
+            .unwrap()
     }
 }

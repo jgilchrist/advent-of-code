@@ -1,4 +1,5 @@
 #![feature(array_windows)]
+#![feature(iter_array_chunks)]
 #![feature(let_chains)]
 #![allow(incomplete_features)]
 #![allow(unreachable_patterns)]
