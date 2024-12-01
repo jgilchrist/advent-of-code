@@ -494,3 +494,13 @@ dependencies = [
  "aoc",
  "utils",
 ]
+
+[[package]]
+name = "y2024"
+version = "1.0.0"
+dependencies = [
+ "anyhow",
+ "aoc",
+ "itertools",
+ "utils",
+]
