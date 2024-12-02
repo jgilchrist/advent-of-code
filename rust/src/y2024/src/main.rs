@@ -1,4 +1,5 @@
 #![feature(const_trait_impl)]
+#![feature(array_windows)]
 #![allow(incomplete_features)]
 
 use anyhow::Result;
@@ -7,13 +8,14 @@ use aoc::{AocYear, Unsolved};
 pub struct Y2024;
 
 mod d01;
+mod d02;
 // @mod@
 
 impl AocYear for Y2024 {
     const YEAR: u32 = 2024;
 
     type D01 = d01::Day01;
-    type D02 = Unsolved;
+    type D02 = d02::Day02;
     type D03 = Unsolved;
     type D04 = Unsolved;
     type D05 = Unsolved;
