@@ -102,7 +102,7 @@ impl<T> Grid<T> {
     pub fn raycast_coords(
         &self,
         from_coord: Vec2,
-        direction: CardinalDirection,
+        direction: PrincipalWinds,
     ) -> impl Iterator<Item = Vec2> + '_ {
         let max_possible_size = self.x_size.max(self.y_size);
 
@@ -111,12 +111,33 @@ impl<T> Grid<T> {
             .take_while(|coord| self.is_valid_coord(coord))
     }
 
+    pub fn raycast_coords_inclusive(
+        &self,
+        from_coord: Vec2,
+        direction: PrincipalWinds,
+    ) -> impl Iterator<Item = Vec2> + '_ {
+        let max_possible_size = self.x_size.max(self.y_size);
+
+        (0..max_possible_size)
+            .map(move |amount| from_coord.move_in_direction_by(direction, amount as u32))
+            .take_while(|coord| self.is_valid_coord(coord))
+    }
+
     pub fn raycast_cells(
         &self,
         from_coord: Vec2,
-        direction: CardinalDirection,
+        direction: PrincipalWinds,
     ) -> impl Iterator<Item = &T> + '_ {
         self.raycast_coords(from_coord, direction)
+            .map(|coord| self.at(coord).unwrap())
+    }
+
+    pub fn raycast_cells_inclusive(
+        &self,
+        from_coord: Vec2,
+        direction: PrincipalWinds,
+    ) -> impl Iterator<Item = &T> + '_ {
+        self.raycast_coords_inclusive(from_coord, direction)
             .map(|coord| self.at(coord).unwrap())
     }
 }

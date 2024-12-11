@@ -74,6 +74,24 @@ impl PrincipalWinds {
         Self::West,
         Self::NorthWest,
     ];
+
+    pub const DIAGONALS: [Self; 4] = [
+        Self::NorthEast,
+        Self::SouthEast,
+        Self::SouthWest,
+        Self::NorthWest,
+    ];
+}
+
+impl From<CardinalDirection> for PrincipalWinds {
+    fn from(value: CardinalDirection) -> Self {
+        match value {
+            CardinalDirection::North => Self::North,
+            CardinalDirection::East => Self::East,
+            CardinalDirection::South => Self::South,
+            CardinalDirection::West => Self::West,
+        }
+    }
 }
 
 impl From<CardinalDirection> for Vec2 {

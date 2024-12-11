@@ -16,7 +16,11 @@ impl AocSolution for Day08 {
             .iter_cells()
             .filter(|(tree_coord, tree_height)| {
                 CardinalDirection::ALL
-                    .map(|direction| input.raycast_cells(*tree_coord, direction).collect_vec())
+                    .map(|direction| {
+                        input
+                            .raycast_cells(*tree_coord, direction.into())
+                            .collect_vec()
+                    })
                     .iter()
                     .any(|tree_heights| {
                         tree_heights.is_empty()
@@ -34,7 +38,7 @@ impl AocSolution for Day08 {
             .iter_cells()
             .map(|(tree_coord, tree_height)| {
                 CardinalDirection::ALL
-                    .map(|direction| input.raycast_cells(tree_coord, direction))
+                    .map(|direction| input.raycast_cells(tree_coord, direction.into()))
                     .map(|heights| heights.take_while_inclusive(|h| *h < tree_height).count())
                     .iter()
                     .product::<usize>()
