@@ -41,6 +41,13 @@ impl<T> Grid<T> {
         self.cells.get(idx)
     }
 
+    pub fn replace_at(&mut self, v: Vec2, val: T) {
+        assert!(self.is_valid_coord(&v));
+
+        let idx: usize = v.y as usize * self.x_size + v.x as usize;
+        self.cells[idx] = val;
+    }
+
     pub fn neighbors4(&self, v: Vec2) -> impl Iterator<Item = Vec2> + '_ {
         CardinalDirection::ALL
             .map(move |dir| v.move_in_direction(dir))
