@@ -81,12 +81,32 @@ impl AocSolution for Day06 {
     fn part2(input: &Self::Input) -> impl ToSolution {
         let (grid, start_position, _) = input.clone();
 
+        let mut position = start_position;
+        let mut direction = CardinalDirection::North;
+        let mut seen_cells = HashSet::<Vec2>::new();
+
+        // First, run part 1 to get the path with no added obstructions
+        loop {
+            seen_cells.insert(position);
+            let in_front = position.move_in_direction(direction);
+
+            match grid.at(in_front).cloned() {
+                // We've left the grid!
+                None => break,
+
+                // We've not left the grid - see what's in front of us
+                Some(c) => match c {
+                    Cell::Empty => position = in_front,
+                    Cell::Obstruction => direction = direction.clockwise(),
+                },
+            }
+        }
+
         // Create a set of new grids, each of which has a new obstacle on a cell that didn't have it before
-        grid.iter_cells()
-            // We skip grids that already have an obstacle on this cell
-            .filter(|(_, c)| **c == Cell::Empty)
+        seen_cells
+            .iter()
             // For each potential replacement position, we create a new grid with that one cell changed
-            .map(|(replace_pos, _)| {
+            .map(|&replace_pos| {
                 let mut new_grid = grid.clone();
                 new_grid.replace_at(replace_pos, Cell::Obstruction);
                 new_grid
