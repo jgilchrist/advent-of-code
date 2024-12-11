@@ -13,6 +13,10 @@ impl<'a> Captures<'a> {
         Self { captures, idx: 1 }
     }
 
+    pub fn full(&mut self) -> &str {
+        self.captures.get(0).expect("No capture").as_str()
+    }
+
     fn next_capture(&mut self) -> &str {
         let capture = self.captures.get(self.idx).expect("No capture").as_str();
         self.idx += 1;
@@ -31,7 +35,7 @@ impl<'a> Captures<'a> {
     where
         T: FromStr,
     {
-        self.try_next().unwrap()
+        self.try_next().expect("No match")
     }
 
     pub fn next_string(&mut self) -> String {
@@ -89,6 +93,16 @@ pub fn match_per_line<'a>(input: &'a str, regex: &str) -> impl Iterator<Item = C
                 .unwrap_or_else(|| panic!("Did not match regex: {l}")),
         )
     })
+}
+
+pub fn matches_in_str<'a>(input: &'a str, regex: &str) -> impl Iterator<Item = Captures<'a>> {
+    let compiled_regex = Regex::new(regex).unwrap();
+
+    compiled_regex
+        .captures_iter(input)
+        .collect_vec()
+        .into_iter()
+        .map(move |l| Captures::new(l.expect("Invalid regex")))
 }
 
 pub fn match_in_string<'a>(input: &'a str, regex: &str) -> Option<Captures<'a>> {
