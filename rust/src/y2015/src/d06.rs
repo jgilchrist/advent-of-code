@@ -27,7 +27,7 @@ impl CapturesExtensions for inputs::Captures<'_> {
 impl AocSolution for Day06 {
     type Input = Vec<(Square, Command)>;
     fn process_input(input: &str) -> Self::Input {
-        inputs::regexes(
+        inputs::transform_lines(
             input,
             vec![
                 (

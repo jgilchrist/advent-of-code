@@ -35,9 +35,9 @@ impl AocSolution for Day02 {
                 let reveals = l
                     .split(';')
                     .map(|g| {
-                        let red_matches = inputs::line_regex_matches(g, r"(\d+) red");
-                        let blue_matches = inputs::line_regex_matches(g, r"(\d+) blue");
-                        let green_matches = inputs::line_regex_matches(g, r"(\d+) green");
+                        let red_matches = inputs::match_in_string(g, r"(\d+) red");
+                        let blue_matches = inputs::match_in_string(g, r"(\d+) blue");
+                        let green_matches = inputs::match_in_string(g, r"(\d+) green");
 
                         let red = red_matches.map_or(0, |mut m| m.next_u32());
                         let green = green_matches.map_or(0, |mut m| m.next_u32());

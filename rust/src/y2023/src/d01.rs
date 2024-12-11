@@ -51,7 +51,7 @@ impl AocSolution for Day01 {
 
     const PART2_SOLUTION: SolutionStatus = solution(54578);
     fn part2(input: &Self::Input) -> impl ToSolution {
-        let forward_captures = inputs::regex_matches(input, DIGITS_REGEX)
+        let forward_captures = inputs::match_per_line(input, DIGITS_REGEX)
             .map(|mut l| l.next_string())
             .map(|s| to_digit(&s))
             .collect_vec();
@@ -70,7 +70,7 @@ impl AocSolution for Day01 {
             .map(|l| l.chars().rev().collect::<String>())
             .join("\n");
 
-        let backward_captures = inputs::regex_matches(&reversed_input, &reverse_regex)
+        let backward_captures = inputs::match_per_line(&reversed_input, &reverse_regex)
             .map(|mut l| l.next_string().chars().rev().collect::<String>())
             .map(|s| to_digit(&s));
 
