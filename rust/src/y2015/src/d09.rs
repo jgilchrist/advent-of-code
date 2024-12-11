@@ -33,7 +33,7 @@ fn calculate_all_journey_distances(distances: &HashMap<Route, u32>) -> Vec<u32> 
 impl AocSolution for Day09 {
     type Input = HashMap<Route, u32>;
     fn process_input(input: &str) -> Self::Input {
-        inputs::regex_lines(input, r"(\w+) to (\w+) = (\d+)")
+        inputs::regex_matches(input, r"(\w+) to (\w+) = (\d+)")
             .flat_map(|mut line| {
                 let from_city = City(line.next_string());
                 let to_city = City(line.next_string());

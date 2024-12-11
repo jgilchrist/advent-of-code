@@ -37,7 +37,7 @@ impl AocSolution for Day13 {
         let mut pairings: HashMap<Pairing, i32> = HashMap::new();
         let mut people: HashSet<Person> = HashSet::new();
 
-        for mut line in inputs::regex_lines(
+        for mut line in inputs::regex_matches(
             input,
             r"(\w+) would (\w+) (\d+) happiness units by sitting next to (\w+).",
         ) {

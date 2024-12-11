@@ -78,11 +78,6 @@ pub fn regexes<T>(input: &str, regexes: TransformRegexes<T>) -> Vec<T> {
     transformed_lines
 }
 
-pub fn regex_lines<'a>(input: &'a str, regex: &str) -> impl Iterator<Item = Captures<'a>> {
-    let line_regex = "^".to_owned() + regex + "$";
-    regex_matches(input, &line_regex)
-}
-
 pub fn regex_matches<'a>(input: &'a str, regex: &str) -> impl Iterator<Item = Captures<'a>> {
     let compiled_regex = Regex::new(regex).unwrap();
 
