@@ -124,6 +124,7 @@ pub const fn solution_from_python(sln: impl ~const ToSolution) -> SolutionStatus
 
 pub trait AocSolution {
     const IS_SOLVED: bool = true;
+    const TEST_INPUT: &'static str = "";
 
     type Input;
     fn process_input(input: &str) -> Self::Input;

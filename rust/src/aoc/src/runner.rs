@@ -71,6 +71,7 @@ fn run_solution<TYear: AocYear, TSln: AocSolution, const NDAY: u32>() {
     let input = get_input(TYear::YEAR, NDAY);
     let processed_input = TSln::process_input(&input);
     let process_input_duration = start_time.elapsed();
+    let has_test_input = !TSln::TEST_INPUT.is_empty();
 
     if process_input_duration.as_secs() >= 1 {
         println!(
@@ -82,6 +83,12 @@ fn run_solution<TYear: AocYear, TSln: AocSolution, const NDAY: u32>() {
 
     match TSln::PART1_SOLUTION {
         SolutionStatus::Solved(_) | SolutionStatus::Wip => {
+            if has_test_input {
+                let part1_solution_on_test_input =
+                    TSln::part1(&TSln::process_input(TSln::TEST_INPUT)).to_solution();
+                println!("Test input: {part1_solution_on_test_input}");
+            }
+
             print!("{}: ", style("1").red().bold());
 
             let p1_started_timestamp = Instant::now();
@@ -121,6 +128,12 @@ fn run_solution<TYear: AocYear, TSln: AocSolution, const NDAY: u32>() {
 
     match TSln::PART2_SOLUTION {
         SolutionStatus::Solved(_) | SolutionStatus::Wip => {
+            if has_test_input {
+                let part2_solution_on_test_input =
+                    TSln::part2(&TSln::process_input(TSln::TEST_INPUT)).to_solution();
+                println!("Test input: {part2_solution_on_test_input}");
+            }
+
             print!("{}: ", style("2").red().bold());
 
             let p2_started_timestamp = Instant::now();
