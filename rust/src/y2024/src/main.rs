@@ -13,6 +13,7 @@ mod d03;
 mod d04;
 mod d05;
 mod d06;
+mod d07;
 // @mod@
 
 impl AocYear for Y2024 {
@@ -24,7 +25,7 @@ impl AocYear for Y2024 {
     type D04 = d04::Day04;
     type D05 = d05::Day05;
     type D06 = d06::Day06;
-    type D07 = Unsolved;
+    type D07 = d07::Day07;
     type D08 = Unsolved;
     type D09 = Unsolved;
     type D10 = Unsolved;
