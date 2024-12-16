@@ -1,7 +1,24 @@
 use aoc::prelude::*;
-use utils::prelude::*;
 
 pub struct Day09;
+
+fn previous_matching_idx(
+    idx: usize,
+    drive: &[Option<u32>],
+    f: impl Fn(Option<u32>) -> bool,
+) -> Option<usize> {
+    let mut idx = idx;
+
+    while !f(drive[idx]) {
+        idx -= 1;
+
+        if idx == 0 {
+            return None;
+        }
+    }
+
+    Some(idx)
+}
 
 // Return (idx, len) pairs denoting free space blocks on the drive
 fn get_spaces(drive: &[Option<u32>]) -> Vec<(usize, usize)> {
@@ -40,10 +57,7 @@ fn checksum(drive: &[Option<u32>]) -> u64 {
     drive
         .iter()
         .enumerate()
-        .map(|(idx, file_id)| match file_id {
-            None => 0,
-            Some(id) => idx as u64 * u64::from(*id),
-        })
+        .map(|(idx, file_id)| file_id.as_ref().map_or(0, |id| idx as u64 * u64::from(*id)))
         .sum::<u64>()
 }
 
@@ -93,10 +107,8 @@ impl AocSolution for Day09 {
             next_to_replace = drive.iter().position(|p| p.is_none()).unwrap();
 
             // Find the next non-empty space from the end
-            next_to_shift -= 1;
-            while drive[next_to_shift].is_none() {
-                next_to_shift -= 1;
-            }
+            next_to_shift =
+                previous_matching_idx(next_to_shift - 1, &drive, |v| v.is_some()).unwrap();
         }
 
         checksum(&drive)
@@ -111,18 +123,16 @@ impl AocSolution for Day09 {
         // The final element is always going to contain a file, so we can start at the end
         let mut end_of_file = drive.len() - 1;
 
-        'outer: loop {
+        loop {
             let file_number = drive[end_of_file].unwrap();
-            let mut start_of_file = end_of_file;
 
-            while drive[start_of_file] == Some(file_number) {
-                start_of_file -= 1;
+            let Some(file_boundary) =
+                previous_matching_idx(end_of_file, &drive, |v| v != Some(file_number))
+            else {
+                break;
+            };
 
-                if start_of_file == 0 {
-                    break 'outer;
-                }
-            }
-            start_of_file += 1;
+            let start_of_file = file_boundary + 1;
 
             let file_len = end_of_file - start_of_file + 1;
 
@@ -137,16 +147,13 @@ impl AocSolution for Day09 {
                 }
             }
 
+            let Some(next_file) = previous_matching_idx(start_of_file - 1, &drive, |v| v.is_some())
+            else {
+                break;
+            };
+
             spaces = get_spaces(&drive);
-
-            end_of_file = start_of_file - 1;
-            while drive[end_of_file].is_none() {
-                end_of_file -= 1;
-
-                if end_of_file == 0 {
-                    break 'outer;
-                }
-            }
+            end_of_file = next_file;
         }
 
         checksum(&drive)
