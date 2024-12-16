@@ -41,11 +41,19 @@ impl<T> Grid<T> {
         self.cells.get(idx)
     }
 
-    pub fn replace_at(&mut self, v: Vec2, val: T) {
+    pub fn set_at(&mut self, v: Vec2, val: T) {
         assert!(self.is_valid_coord(&v));
 
         let idx: usize = v.y as usize * self.x_size + v.x as usize;
         self.cells[idx] = val;
+    }
+
+    pub fn set_at_safe(&mut self, v: Vec2, val: T) {
+        if !self.is_valid_coord(&v) {
+            return;
+        }
+
+        self.set_at(v, val);
     }
 
     pub fn neighbors4(&self, v: Vec2) -> impl Iterator<Item = Vec2> + '_ {

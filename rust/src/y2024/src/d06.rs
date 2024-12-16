@@ -108,7 +108,7 @@ impl AocSolution for Day06 {
             // For each potential replacement position, we create a new grid with that one cell changed
             .map(|&replace_pos| {
                 let mut new_grid = grid.clone();
-                new_grid.replace_at(replace_pos, Cell::Obstruction);
+                new_grid.set_at(replace_pos, Cell::Obstruction);
                 new_grid
             })
             .filter(|grid| is_patrol_loop(grid, start_position))
