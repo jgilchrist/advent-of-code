@@ -70,12 +70,14 @@ impl<T> Grid<T> {
             .filter(|coord| self.is_valid_coord(coord))
     }
 
-    pub fn neighbor_cells4(&self, v: Vec2) -> impl Iterator<Item = &T> + '_ {
-        self.neighbors4(v).map(|coord| self.at(coord).unwrap())
+    pub fn neighbor_cells4(&self, v: Vec2) -> impl Iterator<Item = (Vec2, &T)> + '_ {
+        self.neighbors4(v)
+            .map(|coord| (coord, self.at(coord).unwrap()))
     }
 
-    pub fn neighbor_cells8(&self, v: Vec2) -> impl Iterator<Item = &T> + '_ {
-        self.neighbors8(v).map(|coord| self.at(coord).unwrap())
+    pub fn neighbor_cells8(&self, v: Vec2) -> impl Iterator<Item = (Vec2, &T)> + '_ {
+        self.neighbors8(v)
+            .map(|coord| (coord, self.at(coord).unwrap()))
     }
 
     pub fn is_valid_coord(&self, v: &Vec2) -> bool {

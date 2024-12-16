@@ -49,7 +49,7 @@ where
 fn game_of_life_rule(map: &Grid<Cell>, coord: Vec2, cell: &Cell) -> Cell {
     let lit_neighbors = map
         .neighbor_cells8(coord)
-        .filter(|&c| *c == Cell::On)
+        .filter(|(_, c)| **c == Cell::On)
         .count();
 
     match cell {
