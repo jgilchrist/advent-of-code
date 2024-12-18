@@ -8,7 +8,7 @@ run-year YEAR:
 	@cargo run --release --bin y{{YEAR}}
 
 run YEAR DAY:
-	@cargo run --release --bin y{{YEAR}} {{DAY}}
+	@RUST_BACKTRACE=1 cargo run --release --bin y{{YEAR}} {{DAY}}
 
 progress:
 	@cargo run --quiet --release --bin y2015 -- progress
