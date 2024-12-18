@@ -24,6 +24,31 @@ impl<T> Grid<T> {
         }
     }
 
+    #[must_use]
+    pub fn with_border(&self, border_fill: T) -> Self
+    where
+        T: Clone,
+    {
+        let x_size_with_border = self.x_size + 2;
+        let y_size_with_border = self.y_size + 2;
+
+        let mut grid_with_border = Self::new(
+            x_size_with_border,
+            y_size_with_border,
+            vec![border_fill; x_size_with_border * y_size_with_border],
+        );
+
+        // Copy all the values from the original grid to a position offset by (1, 1) to account for the border
+        self.iter_cells().for_each(|(pos, value)| {
+            grid_with_border.set_at(
+                pos.move_in_direction(PrincipalWinds::SouthEast),
+                value.clone(),
+            );
+        });
+
+        grid_with_border
+    }
+
     pub fn x_size(&self) -> usize {
         self.x_size
     }
@@ -54,6 +79,16 @@ impl<T> Grid<T> {
         }
 
         self.set_at(v, val);
+    }
+
+    pub fn move_pos_in_direction(&self, p: Vec2, dir: impl Into<Vec2>) -> Option<Vec2> {
+        let new_pos = p.move_in_direction(dir);
+
+        if !self.is_valid_coord(&new_pos) {
+            return None;
+        }
+
+        Some(new_pos)
     }
 
     pub fn neighbors4(&self, v: Vec2) -> impl Iterator<Item = Vec2> + '_ {
@@ -159,17 +194,28 @@ impl<T> Grid<T> {
     }
 }
 
-impl<T> std::fmt::Debug for Grid<T>
-where
-    T: std::fmt::Debug,
-{
+impl std::fmt::Debug for Grid<bool> {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         for (coord, value) in self.iter_cells() {
             if coord.x == 0 {
                 writeln!(f)?;
             }
 
-            write!(f, "{value:?}")?;
+            write!(f, "{}", if *value { "*" } else { "." })?;
+        }
+
+        writeln!(f)
+    }
+}
+
+impl std::fmt::Debug for Grid<usize> {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        for (coord, value) in self.iter_cells() {
+            if coord.x == 0 {
+                writeln!(f)?;
+            }
+
+            write!(f, "{}", *value)?;
         }
 
         writeln!(f)

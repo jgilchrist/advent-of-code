@@ -81,6 +81,18 @@ impl PrincipalWinds {
         Self::SouthWest,
         Self::NorthWest,
     ];
+
+    pub fn components(&self) -> Option<[CardinalDirection; 2]> {
+        use CardinalDirection::*;
+
+        Some(match self {
+            Self::NorthEast => [North, East],
+            Self::SouthEast => [South, East],
+            Self::SouthWest => [South, West],
+            Self::NorthWest => [North, West],
+            Self::North | Self::East | Self::South | Self::West => return None,
+        })
+    }
 }
 
 impl From<CardinalDirection> for PrincipalWinds {
@@ -104,6 +116,22 @@ impl From<CardinalDirection> for Vec2 {
             West => (-1, 0),
         }
         .into()
+    }
+}
+
+impl TryFrom<Vec2> for CardinalDirection {
+    type Error = ();
+
+    fn try_from(value: Vec2) -> Result<Self, Self::Error> {
+        use CardinalDirection::*;
+
+        Ok(match (value.x, value.y) {
+            (0, -1) => North,
+            (0, 1) => South,
+            (1, 0) => East,
+            (-1, 0) => West,
+            _ => return Err(()),
+        })
     }
 }
 

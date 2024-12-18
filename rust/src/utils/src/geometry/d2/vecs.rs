@@ -1,3 +1,4 @@
+use crate::geometry::d2::coordinates::CardinalDirection;
 use std::ops::{Add, AddAssign, Mul, Sub, SubAssign};
 
 #[derive(PartialEq, Eq, Clone, Copy, Hash)]
@@ -19,6 +20,10 @@ impl Vec2 {
     #[must_use]
     pub fn move_in_direction_by(&self, dir: impl Into<Self>, amount: u32) -> Self {
         *self + dir.into() * amount as i32
+    }
+
+    pub fn cardinal_direction_to(&self, other: &Self) -> Option<CardinalDirection> {
+        (*other - *self).try_into().ok()
     }
 
     pub fn chessboard_distance_from(&self, rhs: impl Into<Self>) -> usize {
