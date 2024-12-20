@@ -128,20 +128,14 @@ impl<T> Grid<T> {
         self.iter_coords().map(|c| (c, self.at(c).unwrap()))
     }
 
-    pub fn cells_matching<F>(&self, f: F) -> Vec<Vec2>
-    where
-        F: Fn(&T) -> bool,
-    {
+    pub fn cells_matching(&self, f: impl Fn(&T) -> bool) -> Vec<Vec2> {
         self.iter_cells()
             .filter(|(_, cell)| f(cell))
             .map(|(coord, _)| coord)
             .collect_vec()
     }
 
-    pub fn map_cells<X, F>(&self, f: F) -> Grid<X>
-    where
-        F: Fn(Vec2, &T) -> X,
-    {
+    pub fn map_cells<X>(&self, f: impl Fn(Vec2, &T) -> X) -> Grid<X> {
         Grid::new(
             self.x_size,
             self.y_size,

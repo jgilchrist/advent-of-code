@@ -3,10 +3,7 @@ use utils::prelude::*;
 
 pub struct Day07;
 
-fn get_minimum_cost_by<TFn>(i: &[u64], cost_fn: TFn) -> u64
-where
-    TFn: Fn(u64, u64) -> u64,
-{
+fn get_minimum_cost_by(i: &[u64], cost_fn: impl Fn(u64, u64) -> u64) -> u64 {
     let positions_to_costs: HashMap<u64, u64> = (*i.iter().min().unwrap()
         ..=*i.iter().max().unwrap())
         .map(|pos| (pos, i.iter().map(|crab_pos| cost_fn(pos, *crab_pos)).sum()))

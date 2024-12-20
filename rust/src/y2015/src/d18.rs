@@ -33,10 +33,11 @@ impl From<char> for Cell {
     }
 }
 
-fn evolve_using<F>(initial_state: &Grid<Cell>, iters: u32, f: F) -> Grid<Cell>
-where
-    F: Fn(&Grid<Cell>, Vec2, &Cell) -> Cell,
-{
+fn evolve_using(
+    initial_state: &Grid<Cell>,
+    iters: u32,
+    f: impl Fn(&Grid<Cell>, Vec2, &Cell) -> Cell,
+) -> Grid<Cell> {
     let mut state = initial_state.clone();
 
     for _ in 0..iters {

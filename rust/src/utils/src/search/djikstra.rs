@@ -3,14 +3,12 @@ use std::{cmp::Reverse, collections::HashMap};
 
 use super::backtrace::backtrace_from_goal;
 
-pub fn djikstra<TState, FSuccessors, FGoal>(
+pub fn djikstra<TState>(
     initial_state: &TState,
-    generate_successors: FSuccessors,
-    is_goal: FGoal,
+    generate_successors: impl Fn(&TState) -> Vec<(TState, u32)>,
+    is_goal: impl Fn(&TState) -> bool,
 ) -> Option<Vec<TState>>
 where
-    FSuccessors: Fn(&TState) -> Vec<(TState, u32)>,
-    FGoal: Fn(&TState) -> bool,
     TState: Clone + std::fmt::Debug + Eq + std::hash::Hash,
 {
     let mut best_distance: HashMap<TState, u32> = HashMap::from([(initial_state.clone(), 0)]);

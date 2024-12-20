@@ -3,14 +3,12 @@ use std::{cmp::Reverse, collections::HashMap};
 
 use super::backtrace::backtrace_from_goal;
 
-pub fn astar<TState, FSuccessors, FHeuristic>(
+pub fn astar<TState>(
     initial_state: &TState,
-    generate_successors_fn: FSuccessors,
-    heuristic_fn: FHeuristic,
+    generate_successors_fn: impl Fn(&TState) -> Vec<(TState, u32)>,
+    heuristic_fn: impl Fn(&TState) -> u32,
 ) -> Option<Vec<TState>>
 where
-    FSuccessors: Fn(&TState) -> Vec<(TState, u32)>,
-    FHeuristic: Fn(&TState) -> u32,
     TState: Clone + std::fmt::Debug + Eq + std::hash::Hash,
 {
     let mut best_distance: HashMap<TState, u32> = HashMap::from([(initial_state.clone(), 0)]);
