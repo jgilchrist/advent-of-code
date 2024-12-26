@@ -68,6 +68,7 @@ impl AocSolution for Day01 {
         let reversed_input = inputs::lines(input)
             .iter()
             .map(|l| l.chars().rev().collect::<String>())
+            .collect::<Vec<_>>()
             .join("\n");
 
         let backward_captures = inputs::match_per_line(&reversed_input, &reverse_regex)

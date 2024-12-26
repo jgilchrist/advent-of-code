@@ -1,5 +1,4 @@
 use aoc::prelude::*;
-use utils::prelude::*;
 
 pub struct Day11;
 
@@ -26,7 +25,10 @@ fn increment_password(password: &str) -> String {
         idx -= 1;
     }
 
-    password_chars.iter().map(|c| c.to_string()).join("")
+    password_chars
+        .iter()
+        .map(|c| c.to_string())
+        .collect::<String>()
 }
 
 fn has_pairs(password: &str) -> bool {

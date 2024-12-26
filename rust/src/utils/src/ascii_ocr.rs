@@ -1,5 +1,4 @@
 use crate::hash::{Map, MapBuilder};
-use itertools::Itertools;
 
 const LETTER_WIDTH: usize = 5;
 
@@ -211,10 +210,11 @@ pub fn convert(s: &str) -> String {
             let parts_of_char = lines
                 .iter()
                 .map(|l| l[letter_start_pos..letter_start_pos + LETTER_WIDTH - 1].to_string())
+                .collect::<Vec<_>>()
                 .join("\n");
             alphabet_6[parts_of_char.as_str()]
         })
-        .join("")
+        .collect::<String>()
 }
 
 #[cfg(test)]

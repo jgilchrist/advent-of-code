@@ -15,7 +15,7 @@ fn matching_combinations(input: &[u32]) -> impl Iterator<Item = Vec<&u32>> {
 impl AocSolution for Day17 {
     type Input = Vec<u32>;
     fn process_input(input: &str) -> Self::Input {
-        inputs::positive_numbers(&input.lines().join(" "))
+        inputs::positive_numbers(&input.lines().collect::<Vec<_>>().join(" "))
     }
 
     const PART1_SOLUTION: SolutionStatus = solution(1638);

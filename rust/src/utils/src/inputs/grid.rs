@@ -1,5 +1,4 @@
 use crate::geometry::d2::grid::Grid;
-use itertools::Itertools;
 
 pub fn grid_of<T>(s: &str) -> Grid<T>
 where
@@ -12,6 +11,10 @@ where
     Grid::new(
         x_size,
         y_size,
-        s.lines().join("").chars().map(|c| c.into()).collect(),
+        s.lines()
+            .collect::<String>()
+            .chars()
+            .map(|c| c.into())
+            .collect(),
     )
 }

@@ -18,7 +18,7 @@ fn top_crates(crates: &[Stack]) -> String {
     crates
         .iter()
         .map(|stack| stack.iter().last().unwrap())
-        .join("")
+        .collect::<String>()
 }
 
 impl AocSolution for Day05 {
