@@ -1,5 +1,5 @@
 use super::backtrace::backtrace_from_goal;
-use crate::hash::Map;
+use crate::hash::{Map, MapBuilder};
 use priority_queue::PriorityQueue;
 use std::cmp::Reverse;
 
@@ -11,7 +11,7 @@ pub fn astar<TState>(
 where
     TState: Clone + std::fmt::Debug + Eq + std::hash::Hash,
 {
-    let mut best_distance: Map<TState, u32> = Map::from([(initial_state.clone(), 0)]);
+    let mut best_distance: Map<TState, u32> = Map::from_array([(initial_state.clone(), 0)]);
     let mut previous: Map<TState, TState> = Map::new();
     let mut goal: Option<TState> = None;
 

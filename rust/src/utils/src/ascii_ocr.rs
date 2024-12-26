@@ -1,10 +1,10 @@
-use crate::hash::Map;
+use crate::hash::{Map, MapBuilder};
 use itertools::Itertools;
 
 const LETTER_WIDTH: usize = 5;
 
 pub fn convert(s: &str) -> String {
-    let alphabet_6: Map<String, char> = Map::from([
+    let alphabet_6: Map<String, char> = Map::from_array([
         (
             "
 .##.

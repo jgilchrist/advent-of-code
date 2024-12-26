@@ -1,5 +1,5 @@
 use super::vecs::Vec2;
-use crate::hash::Set;
+use crate::hash::{Set, SetBuilder};
 
 #[derive(Debug)]
 pub struct Line {

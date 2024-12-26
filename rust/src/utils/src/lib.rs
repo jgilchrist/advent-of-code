@@ -10,7 +10,7 @@ pub type Result<T> = std::result::Result<T, Box<dyn std::error::Error>>;
 pub mod prelude {
     pub use crate::inputs;
 
-    pub use crate::hash::{Map, Set};
+    pub use crate::hash::{Map, MapBuilder, Set, SetBuilder};
     pub use std::collections::hash_map::Entry::{Occupied, Vacant};
 
     pub use fancy_regex::Regex;
