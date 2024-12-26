@@ -1,33 +1,45 @@
 use aoc::prelude::*;
+use std::iter::Peekable;
+use std::str::Chars;
+use utils::prelude::*;
 
 pub struct Day12;
 
-fn count_numbers(json: &serde_json::Value) -> i32 {
+#[derive(PartialEq, Eq)]
+pub enum Json {
+    Object(Map<String, Json>),
+    Array(Vec<Json>),
+    String(String),
+    Number(i32),
+}
+
+fn count_numbers(json: &Json) -> i32 {
+    use Json::*;
+
     match json {
-        serde_json::Value::Null | serde_json::Value::Bool(_) | serde_json::Value::String(_) => 0,
-        serde_json::Value::Number(n) => n.as_i64().unwrap().try_into().unwrap(),
-        serde_json::Value::Array(elems) => elems.iter().map(count_numbers).sum(),
-        serde_json::Value::Object(obj) => obj
-            .iter()
-            .map(|(_, prop_value)| count_numbers(prop_value))
-            .sum(),
+        String(_) => 0,
+        Number(n) => *n,
+        Array(elems) => elems.iter().map(count_numbers).sum(),
+        Object(obj) => obj.values().map(|v| count_numbers(v)).sum(),
     }
 }
 
-fn count_numbers_ignoring_red(json: &serde_json::Value) -> i32 {
+fn count_numbers_ignoring_red(json: &Json) -> i32 {
+    use Json::*;
+
     match json {
-        serde_json::Value::Null | serde_json::Value::Bool(_) | serde_json::Value::String(_) => 0,
-        serde_json::Value::Number(n) => n.as_i64().unwrap().try_into().unwrap(),
-        serde_json::Value::Array(elems) => elems.iter().map(count_numbers_ignoring_red).sum(),
-        serde_json::Value::Object(obj) => {
+        String(_) => 0,
+        Number(n) => *n,
+        Array(elems) => elems.iter().map(count_numbers_ignoring_red).sum(),
+        Object(obj) => {
             let contains_red = obj
                 .iter()
-                .any(|(_, value)| value.is_string() && value.as_str().unwrap() == "red");
+                .any(|(_, value)| *value == String("red".to_string()));
 
             if contains_red {
                 0
             } else {
-                obj.into_iter()
+                obj.iter()
                     .map(|(_, prop_value)| count_numbers_ignoring_red(prop_value))
                     .sum()
             }
@@ -35,10 +47,99 @@ fn count_numbers_ignoring_red(json: &serde_json::Value) -> i32 {
     }
 }
 
+fn parse_number(s: &mut Peekable<Chars>) -> Json {
+    let is_negative = s.peek().copied() == Some('-');
+
+    // Consume the '-' sign if it's there
+    if is_negative {
+        s.next();
+    }
+
+    Json::Number(
+        s.peeking_take_while(|c| c.is_ascii_digit())
+            .collect::<String>()
+            .parse::<i32>()
+            .unwrap()
+            * if is_negative { -1 } else { 1 },
+    )
+}
+
+fn parse_string(s: &mut Peekable<Chars>) -> Json {
+    // Consume the initial "
+    assert_eq!(s.next(), Some('"'));
+
+    let result = s.peeking_take_while(|c| *c != '"').collect::<String>();
+
+    // Consume the final "
+    assert_eq!(s.next(), Some('"'));
+
+    Json::String(result)
+}
+
+fn parse_array(s: &mut Peekable<Chars>) -> Json {
+    // Consume the initial [
+    assert_eq!(s.next(), Some('['));
+
+    let mut values = Vec::new();
+    while s.peek().copied() != Some(']') {
+        values.push(parse_json(s));
+
+        // If we've got more elements, consume the connecting ,
+        if s.peek().copied() == Some(',') {
+            s.next();
+        }
+    }
+
+    // Consume the final ]
+    s.next();
+    Json::Array(values)
+}
+
+fn parse_object(s: &mut Peekable<Chars>) -> Json {
+    // Consume the initial {
+    assert_eq!(s.next(), Some('{'));
+
+    let mut map = Map::new();
+
+    while s.peek().copied() != Some('}') {
+        let key = parse_string(s);
+        assert_eq!(s.next(), Some(':'));
+        let value = parse_json(s);
+
+        let Json::String(key) = key else {
+            unreachable!()
+        };
+
+        map.insert(key, value);
+
+        // If we've got more elements, consume the connecting ,
+        if s.peek().copied() == Some(',') {
+            s.next();
+        }
+    }
+
+    // Consume the final }
+    s.next();
+
+    Json::Object(map)
+}
+
+fn parse_json(s: &mut Peekable<Chars>) -> Json {
+    match s.peek().unwrap() {
+        c if c.is_ascii_digit() => parse_number(s),
+        '-' => parse_number(s),
+        '"' => parse_string(s),
+        '[' => parse_array(s),
+        '{' => parse_object(s),
+        _ => unreachable!(),
+    }
+}
+
 impl AocSolution for Day12 {
-    type Input = serde_json::Value;
+    type Input = Json;
     fn process_input(input: &str) -> Self::Input {
-        serde_json::from_str(input).unwrap()
+        let mut chars = input.chars().peekable();
+        parse_json(&mut chars)
     }
 
     const PART1_SOLUTION: SolutionStatus = solution(119433);
