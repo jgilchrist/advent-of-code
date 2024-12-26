@@ -10,8 +10,6 @@ use console::style;
 const USAGE: &str = "usage:\n  * [day] - run a day's solution\n  * all - run all the year's solutions\n  * progress - see the progress for the year";
 
 pub fn main<TYear: AocYear>() -> Result<(), Box<dyn Error>> {
-    init();
-
     let args: Vec<String> = env::args().collect();
 
     if args.len() == 1 {
@@ -44,15 +42,6 @@ pub fn main<TYear: AocYear>() -> Result<(), Box<dyn Error>> {
     }
 
     Err(USAGE.into())
-}
-
-fn init() {
-    // Ensure the cursor is always visible on exit, even if it was hidden
-    let _ctrlc_handle = ctrlc::set_handler(move || {
-        let term = console::Term::stderr();
-        let _show_cursor_handle = term.show_cursor();
-        std::process::exit(1);
-    });
 }
 
 fn run_solution<TYear: AocYear, TSln: AocSolution, const NDAY: u32>() {
