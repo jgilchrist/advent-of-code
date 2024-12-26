@@ -1,15 +1,15 @@
 #![allow(clippy::print_stdout)]
 
 use crate::{AocSolution, AocYear, SolutionStatus, ToSolution};
-use anyhow::{bail, Result};
 use std::env;
+use std::error::Error;
 use std::time::{Duration, Instant};
 
 use console::style;
 
 const USAGE: &str = "usage:\n  * [day] - run a day's solution\n  * all - run all the year's solutions\n  * progress - see the progress for the year";
 
-pub fn main<TYear: AocYear>() -> Result<()> {
+pub fn main<TYear: AocYear>() -> Result<(), Box<dyn Error>> {
     init();
 
     let args: Vec<String> = env::args().collect();
@@ -20,7 +20,7 @@ pub fn main<TYear: AocYear>() -> Result<()> {
     }
 
     if args.len() != 2 {
-        bail!(USAGE);
+        return Err(USAGE.into());
     }
 
     let arg = args.last().unwrap();
@@ -43,7 +43,7 @@ pub fn main<TYear: AocYear>() -> Result<()> {
         return Ok(());
     }
 
-    bail!(USAGE);
+    Err(USAGE.into())
 }
 
 fn init() {

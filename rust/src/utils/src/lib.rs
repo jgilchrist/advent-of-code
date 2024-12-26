@@ -4,6 +4,8 @@ pub mod inputs;
 pub mod iters;
 pub mod search;
 
+pub type Result<T> = std::result::Result<T, Box<dyn std::error::Error>>;
+
 pub mod prelude {
     pub use crate::inputs;
 

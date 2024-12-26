@@ -7,6 +7,5 @@ edition.workspace = true
 workspace = true
 
 [dependencies]
-anyhow = { workspace = true }
 console = { workspace = true }
 ctrlc = { workspace = true }

@@ -4,8 +4,8 @@
 #![allow(incomplete_features)]
 #![allow(unreachable_patterns)]
 
-use anyhow::Result;
 use aoc::{AocYear, Unsolved};
+use utils::Result;
 
 pub struct Y2022;
 

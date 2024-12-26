@@ -2,8 +2,8 @@
 #![feature(const_trait_impl)]
 #![allow(incomplete_features)]
 
-use anyhow::Result;
 use aoc::{AocYear, Unsolved};
+use utils::Result;
 
 mod d01;
 mod d02;

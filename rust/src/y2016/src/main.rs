@@ -2,8 +2,8 @@
 #![feature(const_trait_impl)]
 #![allow(incomplete_features)]
 
-use anyhow::Result;
 use aoc::AocYear;
+use utils::Result;
 
 pub struct Y2016;
 

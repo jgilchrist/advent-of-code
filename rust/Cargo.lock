@@ -18,16 +18,9 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "683d7910e743518b0e34f1186f92494becacb047c7b6bf616c96772180fef923"
 
 [[package]]
-name = "anyhow"
-version = "1.0.93"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4c95c10ba0b00a02636238b814946408b1322d5ac4760326e6fb8ec956d85775"
-
-[[package]]
 name = "aoc"
 version = "1.0.0"
 dependencies = [
- "anyhow",
  "console",
  "ctrlc",
 ]
@@ -415,7 +408,6 @@ checksum = "589f6da84c646204747d1270a2a5661ea66ed1cced2631d546fdfb155959f9ec"
 name = "y2015"
 version = "1.0.0"
 dependencies = [
- "anyhow",
  "aoc",
  "md5",
  "serde_json",
@@ -426,7 +418,6 @@ dependencies = [
 name = "y2016"
 version = "1.0.0"
 dependencies = [
- "anyhow",
  "aoc",
  "utils",
 ]
@@ -435,7 +426,6 @@ dependencies = [
 name = "y2017"
 version = "1.0.0"
 dependencies = [
- "anyhow",
  "aoc",
  "utils",
 ]
@@ -444,7 +434,6 @@ dependencies = [
 name = "y2018"
 version = "1.0.0"
 dependencies = [
- "anyhow",
  "aoc",
  "utils",
 ]
@@ -453,7 +442,6 @@ dependencies = [
 name = "y2019"
 version = "1.0.0"
 dependencies = [
- "anyhow",
  "aoc",
  "utils",
 ]
@@ -462,7 +450,6 @@ dependencies = [
 name = "y2020"
 version = "1.0.0"
 dependencies = [
- "anyhow",
  "aoc",
  "utils",
 ]
@@ -471,7 +458,6 @@ dependencies = [
 name = "y2021"
 version = "1.0.0"
 dependencies = [
- "anyhow",
  "aoc",
  "utils",
 ]
@@ -480,7 +466,6 @@ dependencies = [
 name = "y2022"
 version = "1.0.0"
 dependencies = [
- "anyhow",
  "aoc",
  "serde_json",
  "utils",
@@ -490,7 +475,6 @@ dependencies = [
 name = "y2023"
 version = "1.0.0"
 dependencies = [
- "anyhow",
  "aoc",
  "utils",
 ]
@@ -499,7 +483,6 @@ dependencies = [
 name = "y2024"
 version = "1.0.0"
 dependencies = [
- "anyhow",
  "aoc",
  "itertools",
  "utils",

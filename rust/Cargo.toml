@@ -1,6 +1,6 @@
 [workspace]
 members = [
-  "src/*"
+    "src/*"
 ]
 
 resolver = "2"
@@ -10,7 +10,6 @@ version = "1.0.0"
 edition = "2021"
 
 [workspace.dependencies]
-anyhow = "1.0.44"
 console = "0.15.2"
 ctrlc = { version = "3.1.9", features = ["termination"] }
 fancy-regex = "0.12.0"

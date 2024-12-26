@@ -3,8 +3,8 @@
 #![feature(array_chunks)]
 #![allow(incomplete_features)]
 
-use anyhow::Result;
 use aoc::{AocYear, Unsolved};
+use utils::Result;
 
 pub struct Y2024;
 

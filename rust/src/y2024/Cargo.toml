@@ -7,7 +7,6 @@ edition.workspace = true
 workspace = true
 
 [dependencies]
-anyhow = { workspace = true }
 itertools = { workspace = true }
 
 aoc = { "path" = "../aoc" }
