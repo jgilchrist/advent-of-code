@@ -8,7 +8,6 @@ workspace = true
 
 [dependencies]
 md5 = { workspace = true }
-serde_json = { workspace = true }
 
 aoc = { "path" = "../aoc" }
 utils = { "path" = "../utils" }
