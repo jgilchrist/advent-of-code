@@ -2,28 +2,55 @@ use aoc::prelude::*;
 use utils::prelude::*;
 
 use std::cmp::Ordering;
+use std::iter::Peekable;
+use std::str::Chars;
 
 pub struct Day13;
 
-#[derive(PartialEq, Eq, Clone)]
+#[derive(PartialEq, Eq, Clone, Debug)]
 pub enum Value {
     Number(i64),
     List(Vec<Value>),
 }
 
+fn parse_value(s: &mut Peekable<Chars>) -> Value {
+    match *s.peek().unwrap() {
+        '[' => {
+            // We're parsing a list. Consume the first [
+            s.next();
+
+            let mut values = Vec::new();
+
+            while s.peek().copied() != Some(']') {
+                values.push(parse_value(s));
+
+                // Check if we've got another element to parse (i.e. we just hit a ,)
+                // If so, consume it and continue.
+                if s.peek().copied() == Some(',') {
+                    s.next();
+                }
+            }
+
+            // Consume the final ]
+            s.next();
+            Value::List(values)
+        }
+
+        c if c.is_ascii_digit() => Value::Number(
+            s.peeking_take_while(|c| c.is_ascii_digit())
+                .collect::<String>()
+                .parse::<i64>()
+                .unwrap(),
+        ),
+
+        _ => unreachable!(),
+    }
+}
+
 impl Value {
     fn from(s: &str) -> Self {
-        Self::from_json(&serde_json::from_str(s).unwrap())
-    }
-
-    fn from_json(json: &serde_json::Value) -> Self {
-        use serde_json::Value::*;
-
-        match json {
-            Number(n) => Self::Number(n.as_i64().unwrap()),
-            Array(elems) => Self::List(elems.iter().map(Self::from_json).collect()),
-            _ => unreachable!(),
-        }
+        let mut cs = s.chars().peekable();
+        parse_value(&mut cs)
     }
 
     fn list_of(n: i64) -> Self {
