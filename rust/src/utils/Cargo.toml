@@ -9,4 +9,3 @@ workspace = true
 [dependencies]
 fancy-regex = { workspace = true }
 itertools = { workspace = true }
-priority-queue = { workspace = true }

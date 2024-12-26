@@ -1,7 +1,6 @@
 use super::backtrace::backtrace_from_goal;
 use crate::hash::{Map, MapBuilder};
-use priority_queue::PriorityQueue;
-use std::cmp::Reverse;
+use crate::heap::MinHeap;
 
 pub fn astar<TState>(
     initial_state: &TState,
@@ -15,18 +14,18 @@ where
     let mut previous: Map<TState, TState> = Map::new();
     let mut goal: Option<TState> = None;
 
-    let mut to_process: PriorityQueue<TState, Reverse<u32>> = PriorityQueue::new();
-    to_process.push(initial_state.clone(), Reverse(0));
+    let mut to_process: MinHeap<u32, TState> = MinHeap::new();
+    to_process.push(0, initial_state.clone());
 
-    while let Some((node, _)) = to_process.pop() {
+    while let Some((_, node)) = to_process.pop() {
         for (neighbor, cost) in generate_successors_fn(&node) {
             let cost_to_neighbor_on_this_path = best_distance[&node] + cost;
             if cost_to_neighbor_on_this_path < *best_distance.get(&neighbor).unwrap_or(&u32::MAX) {
                 best_distance.insert(neighbor.clone(), cost_to_neighbor_on_this_path);
                 previous.insert(neighbor.clone(), node.clone());
                 to_process.push(
+                    cost_to_neighbor_on_this_path + heuristic_fn(&neighbor),
                     neighbor.clone(),
-                    Reverse(cost_to_neighbor_on_this_path + heuristic_fn(&neighbor)),
                 );
             }
         }
