@@ -20,7 +20,7 @@ fn run_instruction(state: &State, instruction: &Instruction) -> (State, Vec<Vec2
 
     let visited_positions = (1..=instruction.amount)
         .map(|i| position.move_in_direction_by(new_heading, i.into()))
-        .collect_vec();
+        .collect::<Vec<_>>();
 
     let new_position = *visited_positions.last().unwrap();
 

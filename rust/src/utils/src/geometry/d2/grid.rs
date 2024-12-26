@@ -1,7 +1,5 @@
 #![allow(clippy::cast_sign_loss, clippy::cast_precision_loss)]
 
-use itertools::Itertools;
-
 use super::{
     coordinates::{CardinalDirection, PrincipalWinds},
     vecs::Vec2,
@@ -132,7 +130,7 @@ impl<T> Grid<T> {
         self.iter_cells()
             .filter(|(_, cell)| f(cell))
             .map(|(coord, _)| coord)
-            .collect_vec()
+            .collect::<Vec<_>>()
     }
 
     pub fn map_cells<X>(&self, f: impl Fn(Vec2, &T) -> X) -> Grid<X> {
@@ -141,7 +139,7 @@ impl<T> Grid<T> {
             self.y_size,
             self.iter_cells()
                 .map(|(coord, value)| f(coord, value))
-                .collect_vec(),
+                .collect::<Vec<_>>(),
         )
     }
 

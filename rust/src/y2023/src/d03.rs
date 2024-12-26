@@ -83,7 +83,7 @@ fn get_symbol_coords(grid: &Grid<Cell>) -> Vec<Vec2> {
     grid.iter_cells()
         .filter(|(_, val)| matches!(val, Cell::Symbol(_)))
         .map(|(c, _)| c)
-        .collect_vec()
+        .collect::<Vec<_>>()
 }
 
 fn get_numbers_next_to_symbols(grid: &Grid<Cell>) -> Vec<Vec<u32>> {
@@ -109,7 +109,7 @@ fn get_numbers_next_to_symbols(grid: &Grid<Cell>) -> Vec<Vec<u32>> {
 
             numbers
         })
-        .collect_vec()
+        .collect::<Vec<_>>()
 }
 
 impl AocSolution for Day03 {

@@ -99,7 +99,7 @@ fn get_points_in_line(s: &str) -> Set<Vec2> {
             let [x, y] = inputs::n_positive_numbers(vertex);
             Vec2::new(x as i32, y as i32)
         })
-        .collect_vec()
+        .collect::<Vec<_>>()
         .array_windows()
         .flat_map(|[v1, v2]| Line::new(*v1, *v2).points())
         .collect()

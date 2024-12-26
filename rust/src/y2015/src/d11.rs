@@ -14,7 +14,7 @@ fn increment_letter(c: char) -> (char, bool) {
 }
 
 fn increment_password(password: &str) -> String {
-    let mut password_chars = password.chars().collect_vec();
+    let mut password_chars = password.chars().collect::<Vec<_>>();
     let mut carry = true;
     let mut idx = password.len() - 1;
 
@@ -30,7 +30,7 @@ fn increment_password(password: &str) -> String {
 }
 
 fn has_pairs(password: &str) -> bool {
-    let mut chars = password.chars().collect_vec();
+    let mut chars = password.chars().collect::<Vec<_>>();
     chars.push(' ');
 
     let mut result = String::new();
@@ -53,7 +53,7 @@ fn has_pairs(password: &str) -> bool {
 
 #[allow(clippy::as_conversions)]
 fn has_incrementing_character_run(password: &str) -> bool {
-    let chars = password.chars().map(|c| c as u8).collect_vec();
+    let chars = password.chars().map(|c| c as u8).collect::<Vec<_>>();
 
     for &[a, b, c] in chars.array_windows() {
         if a == b - 1 && a == c - 2 {

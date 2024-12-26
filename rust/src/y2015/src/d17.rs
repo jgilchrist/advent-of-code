@@ -7,7 +7,7 @@ fn matching_combinations(input: &[u32]) -> impl Iterator<Item = Vec<&u32>> {
     input
         .iter()
         .powerset()
-        .collect_vec()
+        .collect::<Vec<_>>()
         .into_iter()
         .filter(|s| s.iter().copied().sum::<u32>() == 150u32)
 }

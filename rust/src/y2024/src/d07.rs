@@ -23,7 +23,7 @@ fn can_be_true(def: &(u64, Vec<u32>), allowed_operators: &[Operator]) -> bool {
     // repeat_n(...).multi_cartesian_product() is the equivalent of .permutations_with_replacement()
     let all_possible_operators = repeat_n(allowed_operators, number_of_operators)
         .multi_cartesian_product()
-        .collect_vec();
+        .collect::<Vec<_>>();
 
     for operators in all_possible_operators {
         let mut this_result: u64 = u64::from(*initial);
@@ -64,7 +64,7 @@ impl AocSolution for Day07 {
                 let components = inputs::positive_numbers(components);
                 (result, components)
             })
-            .collect_vec()
+            .collect::<Vec<_>>()
     }
 
     const PART1_SOLUTION: SolutionStatus = solution(1430271835320i64);

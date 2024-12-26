@@ -10,7 +10,7 @@ impl AocSolution for Day01 {
             .split("\n\n")
             .map(|group| inputs::separated_by::<u32>(group, "\n"))
             .map(|group| group.iter().sum())
-            .collect_vec();
+            .collect::<Vec<_>>();
 
         calories.sort_unstable();
         calories.reverse();

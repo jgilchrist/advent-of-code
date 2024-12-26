@@ -45,11 +45,11 @@ impl AocSolution for Day02 {
 
                         Cubes { red, green, blue }
                     })
-                    .collect_vec();
+                    .collect::<Vec<_>>();
 
                 Game { id, reveals }
             })
-            .collect_vec()
+            .collect::<Vec<_>>()
     }
 
     const PART1_SOLUTION: SolutionStatus = solution(2776);

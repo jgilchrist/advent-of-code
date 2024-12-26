@@ -66,7 +66,7 @@ impl AocSolution for Day10 {
                 let sprite_position = xs[idx] % line_width;
                 (sprite_position - 1..=sprite_position + 1).contains(&(idx as i32 % line_width))
             })
-            .collect_vec();
+            .collect::<Vec<_>>();
 
         let mut output = "\n".to_owned();
 

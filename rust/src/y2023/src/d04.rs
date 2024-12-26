@@ -52,7 +52,7 @@ impl AocSolution for Day04 {
         let winning_cards = input
             .iter()
             .map(|game| game.count_winning_cards())
-            .collect_vec();
+            .collect::<Vec<_>>();
 
         let mut copies = Map::<usize, u32>::new();
         for card in 0..input.len() {

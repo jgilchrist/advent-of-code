@@ -98,7 +98,7 @@ impl AocSolution for Day13 {
         let mut all_patterns = input
             .iter()
             .flat_map(move |(left, right)| [left.clone(), right.clone()])
-            .collect_vec();
+            .collect::<Vec<_>>();
 
         all_patterns.extend_from_slice(&divider_packets[..]);
 

@@ -1,5 +1,4 @@
 use fancy_regex::Regex;
-use itertools::Itertools;
 use std::str::FromStr;
 
 #[derive(Debug)]
@@ -63,7 +62,7 @@ pub fn transform_lines<T>(input: &str, regexes: TransformRegexes<T>) -> Vec<T> {
         .into_iter()
         .map(|(re, x)| ("^".to_owned() + re + "$", x))
         .map(|(re, x)| (Regex::new(&re).unwrap(), x))
-        .collect_vec();
+        .collect::<Vec<_>>();
 
     let transformed_lines = input
         .lines()
@@ -100,7 +99,7 @@ pub fn matches_in_str<'a>(input: &'a str, regex: &str) -> impl Iterator<Item = C
 
     compiled_regex
         .captures_iter(input)
-        .collect_vec()
+        .collect::<Vec<_>>()
         .into_iter()
         .map(move |l| Captures::new(l.expect("Invalid regex")))
 }

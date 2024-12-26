@@ -46,7 +46,7 @@ fn generate_successors(grid: &Grid<Cell>, pos: Vec2) -> Vec<(Vec2, u32)> {
                 .can_traverse_to(grid.at(*neighbor).unwrap())
         })
         .map(|neighbor| (neighbor, 1))
-        .collect_vec()
+        .collect::<Vec<_>>()
 }
 
 fn is_goal(grid: &Grid<Cell>, pos: Vec2) -> bool {

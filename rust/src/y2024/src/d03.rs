@@ -35,7 +35,7 @@ impl AocSolution for Day03 {
                     Command::Mul(c.next_u32(), c.next_u32())
                 }
             })
-            .collect_vec();
+            .collect::<Vec<_>>();
 
         let mut sum = 0;
         let mut do_multiplies = true;

@@ -15,7 +15,7 @@ fn max_seating_plan_utility(people: &Set<Person>, pairings: &Map<Pairing, i32>) 
 
     seating_plans
         .map(|plan| {
-            let mut wrapped_plan = plan.into_iter().cloned().collect_vec();
+            let mut wrapped_plan = plan.into_iter().cloned().collect::<Vec<_>>();
             wrapped_plan.push(wrapped_plan[0].clone());
 
             wrapped_plan
@@ -81,7 +81,7 @@ impl AocSolution for Day13 {
                     Pairing(p.clone(), me.clone()),
                 ]
             })
-            .collect_vec();
+            .collect::<Vec<_>>();
 
         people.insert(me);
         for p in pairings_with_me {

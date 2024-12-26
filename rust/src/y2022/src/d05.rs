@@ -28,8 +28,8 @@ impl AocSolution for Day05 {
 
         let crates = crates_initial_state
             .lines()
-            .map(|l| l.chars().collect_vec())
-            .collect_vec();
+            .map(|l| l.chars().collect::<Vec<_>>())
+            .collect::<Vec<_>>();
 
         // Put the crates in the same stack on the same line of text
         let crates = transpose(&crates);
@@ -42,16 +42,16 @@ impl AocSolution for Day05 {
                     .all(|c| c.is_whitespace() || *c == '[' || *c == ']')
             })
             // Make the crate at the bottom of the stack first in the line
-            .map(|l| l.iter().rev().collect_vec())
+            .map(|l| l.iter().rev().collect::<Vec<_>>())
             // Skip the stack number and get rid of any trailing whitespace
             .map(|l| {
                 l.into_iter()
                     .skip(1)
                     .filter(|c| !c.is_whitespace())
                     .copied()
-                    .collect_vec()
+                    .collect::<Vec<_>>()
             })
-            .collect_vec();
+            .collect::<Vec<_>>();
 
         let moves = moves.lines().map(|l| {
             let [amount, from_number, to_number] = inputs::n_positive_numbers(l);

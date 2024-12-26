@@ -21,7 +21,7 @@ fn calculate_all_journey_distances(distances: &Map<Route, u32>) -> Vec<u32> {
         .keys()
         .map(|k| k.0.clone())
         .unique_by(|k| k.0.clone())
-        .collect_vec();
+        .collect::<Vec<_>>();
 
     let all_routes = all_cities.iter().permutations(all_cities.len());
 

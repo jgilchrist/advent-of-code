@@ -36,8 +36,8 @@ impl AocSolution for Day01 {
     fn part1(input: &Self::Input) -> impl ToSolution {
         let lines = inputs::lines(input)
             .iter()
-            .map(|l| l.chars().filter_map(|c| c.to_digit(10)).collect_vec())
-            .collect_vec();
+            .map(|l| l.chars().filter_map(|c| c.to_digit(10)).collect::<Vec<_>>())
+            .collect::<Vec<_>>();
 
         let relevant_digits = lines
             .iter()
@@ -54,7 +54,7 @@ impl AocSolution for Day01 {
         let forward_captures = inputs::match_per_line(input, DIGITS_REGEX)
             .map(|mut l| l.next_string())
             .map(|s| to_digit(&s))
-            .collect_vec();
+            .collect::<Vec<_>>();
 
         let reverse_regex = DIGITS_REGEX
             .chars()

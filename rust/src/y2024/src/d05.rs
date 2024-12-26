@@ -13,12 +13,12 @@ impl AocSolution for Day05 {
         let rules = rules
             .lines()
             .map(|l| inputs::n_positive_numbers::<2>(l))
-            .collect_vec();
+            .collect::<Vec<_>>();
 
         let updates = updates
             .lines()
             .map(|l| inputs::positive_numbers(l))
-            .collect_vec();
+            .collect::<Vec<_>>();
 
         (rules, updates)
     }
@@ -30,7 +30,7 @@ impl AocSolution for Day05 {
         updates
             .iter()
             .map(|u| {
-                let mut update = u.iter().copied().collect_vec();
+                let mut update = u.clone();
 
                 update.sort_by(|&a, &b| {
                     let matching_rule = rules
@@ -62,7 +62,7 @@ impl AocSolution for Day05 {
         updates
             .iter()
             .map(|u| {
-                let mut update = u.iter().copied().collect_vec();
+                let mut update = u.clone();
 
                 update.sort_by(|&a, &b| {
                     let matching_rule = rules

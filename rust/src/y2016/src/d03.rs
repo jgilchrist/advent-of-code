@@ -30,7 +30,10 @@ impl AocSolution for Day03 {
 
     const PART2_SOLUTION: SolutionStatus = solution(1921);
     fn part2(input: &Self::Input) -> impl ToSolution {
-        let slices = input.iter().map(|&l| l.into_iter().collect()).collect_vec();
+        let slices = input
+            .iter()
+            .map(|&l| l.into_iter().collect())
+            .collect::<Vec<_>>();
 
         let new_triangles: Vec<Triangle> = transpose(&slices)
             .concat()

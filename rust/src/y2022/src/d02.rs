@@ -1,5 +1,4 @@
 use aoc::prelude::*;
-use utils::prelude::*;
 
 pub struct Day02;
 
@@ -89,7 +88,7 @@ impl AocSolution for Day02 {
     fn process_input(input: &str) -> Self::Input {
         input
             .lines()
-            .map(|l| l.chars().collect_vec())
+            .map(|l| l.chars().collect::<Vec<_>>())
             .map(|l| (*l.first().unwrap(), *l.get(2).unwrap()))
             .collect()
     }

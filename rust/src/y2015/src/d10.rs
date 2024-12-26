@@ -1,10 +1,9 @@
 use aoc::prelude::*;
-use utils::prelude::*;
 
 pub struct Day10;
 
 fn compress_number(number: &str) -> String {
-    let mut chars = number.chars().collect_vec();
+    let mut chars = number.chars().collect::<Vec<_>>();
     chars.push(' ');
 
     let mut result = String::new();

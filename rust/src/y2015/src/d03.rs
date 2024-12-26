@@ -41,8 +41,8 @@ impl AocSolution for Day03 {
 
         let mut visited: Set<Vec2> = Set::from_array([santa, robo_santa]);
 
-        let santas_instructions = input.iter().step_by(2).collect_vec();
-        let robo_santas_instructions = input.iter().skip(1).step_by(2).collect_vec();
+        let santas_instructions = input.iter().step_by(2).collect::<Vec<_>>();
+        let robo_santas_instructions = input.iter().skip(1).step_by(2).collect::<Vec<_>>();
 
         for direction in santas_instructions {
             santa = santa.move_in_direction(*direction);

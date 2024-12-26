@@ -79,7 +79,7 @@ fn play_rounds(
         state = play_round(&monkey_defs, &state, &mut monkey_tests, divide_by_three);
     }
 
-    let mut test_numbers = monkey_tests.values().copied().collect_vec();
+    let mut test_numbers = monkey_tests.values().copied().collect::<Vec<_>>();
     test_numbers.sort_unstable();
     test_numbers.reverse();
 
@@ -120,7 +120,7 @@ fn play_round(
 }
 
 fn parse_monkey(m: &str) -> (MonkeyId, (Monkey, Vec<u64>)) {
-    let lines = m.lines().collect_vec();
+    let lines = m.lines().collect::<Vec<_>>();
     let [monkey_id_line, starting_items_line, operation_line, test_line, true_line, false_line] =
         lines[..]
     else {

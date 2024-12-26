@@ -83,7 +83,9 @@ impl AocSolution for Day05 {
             .iter()
             .filter(|line| line.is_horizontal() || line.is_vertical());
 
-        let points = relevant_lines.flat_map(|line| line.points()).collect_vec();
+        let points = relevant_lines
+            .flat_map(|line| line.points())
+            .collect::<Vec<_>>();
 
         points
             .iter()
@@ -95,7 +97,10 @@ impl AocSolution for Day05 {
 
     const PART2_SOLUTION: SolutionStatus = solution(20196);
     fn part2(input: &Self::Input) -> impl ToSolution {
-        let points = input.iter().flat_map(|line| line.points()).collect_vec();
+        let points = input
+            .iter()
+            .flat_map(|line| line.points())
+            .collect::<Vec<_>>();
 
         points
             .iter()

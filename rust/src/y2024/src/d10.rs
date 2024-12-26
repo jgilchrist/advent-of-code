@@ -26,7 +26,7 @@ fn all_neighbors(grid: &Grid<u32>, ps: &[Vec2]) -> Vec<Vec2> {
     ps.iter()
         .flat_map(|c| grid.neighbors4(*c))
         .unique()
-        .collect_vec()
+        .collect::<Vec<_>>()
 }
 
 impl AocSolution for Day10 {
@@ -48,7 +48,7 @@ impl AocSolution for Day10 {
                     current_cells = all_neighbors(grid, &current_cells)
                         .into_iter()
                         .filter(|p| *grid.at(*p).unwrap() == i)
-                        .collect_vec();
+                        .collect::<Vec<_>>();
                 }
 
                 current_cells.len()

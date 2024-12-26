@@ -19,7 +19,7 @@ impl AocSolution for Day08 {
                     .map(|direction| {
                         input
                             .raycast_cells(*tree_coord, direction.into())
-                            .collect_vec()
+                            .collect::<Vec<_>>()
                     })
                     .iter()
                     .any(|tree_heights| {
