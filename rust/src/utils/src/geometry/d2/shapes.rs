@@ -1,6 +1,5 @@
-use std::collections::HashSet;
-
 use super::vecs::Vec2;
+use crate::hash::Set;
 
 #[derive(Debug)]
 pub struct Line {
@@ -13,9 +12,9 @@ impl Line {
         Self { start, end }
     }
 
-    pub fn points(&self) -> HashSet<Vec2> {
+    pub fn points(&self) -> Set<Vec2> {
         let line_direction = (self.end - self.start).sign();
-        let mut points: HashSet<Vec2> = HashSet::new();
+        let mut points: Set<Vec2> = Set::new();
 
         let mut current_point = self.start;
         points.insert(current_point);

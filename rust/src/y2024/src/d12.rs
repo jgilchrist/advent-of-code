@@ -35,9 +35,9 @@ impl AocSolution for Day12 {
     }
 }
 
-fn calculate_regions(grid: &Grid<Option<char>>) -> Vec<(char, HashSet<Vec2>)> {
-    let mut seen_squares: HashSet<Vec2> = HashSet::new();
-    let mut regions: Vec<(char, HashSet<Vec2>)> = Vec::new();
+fn calculate_regions(grid: &Grid<Option<char>>) -> Vec<(char, Set<Vec2>)> {
+    let mut seen_squares: Set<Vec2> = Set::new();
+    let mut regions: Vec<(char, Set<Vec2>)> = Vec::new();
 
     for (pos, char) in grid.iter_cells() {
         // Skip any squares we've already made part of a region
@@ -59,10 +59,10 @@ fn calculate_regions(grid: &Grid<Option<char>>) -> Vec<(char, HashSet<Vec2>)> {
     regions
 }
 
-fn fill_region(grid: &Grid<Option<char>>, start: Vec2) -> HashSet<Vec2> {
+fn fill_region(grid: &Grid<Option<char>>, start: Vec2) -> Set<Vec2> {
     let region_char = grid.at(start).unwrap();
 
-    let mut region_squares = HashSet::new();
+    let mut region_squares = Set::new();
     region_squares.insert(start);
 
     // Continually loop, expanding along the boundary of our current region until we can't go any further
@@ -72,12 +72,9 @@ fn fill_region(grid: &Grid<Option<char>>, start: Vec2) -> HashSet<Vec2> {
             .flat_map(|c| grid.neighbors4(*c))
             .unique()
             .filter(|p| grid.at(*p).unwrap() == region_char)
-            .collect::<HashSet<_>>();
+            .collect::<Set<_>>();
 
-        let new_region_squares = region_squares
-            .union(&boundary)
-            .copied()
-            .collect::<HashSet<_>>();
+        let new_region_squares = region_squares.union(&boundary).copied().collect::<Set<_>>();
 
         if new_region_squares == region_squares {
             return region_squares;
@@ -87,7 +84,7 @@ fn fill_region(grid: &Grid<Option<char>>, start: Vec2) -> HashSet<Vec2> {
     }
 }
 
-fn perimeter(grid: &Grid<Option<char>>, vs: &HashSet<Vec2>) -> usize {
+fn perimeter(grid: &Grid<Option<char>>, vs: &Set<Vec2>) -> usize {
     vs.iter()
         .map(|pos|
              // For each position in the region, look at each neighbors and pick
@@ -100,7 +97,7 @@ fn perimeter(grid: &Grid<Option<char>>, vs: &HashSet<Vec2>) -> usize {
 
 fn is_corner_for_direction(
     grid: &Grid<Option<char>>,
-    points: &HashSet<Vec2>,
+    points: &Set<Vec2>,
     pos: Vec2,
     corner_dir: PrincipalWinds,
 ) -> bool {
@@ -129,7 +126,7 @@ fn is_corner_for_direction(
     is_outside_corner || is_inside_corner
 }
 
-fn sides(grid: &Grid<Option<char>>, vs: &HashSet<Vec2>) -> usize {
+fn sides(grid: &Grid<Option<char>>, vs: &Set<Vec2>) -> usize {
     vs.iter()
         .map(|pos| {
             PrincipalWinds::DIAGONALS

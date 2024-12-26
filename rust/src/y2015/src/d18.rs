@@ -94,11 +94,10 @@ impl AocSolution for Day18 {
     fn part2(input: &Self::Input) -> impl ToSolution {
         let map_size = input.x_size() - 1;
 
-        let corners: HashSet<Vec2> =
-            vec![(0, 0), (map_size, 0), (0, map_size), (map_size, map_size)]
-                .into_iter()
-                .map(|c| c.into())
-                .collect();
+        let corners: Set<Vec2> = vec![(0, 0), (map_size, 0), (0, map_size), (map_size, map_size)]
+            .into_iter()
+            .map(|c| c.into())
+            .collect();
 
         count_lit_cells(&evolve_using(input, 100, |map, coord, cell| {
             if corners.contains(&coord) {

@@ -60,7 +60,7 @@ impl AocSolution for Day01 {
 
     const PART2_SOLUTION: SolutionStatus = solution(143);
     fn part2(input: &Self::Input) -> impl ToSolution {
-        let mut visited_locations: HashSet<Vec2> = HashSet::new();
+        let mut visited_locations: Set<Vec2> = Set::new();
 
         let start: Vec2 = (0, 0).into();
         let mut state = (start, CardinalDirection::North);

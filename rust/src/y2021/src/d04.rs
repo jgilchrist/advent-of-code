@@ -6,14 +6,14 @@ pub struct Day04;
 #[derive(Debug, Clone)]
 pub struct Board {
     numbers: Vec<Vec<u32>>,
-    all_numbers: HashSet<u32>,
-    seen: HashSet<u32>,
+    all_numbers: Set<u32>,
+    seen: Set<u32>,
     last_seen: Option<u32>,
 }
 
 impl Board {
     fn new(numbers: Vec<Vec<u32>>) -> Self {
-        let mut all_numbers = HashSet::new();
+        let mut all_numbers = Set::new();
         for row in &numbers {
             for n in row {
                 all_numbers.insert(*n);
@@ -23,7 +23,7 @@ impl Board {
         Self {
             numbers,
             all_numbers,
-            seen: HashSet::new(),
+            seen: Set::new(),
             last_seen: None,
         }
     }

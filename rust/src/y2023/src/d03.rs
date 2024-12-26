@@ -37,7 +37,7 @@ impl From<char> for Cell {
     }
 }
 
-fn extract_number(g: &Grid<Cell>, seen_coords: &mut HashSet<Vec2>, start: Vec2) -> Option<u32> {
+fn extract_number(g: &Grid<Cell>, seen_coords: &mut Set<Vec2>, start: Vec2) -> Option<u32> {
     let mut number: String = String::new();
     let Cell::Digit(d) = g.at(start).unwrap() else {
         panic!();
@@ -96,7 +96,7 @@ fn get_numbers_next_to_symbols(grid: &Grid<Cell>) -> Vec<Vec<u32>> {
                 .neighbors8(sym)
                 .filter(|&c| matches!(grid.at(c).unwrap(), Cell::Digit(_)))
                 .fold(
-                    (Vec::<u32>::new(), HashSet::<Vec2>::new()),
+                    (Vec::<u32>::new(), Set::<Vec2>::new()),
                     |(mut numbers, mut seen_coords), coord| {
                         let Some(number) = extract_number(grid, &mut seen_coords, coord) else {
                             return (numbers, seen_coords);

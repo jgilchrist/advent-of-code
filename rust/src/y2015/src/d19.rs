@@ -6,9 +6,9 @@ pub struct Day19;
 #[derive(Debug, PartialEq, Eq, Hash, Clone)]
 pub struct Rule(String, String);
 
-fn apply_rule(s: &str, rule: &Rule) -> HashSet<String> {
+fn apply_rule(s: &str, rule: &Rule) -> Set<String> {
     let Rule(before, after) = rule;
-    let mut results: HashSet<String> = HashSet::new();
+    let mut results: Set<String> = Set::new();
 
     for (idx, _) in s.match_indices(before) {
         let mut with_replacement = s.to_string();
@@ -35,7 +35,7 @@ impl AocSolution for Day19 {
     const PART1_SOLUTION: SolutionStatus = solution(535);
     fn part1(input: &Self::Input) -> impl ToSolution {
         let (rules, initial_state) = input;
-        let unique_states: HashSet<String> = rules
+        let unique_states: Set<String> = rules
             .iter()
             .flat_map(|rule| apply_rule(initial_state, rule))
             .collect();

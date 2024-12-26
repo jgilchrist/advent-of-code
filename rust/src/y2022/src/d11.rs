@@ -42,7 +42,7 @@ impl Monkey {
 }
 
 impl AocSolution for Day11 {
-    type Input = HashMap<MonkeyId, (Monkey, Vec<u64>)>;
+    type Input = Map<MonkeyId, (Monkey, Vec<u64>)>;
     fn process_input(input: &str) -> Self::Input {
         input.split("\n\n").map(parse_monkey).collect()
     }
@@ -59,21 +59,21 @@ impl AocSolution for Day11 {
 }
 
 fn play_rounds(
-    input: &HashMap<MonkeyId, (Monkey, Vec<u64>)>,
+    input: &Map<MonkeyId, (Monkey, Vec<u64>)>,
     n_rounds: u64,
     divide_by_three: bool,
 ) -> u64 {
-    let monkey_defs: HashMap<MonkeyId, Monkey> = input
+    let monkey_defs: Map<MonkeyId, Monkey> = input
         .iter()
         .map(|(k, (monkey_def, _))| (*k, monkey_def.clone()))
         .collect();
 
-    let mut state: HashMap<MonkeyId, Vec<u64>> = input
+    let mut state: Map<MonkeyId, Vec<u64>> = input
         .iter()
         .map(|(k, (_, held_items))| (*k, held_items.clone()))
         .collect();
 
-    let mut monkey_tests: HashMap<MonkeyId, u64> = state.keys().map(|&k| (k, 0)).collect();
+    let mut monkey_tests: Map<MonkeyId, u64> = state.keys().map(|&k| (k, 0)).collect();
 
     for _ in 0..n_rounds {
         state = play_round(&monkey_defs, &state, &mut monkey_tests, divide_by_three);
@@ -87,11 +87,11 @@ fn play_rounds(
 }
 
 fn play_round(
-    monkey_defs: &HashMap<MonkeyId, Monkey>,
-    state: &HashMap<MonkeyId, Vec<u64>>,
-    monkey_tests: &mut HashMap<MonkeyId, u64>,
+    monkey_defs: &Map<MonkeyId, Monkey>,
+    state: &Map<MonkeyId, Vec<u64>>,
+    monkey_tests: &mut Map<MonkeyId, u64>,
     divide_by_three: bool,
-) -> HashMap<MonkeyId, Vec<u64>> {
+) -> Map<MonkeyId, Vec<u64>> {
     let mut state = state.clone();
     let max_monkey_id = *monkey_defs.keys().max().unwrap();
     let divisible_by_all_of = monkey_defs

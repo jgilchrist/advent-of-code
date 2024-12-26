@@ -14,7 +14,7 @@ pub struct Ingredient {
 
 #[derive(Debug, Clone)]
 struct Cookie {
-    amounts: HashMap<Ingredient, u32>,
+    amounts: Map<Ingredient, u32>,
 }
 
 impl Cookie {

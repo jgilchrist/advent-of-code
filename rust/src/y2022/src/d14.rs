@@ -11,9 +11,9 @@ pub struct Day14;
 const SAND_SPAWN_POS: Vec2 = Vec2::new(500, 0);
 
 impl AocSolution for Day14 {
-    type Input = (HashSet<Vec2>, i32);
+    type Input = (Set<Vec2>, i32);
     fn process_input(input: &str) -> Self::Input {
-        let occupied_cells: HashSet<Vec2> = input.lines().flat_map(get_points_in_line).collect();
+        let occupied_cells: Set<Vec2> = input.lines().flat_map(get_points_in_line).collect();
         let floor_position = occupied_cells.iter().map(|v| v.y).max().unwrap() + 2;
 
         (occupied_cells, floor_position)
@@ -33,7 +33,7 @@ impl AocSolution for Day14 {
 }
 
 fn simulate_to_end(
-    occupied_cells: &mut HashSet<Vec2>,
+    occupied_cells: &mut Set<Vec2>,
     floor_position: i32,
     floor_collision: bool,
 ) -> u32 {
@@ -52,7 +52,7 @@ fn simulate_to_end(
 }
 
 fn simulate_sand(
-    occupied_cells: &HashSet<Vec2>,
+    occupied_cells: &Set<Vec2>,
     floor_position: i32,
     floor_collision: bool,
 ) -> Option<Vec2> {
@@ -93,7 +93,7 @@ fn simulate_sand(
     }
 }
 
-fn get_points_in_line(s: &str) -> HashSet<Vec2> {
+fn get_points_in_line(s: &str) -> Set<Vec2> {
     s.split(" -> ")
         .map(|vertex| {
             let [x, y] = inputs::n_positive_numbers(vertex);

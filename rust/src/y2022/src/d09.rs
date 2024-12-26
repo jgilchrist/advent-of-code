@@ -39,7 +39,7 @@ impl AocSolution for Day09 {
 }
 
 fn simulate_chain(instructions: &[CardinalDirection], len: usize) -> usize {
-    let mut visited_coords: HashSet<Vec2> = HashSet::new();
+    let mut visited_coords: Set<Vec2> = Set::new();
     let mut sections = vec![Vec2::new(0, 0); len];
 
     for &direction in instructions {

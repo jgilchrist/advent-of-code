@@ -1,6 +1,6 @@
-use std::collections::HashMap;
+use crate::hash::Map;
 
-pub fn backtrace_from_goal<T>(previous: &HashMap<T, T>, start: &T) -> Vec<T>
+pub fn backtrace_from_goal<T>(previous: &Map<T, T>, start: &T) -> Vec<T>
 where
     T: Eq + std::hash::Hash + Clone,
 {

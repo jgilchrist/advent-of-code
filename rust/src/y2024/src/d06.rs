@@ -56,7 +56,7 @@ impl AocSolution for Day06 {
     fn part1(input: &Self::Input) -> impl ToSolution {
         let (grid, mut position, mut direction) = input.clone();
 
-        let mut seen_cells = HashSet::<Vec2>::new();
+        let mut seen_cells = Set::<Vec2>::new();
 
         loop {
             seen_cells.insert(position);
@@ -83,7 +83,7 @@ impl AocSolution for Day06 {
 
         let mut position = start_position;
         let mut direction = CardinalDirection::North;
-        let mut seen_cells = HashSet::<Vec2>::new();
+        let mut seen_cells = Set::<Vec2>::new();
 
         // First, run part 1 to get the path with no added obstructions
         loop {
@@ -117,7 +117,7 @@ impl AocSolution for Day06 {
 }
 
 fn is_patrol_loop(grid: &Grid<Cell>, start: Vec2) -> bool {
-    let mut seen_states = HashSet::<(Vec2, CardinalDirection)>::new();
+    let mut seen_states = Set::<(Vec2, CardinalDirection)>::new();
     let mut position = start;
     let mut direction = CardinalDirection::North;
 

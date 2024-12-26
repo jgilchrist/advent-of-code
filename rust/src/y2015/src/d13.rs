@@ -9,7 +9,7 @@ pub struct Person(String);
 #[derive(Hash, PartialEq, Eq, Debug, Clone)]
 pub struct Pairing(Person, Person);
 
-fn max_seating_plan_utility(people: &HashSet<Person>, pairings: &HashMap<Pairing, i32>) -> i32 {
+fn max_seating_plan_utility(people: &Set<Person>, pairings: &Map<Pairing, i32>) -> i32 {
     let number_of_people = people.len();
     let seating_plans = people.iter().permutations(number_of_people);
 
@@ -32,10 +32,10 @@ fn max_seating_plan_utility(people: &HashSet<Person>, pairings: &HashMap<Pairing
 }
 
 impl AocSolution for Day13 {
-    type Input = (HashSet<Person>, HashMap<Pairing, i32>);
+    type Input = (Set<Person>, Map<Pairing, i32>);
     fn process_input(input: &str) -> Self::Input {
-        let mut pairings: HashMap<Pairing, i32> = HashMap::new();
-        let mut people: HashSet<Person> = HashSet::new();
+        let mut pairings: Map<Pairing, i32> = Map::new();
+        let mut people: Set<Person> = Set::new();
 
         for mut line in inputs::match_per_line(
             input,

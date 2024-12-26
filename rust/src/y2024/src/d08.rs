@@ -12,7 +12,7 @@ impl AocSolution for Day08 {
 
     const PART1_SOLUTION: SolutionStatus = solution(303);
     fn part1(grid: &Self::Input) -> impl ToSolution {
-        let mut frequencies = HashSet::<char>::new();
+        let mut frequencies = Set::<char>::new();
 
         // Build up a list of all of the frequencies
         grid.iter_cells().for_each(|(_, c)| {
@@ -44,7 +44,7 @@ impl AocSolution for Day08 {
 
     const PART2_SOLUTION: SolutionStatus = solution(1045);
     fn part2(grid: &Self::Input) -> impl ToSolution {
-        let mut frequencies = HashSet::<char>::new();
+        let mut frequencies = Set::<char>::new();
 
         // Build up a list of all of the frequencies
         grid.iter_cells().for_each(|(_, c)| {

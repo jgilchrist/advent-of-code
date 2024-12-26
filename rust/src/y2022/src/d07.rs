@@ -23,7 +23,7 @@ pub struct DirectoryEntry {
     children: Vec<FileSystemEntity>,
 }
 
-type FileSystem = HashMap<DirectoryName, DirectoryEntry>;
+type FileSystem = Map<DirectoryName, DirectoryEntry>;
 
 fn parse_commands(i: &str) -> Vec<Command> {
     i.split("$ ")
@@ -128,7 +128,7 @@ fn directory_size(directory: &str, filesystem: &FileSystem) -> u64 {
 }
 
 impl AocSolution for Day07 {
-    type Input = HashMap<DirectoryName, u64>;
+    type Input = Map<DirectoryName, u64>;
     fn process_input(input: &str) -> Self::Input {
         let commands = parse_commands(input);
         let filesystem = build_filesystem(&commands);

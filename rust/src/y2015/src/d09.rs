@@ -9,14 +9,14 @@ pub struct City(String);
 #[derive(Hash, PartialEq, Eq, Debug)]
 pub struct Route(City, City);
 
-fn calculate_journey_distance(route: &[&City], distances: &HashMap<Route, u32>) -> u32 {
+fn calculate_journey_distance(route: &[&City], distances: &Map<Route, u32>) -> u32 {
     route
         .array_windows()
         .map(|&[a, b]| distances.get(&Route(a.clone(), b.clone())).unwrap())
         .sum()
 }
 
-fn calculate_all_journey_distances(distances: &HashMap<Route, u32>) -> Vec<u32> {
+fn calculate_all_journey_distances(distances: &Map<Route, u32>) -> Vec<u32> {
     let all_cities = distances
         .keys()
         .map(|k| k.0.clone())
@@ -31,7 +31,7 @@ fn calculate_all_journey_distances(distances: &HashMap<Route, u32>) -> Vec<u32> 
 }
 
 impl AocSolution for Day09 {
-    type Input = HashMap<Route, u32>;
+    type Input = Map<Route, u32>;
     fn process_input(input: &str) -> Self::Input {
         inputs::match_per_line(input, r"(\w+) to (\w+) = (\d+)")
             .flat_map(|mut line| {

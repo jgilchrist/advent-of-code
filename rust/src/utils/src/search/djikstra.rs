@@ -1,7 +1,7 @@
-use priority_queue::PriorityQueue;
-use std::{cmp::Reverse, collections::HashMap};
-
 use super::backtrace::backtrace_from_goal;
+use crate::hash::Map;
+use priority_queue::PriorityQueue;
+use std::cmp::Reverse;
 
 pub fn djikstra<TState>(
     initial_state: &TState,
@@ -11,8 +11,8 @@ pub fn djikstra<TState>(
 where
     TState: Clone + std::fmt::Debug + Eq + std::hash::Hash,
 {
-    let mut best_distance: HashMap<TState, u32> = HashMap::from([(initial_state.clone(), 0)]);
-    let mut previous: HashMap<TState, TState> = HashMap::new();
+    let mut best_distance: Map<TState, u32> = Map::from([(initial_state.clone(), 0)]);
+    let mut previous: Map<TState, TState> = Map::new();
     let mut goal: Option<TState> = None;
 
     let mut to_process: PriorityQueue<TState, Reverse<u32>> = PriorityQueue::new();

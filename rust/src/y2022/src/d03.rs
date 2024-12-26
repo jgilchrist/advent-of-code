@@ -3,7 +3,7 @@ use utils::prelude::*;
 
 pub struct Day03;
 
-type Section = HashSet<char>;
+type Section = Set<char>;
 type Rucksack = (Section, Section);
 
 fn priority_of(c: char) -> u32 {
@@ -45,10 +45,10 @@ impl AocSolution for Day03 {
             .map(|(b1, b2, b3)| {
                 b1.intersection(&b2)
                     .copied()
-                    .collect::<HashSet<char>>()
+                    .collect::<Set<char>>()
                     .intersection(&b3)
                     .copied()
-                    .collect::<HashSet<char>>()
+                    .collect::<Set<char>>()
             })
             .map(|set| set.into_iter().next().unwrap())
             .map(priority_of)

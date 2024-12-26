@@ -132,8 +132,8 @@ impl AocSolution for Day07 {
     }
 }
 
-fn run_instructions(instructions: &[Instruction]) -> HashMap<Var, u16> {
-    let mut vars: HashMap<Var, u16> = HashMap::new();
+fn run_instructions(instructions: &[Instruction]) -> Map<Var, u16> {
+    let mut vars: Map<Var, u16> = Map::new();
     let mut instructions = instructions.to_vec();
 
     while !instructions.is_empty() {
@@ -143,7 +143,7 @@ fn run_instructions(instructions: &[Instruction]) -> HashMap<Var, u16> {
     vars
 }
 
-fn run_instruction(instruction: &Instruction, vars: &mut HashMap<Var, u16>) -> Result<(), ()> {
+fn run_instruction(instruction: &Instruction, vars: &mut Map<Var, u16>) -> Result<(), ()> {
     let Instruction(operation, dst) = instruction;
     *vars.entry(dst.clone()).or_insert(0) = match operation {
         Operation::Assign(src) => get(vars, src)?,
@@ -157,7 +157,7 @@ fn run_instruction(instruction: &Instruction, vars: &mut HashMap<Var, u16>) -> R
     Ok(())
 }
 
-fn get(vars: &HashMap<Var, u16>, src: &Operand) -> Result<u16, ()> {
+fn get(vars: &Map<Var, u16>, src: &Operand) -> Result<u16, ()> {
     match src {
         Operand::Var(s) => vars.get(s).ok_or(()).copied(),
         Operand::Literal(lit) => Ok(*lit),

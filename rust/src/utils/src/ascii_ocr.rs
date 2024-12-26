@@ -1,11 +1,10 @@
-use std::collections::HashMap;
-
+use crate::hash::Map;
 use itertools::Itertools;
 
 const LETTER_WIDTH: usize = 5;
 
 pub fn convert(s: &str) -> String {
-    let alphabet_6: HashMap<String, char> = HashMap::from([
+    let alphabet_6: Map<String, char> = Map::from([
         (
             "
 .##.

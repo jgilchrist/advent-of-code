@@ -3,9 +3,9 @@ use utils::prelude::*;
 
 pub struct Day11;
 
-type State = HashMap<u64, usize>;
+type State = Map<u64, usize>;
 fn next_state(state: &State) -> State {
-    let mut new_state = HashMap::new();
+    let mut new_state = Map::new();
 
     for (&value, &n) in state {
         let value_as_str = value.to_string();
@@ -33,7 +33,7 @@ fn next_state(state: &State) -> State {
 impl AocSolution for Day11 {
     type Input = State;
     fn process_input(input: &str) -> Self::Input {
-        let mut map = HashMap::new();
+        let mut map = Map::new();
 
         for n in inputs::positive_numbers(input) {
             *map.entry(u64::from(n)).or_insert(0) += 1;
@@ -50,7 +50,7 @@ impl AocSolution for Day11 {
             state = next_state(&state);
         }
 
-        state.iter().map(|(_, count)| *count).sum::<usize>()
+        state.values().sum::<usize>()
     }
 
     const PART2_SOLUTION: SolutionStatus = solution(239413123020116i64);
@@ -61,6 +61,6 @@ impl AocSolution for Day11 {
             state = next_state(&state);
         }
 
-        state.iter().map(|(_, count)| *count).sum::<usize>()
+        state.values().sum::<usize>()
     }
 }

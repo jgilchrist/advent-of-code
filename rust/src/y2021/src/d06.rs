@@ -24,11 +24,11 @@ fn number_of_fish_after_n_days(fish_start: &PopulationMap, days: u32) -> usize {
 }
 
 #[derive(Clone, Debug)]
-pub struct PopulationMap(HashMap<u8, usize>);
+pub struct PopulationMap(Map<u8, usize>);
 
 impl PopulationMap {
     fn new() -> Self {
-        Self(HashMap::default())
+        Self(Map::default())
     }
 
     fn store(&mut self, lifetime: u8, num: usize) {

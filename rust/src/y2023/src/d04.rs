@@ -4,8 +4,8 @@ use utils::prelude::*;
 pub struct Day04;
 
 pub struct Game {
-    winning_numbers: HashSet<u32>,
-    our_numbers: HashSet<u32>,
+    winning_numbers: Set<u32>,
+    our_numbers: Set<u32>,
 }
 
 impl Game {
@@ -29,8 +29,8 @@ impl AocSolution for Day04 {
                 );
 
                 Game {
-                    winning_numbers: HashSet::from_iter(winning_numbers),
-                    our_numbers: HashSet::from_iter(our_numbers),
+                    winning_numbers: Set::from_iter(winning_numbers),
+                    our_numbers: Set::from_iter(our_numbers),
                 }
             })
             .collect()
@@ -54,7 +54,7 @@ impl AocSolution for Day04 {
             .map(|game| game.count_winning_cards())
             .collect_vec();
 
-        let mut copies = HashMap::<usize, u32>::new();
+        let mut copies = Map::<usize, u32>::new();
         for card in 0..input.len() {
             copies.insert(card, 1);
         }
