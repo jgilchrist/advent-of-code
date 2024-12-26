@@ -1,7 +1,6 @@
 #![allow(clippy::similar_names)]
 
 use aoc::prelude::*;
-use utils::inputs::positive_numbers;
 use utils::iters::transpose;
 use utils::prelude::*;
 
@@ -10,7 +9,7 @@ pub struct Day01;
 impl AocSolution for Day01 {
     type Input = (Vec<u32>, Vec<u32>);
     fn process_input(input: &str) -> Self::Input {
-        let vecs: Vec<Vec<u32>> = input.lines().map(positive_numbers).collect::<_>();
+        let vecs: Vec<Vec<u32>> = input.lines().map(inputs::positive_numbers).collect::<_>();
 
         let vecs = transpose(&vecs);
 
