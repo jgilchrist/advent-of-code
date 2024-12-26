@@ -16,5 +16,4 @@ pub mod prelude {
     pub use std::collections::hash_map::Entry::{Occupied, Vacant};
 
     pub use fancy_regex::Regex;
-    pub use itertools::*;
 }

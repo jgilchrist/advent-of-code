@@ -7,7 +7,5 @@ edition.workspace = true
 workspace = true
 
 [dependencies]
-itertools = { workspace = true }
-
 aoc = { "path" = "../aoc" }
 utils = { "path" = "../utils" }
