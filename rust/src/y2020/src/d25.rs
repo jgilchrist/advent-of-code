@@ -13,8 +13,8 @@ impl AocSolution for Day25 {
         Solution::Unsolved
     }
 
-    const PART2_SOLUTION: SolutionStatus = solution(Solution::MerryChristmas);
+    const PART2_SOLUTION: SolutionStatus = solution_from_python(Solution::MerryChristmas);
     fn part2(_input: &Self::Input) -> impl ToSolution {
-        Solution::MerryChristmas
+        Solution::Unsolved
     }
 }
