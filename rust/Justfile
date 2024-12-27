@@ -31,8 +31,14 @@ get-input YEAR DAY:
 	mkdir -p ../inputs/{{YEAR}}
 	curl --cookie "session=$(cat .session)" "https://adventofcode.com/{{YEAR}}/day/{{trim_start_match(DAY, '0')}}/input" -o ../inputs/{{YEAR}}/{{DAY}}.in 
 
+scaffold YEAR DAY:
+	cp --no-clobber template.rs ./src/y{{YEAR}}/src/d{{DAY}}.rs \
+	&& sed -i 's/DAY/{{DAY}}/g' ./src/y{{YEAR}}/src/d{{DAY}}.rs \
+	&& sed -i 's/\/\/ @mod@/mod d{{DAY}};\n\/\/ @mod@/g' ./src/y{{YEAR}}/src/main.rs \
+	&& sed -i 's/type D{{DAY}} = Unsolved/type D{{DAY}} = d{{DAY}}::Day{{DAY}}/g' ./src/y{{YEAR}}/src/main.rs \
+
 new YEAR DAY:
-	just get-input {{YEAR}} {{DAY}} \
+	just get-input {{YEAR}} {{DAY}} && just scaffold {{YEAR}} {{DAY}}
 	&& cp --no-clobber template.rs ./src/y{{YEAR}}/src/d{{DAY}}.rs \
 	&& sed -i 's/DAY/{{DAY}}/g' ./src/y{{YEAR}}/src/d{{DAY}}.rs \
 	&& sed -i 's/\/\/ @mod@/mod d{{DAY}};\n\/\/ @mod@/g' ./src/y{{YEAR}}/src/main.rs \
