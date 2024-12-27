@@ -20,7 +20,7 @@ progress:
 	@cargo run --quiet --release --bin y2021 -- progress
 	@cargo run --quiet --release --bin y2022 -- progress
 	@cargo run --quiet --release --bin y2023 -- progress
-
+	@cargo run --quiet --release --bin y2024 -- progress
 
 profile YEAR DAY:
 	@mkdir -p ./target/flamegraphs
