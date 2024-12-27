@@ -23,7 +23,7 @@ impl AocSolution for Day05 {
                 && !line.contains("pq")
                 && !line.contains("xy");
 
-            let double_letter = Regex::new(r"(.)\1").unwrap().find(line).unwrap().is_some();
+            let double_letter = line.chars().tuple_windows().any(|(a, b)| a == b);
 
             number_of_vowels >= 3 && doesnt_match_disallowed_strings && double_letter
         }
@@ -33,15 +33,27 @@ impl AocSolution for Day05 {
 
     const PART2_SOLUTION: SolutionStatus = solution(55);
     fn part2(input: &Self::Input) -> impl ToSolution {
-        fn is_nice(line: &str) -> bool {
-            let has_matching_pair = Regex::new(r"(..).*\1")
-                .unwrap()
-                .find(line)
-                .unwrap()
-                .is_some();
-            let has_xyz = Regex::new(r"(.).\1").unwrap().find(line).unwrap().is_some();
+        fn has_matching_pair(line: &str) -> bool {
+            // Iterate over all possible pairs, and search for that pair in the remaining string
+            for i in 0..line.len() - 2 {
+                let pair = &line[i..i + 2];
+                let rest_of_line = &line[i + 2..];
 
-            has_matching_pair && has_xyz
+                if rest_of_line.contains(pair) {
+                    return true;
+                }
+            }
+
+            false
+        }
+
+        fn is_nice(line: &str) -> bool {
+            let has_xyz = line
+                .chars()
+                .tuple_windows()
+                .any(|(left, _, right)| left == right);
+
+            has_matching_pair(line) && has_xyz
         }
 
         input.iter().filter(|l| is_nice(l)).count()

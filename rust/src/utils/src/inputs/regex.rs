@@ -1,14 +1,14 @@
-use fancy_regex::Regex;
+use regex::Regex;
 use std::str::FromStr;
 
 #[derive(Debug)]
 pub struct Captures<'a> {
-    captures: fancy_regex::Captures<'a>,
+    captures: regex::Captures<'a>,
     idx: usize,
 }
 
 impl<'a> Captures<'a> {
-    pub fn new(captures: fancy_regex::Captures<'a>) -> Self {
+    pub fn new(captures: regex::Captures<'a>) -> Self {
         Self { captures, idx: 1 }
     }
 
@@ -69,7 +69,7 @@ pub fn transform_lines<T>(input: &str, regexes: TransformRegexes<T>) -> Vec<T> {
         .map(|l| {
             let regexes: &[(Regex, TransformFn<T>)] = &compiled_regexes;
             for (regex, transform_fn) in regexes {
-                if let Some(captures) = regex.captures(l).expect("Invalid regex") {
+                if let Some(captures) = regex.captures(l) {
                     return transform_fn(Captures::new(captures));
                 }
             }
@@ -84,14 +84,9 @@ pub fn transform_lines<T>(input: &str, regexes: TransformRegexes<T>) -> Vec<T> {
 pub fn match_per_line<'a>(input: &'a str, regex: &str) -> impl Iterator<Item = Captures<'a>> {
     let compiled_regex = Regex::new(regex).unwrap();
 
-    input.lines().map(move |l| {
-        Captures::new(
-            compiled_regex
-                .captures(l)
-                .expect("Invalid regex")
-                .unwrap_or_else(|| panic!("Did not match regex: {l}")),
-        )
-    })
+    input
+        .lines()
+        .map(move |l| Captures::new(compiled_regex.captures(l).expect("Invalid regex")))
 }
 
 pub fn matches_in_str<'a>(input: &'a str, regex: &str) -> impl Iterator<Item = Captures<'a>> {
@@ -101,13 +96,13 @@ pub fn matches_in_str<'a>(input: &'a str, regex: &str) -> impl Iterator<Item = C
         .captures_iter(input)
         .collect::<Vec<_>>()
         .into_iter()
-        .map(move |l| Captures::new(l.expect("Invalid regex")))
+        .map(move |l| Captures::new(l))
 }
 
 pub fn match_in_string<'a>(input: &'a str, regex: &str) -> Option<Captures<'a>> {
     let compiled_regex = Regex::new(regex).unwrap();
 
-    let captures = compiled_regex.captures(input).expect("Invalid regex");
+    let captures = compiled_regex.captures(input);
 
     captures.map(|c| Captures::new(c))
 }
