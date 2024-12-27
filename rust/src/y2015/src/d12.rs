@@ -48,19 +48,11 @@ fn count_numbers_ignoring_red(json: &Json) -> i32 {
 }
 
 fn parse_number(s: &mut Peekable<Chars>) -> Json {
-    let is_negative = s.peek().copied() == Some('-');
-
-    // Consume the '-' sign if it's there
-    if is_negative {
-        s.next();
-    }
-
     Json::Number(
-        s.peeking_take_while(|c| c.is_ascii_digit())
+        s.peeking_take_while(|c| c.is_ascii_digit() || *c == '-')
             .collect::<String>()
             .parse::<i32>()
-            .unwrap()
-            * if is_negative { -1 } else { 1 },
+            .unwrap(),
     )
 }
 
