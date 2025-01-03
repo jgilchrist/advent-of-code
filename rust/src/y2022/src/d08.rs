@@ -26,7 +26,7 @@ impl AocSolution for Day08 {
                         tree_heights.is_empty()
                             || tree_heights
                                 .iter()
-                                .all(|other_tree_height| other_tree_height < tree_height)
+                                .all(|(_, other_tree_height)| other_tree_height < tree_height)
                     })
             })
             .count()
@@ -39,7 +39,11 @@ impl AocSolution for Day08 {
             .map(|(tree_coord, tree_height)| {
                 CardinalDirection::ALL
                     .map(|direction| input.raycast_cells(tree_coord, direction.into()))
-                    .map(|heights| heights.take_while_inclusive(|h| *h < tree_height).count())
+                    .map(|heights| {
+                        heights
+                            .take_while_inclusive(|(_, h)| *h < tree_height)
+                            .count()
+                    })
                     .iter()
                     .product::<usize>()
             })

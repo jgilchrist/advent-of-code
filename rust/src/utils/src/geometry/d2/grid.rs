@@ -171,45 +171,56 @@ impl<T> Grid<T> {
         &self,
         from_coord: Vec2,
         direction: PrincipalWinds,
-    ) -> impl Iterator<Item = &T> + '_ {
+    ) -> impl Iterator<Item = (Vec2, &T)> + '_ {
         self.raycast_coords(from_coord, direction)
-            .map(|coord| self.at(coord).unwrap())
+            .map(|coord| (coord, self.at(coord).unwrap()))
     }
 
     pub fn raycast_cells_inclusive(
         &self,
         from_coord: Vec2,
         direction: PrincipalWinds,
-    ) -> impl Iterator<Item = &T> + '_ {
+    ) -> impl Iterator<Item = (Vec2, &T)> + '_ {
         self.raycast_coords_inclusive(from_coord, direction)
-            .map(|coord| self.at(coord).unwrap())
+            .map(|coord| (coord, self.at(coord).unwrap()))
     }
 }
 
-impl std::fmt::Debug for Grid<bool> {
+pub trait GridPrintChars {
+    fn as_char(&self) -> char;
+}
+
+impl<T: GridPrintChars> std::fmt::Debug for Grid<T> {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         for (coord, value) in self.iter_cells() {
             if coord.x == 0 {
                 writeln!(f)?;
             }
 
-            write!(f, "{}", if *value { "*" } else { "." })?;
+            write!(f, "{}", value.as_char())?;
         }
 
         writeln!(f)
     }
 }
 
-impl std::fmt::Debug for Grid<usize> {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        for (coord, value) in self.iter_cells() {
-            if coord.x == 0 {
-                writeln!(f)?;
-            }
-
-            write!(f, "{}", *value)?;
+impl GridPrintChars for bool {
+    fn as_char(&self) -> char {
+        if *self {
+            '*'
+        } else {
+            '.'
         }
+    }
+}
 
-        writeln!(f)
+impl GridPrintChars for usize {
+    fn as_char(&self) -> char {
+        assert!(
+            *self < 10,
+            "Tried to format an integer grid with non-single-digit numbers"
+        );
+
+        self.to_string().chars().next().unwrap()
     }
 }

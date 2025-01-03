@@ -20,6 +20,7 @@ impl AocSolution for Day04 {
                     .filter(|&&dir| {
                         grid.raycast_cells_inclusive(c, dir)
                             .take(4)
+                            .map(|(_, c)| c)
                             .collect::<String>()
                             == "XMAS"
                     })
@@ -38,6 +39,7 @@ impl AocSolution for Day04 {
                         PrincipalWinds::SouthEast,
                     )
                     .take(3)
+                    .map(|(_, c)| c)
                     .collect::<String>();
 
                 let diagonal2 = grid
@@ -46,6 +48,7 @@ impl AocSolution for Day04 {
                         PrincipalWinds::NorthEast,
                     )
                     .take(3)
+                    .map(|(_, c)| c)
                     .collect::<String>();
 
                 (diagonal1 == "MAS" || diagonal1 == "SAM")
