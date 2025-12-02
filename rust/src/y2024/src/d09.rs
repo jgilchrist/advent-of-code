@@ -76,12 +76,12 @@ impl AocSolution for Day09 {
         // otherwise it will be skipped
         numbers.push(0);
 
-        for (idx, [file_size, free_size]) in numbers.array_chunks::<2>().enumerate() {
-            for _ in 0..*file_size {
+        for (idx, [file_size, free_size]) in numbers.into_iter().array_chunks::<2>().enumerate() {
+            for _ in 0..file_size {
                 drive.push(Some(idx as u32));
             }
 
-            for _ in 0..*free_size {
+            for _ in 0..free_size {
                 drive.push(None);
             }
         }

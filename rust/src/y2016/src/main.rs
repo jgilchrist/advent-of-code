@@ -1,5 +1,5 @@
-#![feature(array_chunks)]
 #![feature(const_trait_impl)]
+#![feature(iter_array_chunks)]
 #![allow(incomplete_features)]
 
 use aoc::AocYear;

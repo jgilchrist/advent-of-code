@@ -1,5 +1,4 @@
 #![feature(const_trait_impl)]
-#![feature(let_chains)]
 #![allow(incomplete_features)]
 
 mod progress;
