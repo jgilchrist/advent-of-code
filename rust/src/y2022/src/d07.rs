@@ -141,11 +141,7 @@ impl AocSolution for Day07 {
 
     const PART1_SOLUTION: SolutionStatus = solution(1517599);
     fn part1(input: &Self::Input) -> impl ToSolution {
-        input
-            .iter()
-            .map(|(_, size)| size)
-            .filter(|size| **size <= 100000)
-            .sum::<u64>()
+        input.values().filter(|size| **size <= 100000).sum::<u64>()
     }
 
     const PART2_SOLUTION: SolutionStatus = solution(2481982);
@@ -157,8 +153,7 @@ impl AocSolution for Day07 {
         let need_to_delete = required_unused_space - current_unused_space;
 
         *input
-            .iter()
-            .map(|(_, size)| size)
+            .values()
             .filter(|size| **size >= need_to_delete)
             .min()
             .unwrap()

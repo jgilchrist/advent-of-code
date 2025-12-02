@@ -10,7 +10,7 @@ pub struct Day13;
 #[derive(PartialEq, Eq, Clone, Debug)]
 pub enum Value {
     Number(i64),
-    List(Vec<Value>),
+    List(Vec<Self>),
 }
 
 fn parse_value(s: &mut Peekable<Chars>) -> Value {

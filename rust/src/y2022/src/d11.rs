@@ -33,7 +33,7 @@ pub struct Monkey {
 
 impl Monkey {
     fn passes_to(&self, item: u64) -> MonkeyId {
-        if item % self.test_divisible_by == 0 {
+        if item.is_multiple_of(self.test_divisible_by) {
             self.true_monkey
         } else {
             self.false_monkey
@@ -95,8 +95,8 @@ fn play_round(
     let mut state = state.clone();
     let max_monkey_id = *monkey_defs.keys().max().unwrap();
     let divisible_by_all_of = monkey_defs
-        .iter()
-        .map(|(_, m)| m.test_divisible_by)
+        .values()
+        .map(|m| m.test_divisible_by)
         .product::<u64>();
 
     for monkey_id in 0..=max_monkey_id {
@@ -121,8 +121,14 @@ fn play_round(
 
 fn parse_monkey(m: &str) -> (MonkeyId, (Monkey, Vec<u64>)) {
     let lines = m.lines().collect::<Vec<_>>();
-    let [monkey_id_line, starting_items_line, operation_line, test_line, true_line, false_line] =
-        lines[..]
+    let [
+        monkey_id_line,
+        starting_items_line,
+        operation_line,
+        test_line,
+        true_line,
+        false_line,
+    ] = lines[..]
     else {
         unreachable!()
     };

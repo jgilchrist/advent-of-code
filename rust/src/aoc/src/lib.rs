@@ -6,7 +6,7 @@ mod runner;
 
 pub mod prelude {
     pub use crate::{
-        solution, solution_from_python, AocSolution, Solution, SolutionStatus, ToSolution,
+        AocSolution, Solution, SolutionStatus, ToSolution, solution, solution_from_python,
     };
 }
 
@@ -113,11 +113,11 @@ impl PartialEq for Solution {
     }
 }
 
-pub const fn solution(sln: impl ~const ToSolution) -> SolutionStatus {
+pub const fn solution(sln: impl [const] ToSolution) -> SolutionStatus {
     SolutionStatus::Solved(sln.to_solution())
 }
 
-pub const fn solution_from_python(sln: impl ~const ToSolution) -> SolutionStatus {
+pub const fn solution_from_python(sln: impl [const] ToSolution) -> SolutionStatus {
     SolutionStatus::SolvedInPython(sln.to_solution())
 }
 

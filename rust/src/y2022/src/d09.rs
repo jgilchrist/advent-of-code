@@ -22,7 +22,7 @@ impl AocSolution for Day09 {
 
                 let amount = amount.parse::<usize>().unwrap();
 
-                std::iter::repeat(dir).take(amount)
+                std::iter::repeat_n(dir, amount)
             })
             .collect()
     }

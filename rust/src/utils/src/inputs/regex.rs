@@ -64,7 +64,7 @@ pub fn transform_lines<T>(input: &str, regexes: TransformRegexes<T>) -> Vec<T> {
         .map(|(re, x)| (Regex::new(&re).unwrap(), x))
         .collect::<Vec<_>>();
 
-    let transformed_lines = input
+    input
         .lines()
         .map(|l| {
             let regexes: &[(Regex, TransformFn<T>)] = &compiled_regexes;
@@ -76,9 +76,7 @@ pub fn transform_lines<T>(input: &str, regexes: TransformRegexes<T>) -> Vec<T> {
 
             panic!("Did not match any regexes: \"{l}\"");
         })
-        .collect();
-
-    transformed_lines
+        .collect()
 }
 
 pub fn match_per_line<'a>(input: &'a str, regex: &str) -> impl Iterator<Item = Captures<'a>> {

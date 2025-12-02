@@ -5,7 +5,7 @@ mod text;
 
 pub use grid::grid_of;
 pub use numbers::{n_numbers, n_positive_numbers, positive_numbers};
-pub use regex::{match_in_string, match_per_line, matches_in_str, transform_lines, Captures};
+pub use regex::{Captures, match_in_string, match_per_line, matches_in_str, transform_lines};
 pub use text::{comma_separated, separated_by};
 
 pub fn lines(s: &str) -> Vec<String> {

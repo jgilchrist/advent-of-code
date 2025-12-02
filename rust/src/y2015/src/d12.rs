@@ -7,8 +7,8 @@ pub struct Day12;
 
 #[derive(PartialEq, Eq)]
 pub enum Json {
-    Object(Map<String, Json>),
-    Array(Vec<Json>),
+    Object(Map<String, Self>),
+    Array(Vec<Self>),
     String(String),
     Number(i32),
 }
@@ -39,8 +39,8 @@ fn count_numbers_ignoring_red(json: &Json) -> i32 {
             if contains_red {
                 0
             } else {
-                obj.iter()
-                    .map(|(_, prop_value)| count_numbers_ignoring_red(prop_value))
+                obj.values()
+                    .map(|prop_value| count_numbers_ignoring_red(prop_value))
                     .sum()
             }
         }
