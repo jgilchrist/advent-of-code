@@ -1,0 +1,13 @@
+[package]
+name = "y2025"
+version.workspace = true
+edition.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+itertools = { workspace = true }
+
+aoc = { "path" = "../aoc" }
+utils = { "path" = "../utils" }
