@@ -1,6 +1,6 @@
 #![feature(const_trait_impl)]
 #![feature(iter_array_chunks)]
-#![allow(incomplete_features)]
+#![expect(incomplete_features)]
 
 use aoc::AocYear;
 use utils::Result;

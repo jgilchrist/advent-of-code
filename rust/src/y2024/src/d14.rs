@@ -29,14 +29,14 @@ fn add_mod(v1: Vec2, v2: Vec2, vmod: Vec2) -> Vec2 {
     Vec2::new(xnew, ynew)
 }
 
-#[allow(clippy::cast_precision_loss)]
+#[expect(clippy::cast_precision_loss)]
 fn variance(ns: &[f64]) -> f64 {
     let mean = mean(ns);
 
     ns.iter().map(|n| (n - mean).abs().powi(2)).sum::<f64>() / ns.len() as f64
 }
 
-#[allow(clippy::cast_precision_loss)]
+#[expect(clippy::cast_precision_loss)]
 fn mean(ns: &[f64]) -> f64 {
     ns.iter().sum::<f64>() / ns.len() as f64
 }

@@ -55,7 +55,7 @@ impl AocSolution for Day10 {
     }
 
     const PART2_SOLUTION: SolutionStatus = solution("PCPBKAPJ");
-    #[allow(clippy::cast_sign_loss)]
+    #[expect(clippy::cast_sign_loss)]
     fn part2(input: &Self::Input) -> impl ToSolution {
         let xs = get_all_xs(input);
 

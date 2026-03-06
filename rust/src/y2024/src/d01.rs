@@ -1,4 +1,4 @@
-#![allow(clippy::similar_names)]
+#![expect(clippy::similar_names)]
 
 use aoc::prelude::*;
 use utils::iters::transpose;

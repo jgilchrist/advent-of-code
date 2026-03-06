@@ -1,5 +1,5 @@
-#![allow(clippy::print_stdout)]
-#![allow(unused)]
+#![expect(clippy::print_stdout)]
+#![expect(unused)]
 
 use crate::{AocSolution, AocYear, SolutionStatus};
 use console::style;

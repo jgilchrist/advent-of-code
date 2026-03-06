@@ -12,7 +12,7 @@ impl Map {
         Self { cells }
     }
 
-    #[allow(clippy::cast_sign_loss)]
+    #[expect(clippy::cast_sign_loss)]
     fn at(&self, pos: Vec2) -> Option<char> {
         *self
             .cells

@@ -35,7 +35,7 @@ impl CapturesExtensions for inputs::Captures<'_> {
         Var(self.next_string())
     }
 
-    #[allow(clippy::option_if_let_else)]
+    #[expect(clippy::option_if_let_else)]
     fn next_operand(&mut self) -> Operand {
         let val = self.next_string();
 

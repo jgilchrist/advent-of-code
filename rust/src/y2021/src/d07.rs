@@ -11,7 +11,7 @@ fn get_minimum_cost_by(i: &[u64], cost_fn: impl Fn(u64, u64) -> u64) -> u64 {
     *positions_to_costs.iter().min_by_key(|&x| *x.1).unwrap().1
 }
 
-#[allow(clippy::as_conversions)]
+#[expect(clippy::as_conversions)]
 fn abs_difference(a: u64, b: u64) -> u64 {
     (a as i64 - b as i64).unsigned_abs()
 }

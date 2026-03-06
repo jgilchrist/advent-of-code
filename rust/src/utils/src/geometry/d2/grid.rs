@@ -1,4 +1,4 @@
-#![allow(clippy::cast_sign_loss, clippy::cast_precision_loss)]
+#![expect(clippy::cast_sign_loss, clippy::cast_precision_loss)]
 
 use super::{
     coordinates::{CardinalDirection, PrincipalWinds},

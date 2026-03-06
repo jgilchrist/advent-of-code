@@ -1,5 +1,5 @@
 #![feature(const_trait_impl)]
-#![allow(incomplete_features)]
+#![expect(incomplete_features)]
 
 use aoc::{AocYear, Unsolved};
 use utils::Result;

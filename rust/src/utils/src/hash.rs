@@ -15,7 +15,7 @@ pub trait SetBuilder<T> {
     fn from_array<const N: usize>(array: [T; N]) -> Self;
 }
 
-#[allow(clippy::implicit_hasher)]
+#[expect(clippy::implicit_hasher)]
 impl<T: Eq + Hash> SetBuilder<T> for Set<T> {
     fn new() -> Self {
         Self::with_hasher(BuildFxHasher)
@@ -40,7 +40,7 @@ pub trait MapBuilder<K, V> {
     fn from_array<const N: usize>(array: [(K, V); N]) -> Self;
 }
 
-#[allow(clippy::implicit_hasher)]
+#[expect(clippy::implicit_hasher)]
 impl<K: Eq + Hash, V> MapBuilder<K, V> for Map<K, V> {
     fn new() -> Self {
         Self::with_hasher(BuildFxHasher)

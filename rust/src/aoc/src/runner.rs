@@ -1,4 +1,4 @@
-#![allow(clippy::print_stdout)]
+#![expect(clippy::print_stdout)]
 
 use crate::{AocSolution, AocYear, SolutionStatus, ToSolution};
 use std::env;
