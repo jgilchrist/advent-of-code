@@ -27,8 +27,7 @@ pub enum Solution {
     Unsolved,
 }
 
-#[const_trait]
-pub trait ToSolution {
+pub const trait ToSolution {
     fn to_solution(self) -> Solution;
 }
 
