@@ -1,6 +1,4 @@
 #![feature(const_trait_impl)]
-#![expect(incomplete_features)]
-#![expect(unreachable_patterns)]
 
 use aoc::{AocYear, Unsolved};
 use utils::Result;

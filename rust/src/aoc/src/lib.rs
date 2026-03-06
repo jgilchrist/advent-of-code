@@ -1,5 +1,4 @@
 #![feature(const_trait_impl)]
-#![expect(incomplete_features)]
 
 mod progress;
 mod runner;
