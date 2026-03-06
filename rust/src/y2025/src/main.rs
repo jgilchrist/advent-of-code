@@ -1,5 +1,4 @@
 #![feature(const_trait_impl)]
-#![feature(array_windows)]
 #![feature(iter_array_chunks)]
 #![allow(incomplete_features)]
 
